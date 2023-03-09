@@ -1,9 +1,9 @@
 package seedu.duke;
 
-import seedu.duke.Commands.Command;
-import seedu.duke.Exceptions.DukeException;
-import seedu.duke.General.Parser;
-import seedu.duke.General.Ui;
+import seedu.duke.commands.Command;
+import seedu.duke.exceptions.DukeException;
+import seedu.duke.general.Parser;
+import seedu.duke.general.Ui;
 
 import java.util.Scanner;
 

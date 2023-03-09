@@ -1,6 +1,6 @@
-package seedu.duke.Commands;
+package seedu.duke.commands;
 
-import seedu.duke.General.Ui;
+import seedu.duke.general.Ui;
 
 public abstract class Command {
     protected String userInput;

@@ -1,8 +1,8 @@
-package seedu.duke.General;
+package seedu.duke.general;
 
-import seedu.duke.Commands.Command;
-import seedu.duke.Commands.ExitCommand;
-import seedu.duke.Exceptions.DukeException;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.exceptions.DukeException;
 
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {

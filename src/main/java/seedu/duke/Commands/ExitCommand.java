@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.Commands;
 
 public class ExitCommand extends Command {
     public ExitCommand(String userInput) {

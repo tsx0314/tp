@@ -8,6 +8,8 @@ public class Duke {
 		ui = new Ui();
 
 	}
+
+	//Code below adapted from https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
 	public void run() {
 		ui.printOpeningMessage();
 		boolean isExit = false;
@@ -15,7 +17,7 @@ public class Duke {
 		while (!isExit) {
 			try {
 				String fullCommand = ui.readCommand();
-				ui.showLine(); // show the divider line ("_______")
+				ui.showLine();
 				Command c = Parser.parse(fullCommand);
 				c.execute(ui);
 				isExit = c.isExit();

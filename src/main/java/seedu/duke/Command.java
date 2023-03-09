@@ -12,7 +12,7 @@ public abstract class Command {
 		ui.printExitLine();
 	}
 
-	public boolean isExit(){
+	public boolean isExit() {
 		return false;
 	}
 }

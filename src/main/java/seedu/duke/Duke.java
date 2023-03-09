@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Duke {
 	private Ui ui;
+
 	public Duke() {
 		ui = new Ui();
 
@@ -13,6 +14,8 @@ public class Duke {
 	public void run() {
 		ui.printOpeningMessage();
 		boolean isExit = false;
+
+		Scanner sc = new Scanner(System.in);
 
 		while (!isExit) {
 			try {

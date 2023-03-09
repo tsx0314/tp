@@ -5,7 +5,7 @@ public class ExitCommand extends Command {
 		super(userInput);
 	}
 
-	public boolean isExit(){
+	public boolean isExit() {
 		return true;
 	}
 }

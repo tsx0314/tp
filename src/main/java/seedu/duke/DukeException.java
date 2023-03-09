@@ -1,10 +1,10 @@
 package seedu.duke;
 
 public class DukeException extends Exception {
-	private final String errorMessage = "Error..";
+    private final String errorMessage = "Error..";
 
-	public String getMessage() {
-		return errorMessage;
-	}
+    public String getMessage() {
+        return errorMessage;
+    }
 
 }

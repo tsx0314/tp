@@ -1,5 +1,10 @@
 package seedu.duke;
 
+import seedu.duke.Commands.Command;
+import seedu.duke.Exceptions.DukeException;
+import seedu.duke.General.Parser;
+import seedu.duke.General.Ui;
+
 import java.util.Scanner;
 
 public class Duke {

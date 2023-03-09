@@ -1,4 +1,4 @@
-package seedu.duke.General;
+package seedu.duke.general;
 
 import java.util.Scanner;
 

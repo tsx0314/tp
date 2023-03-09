@@ -15,7 +15,8 @@ public class Ui {
 
 	public void printOpeningMessage() {
 		System.out.println("Hello from\n" + LOGO);
-		System.out.println("How can I help you?");
+		System.out.println("Hi! I am Duke:)\n" +
+				"Let us track expiry dates and combat food waste together! ");
 	}
 
 	public String readCommand() {

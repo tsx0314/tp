@@ -22,4 +22,5 @@ public class Food {
         String details = "Product Name: " + getName() + "\n" + "Expired by: " + getExpiryDate();
         return details;
     }
+
 }

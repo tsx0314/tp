@@ -1,11 +1,9 @@
 package seedu.duke.general;
 
-import seedu.duke.commands.AddCommand;
-import seedu.duke.commands.Command;
-import seedu.duke.commands.ExitCommand;
-import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.commands.*;
 import seedu.duke.exceptions.DukeException;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -41,6 +39,9 @@ public class Parser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
         default:
             return new IncorrectCommand();

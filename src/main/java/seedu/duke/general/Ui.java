@@ -9,6 +9,9 @@ public class Ui {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String LIST_MESSAGE = "Here is your food list!";
+
+    private static final String ADD_MESSAGE = "Okay! I've added the product in the list.";
 
     public Ui() {
     }
@@ -35,5 +38,13 @@ public class Ui {
 
     public void showError(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public void printListMessages() {
+        System.out.println(LIST_MESSAGE);
+    }
+
+    public void printAddMessage() {
+        System.out.println(ADD_MESSAGE);
     }
 }

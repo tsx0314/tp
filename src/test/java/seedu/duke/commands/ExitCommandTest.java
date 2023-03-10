@@ -2,11 +2,10 @@ package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exceptions.DukeException;
-import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 import seedu.duke.general.Parser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.duke.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
 
 class ExitCommandTest {

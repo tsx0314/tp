@@ -57,7 +57,7 @@ public class Parser {
             return new FindCommand();
 
         case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommand();
+            return new RemoveCommand(arguments);
 
         default:
             return new IncorrectCommand();

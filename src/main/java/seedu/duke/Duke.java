@@ -19,7 +19,6 @@ public class Duke {
     public Duke() {
         ui = new Ui();
         foodList = new FoodList();
-
     }
 
     public void run() {

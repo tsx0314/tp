@@ -4,12 +4,15 @@ import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.commands.ListCommand;
+
 import seedu.duke.exceptions.DukeException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
+
     /**
      * The code is adapted from
      * https://github.com/se-edu/addressbook-level2/blob/
@@ -40,6 +43,9 @@ public class Parser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
         default:
             return new IncorrectCommand();

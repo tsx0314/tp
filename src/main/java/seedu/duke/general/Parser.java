@@ -6,6 +6,7 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.exceptions.DukeException;
 
 public class Parser {
+
     public static Command parse(String fullCommand) throws DukeException {
         fullCommand = fullCommand.trim();
         if (fullCommand.equals("exit")) {
@@ -14,6 +15,7 @@ public class Parser {
             return new AddCommand(fullCommand);
         } else {
             throw new DukeException();
+
         }
     }
 

@@ -4,9 +4,6 @@ import seedu.duke.commands.CommandResult;
 
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -46,10 +43,6 @@ public class Ui {
 
     public void showLine() {
         System.out.println("______________________________");
-    }
-
-    public void showError(String errorMessage) {
-        System.out.println(errorMessage);
     }
 
     public void showResultToUser(CommandResult result){

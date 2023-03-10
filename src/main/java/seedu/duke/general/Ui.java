@@ -1,12 +1,5 @@
 package seedu.duke.general;
 
-import seedu.duke.commands.CommandResult;
-
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 /**
@@ -14,21 +7,14 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private static final String LOGO_PATTERN = " ____        _        \n"
+    public static final String LOGO_PATTERN = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
+    public static final String LIST_MESSAGE = "Here is your food list!";
 
-    private final Scanner in;
-    private final PrintStream out;
-
-    public Ui(){
-        this(System.in, System.out);
-    }
-    public Ui(InputStream in, PrintStream out) {
-        this.in = new Scanner(in);
-        this.out = out;
+    public Ui() {
     }
 
     public String readCommand() {
@@ -48,11 +34,8 @@ public class Ui {
         System.out.println("______________________________");
     }
 
-    public void showError(String errorMessage) {
-        System.out.println(errorMessage);
-    }
 
-    public void showResultToUser(CommandResult result){
-        System.out.println(result.feedbackToUser);
+    public void showError(String message) {
+        System.out.println(message);
     }
 }

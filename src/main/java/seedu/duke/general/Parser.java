@@ -1,6 +1,11 @@
 package seedu.duke.general;
 
-import seedu.duke.commands.*;
+import seedu.duke.commands.AddCommand;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.commands.ListCommand;
+
 import seedu.duke.exceptions.DukeException;
 
 import java.util.regex.Matcher;

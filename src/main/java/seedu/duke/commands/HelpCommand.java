@@ -2,10 +2,16 @@ package seedu.duke.commands;
 
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
+
     private String[] filters;
+
     public HelpCommand (String userInput) {
-        filters = userInput.split("--");
+        filters = userInput.replaceAll(" ", "").split("--");
         processHelpCommand(filters);
+    }
+
+    public String[] getFilters() {
+        return filters;
     }
 
     private void processHelpCommand(String[] filters) {
@@ -15,7 +21,6 @@ public class HelpCommand extends Command {
         }
 
         for (String f : filters) {
-            f = f.trim();
 
             if (f.equals(COMMAND_WORD) || f.equals("")) {
                 continue;

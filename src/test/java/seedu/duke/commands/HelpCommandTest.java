@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 class HelpCommandTest {
 
     @Test
-    void HelpCommand_withSpaces_expectRemoveSpacing() {
+    void helpCommand_withSpaces_expectRemoveSpacing() {
         String input = "    help     ";
         HelpCommand hc = new HelpCommand(input);
         String[] expectedOutput = {"help"};

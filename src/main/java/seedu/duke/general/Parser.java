@@ -3,21 +3,14 @@ package seedu.duke.general;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
-<<<<<<< HEAD
-=======
 import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.exceptions.DukeException;
->>>>>>> 32c778082d2042084c61e73d0801abd058c849e2
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-<<<<<<< HEAD
-    public static Command parseCommand(String fullCommand) {
-        if (fullCommand.equals(ExitCommand.COMMAND_WORD)) {
-            return new ExitCommand();
-=======
+
     /**
      * The code is adapted from
      * https://github.com/se-edu/addressbook-level2/blob/
@@ -51,9 +44,7 @@ public class Parser {
 
         default:
             return new IncorrectCommand();
->>>>>>> 32c778082d2042084c61e73d0801abd058c849e2
         }
-        return null;
     }
 
     private static Command addFood(String args) {

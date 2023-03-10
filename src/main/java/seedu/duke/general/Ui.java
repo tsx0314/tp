@@ -1,12 +1,5 @@
 package seedu.duke.general;
 
-<<<<<<< HEAD
-import seedu.duke.commands.CommandResult;
-
-import java.io.InputStream;
-import java.io.PrintStream;
-=======
->>>>>>> 32c778082d2042084c61e73d0801abd058c849e2
 import java.util.Scanner;
 
 /**
@@ -41,13 +34,7 @@ public class Ui {
         System.out.println("______________________________");
     }
 
-<<<<<<< HEAD
-    public void showResultToUser(CommandResult result){
-        System.out.println(result.feedbackToUser);
-=======
-
     public void showError(String message) {
         System.out.println(message);
->>>>>>> 32c778082d2042084c61e73d0801abd058c849e2
     }
 }

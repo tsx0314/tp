@@ -1,18 +1,14 @@
 package seedu.duke.commands;
 
-import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
-import seedu.duke.general.Ui;
 
 public abstract class Command {
-    protected String userInput;
 
-    public Command(String userInput) {
-        this.userInput = userInput;
+    protected Command() {
     }
 
-    public void execute(FoodList foodList, Ui ui) throws DukeException {
-        ui.printExitLine();
+    public CommandResult execute(FoodList foodList) {
+        return new CommandResult("Duke is running");
     }
 
     public boolean isExit() {

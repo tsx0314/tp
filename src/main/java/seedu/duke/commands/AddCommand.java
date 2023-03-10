@@ -1,57 +1,43 @@
 package seedu.duke.commands;
 
-import seedu.duke.exceptions.CommandException;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
-import seedu.duke.general.Ui;
-
-import java.util.regex.Pattern;
 
 public class AddCommand extends Command {
-    private static final String ADD_COMMAND_PATTERN_1 =
-            "^add\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}$";
-    private static final String ADD_COMMAND_PATTERN_2 =
-            "^add\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\s+-n\\s+\\w+(\\s+\\w+)*\\s$";
 
-    public AddCommand(String userInput) {
-        super(userInput);
+    public static final String COMMAND_WORD = "add";
+    public static final String ADD_MESSAGE = "I have added this product! :) \n";
+
+    public static final String NAME_SEPARATOR = " -n ";
+    public static final String EXPIRY_SEPARATOR = " -e ";
+    public String details;
+
+    public AddCommand(String details) {
+        this.details = details;
     }
 
-    @Override
-    public void execute(FoodList foodList, Ui ui) throws CommandException {
-        String command = userInput.trim();
 
-        boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, command);
-        boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, command);
-
-        if (!isMatched1 && !isMatched2) {
-            throw new CommandException();
-        }
-        String[] details = splitAddCommand(command);
-        String name = details[0];
-        String date = details[1];
-
+    public CommandResult execute(FoodList foodList) {
+        String[] nameAndDate = splitDetails(details);
+        String name = nameAndDate[0];
+        String date = nameAndDate[1];
         Food newFood = new Food(name, date);
+        System.out.println(newFood.printFoodDetails());
         foodList.addFood(newFood);
-        ui.printAddMessage();
-        newFood.printFoodDetails();
 
+        return new CommandResult(ADD_MESSAGE);
     }
 
-    public static String[] splitAddCommand(String command) {
-        String commandDetails = command.replace("add", "");
-        String[] splitCommand = commandDetails.split(" -n ");
+    public String[] splitDetails(String details) {
         String[] nameAndDate;
-        if (splitCommand[0].isEmpty()) {
-            nameAndDate = splitCommand[1].split(" -e ");
+        String[] temp = details.split(NAME_SEPARATOR);
+        if (temp[0].isEmpty()) {
+            nameAndDate = temp[1].split(EXPIRY_SEPARATOR);
         } else {
-            nameAndDate = splitCommand[0].split(" -e ");
-            String date = nameAndDate[1];
-            String name = splitCommand[1];
-            nameAndDate[0] = name;
-            nameAndDate[1] = date;
+            nameAndDate = temp[0].split(EXPIRY_SEPARATOR);
+            nameAndDate[0] = temp[1];
         }
+
         return nameAndDate;
     }
-
 }

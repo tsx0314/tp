@@ -5,14 +5,10 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.exceptions.DukeException;
 
 public class Parser {
-    public static Command parseCommand(String fullCommand) {
-        switch (fullCommand) {
-
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        default:
-            return null;
+    public static Command parse(String fullCommand) throws DukeException {
+        if (!fullCommand.equals("exit")) {
+            throw new DukeException();
         }
+        return new ExitCommand(fullCommand);
     }
 }

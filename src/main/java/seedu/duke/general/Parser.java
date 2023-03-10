@@ -1,13 +1,78 @@
 package seedu.duke.general;
 
+import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+<<<<<<< HEAD
+=======
+import seedu.duke.commands.IncorrectCommand;
+import seedu.duke.exceptions.DukeException;
+>>>>>>> 32c778082d2042084c61e73d0801abd058c849e2
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Parser {
+<<<<<<< HEAD
     public static Command parseCommand(String fullCommand) {
         if (fullCommand.equals(ExitCommand.COMMAND_WORD)) {
             return new ExitCommand();
+=======
+    /**
+     * The code is adapted from
+     * https://github.com/se-edu/addressbook-level2/blob/
+     * 157fcf19c6b73289dc4cc7b2dd1152bc2b8e197a/src/seedu/addressbook/parser/Parser
+     */
+
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final String ADD_COMMAND_PATTERN_1 =
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}$";
+    private static final String ADD_COMMAND_PATTERN_2 =
+            "^\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\s+-n\\s+\\w+(\\s+\\w+)*$";
+
+
+    public static Command parse(String userInput) throws DukeException {
+
+        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        if (!matcher.matches()) {
+            return new IncorrectCommand();
+        }
+
+        final String commandWord = matcher.group("commandWord");
+        final String arguments = matcher.group("arguments");
+
+        switch (commandWord) {
+
+        case AddCommand.COMMAND_WORD:
+            return addFood(arguments);
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        default:
+            return new IncorrectCommand();
+>>>>>>> 32c778082d2042084c61e73d0801abd058c849e2
         }
         return null;
     }
+
+    private static Command addFood(String args) {
+        boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, args);
+        boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, args);
+
+        if (!isMatched1 && !isMatched2) {
+            return new IncorrectCommand();
+        } else {
+            return new AddCommand(args);
+        }
+    }
+
+
 }
+
+
+
+
+
+
+

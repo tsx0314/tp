@@ -1,22 +1,19 @@
 package seedu.duke.commands;
 
+<<<<<<< HEAD
+=======
+import seedu.duke.food.FoodList;
+
+>>>>>>> 32c778082d2042084c61e73d0801abd058c849e2
 public abstract class Command {
-    //protected String userInput;
-    //private int targetIndex = -1;
 
-    protected Command(){
+    protected Command() {
     }
 
-    /*
-    public void execute(Ui ui) {
-        ui.printExitLine();
+    public CommandResult execute(FoodList foodList) {
+        return new CommandResult("Duke is running");
     }
-    */
 
-    public CommandResult execute(){
-        throw new UnsupportedOperationException("This method is to be implemented by child classes");
-    }
-    
     public boolean isExit() {
         return false;
     }

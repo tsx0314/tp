@@ -29,29 +29,12 @@ public class Duke {
         while (!isExit) {
 
             String fullCommand = ui.readCommand();
-            ui.showLine();
+            ui.showLine(); // show the divider line ("_______")
             Command c = Parser.parseCommand(fullCommand);
             CommandResult result = c.execute();
             ui.showResultToUser(result);
             isExit = c.isExit();
-            /*
-            try {
-                String fullCommand = ui.readCommand();
-                ui.showLine();
-                Command c = Parser.parseCommand(fullCommand);
-<<<<<<< HEAD
-                CommandResult result = c.execute();
-                ui.showResultToUser(result);
-=======
-                c.execute();
->>>>>>> origin/master
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
-            }
-             */
+
         }
     }
 

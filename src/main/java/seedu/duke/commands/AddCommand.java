@@ -19,15 +19,15 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(FoodList foodList, Ui ui) throws CommandException {
-        userInput = userInput.trim();
+        String command = userInput.trim();
 
-        boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, userInput);
-        boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, userInput);
+        boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, command);
+        boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, command);
 
         if (!isMatched1 && !isMatched2) {
             throw new CommandException();
         }
-        String[] details = splitAddCommand(userInput);
+        String[] details = splitAddCommand(command);
         String name = details[0];
         String date = details[1];
 

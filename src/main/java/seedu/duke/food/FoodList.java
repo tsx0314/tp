@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FoodList {
     private ArrayList<Food> foodList = new ArrayList<>();
-    private static int numberOfFood = 0;
+    private int numberOfFood = 0;
 
     public FoodList() {
     }

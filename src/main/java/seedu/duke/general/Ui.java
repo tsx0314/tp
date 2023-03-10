@@ -44,10 +44,6 @@ public class Ui {
         showLine();
     }
 
-    public void showExitMessage() {
-        System.out.println("BYE!");
-    }
-
     public void showLine() {
         System.out.println("______________________________");
     }

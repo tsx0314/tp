@@ -34,7 +34,6 @@ public class Ui {
         System.out.println("______________________________");
     }
 
-
     public void showError(String message) {
         System.out.println(message);
     }

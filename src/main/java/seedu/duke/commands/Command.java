@@ -1,5 +1,4 @@
 package seedu.duke.commands;
-
 import seedu.duke.food.FoodList;
 
 public abstract class Command {

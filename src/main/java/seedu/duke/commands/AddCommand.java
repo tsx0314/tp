@@ -17,6 +17,7 @@ public class AddCommand extends Command {
         super(userInput);
     }
 
+    @Override
     public void execute(FoodList foodList, Ui ui) throws CommandException {
         userInput = userInput.trim();
 

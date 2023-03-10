@@ -11,6 +11,4 @@ public class FoodList {
     public void addFood(Food food) {
         foodList.add(food);
     }
-
-
 }

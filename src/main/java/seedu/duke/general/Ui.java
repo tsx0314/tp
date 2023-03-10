@@ -11,7 +11,8 @@ public class Ui {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String LIST_MESSAGE = "Here is your food list!";
 
-    private static final String ADD_MESSAGE = "Okay! I've added the product in the list.";
+    private static final String ADD_MESSAGE = "Okay! I've added the product in the list :)";
+    private static final String EXIT_MESSAGE = "Bye! Please consume your food ASAP :P";
 
     public Ui() {
     }
@@ -33,7 +34,7 @@ public class Ui {
     }
 
     public void printExitLine() {
-        System.out.println("BYE!");
+        System.out.println(EXIT_MESSAGE);
     }
 
     public void showError(String errorMessage) {

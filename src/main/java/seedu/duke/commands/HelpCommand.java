@@ -5,13 +5,13 @@ public class HelpCommand extends Command {
 
     private String[] filters;
 
-    public String[] getFilters() {
-        return filters;
-    }
-
     public HelpCommand (String userInput) {
         filters = userInput.replaceAll(" ", "").split("--");
         processHelpCommand(filters);
+    }
+
+    public String[] getFilters() {
+        return filters;
     }
 
     private void processHelpCommand(String[] filters) {

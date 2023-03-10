@@ -1,7 +1,5 @@
 package seedu.duke.commands;
 
-import seedu.duke.general.Ui;
-
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
     private String[] filters;

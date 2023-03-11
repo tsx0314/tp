@@ -13,10 +13,9 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(FoodList foodList) {
         FoodList result = foodList.findFood(term);
-
         if (result.getNumberOfFood() > 0) {
             System.out.println(result);
-            return new CommandResult("Found" + result.getNumberOfFood() + " food items");
+            return new CommandResult("Found " + result.getNumberOfFood() + " of food items");
         } else {
             return new CommandResult("No food found for such term");
         }

@@ -4,23 +4,20 @@ import java.util.ArrayList;
 
 public class FoodList {
     private ArrayList<Food> foodList = new ArrayList<>();
-    private int numberOfFood = 0;
 
     public FoodList() {
     }
 
     public void addFood(Food food) {
-        numberOfFood++;
         foodList.add(food);
     }
 
     public void removeFood(int index) {
-        numberOfFood--;
         foodList.remove(index);
     }
 
-    public int getNumberOfFood(){
-        return numberOfFood;
+    public int getNumberOfFood() {
+        return foodList.size();
     }
 
     public ArrayList<Food> getFoodList(){
@@ -32,13 +29,11 @@ public class FoodList {
     }
 
     public FoodList findFood(String term) {
-        ArrayList<Food> foodItems = getFoodList();
-
         FoodList result = new FoodList();
 
-        for (Food foodItem: foodItems) {
+        for (Food foodItem: foodList) {
             String name = foodItem.getName();
-            if (name.toLowerCase().contains(term.toLowerCase())) {
+            if (name.toLowerCase().contains(term.toLowerCase().trim())) {
                 result.addFood(foodItem);
             }
         }
@@ -51,6 +46,7 @@ public class FoodList {
         StringBuilder output = new StringBuilder();
         for (Food foodItem : foodList) {
             output.append(index).append(". ").append(foodItem);
+            output.append(System.lineSeparator());
             index++;
         }
         return output.toString();

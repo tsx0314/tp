@@ -8,7 +8,8 @@ public class HelpCommand extends Command {
 
     private static final String SHOW_ALL_COMMANDS = "List of commands: 'bye', 'help', 'list', 'add', 'remove', 'find'"
             + "\nFor more detailed information on usage of specific command, type: help --COMMAND";
-    private static final String DEFAULT_HELP_MESSAGE = "Refer to our user guide for more in-depth details on how to use our system:"
+    private static final String DEFAULT_HELP_MESSAGE = "Refer to our user guide for more in-depth details on"
+            + " how to use our system:"
             + "\nhttps://docs.google.com/document/d/1WKscnkYy9UqI_tsWmUHIMjgILJc6GQeFn0B1ce6qkQo/edit?usp=sharing";
     private static final String HELP_EXIT = "Command 'exit': This command is used to exit the program.";
     private static final String HELP_LIST = "Command 'list': This command lists all food products in the tracker."

@@ -23,4 +23,8 @@ public class Food {
         return details;
     }
 
+    @Override
+    public String toString() {
+        return getName() + "\n" + "Expiry date: " + getExpiryDate();
+    }
 }

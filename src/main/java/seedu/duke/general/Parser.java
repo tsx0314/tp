@@ -54,7 +54,7 @@ public class Parser {
             return new HelpCommand(userInput);
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommand();
+            return new FindCommand(arguments);
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommand(arguments);

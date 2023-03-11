@@ -33,16 +33,17 @@ public class HelpCommand extends Command {
         return filters;
     }
 
+    @Override
     public CommandResult execute(FoodList foodList) {
         String printToUser = "";
-        if (filters.length == 1) {
+        if (isHelpOrEmpty(filters[0]) && filters.length == 1) {
             printToUser = SHOW_ALL_COMMANDS + '\n' + DEFAULT_HELP_MESSAGE;
             return new CommandResult(printToUser);
         }
 
         for (String f : filters) {
 
-            if (f.equals(COMMAND_WORD) || f.equals("")) {
+            if (isHelpOrEmpty(f)) {
                 continue;
             }
 
@@ -67,5 +68,9 @@ public class HelpCommand extends Command {
             }
         }
         return new CommandResult(printToUser);
+    }
+
+    private boolean isHelpOrEmpty(String word) {
+        return (word.equals(COMMAND_WORD) || word.equals(""));
     }
 }

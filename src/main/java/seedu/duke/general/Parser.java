@@ -3,8 +3,11 @@ package seedu.duke.general;
 import seedu.duke.commands.AddCommand;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.FindCommand;
+import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.commands.ListCommand;
+import seedu.duke.commands.RemoveCommand;
 
 import seedu.duke.exceptions.DukeException;
 
@@ -46,6 +49,15 @@ public class Parser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand();
+
+        case RemoveCommand.COMMAND_WORD:
+            return new RemoveCommand(arguments);
 
         default:
             return new IncorrectCommand();

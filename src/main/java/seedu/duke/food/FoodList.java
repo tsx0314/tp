@@ -14,6 +14,11 @@ public class FoodList {
         foodList.add(food);
     }
 
+    public void removeFood(int index) {
+        numberOfFood--;
+        foodList.remove(index);
+    }
+
     public int getNumberOfFood(){
         return numberOfFood;
     }

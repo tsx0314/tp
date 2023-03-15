@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
 
 public class RemoveCommand extends Command {
@@ -10,8 +11,14 @@ public class RemoveCommand extends Command {
         this.index = index;
     }
 
-    public CommandResult execute (FoodList foodlist) {
+    public CommandResult execute (FoodList foodlist) throws DukeException {
+        if (index.isBlank()) {
+            throw new DukeException();
+        }
         int deleteItem = Integer.parseInt(index.trim()) - 1;
+        if (deleteItem >= foodlist.getNumberOfFood()) {
+            throw new DukeException();
+        }
         String foodName = foodlist.getFood(deleteItem).getName();
         foodlist.removeFood(deleteItem);
         int itemsLeft = foodlist.getNumberOfFood();

@@ -1,11 +1,10 @@
 package seedu.duke.commands;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RemoveCommandTest {
 

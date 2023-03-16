@@ -1,19 +1,12 @@
 package seedu.duke;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
 import seedu.duke.general.Parser;
 import seedu.duke.general.Ui;
-<<<<<<< HEAD
 
-=======
->>>>>>> upstream
 
 /**
  * Entry point of the Food Supply Tracker application

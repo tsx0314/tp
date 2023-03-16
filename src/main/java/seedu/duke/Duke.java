@@ -1,13 +1,19 @@
 package seedu.duke;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
 import seedu.duke.general.Parser;
 import seedu.duke.general.Ui;
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream
 
 /**
  * Entry point of the Food Supply Tracker application
@@ -16,6 +22,7 @@ import seedu.duke.general.Ui;
 public class Duke {
 
     private Ui ui;
+
     private FoodList foodList;
 
     public Duke() {
@@ -43,7 +50,7 @@ public class Duke {
             }
         }
     }
-
+    
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -51,4 +58,3 @@ public class Duke {
         new Duke().run();
     }
 }
-

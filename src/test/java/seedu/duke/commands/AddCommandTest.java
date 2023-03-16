@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 class AddCommandTest {
 
     @Test
-    void testSplitDetails_oneString_returnsStringSArrayInTwoParts() {
+    void testSplitDetails_oneString_returnsStringsArrayInTwoParts() {
         String details = " -n Egg -e 21/03/2023";
         AddCommand addFood = new AddCommand(details);
         String[] expected = {"Egg", "21/03/2023"};

@@ -54,10 +54,10 @@ public class Parser {
             return new HelpCommand(arguments);
 
         case FindCommand.COMMAND_WORD:
-            return new FindCommand();
+            return new FindCommand(arguments);
 
         case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommand();
+            return new RemoveCommand(arguments);
 
         default:
             return new IncorrectCommand();

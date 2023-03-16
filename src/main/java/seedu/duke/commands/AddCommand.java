@@ -16,7 +16,6 @@ public class AddCommand extends Command {
         this.details = details;
     }
 
-
     public CommandResult execute(FoodList foodList) {
         String[] nameAndDate = splitDetails(details);
         String name = nameAndDate[0];

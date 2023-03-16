@@ -21,6 +21,9 @@ public class Duke {
         foodList = new FoodList();
     }
 
+    // This part of the code is adapted from the module website
+    // https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
+
     public void run() {
 
         ui.showWelcomeMessage();

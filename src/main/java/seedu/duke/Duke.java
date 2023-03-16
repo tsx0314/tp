@@ -1,19 +1,46 @@
 package seedu.duke;
 
-import seedu.duke.command.Command;
-import seedu.duke.exception.CommandNotRecognisedException;
+import seedu.duke.commands.Command;
+import seedu.duke.commands.CommandResult;
+import seedu.duke.exceptions.DukeException;
+import seedu.duke.food.FoodList;
+import seedu.duke.general.Parser;
+import seedu.duke.general.Ui;
 
-import java.util.Scanner;
-
+/**
+ * Entry point of the Food Supply Tracker application
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
-
-    private final Ui ui;
-    private final Parser parser;
+   private Ui ui;
+    private FoodList foodList;
 
     public Duke() {
         ui = new Ui();
-        parser = new Parser();
+        foodList = new FoodList();
     }
+
+    public void run() {
+
+        ui.showWelcomeMessage();
+        boolean isExit = false;
+
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                CommandResult result = c.execute(foodList);
+                result.printResult();
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
+        }
+    }
+
 
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -21,21 +48,4 @@ public class Duke {
     public static void main(String[] args) {
         new Duke().run();
     }
-
-    public void run() {
-        ui.printStartMessage();
-
-        String userInput;
-        do {
-            userInput = ui.getUserInput();
-            try {
-                parser.processCommand(userInput);
-            } catch (CommandNotRecognisedException e) {
-                ui.printCommandNotRecognised();
-                ui.printDivider();
-            }
-        } while (!userInput.equals(Command.COMMAND_BYE));
-
-    }
-
 }

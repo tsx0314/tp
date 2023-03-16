@@ -6,7 +6,7 @@ import seedu.duke.food.FoodList;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
-    private static final String SHOW_ALL_COMMANDS = "List of commands: 'bye', 'help', 'list', 'add', 'remove', 'find'"
+    private static final String SHOW_ALL_COMMANDS = "List of commands: 'exit', 'help', 'list', 'add', 'remove', 'find'"
             + "\nFor more detailed information on usage of specific command, type: help --COMMAND";
     private static final String DEFAULT_HELP_MESSAGE = "Refer to our user guide for more in-depth details on"
             + " how to use our system:"

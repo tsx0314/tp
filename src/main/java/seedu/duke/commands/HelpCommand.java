@@ -50,7 +50,7 @@ public class HelpCommand extends Command {
             switch (f) {
             case ExitCommand.COMMAND_WORD:
                 printToUser = addNewLine(printToUser);
-                printToUser = printToUser.concat( HELP_EXIT);
+                printToUser = printToUser.concat(HELP_EXIT);
                 break;
             case ListCommand.COMMAND_WORD:
                 printToUser = addNewLine(printToUser);
@@ -82,7 +82,7 @@ public class HelpCommand extends Command {
 
     private String addNewLine(String printToUser) {
         if (!printToUser.equals("")) {
-            printToUser= printToUser.concat("\n\n");
+            printToUser = printToUser.concat("\n\n");
         }
         return printToUser;
     }

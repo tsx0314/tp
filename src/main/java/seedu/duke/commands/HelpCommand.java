@@ -6,7 +6,7 @@ import seedu.duke.food.FoodList;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
-    private static final String SHOW_ALL_COMMANDS = "List of commands: 'bye', 'help', 'list', 'add', 'remove', 'find'"
+    private static final String SHOW_ALL_COMMANDS = "List of commands: 'exit', 'help', 'list', 'add', 'remove', 'find'"
             + "\nFor more detailed information on usage of specific command, type: help --COMMAND";
     private static final String DEFAULT_HELP_MESSAGE = "Refer to our user guide for more in-depth details on"
             + " how to use our system:"
@@ -49,22 +49,28 @@ public class HelpCommand extends Command {
 
             switch (f) {
             case ExitCommand.COMMAND_WORD:
-                printToUser = printToUser.concat('\n' + HELP_EXIT);
+                printToUser = addNewLine(printToUser);
+                printToUser = printToUser.concat( HELP_EXIT);
                 break;
             case ListCommand.COMMAND_WORD:
-                printToUser = printToUser.concat('\n' + HELP_LIST);
+                printToUser = addNewLine(printToUser);
+                printToUser = printToUser.concat(HELP_LIST);
                 break;
             case AddCommand.COMMAND_WORD:
-                printToUser = printToUser.concat('\n' + HELP_ADD);
+                printToUser = addNewLine(printToUser);
+                printToUser = printToUser.concat(HELP_ADD);
                 break;
             case RemoveCommand.COMMAND_WORD:
-                printToUser = printToUser.concat('\n' + HELP_REMOVE);
+                printToUser = addNewLine(printToUser);
+                printToUser = printToUser.concat(HELP_REMOVE);
                 break;
             case FindCommand.COMMAND_WORD:
-                printToUser = printToUser.concat('\n' + HELP_FIND);
+                printToUser = addNewLine(printToUser);
+                printToUser = printToUser.concat(HELP_FIND);
                 break;
             default:
-                printToUser = printToUser.concat('\n' + REPORT_INVALID_INPUT + f);
+                printToUser = addNewLine(printToUser);
+                printToUser = printToUser.concat(REPORT_INVALID_INPUT + f);
             }
         }
         return new CommandResult(printToUser);
@@ -72,5 +78,12 @@ public class HelpCommand extends Command {
 
     private boolean isHelpOrEmpty(String word) {
         return (word.equals(COMMAND_WORD) || word.equals(""));
+    }
+
+    private String addNewLine(String printToUser) {
+        if (!printToUser.equals("")) {
+            printToUser= printToUser.concat("\n\n");
+        }
+        return printToUser;
     }
 }

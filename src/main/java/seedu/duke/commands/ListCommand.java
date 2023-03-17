@@ -5,7 +5,7 @@ import seedu.duke.food.FoodList;
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String SHOW_FOODLIST_MESSAGE = "Below are the food list: \n";
-    public static final String REPORT_NUMBER_OF_FOOD_FRONT = "You now have ";
+    public static final String REPORT_NUMBER_OF_FOOD_FRONT = "\nYou now have ";
     public static final String REPORT_NUMBER_OF_FOOD_BACK = " food products in your lists.";
 
     @Override

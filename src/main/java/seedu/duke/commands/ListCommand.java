@@ -9,7 +9,7 @@ public class ListCommand extends Command {
     public static final String REPORT_NUMBER_OF_FOOD_BACK = " food products in your lists.";
 
     @Override
-    public CommandResult execute (FoodList foodList){
+    public CommandResult execute(FoodList foodList) {
         System.out.println(SHOW_FOODLIST_MESSAGE);
         System.out.println(foodList.toString());
         return new CommandResult(REPORT_NUMBER_OF_FOOD_FRONT + foodList.getNumberOfFood()
@@ -17,7 +17,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

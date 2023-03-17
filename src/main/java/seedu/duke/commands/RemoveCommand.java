@@ -7,11 +7,12 @@ public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public String index;
+
     public RemoveCommand(String index) {
         this.index = index;
     }
 
-    public CommandResult execute (FoodList foodlist) throws DukeException {
+    public CommandResult execute(FoodList foodlist) throws DukeException {
         if (index.isBlank()) {
             throw new DukeException();
         }
@@ -27,7 +28,7 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

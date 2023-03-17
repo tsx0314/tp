@@ -43,7 +43,6 @@ public class Duke {
                 ui.showLine();
             }
         }
-        assert isExit: "is_exit should be true";
     }
 
 

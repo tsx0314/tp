@@ -51,15 +51,6 @@ public class Food {
         return expiryDate;
     }
 
-//    public String printFoodDetails() {
-//        Double quantity = getQuantity();
-//        if (quantity == null) {
-//            return "Product Name: " + getName() + "\n" + "Expired by: " + getExpiryDate();
-//        }
-//        return "Product Name: " + getName() + "\n     Expired by: " + getExpiryDate() +
-//                "\n     Remaining quantity: " + getQuantity();
-//    }
-
     @Override
     public String toString() {
         Double quantity = getQuantity();
@@ -71,5 +62,4 @@ public class Food {
         }
         return foodDetail;
     }
-
 }

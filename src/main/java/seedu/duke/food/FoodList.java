@@ -30,7 +30,6 @@ public class FoodList {
 
     public FoodList findFood(String term) {
         FoodList result = new FoodList();
-
         for (Food foodItem: foodList) {
             String name = foodItem.getName();
             if (name.toLowerCase().contains(term.toLowerCase().trim())) {

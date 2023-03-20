@@ -16,7 +16,7 @@ class AddCommandTest {
     void testSplitDetails_oneString_returnsStringsArrayInThreeParts() {
         String details = " -n Egg -e 21/03/2023 -q 10";
         AddCommand addFood = new AddCommand(details);
-        String[] expected = {"Egg", "21/03/2023", "10.0"};
+        String[] expected = {"Egg", "21/03/2023", "10"};
         assertArrayEquals(expected, addFood.splitDetails(details));
     }
 }

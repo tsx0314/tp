@@ -3,6 +3,9 @@ package seedu.duke.commands;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
+/**
+ * Represent a add command
+ */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
@@ -14,6 +17,10 @@ public class AddCommand extends Command {
     private static final String QUANTITY_SEPARATOR = " -q ";
     public String details;
 
+    /**
+     * Constructor
+     * @param details
+     */
     public AddCommand(String details) {
         this.details = details;
     }

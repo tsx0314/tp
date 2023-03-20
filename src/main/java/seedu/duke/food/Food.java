@@ -8,12 +8,25 @@ public class Food {
     private String expiryDate;
     private Double quantity;
 
+    /**
+     * Constructor
+     *
+     * @param name       food name
+     * @param expiryDate food expiry date
+     * @param quantity   food quantity
+     */
     public Food(String name, String expiryDate, Double quantity) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
     }
 
+    /**
+     * Constructor for Food object with no quantity
+     *
+     * @param name       food name
+     * @param expiryDate food expiry date
+     */
     public Food(String name, String expiryDate) {
         this.name = name;
         this.expiryDate = expiryDate;
@@ -44,14 +57,29 @@ public class Food {
         this.quantity = quantity;
     }
 
+    /**
+     * Returns a food product name
+     *
+     * @return name food name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Returns a food expiry date string
+     *
+     * @return expiryDate food expiry date
+     */
     public String getExpiryDate() {
         return expiryDate;
     }
 
+    /**
+     * Returns a foodDetail string
+     *
+     * @return foodDetails a String of complete food details to be printed
+     */
     @Override
     public String toString() {
         Double quantity = getQuantity();

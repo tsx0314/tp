@@ -2,9 +2,15 @@ package seedu.duke.food;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a food list
+ */
 public class FoodList {
     private ArrayList<Food> foodList = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
     public FoodList() {
     }
 

@@ -3,42 +3,92 @@ package seedu.duke.commands;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
-    public static final String ADD_MESSAGE = "I have added this product! :) \n";
+    public static final String ADD_MESSAGE = "I have added this product! :)";
 
-    public static final String NAME_SEPARATOR = " -n ";
-    public static final String EXPIRY_SEPARATOR = " -e ";
+    private static final String NAME_SEPARATOR = " -n ";
+    private static final String EXPIRY_SEPARATOR = " -e ";
+
+    private static final String QUANTITY_SEPARATOR = " -q ";
     public String details;
 
     public AddCommand(String details) {
         this.details = details;
     }
 
+    /**
+     * Returns a CommandResult object to display the successful message after executing the command as below
+     * Separate the food name and the expiry date details and add a new food item in the list
+     *
+     * @param foodList a food list
+     * @return a CommandResult object to display the successful message
+     */
     public CommandResult execute(FoodList foodList) {
-        String[] nameAndDate = splitDetails(details);
-        assert nameAndDate.length == 2 : "Input format is invalid";
-        String name = nameAndDate[0];
-        String date = nameAndDate[1];
+        String[] foodDetails = splitDetails(details);
+        assert foodDetails.length >= 2 : "Input is wrong";
+        String name = foodDetails[0];
+        String date = foodDetails[1];
         assert name instanceof String && !name.trim().isEmpty() : "Expected non-empty string for name";
         assert date instanceof String && !date.trim().isEmpty() : "Expected non-empty string for date";
-        Food newFood = new Food(name, date);
-        System.out.println(newFood.printFoodDetails());
+
+        Food newFood;
+
+        if (foodDetails.length <= 2) {
+            newFood = new Food(name, date);
+        } else {
+            String q = foodDetails[2];
+            double quantity = Double.valueOf(q);
+            newFood = new Food(name, date, quantity);
+        }
+        System.out.println(newFood);
         foodList.addFood(newFood);
+        System.out.println();
         return new CommandResult(ADD_MESSAGE);
     }
 
+    /**
+     * Returns an array of String to store the information of food name, expiry date (and quantity)
+     *
+     * @param details
+     * @return nameAndDate a String array of the food name, the expiry date (and quantity)
+     */
     public String[] splitDetails(String details) {
-        String[] nameAndDate;
-        String[] temp = details.split(NAME_SEPARATOR);
-        if (temp[0].isEmpty()) {
-            nameAndDate = temp[1].split(EXPIRY_SEPARATOR);
-        } else {
-            nameAndDate = temp[0].split(EXPIRY_SEPARATOR);
-            nameAndDate[0] = temp[1];
-        }
+        boolean hasQuantity = details.contains("-q");
+        String name;
+        String date;
+        if (hasQuantity) {
+            String[] temp = details.split(QUANTITY_SEPARATOR);
+            String quantity = temp[1];
 
-        return nameAndDate;
+            if (temp[0].indexOf("-n") < temp[0].indexOf("-e")) {
+                String[] nameAndDate = temp[0].replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
+                name = nameAndDate[0];
+                date = nameAndDate[1];
+            } else {
+                String[] dateAndName = temp[0].replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
+                name = dateAndName[1];
+                date = dateAndName[0];
+            }
+
+            String[] foodDetails = {name, date, quantity};
+            return foodDetails;
+        } else {
+            if (details.indexOf("-n") < details.indexOf("-e")) {
+                String[] nameAndDate = details.replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
+                name = nameAndDate[0];
+                date = nameAndDate[1];
+            } else {
+                String[] dateAndName = details.replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
+                name = dateAndName[1];
+                date = dateAndName[0];
+            }
+            String[] foodDetails = {name, date};
+            return foodDetails;
+        }
     }
 }

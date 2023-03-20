@@ -1,4 +1,5 @@
 package seedu.duke.food;
+
 import java.time.LocalDate;
 
 
@@ -58,7 +59,8 @@ public class Food {
         if (quantity == 0.0) {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate();
         } else {
-            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate() + "\n       Remaining quantity: " + getQuantity();
+            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
+                    + "\n       Remaining quantity: " + getQuantity();
         }
         return foodDetail;
     }

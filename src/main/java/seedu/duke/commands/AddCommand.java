@@ -3,9 +3,6 @@ package seedu.duke.commands;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
-import java.util.ArrayList;
-import java.util.logging.Level;
-
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";

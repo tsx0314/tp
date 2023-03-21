@@ -20,6 +20,7 @@ public class AddCommand extends Command {
         String[] nameAndDate = splitDetails(details);
         String name = nameAndDate[0];
         String date = nameAndDate[1];
+
         Food newFood = new Food(name, date);
         System.out.println(newFood.printFoodDetails());
         foodList.addFood(newFood);

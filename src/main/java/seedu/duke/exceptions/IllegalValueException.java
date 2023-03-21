@@ -5,4 +5,3 @@ public class IllegalValueException extends  DukeException{
         super(message);
     }
 }
-

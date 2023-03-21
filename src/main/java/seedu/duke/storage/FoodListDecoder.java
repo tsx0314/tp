@@ -8,18 +8,14 @@ import java.util.List;
 
 /**
  * Decodes the storage data file into an {@code FoodList} object.
+ * The code is adapted from
+ * <a href="https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java">...</a>
  */
 public class FoodListDecoder {
 
-    /**
-     * The code is adapted from
-     * https://github.com/se-edu/addressbook-level2/blob/
-     * master/src/seedu/addressbook/storage/AddressBookDecoder.java
-     */
-
-    /**
-     * Decodes {@code encodedFoodList} into an {@code FoodList} containing the decoded food.
-     */
+/**
+ * Decodes {@code encodedFoodList} into an {@code FoodList} containing the decoded food.
+ */
     public static FoodList decodeFoodList(List<String> encodedFoodList) {
         final ArrayList<Food> decodedFoodList = new ArrayList<>();
         for (String encodedFood : encodedFoodList) {

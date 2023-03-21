@@ -15,17 +15,12 @@ import seedu.duke.food.FoodList;
 
 /**
  * Represents the file used to store food list data.
+ * The code is adapted from
+ * <a href="https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/StorageFile.java">...</a>
  */
 public class StorageFile {
 
-    /**
-     * The code is adapted from
-     * https://github.com/se-edu/addressbook-level2/blob/
-     * master/src/seedu/addressbook/storage/StorageFile.java
-     */
-
     /** Default file path used if the user doesn't provide the file name. */
-    //TODO: Create file
     public static final String DEFAULT_STORAGE_FILEPATH = "foodTrackerList.txt";
 
 

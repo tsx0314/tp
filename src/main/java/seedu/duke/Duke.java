@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
+import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 import seedu.duke.exceptions.StorageOperationException;
@@ -21,17 +22,18 @@ public class Duke {
 
     private StorageFile storageFile;
 
-    //TODO: Remove the exceptions (handle them)
     public Duke() {
         ui = new Ui();
         try {
             storageFile = new StorageFile();
         } catch (InvalidStorageFilePathException e) {
+            System.out.println("File path is invalid");
         }
 
         try {
             foodList = storageFile.load();
         } catch (StorageOperationException e) {
+            System.out.println("Unable to read save file");
         }
     }
 

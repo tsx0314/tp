@@ -17,8 +17,8 @@ public class Food {
         return LocalDate.now();
     }
 
-    public LocalDate formatDate(String expiryDate) {
-        return LocalDate.parse(expiryDate);
+    public LocalDate parseExpiryDate () {
+        return LocalDate.parse(expiryDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public String getName() {

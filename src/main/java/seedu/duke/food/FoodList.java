@@ -1,5 +1,8 @@
 package seedu.duke.food;
 
+import seedu.duke.exceptions.DukeException;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FoodList {
@@ -28,15 +31,38 @@ public class FoodList {
         return foodList.get(i);
     }
 
-    public FoodList findFood(String term) {
+    public FoodList findFood(String term, String ...flags) throws DukeException{
         FoodList result = new FoodList();
 
         for (Food foodItem: foodList) {
             String name = foodItem.getName();
-            if (name.toLowerCase().contains(term.toLowerCase().trim())) {
+            LocalDate expiryDate = foodItem.parseExpiryDate();
+            boolean hasTerm = name.toLowerCase().contains(term.toLowerCase().trim());
+            if (hasTerm && flags.length == 0) {
+                result.addFood(foodItem);
+                continue;
+            }
+
+            // Filter by flags
+            for (String flag: flags) {
+                if (flag.trim().equals("fresh")) {
+                    boolean isFresh = expiryDate.isAfter(LocalDate.now());
+                    if(!isFresh) continue;
+                }
+
+                else if (flag.trim().equals("expired")) {
+                    boolean isExpired = expiryDate.isBefore(LocalDate.now());
+                    if(!isExpired) continue;
+                }
+
+                else throw new DukeException("the flag " + "\"-" + flag + "\"" + " is invalid");
+
+                // adds the item if all filters passed
                 result.addFood(foodItem);
             }
+
         }
+
         return result;
     }
 

@@ -1,11 +1,9 @@
 package seedu.duke.commands;
 
-import seedu.duke.Duke;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
 
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";

@@ -34,35 +34,33 @@ public class FoodList {
     public FoodList findFood(String term, String ...flags) throws DukeException{
         FoodList result = new FoodList();
 
+        foodItemLoop:
         for (Food foodItem: foodList) {
             String name = foodItem.getName();
             LocalDate expiryDate = foodItem.parseExpiryDate();
             boolean hasTerm = name.toLowerCase().contains(term.toLowerCase().trim());
-            if (hasTerm && flags.length == 0) {
-                result.addFood(foodItem);
-                continue;
-            }
 
-            // Filter by flags
-            for (String flag: flags) {
-                if (flag.trim().equals("fresh")) {
-                    boolean isFresh = expiryDate.isAfter(LocalDate.now());
-                    if(!isFresh) continue;
+            if (hasTerm) {
+                // Filter by flags
+                for (String flag: flags) {
+                    switch (flag) {
+                    case "fresh":
+                            boolean isFresh = expiryDate.isAfter(LocalDate.now());
+                            if (!isFresh) { continue foodItemLoop; }
+                            break;
+                    case "expired":
+                            boolean isExpired = expiryDate.isBefore(LocalDate.now());
+                            if (!isExpired) { continue foodItemLoop; }
+                            break;
+                    default:
+                        throw new DukeException("the flag " + "\"-" + flag + "\"" + " is invalid");
+                    }
                 }
-
-                else if (flag.trim().equals("expired")) {
-                    boolean isExpired = expiryDate.isBefore(LocalDate.now());
-                    if(!isExpired) continue;
-                }
-
-                else throw new DukeException("the flag " + "\"-" + flag + "\"" + " is invalid");
-
                 // adds the item if all filters passed
                 result.addFood(foodItem);
             }
 
         }
-
         return result;
     }
 

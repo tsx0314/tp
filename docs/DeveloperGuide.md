@@ -1,38 +1,37 @@
 # Developer Guide
 
-## Acknowledgements
+# Find feature
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 ## Design & implementation
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+The find command is implemented using a `FindCommand` class which
+utilizes `findFood` method of the FoodList.
+
+The `findFood` method implementation is as follows:
+1. Initialize `FoodList` result variable
+2. Start a loop iterating over each foodItem 
+3. Do word processing on a term and check if the foodItem name includes it
+4. Enter a loop with switch statement for each component of the `flags` argument 
+5. If some flag is not satisfied, continue the loop without adding foodItem to the result
+6. If the flags loop is over, the flags conditions were satisfied, so add the foodItem to the result
+
+**Class Diagram** 
+![ClassDiagram](images/FindCommandClassDiagram.png)
+
+
+**Sequence Diagram**
+![ClassDiagram](images/FindCommandSequenceDiagram.png)
+
 
 
 ## Product scope
-### Target user profile
+Currently, the following functionality was implemented:
 
-{Describe the target user profile}
+`find {product_name}`
 
-### Value proposition
+`find {product_name} -fresh`
 
-{Describe the value proposition: what problem does it solve?}
+`find {product_name} -expired`
 
-## User Stories
-
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-
-## Non-Functional Requirements
-
-{Give non-functional requirements}
-
-## Glossary
-
-* *glossary item* - Definition
-
-## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+The next possible flag to implement will be `-c` which stands for `categories`

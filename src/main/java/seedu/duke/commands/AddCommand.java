@@ -19,6 +19,7 @@ public class AddCommand extends Command {
 
     /**
      * Constructor
+     *
      * @param details
      */
     public AddCommand(String details) {
@@ -63,8 +64,10 @@ public class AddCommand extends Command {
      */
     public String[] splitDetails(String details) {
         boolean hasQuantity = details.contains("-q");
+
         String name;
         String date;
+
         if (hasQuantity) {
             String[] temp = details.split(QUANTITY_SEPARATOR);
             String quantity = temp[1];
@@ -81,18 +84,19 @@ public class AddCommand extends Command {
 
             String[] foodDetails = {name, date, quantity};
             return foodDetails;
-        } else {
-            if (details.indexOf("-n") < details.indexOf("-e")) {
-                String[] nameAndDate = details.replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
-                name = nameAndDate[0];
-                date = nameAndDate[1];
-            } else {
-                String[] dateAndName = details.replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
-                name = dateAndName[1];
-                date = dateAndName[0];
-            }
-            String[] foodDetails = {name, date};
-            return foodDetails;
         }
+        
+        if (details.indexOf("-n") < details.indexOf("-e")) {
+            String[] nameAndDate = details.replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
+            name = nameAndDate[0];
+            date = nameAndDate[1];
+        } else {
+            String[] dateAndName = details.replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
+            name = dateAndName[1];
+            date = dateAndName[0];
+        }
+        String[] foodDetails = {name, date};
+        return foodDetails;
     }
+
 }

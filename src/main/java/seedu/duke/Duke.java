@@ -26,7 +26,6 @@ public class Duke {
 
     // This part of the code is adapted from the module website
     // https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
-
     public void run() {
 
         ui.showWelcomeMessage();
@@ -36,7 +35,6 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-
                 logger.log(Level.INFO, "Processing user command");
                 Command c = Parser.parse(fullCommand);
                 CommandResult result = c.execute(foodList);

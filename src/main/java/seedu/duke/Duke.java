@@ -2,7 +2,6 @@ package seedu.duke;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
-import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.InvalidStorageFilePathException;
 import seedu.duke.exceptions.StorageOperationException;

@@ -7,6 +7,7 @@ public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
 
     public String index;
+
     public RemoveCommand(String index) {
         this.index = index;
     }
@@ -16,6 +17,7 @@ public class RemoveCommand extends Command {
             throw new IllegalValueException("Incorrect value entered");
         }
         int deleteItem = Integer.parseInt(index.trim()) - 1;
+
         if (deleteItem >= foodlist.getNumberOfFood() || deleteItem < 1) {
             throw new IllegalValueException("Incorrect value entered");
         }
@@ -27,7 +29,7 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

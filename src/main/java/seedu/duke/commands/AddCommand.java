@@ -18,13 +18,16 @@ public class AddCommand extends Command {
 
     public CommandResult execute(FoodList foodList) {
         String[] nameAndDate = splitDetails(details);
+        assert nameAndDate.length == 2 : "Input format is invalid";
         String name = nameAndDate[0];
         String date = nameAndDate[1];
+
+        assert name instanceof String && !name.trim().isEmpty() : "Expected non-empty string for name";
+        assert date instanceof String && !date.trim().isEmpty() : "Expected non-empty string for date";
 
         Food newFood = new Food(name, date);
         System.out.println(newFood.printFoodDetails());
         foodList.addFood(newFood);
-
         return new CommandResult(ADD_MESSAGE);
     }
 

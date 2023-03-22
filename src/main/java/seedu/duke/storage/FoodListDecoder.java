@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class FoodListDecoder {
 
-/**
- * Decodes {@code encodedFoodList} into an {@code FoodList} containing the decoded food.
- */
+    /**
+     * Decodes {@code encodedFoodList} into an {@code FoodList} containing the decoded food.
+     */
     public static FoodList decodeFoodList(List<String> encodedFoodList) {
         final ArrayList<Food> decodedFoodList = new ArrayList<>();
         for (String encodedFood : encodedFoodList) {

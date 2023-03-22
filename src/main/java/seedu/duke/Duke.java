@@ -3,9 +3,12 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.InvalidStorageFilePathException;
+import seedu.duke.exceptions.StorageOperationException;
 import seedu.duke.food.FoodList;
 import seedu.duke.general.Parser;
 import seedu.duke.general.Ui;
+import seedu.duke.storage.StorageFile;
 
 
 /**
@@ -18,13 +21,24 @@ public class Duke {
 
     private FoodList foodList;
 
+    private StorageFile storageFile;
+
     public Duke() {
         ui = new Ui();
-        foodList = new FoodList();
+        try {
+            storageFile = new StorageFile();
+        } catch (InvalidStorageFilePathException e) {
+            System.out.println("File path is invalid");
+        }
+
+        try {
+            foodList = storageFile.load();
+        } catch (StorageOperationException e) {
+            System.out.println("Unable to read save file");
+        }
     }
 
     public void run() {
-
         ui.showWelcomeMessage();
         boolean isExit = false;
 
@@ -35,6 +49,7 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 CommandResult result = c.execute(foodList);
                 result.printResult();
+                storageFile.save(foodList);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());

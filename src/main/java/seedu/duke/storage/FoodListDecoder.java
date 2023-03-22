@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Decodes the storage data file into an {@code FoodList} object.
  * The code is adapted from
- * <a href="https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java">...</a>
+ * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java
  */
 public class FoodListDecoder {
 

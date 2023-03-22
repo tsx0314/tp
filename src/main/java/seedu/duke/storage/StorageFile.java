@@ -15,8 +15,8 @@ import seedu.duke.food.FoodList;
 
 /**
  * Represents the file used to store food list data.
- * The code is adapted from
- * <a href="https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/StorageFile.java">...</a>
+ * The code is adapted from:
+ * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/StorageFile.java
  */
 public class StorageFile {
 

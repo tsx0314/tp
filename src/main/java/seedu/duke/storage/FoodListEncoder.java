@@ -11,7 +11,7 @@ import seedu.duke.food.Food;
 /**
  * Encodes the {@code FoodList} object into a data file for storage.
  * The code is adapted from
- * <a href="https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookEncoder.java">...</a>
+ * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookEncoder.java
  */
 public class FoodListEncoder {
 

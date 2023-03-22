@@ -59,7 +59,6 @@ public class StorageFile {
     public void save(FoodList foodList) throws StorageOperationException {
         try {
             List<String> encodedFoodList = FoodListEncoder.encodeFoodList(foodList);
-            System.out.println(encodedFoodList);
             Files.write(path, encodedFoodList);
         } catch (IOException ioe) {
             throw new StorageOperationException("Error writing to file: " + path);

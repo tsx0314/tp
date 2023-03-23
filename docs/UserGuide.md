@@ -5,6 +5,14 @@
 Food Supply Trackers (FSP) is a desktop app for managing food supplies, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FSP can get your food management tasks done faster than traditional GUI apps.
 
 ---
++ [Quick Start](#quick-start)
++ [Features](#features)
+  + [Adding a food product: `add`](#adding-a-food-product--add)
+  + [Removing a food product: `remove`](#removing-a-food-product--remove) 
++ [FAQ](#faq)
++ [Command Summary](#command-summary)
+
+---
 ## Quick Start
 
 1. Ensure you have Java 11 installed in your Computer.
@@ -60,6 +68,26 @@ Egg
        Remaining quantity: 10.0
 
 I have added this product! :)
+```
+### Removing a food product: `remove`
+Remove a food product from the list based on its index.
+
+Format: `remove INDEX`
+
+* Deletes the food according to its `INDEX` in the list which starts from 1.
+* `INDEX` must be represented by an integer `i.e. 1, 2, 3`
+* Out-of-bounds `INDEX` will resuilt in an error message.
+
+Example of usage:
+
+Input
+
+`remove 1`
+
+Output:
+```
+Removed Eggs from the food supply list.
+There is/are now 0 item(s) in the list.
 ```
 ---
 

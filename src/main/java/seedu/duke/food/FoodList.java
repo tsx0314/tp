@@ -1,6 +1,7 @@
 package seedu.duke.food;
 
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.InvalidFlagException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class FoodList {
                             if (!isExpired) { continue foodItemLoop; }
                             break;
                     default:
-                        throw new DukeException("the flag " + "\"-" + flag + "\"" + " is invalid");
+                        throw new InvalidFlagException(flag);
                     }
                 }
                 // adds the item if all filters passed

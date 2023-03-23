@@ -1,7 +1,7 @@
 package seedu.duke.exceptions;
 
 public class DukeException extends Exception {
-    private String errorMessage = "Error..";
+    protected String errorMessage = "Error..";
 
     public DukeException(String errorMessage) {
         this.errorMessage = errorMessage;

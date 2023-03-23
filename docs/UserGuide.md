@@ -66,24 +66,31 @@ I have added this product! :)
 ## FAQ
 
 **Q1**: Do I need other software to support FSP?
+
 **A**: No, you do not need any other software to support FSP.
 
 **Q2**: I am unable to add the food product./I cannot list the food items./ I cannot remove the items.
+
 **A**: Please take note of the command line format shown in the features section. Type ‘help’ to show the command line and please follow the command line exactly. Moreover, please check that the parameters are also in the correct format to avoid meaningless addition of food product.
 
 **Q3**: Is searching case-sensitive?
+
 **A**: No, and items matching at least one keyword will be returned.
 
 **Q4**: Can I write creative names for my food items?
+
 **A**: Yes, you may do that to increase the amusement when listing the food items. However, it might be difficult for you to search for that specific item.
 
 **Q5**: What if I add the item's name incorrectly?
+
 **A**: Currently, we have not implemented the edit features. Please remove the item that you created wrongly and add a new food product.
 
 **Q6**: Can I export my food list into CSV files?
+
 **A**: Sorry, currently FSP does not have such features, but we will work on it in the future.
 
 **Q7**:How do I transfer my data to another Computer?
+
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FSP home folder.
 
 ---

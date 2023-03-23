@@ -4,6 +4,8 @@
 
 {To Be Added}
 
+---
+
 ## implementation
 
 ### Add feature
@@ -18,8 +20,7 @@ The add feature implementation is as follows:
 2. `splitDetails` is called to split the string
 3. boolean `hasQuantity` is used to record whether the string contains `-q` quantity flag
 4. Split the string using ` -q ` regardless of whether the string contains the quantity part
-5. Check the index of `-n` and `-e` and split the string using regex of ` -n ` and ` -e ` 
-to save the details of the food name and expiry date
+5. Check the index of `-n` and `-e` and split the string to save the details of the food name and expiry date
 6. If `hasQuantity` is `true`, return a String array with `name`, `date` and `quantity`, else only return
 a String array with `name` and `date`.
 7. Create a new `Food` object and use `addFood` to add the new food into the food list
@@ -55,7 +56,7 @@ The `findFood` method implementation is as follows:
 **Sequence Diagram**
 ![ClassDiagram](images/FindCommandSequenceDiagram.png)
 
-
+---
 
 ## Product scope
 Currently, the following functionality was implemented:

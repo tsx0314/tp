@@ -1,0 +1,35 @@
+@startuml
+participant Duke
+participant FindCommand
+participant FoodList as FoodList
+Duke -> FindCommand: execute(arguments)
+activate FindCommand
+
+FindCommand -> FoodList: findFood(term, ...flags)
+activate FoodList
+create FoodList as Result
+
+Result <- FoodList: new result
+
+loop for every foodItem
+    opt hasTerm
+        opt no flags
+            FoodList -> FoodList: result.addFoodItem()
+        end
+
+        opt all flags satisfied
+            FoodList -> FoodList: result.addFoodItem()
+        end
+
+        opt flag not satisfied
+             FoodList -> FoodList: continue
+        end
+    end
+end
+
+FindCommand<-- FoodList : result
+
+Duke <-- FindCommand: new CommandResult()
+
+
+@enduml

@@ -1,6 +1,7 @@
 package seedu.duke.food;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Food {
@@ -37,8 +38,8 @@ public class Food {
         return LocalDate.now();
     }
 
-    public LocalDate formatDate(String expiryDate) {
-        return LocalDate.parse(expiryDate);
+    public LocalDate parseExpiryDate () {
+        return LocalDate.parse(expiryDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
     public double getQuantity() {

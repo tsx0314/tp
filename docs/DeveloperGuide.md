@@ -56,6 +56,28 @@ The `findFood` method implementation is as follows:
 **Sequence Diagram**
 ![ClassDiagram](images/FindCommandSequenceDiagram.png)
 
+
+### Help feature
+The help command is implemented using a `HelpCommand` class which utilizes `COMMAND_WORD` 
+attributes of all other commands within the `commands` package. 
+
+The help command is implemented as follows:
+1. New `HelpCommand` object is created by passing in a String containing arguments from `Parser`.
+2. The constructor `HelpCommand` will split the arguments based on the `--` regex and store them in an array of
+strings called `filters`.
+3. The method `execute` will of `Command` class will then be called all the way from `Duke` with `filters` as its argument. 
+4. This method decides what to append to the string `printToUser` as specified by the `fitlers`. 
+5. After looping through all the `filters`, this method will return an object called `CommandResult` and pass
+`printToUser` as its argument.
+6. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
+
+**Class Diagram**
+![ClassDiagram](images/HelpCommandClassDiagram.png)
+
+
+**Sequence Diagram**
+![ClassDiagram](images/HelpCommandSequenceDiagram.png)
+
 ---
 
 ## Product scope

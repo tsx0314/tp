@@ -62,7 +62,7 @@ public class AddCommand extends Command {
      * Returns an array of String to store the information of food name, expiry date (and quantity)
      *
      * @param details food details
-     * @return nameAndDate a String array of the food name, the expiry date (and quantity)
+     * @return foodDetails a String array of the food name, the expiry date (and quantity)
      */
     public String[] splitDetails(String details) {
         boolean hasQuantity = details.contains("-q");

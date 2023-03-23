@@ -87,10 +87,12 @@ Currently, the following functionality was implemented:
 
 `add -e EXPIRY_DATE -n PRODUCT_NAME {-p QUANTITY}`
 
-`find {product_name}`
+`find {PRODUCT_NAME}`
 
-`find {product_name} -fresh`
+`find {PRODUCT_NAME} -fresh`
 
-`find {product_name} -expired`
+`find {PRODUCT_NAME} -expired`
+
+`help {--COMMAND_WORD}`
 
 The next possible flag to implement will be `-c` which stands for `categories`

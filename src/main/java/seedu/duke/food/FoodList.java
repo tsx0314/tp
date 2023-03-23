@@ -2,9 +2,15 @@ package seedu.duke.food;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a food list
+ */
 public class FoodList {
     private ArrayList<Food> foodList = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
     public FoodList() {
     }
 
@@ -30,7 +36,6 @@ public class FoodList {
 
     public FoodList findFood(String term) {
         FoodList result = new FoodList();
-
         for (Food foodItem: foodList) {
             String name = foodItem.getName();
             if (name.toLowerCase().contains(term.toLowerCase().trim())) {

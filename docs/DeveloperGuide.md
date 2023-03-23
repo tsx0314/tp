@@ -79,8 +79,26 @@ strings called `filters`.
 ![ClassDiagram](images/HelpCommandSequenceDiagram.png)
 
 ---
+## Appendix: Requirements
+# Product scope
+**Project Direction**
+- Food Supplies Tracker: Main function is to track expiry dates 
+and storage area of foods as to minimise food shortage.
 
-## Product scope
+- **Target user profile:**
+- Kitchen worker, Homemaker
+- has a need to manage food
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
+
+**Value proposition:**
+1) Manage food supply faster than a typical mouse / GUI driven app
+2) Check the expiry date of a particular food quickly
+3) Check the foods in the most recent expiry dates quickly
+4) Get suggestions and alert to consume foods that are going to expire soon
+
 Currently, the following functionality was implemented:
 
 `add -n PRODUCT_NAME -e EXPIRY_DATE {-p QUANTITY}`
@@ -97,17 +115,24 @@ Currently, the following functionality was implemented:
 
 The next possible flag to implement will be `-c` which stands for `categories`
 
-## Appendix: Requirements
-
-# Product scope
-**Target user profile:**
-- has a need to manage food
-- prefer desktop apps over other types
-- can type fast
-- prefers typing to mouse interactions
-- is reasonably comfortable using CLI apps
-
-**Value proposition:**
-- manage food supply faster than a typical mouse / GUI driven app
-
 # User stories
+
+| Priority | As a...             | I want to ...                                                         | So that I can...                                                | Current Feature Available |
+|----------|---------------------|-----------------------------------------------------------------------|-----------------------------------------------------------------|---------------------------|
+| `* * *`  | Forgetful cook      | be reminded of what is left in my fridge                              | use the food wisely and avoid repetitive purchasing.            | `list`                    |
+| `*`      | Forgetful cook      | get all meals for the next `x` days with their ingredients            | plan my grocery trips accordingly.                              | nil                       |
+| `* *`    | Lazy cook           | get recommended recipes based on what I have left in the <br/>fridge  | can spend less time considering what to cook today.             | nil                       |
+| `* * *`  | Lazy cook           | have an efficient method of updating what leftover ingredients I have | spend less time using the software.                             | `add -n`                  |
+| `* * *`  | Lazy cook           | check the lists of food fast                                          | waste less effort digging through the fridge / kitchen.         | `list`                    |
+| `* * *`  | Busy cook           | get reminded on the products which will expire soon                   | prepare a meal based on it.                                     |                           |
+| `* * *`  | Busy cook           | get reminded on the products which will expire soon                   | plan my grocery purchases accordingly.                          |                           |
+| `* * *`  | Busy cook           | check the availability of certain food fast                           | waste little time digging through the fridge / kitchen.         | `find`                    |
+| `* * *`  | Prudent cook        | check the expiry dates of food in fridge / kitchen                    | don't waste food due to food expiring and spoiling.             | `find`                    |
+| `* *`    | Disorganised person | organise food by categories at least in a program (fruits,veggies...) | don't spend time looking for the food scattered in the kitchen. | nil                       |
+| `* *`    | Prudent cook        | track the amount of different products I have                         | know how many portions I can cook.                              | nil                       |
+| `*`      | Creative cook       | replace some products with others                                     | add potential replacement for the product.                      | nil                       |     
+| `*`      | Inexperienced cook  | know how much to cook based on the number of people eating            | prepare the correct amount of food.                             | nil                       |  
+| `* * *`  | Cook                | add product (name, expiry date, category etc)                         | keep my program updated.                                        | `add -n -e`               |
+| `* * *`  | Cook                | remove product                                                        | keep my program updated.                                        | `remove`                  |
+
+

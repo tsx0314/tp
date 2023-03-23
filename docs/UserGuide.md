@@ -7,8 +7,11 @@ Food Supply Trackers (FSP) is a desktop app for managing food supplies, optimize
 ---
 + [Quick Start](#quick-start)
 + [Features](#features)
+  + [Viewing help: `help`](#viewing-help--help)
+  + [Listing all food products: `list`](#listing-all-food-products--code-list-code)
   + [Adding a food product: `add`](#adding-a-food-product--add)
   + [Removing a food product: `remove`](#removing-a-food-product--remove) 
+  + [Finding food products by name: `find`](#finding-food-products-by-name--code-find-code)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
 
@@ -20,7 +23,7 @@ Food Supply Trackers (FSP) is a desktop app for managing food supplies, optimize
 3. Copy the file to the folder you want your FoodSuppliesTracker to be in. 
 4. Open a command terminal, navigate into the folder with your jar file using cd and run the application with java -jar tp.jar
 5. Type the command in the command box and press Enter to execute it. E.g. typing help and pressing Enter will open the help window.
-6. Go to [Command Summary](##Command Summary) for a quick start on command format.
+6. Go to [Command Summary](#command-summary) for a quick start on command format.
 
 ---
 

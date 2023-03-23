@@ -3,8 +3,9 @@ package seedu.duke.commands;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
+
 /**
- * Represent a add command
+ * Represent an add command
  */
 public class AddCommand extends Command {
 
@@ -20,7 +21,7 @@ public class AddCommand extends Command {
     /**
      * Constructor
      *
-     * @param details
+     * @param details food details
      */
     public AddCommand(String details) {
         this.details = details;
@@ -38,12 +39,13 @@ public class AddCommand extends Command {
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];
         String date = foodDetails[1];
-        assert name instanceof String && !name.trim().isEmpty() : "Expected non-empty string for name";
-        assert date instanceof String && !date.trim().isEmpty() : "Expected non-empty string for date";
+        assert !name.trim().isEmpty() : "Expected non-empty string for name";
+        assert !date.trim().isEmpty() : "Expected non-empty string for date";
 
         Food newFood;
 
-        if (foodDetails.length <= 2) {
+        assert foodDetails.length == 2 || foodDetails.length == 3 : "Wrong food details size";
+        if (foodDetails.length == 2) {
             newFood = new Food(name, date);
         } else {
             String q = foodDetails[2];
@@ -59,7 +61,7 @@ public class AddCommand extends Command {
     /**
      * Returns an array of String to store the information of food name, expiry date (and quantity)
      *
-     * @param details
+     * @param details food details
      * @return nameAndDate a String array of the food name, the expiry date (and quantity)
      */
     public String[] splitDetails(String details) {
@@ -67,36 +69,27 @@ public class AddCommand extends Command {
 
         String name;
         String date;
+        String quantity;
 
-        if (hasQuantity) {
-            String[] temp = details.split(QUANTITY_SEPARATOR);
-            String quantity = temp[1];
+        String[] temp = details.split(QUANTITY_SEPARATOR);
 
-            if (temp[0].indexOf("-n") < temp[0].indexOf("-e")) {
-                String[] nameAndDate = temp[0].replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
-                name = nameAndDate[0];
-                date = nameAndDate[1];
-            } else {
-                String[] dateAndName = temp[0].replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
-                name = dateAndName[1];
-                date = dateAndName[0];
-            }
-
-            String[] foodDetails = {name, date, quantity};
-            return foodDetails;
-        }
-        
-        if (details.indexOf("-n") < details.indexOf("-e")) {
-            String[] nameAndDate = details.replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
+        if (temp[0].indexOf("-n") < temp[0].indexOf("-e")) {
+            String[] nameAndDate = temp[0].replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
             name = nameAndDate[0];
             date = nameAndDate[1];
         } else {
-            String[] dateAndName = details.replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
+            String[] dateAndName = temp[0].replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
             name = dateAndName[1];
             date = dateAndName[0];
         }
+
+        if (hasQuantity) {
+            quantity = temp[1];
+            String[] foodDetails = {name, date, quantity};
+            return foodDetails;
+        }
+
         String[] foodDetails = {name, date};
         return foodDetails;
     }
-
 }

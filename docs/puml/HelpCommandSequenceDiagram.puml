@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+Duke -> Parser: parse(fullCommand)
+activate Parser
+
+create HelpCommand as hc
+hc <- Parser : HelpCommand(arguments)
+activate hc
+hc --> Parser
+deactivate hc
+deactivate Parser
+
+create Command as c
+Duke -> c : execute(foodList)
+activate c
+
+c -> hc : execute(foodList)
+activate hc
+hc -> hc : isHelpOrEmpty(filters[0])
+activate hc
+hc --> hc
+deactivate hc
+
+create CommandResult as cr
+hc -> cr : CommandResult(printToUser)
+activate cr
+cr->System: out.println(feedbackToUser)
+
+
+System --> cr
+cr --> hc
+deactivate cr
+destroy cr
+hc --> c
+deactivate c
+destroy c
+hc --> Parser
+deactivate hc
+destroy hc
+Parser --> Duke
+deactivate Parser
+
+@enduml

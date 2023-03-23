@@ -6,9 +6,13 @@ import java.util.logging.Level;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.InvalidStorageFilePathException;
+import seedu.duke.exceptions.StorageOperationException;
 import seedu.duke.food.FoodList;
 import seedu.duke.general.Parser;
 import seedu.duke.general.Ui;
+import seedu.duke.storage.StorageFile;
+
 
 /**
  * Entry point of the Food Supply Tracker application
@@ -17,17 +21,30 @@ import seedu.duke.general.Ui;
 public class Duke {
     private static Logger logger = Logger.getLogger("Run Duke Log");
     private Ui ui;
+
     private FoodList foodList;
+
+    private StorageFile storageFile;
 
     public Duke() {
         ui = new Ui();
-        foodList = new FoodList();
+        try {
+            storageFile = new StorageFile();
+        } catch (InvalidStorageFilePathException e) {
+            ui.showError(e.getMessage());
+
+        }
+
+        try {
+            foodList = storageFile.load();
+        } catch (StorageOperationException e) {
+            ui.showError(e.getMessage());
+        }
     }
 
     // This part of the code is adapted from the module website
     // https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
     public void run() {
-
         ui.showWelcomeMessage();
         boolean isExit = false;
 
@@ -39,6 +56,7 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 CommandResult result = c.execute(foodList);
                 result.printResult();
+                storageFile.save(foodList);
                 isExit = c.isExit();
                 logger.log(Level.INFO, "Processed user command successfully");
             } catch (DukeException e) {
@@ -49,8 +67,7 @@ public class Duke {
             }
         }
     }
-
-
+    
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -60,4 +77,3 @@ public class Duke {
         logger.log(Level.INFO, "End of running Duke");
     }
 }
-

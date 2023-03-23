@@ -18,6 +18,11 @@ public class FoodList {
     public FoodList() {
     }
 
+    //Constructor to get data from save file
+    public FoodList(ArrayList<Food> decodedFoodList) {
+        foodList = decodedFoodList;
+    }
+
     public void addFood(Food food) {
         foodList.add(food);
     }

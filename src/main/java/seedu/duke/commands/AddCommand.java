@@ -35,6 +35,7 @@ public class AddCommand extends Command {
      * @return a CommandResult object to display the successful message
      */
     public CommandResult execute(FoodList foodList) {
+
         String[] foodDetails = splitDetails(details);
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];
@@ -53,6 +54,7 @@ public class AddCommand extends Command {
             newFood = new Food(name, date, quantity);
         }
         System.out.println(newFood);
+
         foodList.addFood(newFood);
         System.out.println();
         return new CommandResult(ADD_MESSAGE);

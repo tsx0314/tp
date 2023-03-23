@@ -18,7 +18,7 @@ public class RemoveCommand extends Command {
         }
         int deleteItem = Integer.parseInt(index.trim()) - 1;
 
-        if (deleteItem >= foodlist.getNumberOfFood() || deleteItem < 1) {
+        if (deleteItem >= foodlist.getNumberOfFood() || deleteItem < 0) {
             throw new IllegalValueException("Incorrect value entered");
         }
         String foodName = foodlist.getFood(deleteItem).getName();

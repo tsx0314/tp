@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Command {
+    +execute(): CommandResult
+}
+class AddCommand {
+    +details: String
+    +execute(FoodList: foodList): CommandResult
+    +splitDetails(String: details) : String[]
+}
+class CommandResult {
+    +feedbackToUser:String
+    +printResult(): void
+}
+
+Command <|-- AddCommand
+CommandResult <-- AddCommand
+CommandResult <-- Command
+
+@enduml

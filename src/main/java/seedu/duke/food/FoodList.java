@@ -1,5 +1,9 @@
 package seedu.duke.food;
 
+import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.InvalidFlagException;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +16,11 @@ public class FoodList {
      * Constructor
      */
     public FoodList() {
+    }
+
+    //Constructor to get data from save file
+    public FoodList(ArrayList<Food> decodedFoodList) {
+        foodList = decodedFoodList;
     }
 
     public void addFood(Food food) {
@@ -34,13 +43,35 @@ public class FoodList {
         return foodList.get(i);
     }
 
-    public FoodList findFood(String term) {
+    public FoodList findFood(String term, String ...flags) throws DukeException{
         FoodList result = new FoodList();
+
+        foodItemLoop:
         for (Food foodItem: foodList) {
             String name = foodItem.getName();
-            if (name.toLowerCase().contains(term.toLowerCase().trim())) {
+            LocalDate expiryDate = foodItem.parseExpiryDate();
+            boolean hasTerm = name.toLowerCase().contains(term.toLowerCase().trim());
+
+            if (hasTerm) {
+                // Filter by flags
+                for (String flag: flags) {
+                    switch (flag) {
+                    case "fresh":
+                            boolean isFresh = expiryDate.isAfter(LocalDate.now());
+                            if (!isFresh) { continue foodItemLoop; }
+                            break;
+                    case "expired":
+                            boolean isExpired = expiryDate.isBefore(LocalDate.now());
+                            if (!isExpired) { continue foodItemLoop; }
+                            break;
+                    default:
+                        throw new InvalidFlagException(flag);
+                    }
+                }
+                // adds the item if all filters passed
                 result.addFood(foodItem);
             }
+
         }
         return result;
     }

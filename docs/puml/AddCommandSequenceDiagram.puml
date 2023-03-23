@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+participant Duke
+participant AddCommand
+participant FoodList as foodList
+
+Duke -> AddCommand: execute(arguments)
+activate AddCommand
+
+AddCommand -> AddCommand: splitDetails(details)
+activate AddCommand #DarkSalmon
+AddCommand --> AddCommand: foodDetails
+deactivate
+
+foodList <- AddCommand: addFood(newFood)
+Duke <-- AddCommand: new CommandResult(ADD_MESSAGE)
+deactivate
+
+destroy AddCommand
+
+@enduml
+

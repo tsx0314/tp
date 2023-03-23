@@ -36,6 +36,6 @@ public class FoodListDecoder {
         //This will call the food constructor. Order: FoodName, ExpiryDate, Quantity, Category
         //Even if optional attributes are not stated, it will pass an empty string.
         //So when user uses getQuantity() / getCategory(), need to check if is empty String.
-//        return new Food(details[0].trim(), details[1].trim(), details[2].trim(), details[3].trim());
+        //        return new Food(details[0].trim(), details[1].trim(), details[2].trim(), details[3].trim());
     }
 }

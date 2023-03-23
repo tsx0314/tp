@@ -5,9 +5,15 @@ import seedu.duke.exceptions.DukeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Represents a food list
+ */
 public class FoodList {
     private ArrayList<Food> foodList = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
     public FoodList() {
     }
 

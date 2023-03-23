@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 
-
 public class Food {
     private String name;
     private String expiryDate;

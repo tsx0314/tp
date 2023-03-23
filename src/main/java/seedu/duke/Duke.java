@@ -31,13 +31,14 @@ public class Duke {
         try {
             storageFile = new StorageFile();
         } catch (InvalidStorageFilePathException e) {
-            System.out.println("File path is invalid");
+            ui.showError(e.getMessage());
+
         }
 
         try {
             foodList = storageFile.load();
         } catch (StorageOperationException e) {
-            System.out.println("Unable to read save file");
+            ui.showError(e.getMessage());
         }
     }
 

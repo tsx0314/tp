@@ -32,7 +32,9 @@ public class FoodListEncoder {
         final StringBuilder encodedFoodBuilder = new StringBuilder();
 
         encodedFoodBuilder.append(food.getName());
-        encodedFoodBuilder.append(" -e ").append(food.getExpiryDate());
+        encodedFoodBuilder.append(" « ").append(food.getExpiryDate());
+//        encodedFoodBuilder.append(" « ").append(food.getQuantity());
+//        encodedFoodBuilder.append(" « ").append(food.getCategory());
 
         return encodedFoodBuilder.toString();
     }

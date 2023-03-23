@@ -60,7 +60,7 @@ public class StorageFile {
         try {
             List<String> encodedFoodList = FoodListEncoder.encodeFoodList(foodList);
             Files.write(path, encodedFoodList);
-        } catch (IOException ioe) {
+        } catch (IOException e) {
             throw new StorageOperationException("Error writing to file: " + path);
         }
     }
@@ -79,9 +79,9 @@ public class StorageFile {
 
         try {
             return FoodListDecoder.decodeFoodList(Files.readAllLines(path));
-        } catch (FileNotFoundException fnfe) {
+        } catch (FileNotFoundException e) {
             throw new AssertionError("A non-existent file scenario is already handled earlier.");
-        } catch (IOException ioe) {
+        } catch (IOException e) {
             throw new StorageOperationException("Error writing to file: " + path);
         }
     }

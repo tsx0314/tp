@@ -6,7 +6,7 @@
 
 ---
 
-## implementation
+## Implementation
 
 ### Add feature
 
@@ -96,3 +96,18 @@ Currently, the following functionality was implemented:
 `help {--COMMAND_WORD}`
 
 The next possible flag to implement will be `-c` which stands for `categories`
+
+## Appendix: Requirements
+
+# Product scope
+**Target user profile:**
+- has a need to manage food
+- prefer desktop apps over other types
+- can type fast
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
+
+**Value proposition:**
+- manage food supply faster than a typical mouse / GUI driven app
+
+# User stories

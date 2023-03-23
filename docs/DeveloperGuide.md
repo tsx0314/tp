@@ -1,38 +1,74 @@
 # Developer Guide
 
-## Acknowledgements
+## Design
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+{To Be Added}
 
-## Design & implementation
+---
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
+## implementation
 
+### Add feature
+
+The add feature is implemented using a `AddCommand` class extending from `Command` Class. 
+`AddCommand` contains an `execute` methods, which utilises the internal `spiltDetails` methods to extract the food details
+and to construct new `food` object .
+It is also facilitated by `Foodlist` Class, using `addFood` method of `FoodList` Class.
+
+The add feature implementation is as follows:
+1. New AddCommand object is created by passing in a String containing food details
+2. `splitDetails` is called to split the string
+3. boolean `hasQuantity` is used to record whether the string contains `-q` quantity flag
+4. Split the string using ` -q ` regardless of whether the string contains the quantity part
+5. Check the index of `-n` and `-e` and split the string to save the details of the food name and expiry date
+6. If `hasQuantity` is `true`, return a String array with `name`, `date` and `quantity`, else only return
+a String array with `name` and `date`.
+7. Create a new `Food` object and use `addFood` to add the new food into the food list
+8. Return a `CommandResult` to show the successful message to the user
+
+
+**Class Diagram**
+
+![ClassDiagram](images/AddCommandClassDiagram.png)
+
+
+**Sequence Diagram**
+
+![ClassDiagram](images/AddCommandSequenceDiagram.png)
+
+
+### Find feature
+The find command is implemented using a `FindCommand` class which
+utilizes `findFood` method of the FoodList.
+
+The `findFood` method implementation is as follows:
+1. Initialize `FoodList` result variable
+2. Start a loop iterating over each foodItem 
+3. Do word processing on a term and check if the foodItem name includes it
+4. Enter a loop with switch statement for each component of the `flags` argument 
+5. If some flag is not satisfied, continue the loop without adding foodItem to the result
+6. If the flags loop is over, the flags conditions were satisfied, so add the foodItem to the result
+
+**Class Diagram** 
+![ClassDiagram](images/FindCommandClassDiagram.png)
+
+
+**Sequence Diagram**
+![ClassDiagram](images/FindCommandSequenceDiagram.png)
+
+---
 
 ## Product scope
-### Target user profile
+Currently, the following functionality was implemented:
 
-{Describe the target user profile}
+`add -n PRODUCT_NAME -e EXPIRY_DATE {-p QUANTITY}`
 
-### Value proposition
+`add -e EXPIRY_DATE -n PRODUCT_NAME {-p QUANTITY}`
 
-{Describe the value proposition: what problem does it solve?}
+`find {product_name}`
 
-## User Stories
+`find {product_name} -fresh`
 
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
+`find {product_name} -expired`
 
-## Non-Functional Requirements
-
-{Give non-functional requirements}
-
-## Glossary
-
-* *glossary item* - Definition
-
-## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+The next possible flag to implement will be `-c` which stands for `categories`

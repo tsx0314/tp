@@ -56,6 +56,26 @@ The `findFood` method implementation is as follows:
 **Sequence Diagram**
 ![ClassDiagram](images/FindCommandSequenceDiagram.png)
 
+### List feature
+The list command is implemented using a `ListCommand` class which utilizes `COMMAND_WORD`
+attributes of all other commands within the `commands` package.
+
+The list command is implemented as follows:
+1. New `ListCommand` object is created by passing in a String containing arguments from `Parser`.
+2. The method `execute` of `Command` class will be called all the way from `Duke`.
+3. The method `execute` decides what to append to the string `printToUser` according to `foodList`. 
+4. `foodList` is an object of type `FoodList` that is passed as argument to `execute`, it consists of the list of food that has been added by user.
+5. Loop through the `foodList` of `numberOfFood` iterations, in which `numberOfFood` is obtained from the `FoodList` function `getNumberOfFood`.
+6. While looping through the `foodList`, append the `index`, name and expiry date of food to the string `printToUser`.
+7. After looping through the entire `foodList`, this method `execute` will return an object called `CommandResult` and pass
+`printToUser` as its argument.
+8. `Duke` will then call `printResult` method from `CommandResult` which will print the food list for the user.
+
+**Class Diagram**
+{to be added}
+
+**Object Diagram**
+{to be added}
 
 ### Help feature
 The help command is implemented using a `HelpCommand` class which utilizes `COMMAND_WORD` 
@@ -65,8 +85,8 @@ The help command is implemented as follows:
 1. New `HelpCommand` object is created by passing in a String containing arguments from `Parser`.
 2. The constructor `HelpCommand` will split the arguments based on the `--` regex and store them in an array of
 strings called `filters`.
-3. The method `execute` will of `Command` class will then be called all the way from `Duke` with `filters` as its argument. 
-4. This method decides what to append to the string `printToUser` as specified by the `fitlers`. 
+3. The method `execute` of `Command` class will then be called all the way from `Duke` with `filters` as its argument. 
+4. This method decides what to append to the string `printToUser` as specified by the `filters`. 
 5. After looping through all the `filters`, this method will return an object called `CommandResult` and pass
 `printToUser` as its argument.
 6. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.

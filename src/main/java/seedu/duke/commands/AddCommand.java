@@ -3,9 +3,6 @@ package seedu.duke.commands;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
-import java.util.Arrays;
-
-
 /**
  * Represent an add command
  */

@@ -1,8 +1,8 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-Parser <--- HelpCommand
-Parser <-- Command
+Parser --> HelpCommand
+Parser --> Command
 class Parser {
     +parse(String: userInput): Command
 }

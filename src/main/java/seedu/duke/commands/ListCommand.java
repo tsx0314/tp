@@ -18,11 +18,7 @@ public class ListCommand extends Command {
             assert foodList instanceof FoodList && !foodList.getFoodList().isEmpty() :
                     "The list of food to be printed have to be a food list type and" +
                             "Food list cannot be empty.";
-            printToUser = printToUser.concat(SHOW_FOODLIST_MESSAGE);
-            for(int index = 0; index < numberOfFood; ++index){
-                printToUser = printToUser.concat((index+1) + ". " + foodList.getFood(index).getName()
-                    + "\n   Expiry date: " + foodList.getFood(index).getExpiryDate() + "\n");
-            }
+            printToUser = printToUser.concat(SHOW_FOODLIST_MESSAGE + foodList);
         }
         printToUser = printToUser.concat(REPORT_NUMBER_OF_FOOD_FRONT
                 + numberOfFood + REPORT_NUMBER_OF_FOOD_BACK);

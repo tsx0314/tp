@@ -28,9 +28,6 @@ public class Parser {
     private static final String ADD_COMMAND_PATTERN_2 =
             "^\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\s+-n\\s+\\w+(\\s+\\w+)*(\\s+-q\\s+\\d+(\\.\\d+)?)?$";
 
-    private static final String ADD_COMMAND_PATTERN_3 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}(\\s+-q\\s+\\d+(\\.\\d+)?(\\s+-u\\s+))?$";
-
     public static Command parse(String userInput) throws DukeException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -69,10 +66,10 @@ public class Parser {
     private static Command addFood(String args) {
         boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, args);
         boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, args);
-        boolean isMatched3 = Pattern.matches(ADD_COMMAND_PATTERN_3, args);
+
         return new AddCommand(args);
         /*
-        if (!isMatched3){ //!isMatched1 && !isMatched2 && !isMatched3) {
+        if (!isMatched3){ //!isMatched1 && !isMatched2) {
             return new IncorrectCommand();
         } else {
             return new AddCommand(args);

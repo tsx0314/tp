@@ -28,7 +28,6 @@ public class Parser {
     private static final String ADD_COMMAND_PATTERN_2 =
             "^\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\s+-n\\s+\\w+(\\s+\\w+)*(\\s+-q\\s+\\d+(\\.\\d+)?)?$";
 
-
     public static Command parse(String userInput) throws DukeException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -68,11 +67,13 @@ public class Parser {
         boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, args);
         boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, args);
 
-        if (!isMatched1 && !isMatched2) {
+        return new AddCommand(args);
+        /*
+        if (!isMatched3){ //!isMatched1 && !isMatched2) {
             return new IncorrectCommand();
         } else {
             return new AddCommand(args);
-        }
+        }*/
     }
 }
 

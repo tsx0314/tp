@@ -3,6 +3,11 @@ package seedu.duke.commands;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * Represent an add command
@@ -16,6 +21,8 @@ public class AddCommand extends Command {
     private static final String EXPIRY_SEPARATOR = " -e ";
 
     private static final String QUANTITY_SEPARATOR = " -q ";
+
+    private static final String INVALID_DATE_MESSAGE = "Please input valid date format :(";
     public String details;
 
     /**
@@ -40,6 +47,10 @@ public class AddCommand extends Command {
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];
         String date = foodDetails[1];
+        boolean isValid = isValidDate(date);
+        if (!isValid) {
+            return new CommandResult(INVALID_DATE_MESSAGE);
+        }
         assert !name.trim().isEmpty() : "Expected non-empty string for name";
         assert !date.trim().isEmpty() : "Expected non-empty string for date";
 
@@ -73,7 +84,7 @@ public class AddCommand extends Command {
         String date;
         String quantity;
 
-        String[] temp = details.split(QUANTITY_SEPARATOR);
+        String[] temp = details.split(QUANTITY_SEPARATOR, 2);
 
         if (temp[0].indexOf("-n") < temp[0].indexOf("-e")) {
             String[] nameAndDate = temp[0].replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
@@ -94,4 +105,17 @@ public class AddCommand extends Command {
         String[] foodDetails = {name, date};
         return foodDetails;
     }
+
+    public boolean isValidDate(String date) {
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        formatter.setLenient(false);
+        try {
+            Date thisDate = formatter.parse(date);
+            return true;
+        } catch (ParseException e) {
+            System.out.println("Wrong date!!!!!");
+            return false;
+        }
+    }
 }
+

@@ -77,19 +77,21 @@ The list command is implemented using a `ListCommand` class which utilizes `COMM
 attributes of all other commands within the `commands` package.
 
 The list command is implemented as follows:
-1. New `ListCommand` object is created by passing in a String containing arguments from `Parser`.
-2. The method `execute` of `Command` class will be called all the way from `Duke`.
-3. The method `execute` decides what to append to the string `printToUser` according to `foodList`. 
-4. `foodList` is an object of type `FoodList` that is passed as argument to `execute`, it consists of the list of food that has been added by user.
-5. Loop through the `foodList` of `numberOfFood` iterations, in which `numberOfFood` is obtained from the `FoodList` function `getNumberOfFood`.
-6. While looping through the `foodList`, append the `index`, name and expiry date of food to the string `printToUser`.
-7. After looping through the entire `foodList`, this method `execute` will return an object called `CommandResult` and pass
+1. New `ListCommand` object created will call the method `execute` of `Command` class.
+2. The method `execute` decides what to append to the string `printToUser` according to `foodList`. 
+3. `foodList` is an object of type `FoodList` that is passed as argument to `execute`, it consists of the list of food 
+that has been added by user.
+4. `foodList` contains of `Food` that has undergoes the `toString` method.
+5. `execute` will check if `numberOfFood` is greater than 0, in which `numberOfFood` is obtained from the `FoodList` 
+function `getNumberOfFood`.
+6. If `numberOfFood` is greater than 0,  the foodList in String will be appended to `printToUser`. If it is not, then 
+the empty `foodList` will not be appended to `printToUser`.
+7. After appending the `foodList`, the method `execute` will return an object called `CommandResult` and pass          
 `printToUser` as its argument.
 8. `Duke` will then call `printResult` method from `CommandResult` which will print the food list for the user.
 
 **Class Diagram**
-{to be added}
-
+![ClassDiagram](images/ListCommandClassDiagram.png)
 **Object Diagram**
 {to be added}
 

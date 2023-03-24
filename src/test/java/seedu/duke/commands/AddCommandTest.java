@@ -3,6 +3,7 @@ package seedu.duke.commands;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddCommandTest {
 
@@ -29,4 +30,23 @@ class AddCommandTest {
         String[] expected = {"egg", "21/03/2023", "10"};
         assertArrayEquals(expected, addFood.splitDetails(details));
     }
+
+    @Test
+    void testIsValidDate_validDate_returnsTrue() {
+        String details = " -e 21/03/2023 -n egg -q 10";
+        AddCommand addFood = new AddCommand(details);
+        String date = addFood.splitDetails(details)[1];
+        boolean expected = true;
+        assertEquals(expected, addFood.isValidDate(date));
+    }
+
+    @Test
+    void testIsValidDate_invalidDate_returnsFalse() {
+        String details = " -e 21/14/2023 -n egg -q 10";
+        AddCommand addFood = new AddCommand(details);
+        String date = addFood.splitDetails(details)[1];
+        boolean expected = false;
+        assertEquals(expected, addFood.isValidDate(date));
+    }
+
 }

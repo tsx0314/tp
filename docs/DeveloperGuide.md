@@ -36,6 +36,22 @@ a String array with `name` and `date`.
 
 ![ClassDiagram](images/AddCommandSequenceDiagram.png)
 
+### Remove feature
+The remove command is implemented using a `RemoveCommand` class which
+utilizes `removeFood` method of the FoodList.
+
+The `removeFood` method implementation is as follows:
+1. New `RemoveCommand` object is created by passing in a String containing arguments from `Parser`.
+2. The `index` of the item to be deleted will be taken as its arguments.
+3. The method `execute` of `Command` class will be called from `Duke` with the `index`.
+4. This method will determine if there exist a food item with that `index` in the `FoodList`.
+5. If it exists, the food item will be deleted and feedback to the user that it has been successfully removed.
+6. Otherwise, the feedback will be an error message
+7. This method will return an object called `CommandResult` and pass `feedbackToUser` as its argument.
+8. `Duke` will subsequently call `printResult` method from `CommandResult`.
+
+Class Diagram (to be added)
+Object Diagram (to be added)
 
 ### Find feature
 The find command is implemented using a `FindCommand` class which

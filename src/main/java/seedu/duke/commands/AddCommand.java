@@ -2,11 +2,12 @@ package seedu.duke.commands;
 
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
+import seedu.duke.food.Unit;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 
 /**
  * Represent an add command
@@ -16,12 +17,12 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String ADD_MESSAGE = "I have added this product! :)";
 
-    private static final String NAME_SEPARATOR = " -n ";
-    private static final String EXPIRY_SEPARATOR = " -e ";
-    private static final String QUANTITY_SEPARATOR = " -q ";
+    private static final String NAME_SEPARATOR = "-n";
+    private static final String EXPIRY_SEPARATOR = "-e";
+    private static final String QUANTITY_SEPARATOR = "-q";
     private static final String UNIT_SEPARATOR = "-u";
 
-    private static final String INVALID_DATE_MESSAGE = "Please input valid date format :(";
+    private static final String INVALID_DATE_MESSAGE = "Please input a valid date :<";
 
     public String details;
 
@@ -61,56 +62,67 @@ public class AddCommand extends Command {
             newFood = new Food(name, date);
         } else if (foodDetails.length == 3) {
             String q = foodDetails[2];
-            double quantity = Double.valueOf(q);
+            assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
+            assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
+            Double quantity = Double.valueOf(q);
             newFood = new Food(name, date, quantity);
         } else {
             String q = foodDetails[2];
             String u = foodDetails[3];
-            double quantity = Double.valueOf(q);
+            assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
+            assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
+            Double quantity = Double.valueOf(q);
             newFood = new Food(name, date, quantity, u);
         }
         System.out.println(newFood);
-
         foodList.addFood(newFood);
         System.out.println();
         return new CommandResult(ADD_MESSAGE);
     }
 
-    public String getUnitOfFood(String unit_temp, double quantityInDouble) {
+    //@@author wanjuin
+
+    /**
+     * Returns the unit of the food
+     *
+     * @param unit_temp        a unit
+     * @param quantityInDouble quantity
+     * @return unitOfMeasurement a food unit
+     */
+    public String getUnitOfFood(String unit_temp, Double quantityInDouble) {
         String unitOfMeasurement;
         if (unit_temp.equals("mg") || unit_temp.equals("milligram") || unit_temp.equals("milligrams") ||
                 unit_temp.equals("milli gram") || unit_temp.equals("milli grams")) {
-            unitOfMeasurement = String.valueOf(Unit.mg);
+            unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
         } else if (unit_temp.equals("gram") || unit_temp.equals("g") || unit_temp.equals("grams")) {
-            unitOfMeasurement = String.valueOf(Unit.g);
+            unitOfMeasurement = String.valueOf(Unit.GRAM.abbreviation);
         } else if (unit_temp.equals("kg") || unit_temp.equals("kilogram") || unit_temp.equals("kilograms") ||
                 unit_temp.equals("kilo gram") || unit_temp.equals("kilo grams")) {
-            unitOfMeasurement = String.valueOf(Unit.kg);
+            unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
         } else if (unit_temp.equals("ml") || unit_temp.equals("millilitre") || unit_temp.equals("millilitres") ||
                 unit_temp.equals("milli litre") || unit_temp.equals("milli litres")) {
-            unitOfMeasurement = String.valueOf(Unit.ml);
+            unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
         } else if (unit_temp.equals("l") || unit_temp.equals("litre") || unit_temp.equals("litres")) {
-            unitOfMeasurement = String.valueOf(Unit.l);
+            unitOfMeasurement = String.valueOf(Unit.LITER.abbreviation);
         } else if ((unit_temp.equals("serving") || unit_temp.equals("servings")) && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.serving);
+            unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
         } else if ((unit_temp.equals("servings") || unit_temp.equals("serving")) && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.servings);
+            unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
         } else if ((unit_temp.equals("unit") || unit_temp.equals("units")) && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.unit);
+            unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
         } else if ((unit_temp.equals("units") || unit_temp.equals("unit")) && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.units);
+            unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
         } else if ((unit_temp.equals("box") || unit_temp.equals("boxes")) && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.box);
+            unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
         } else if ((unit_temp.equals("boxes") || unit_temp.equals("box")) && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.boxes);
+            unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
         } else if ((unit_temp.equals("packet") || unit_temp.equals("packets")) && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.packet);
+            unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
         } else if ((unit_temp.equals("packet") || unit_temp.equals("packets")) && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.packets);
+            unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
         } else {
             unitOfMeasurement = unit_temp;
         }
-
         return unitOfMeasurement;
     }
 
@@ -129,33 +141,32 @@ public class AddCommand extends Command {
         String quantity;
         String unit;
 
-        String[] temp = details.split(QUANTITY_SEPARATOR, 2);
-        
+        String[] temp = details.trim().split(QUANTITY_SEPARATOR, 2);
+
         String[] unitTemp = details.split(UNIT_SEPARATOR);
 
         if (temp[0].indexOf("-n") < temp[0].indexOf("-e")) {
-            String[] nameAndDate = temp[0].replace(NAME_SEPARATOR, "").split(EXPIRY_SEPARATOR, 2);
-            name = nameAndDate[0];
-            date = nameAndDate[1];
+            String[] nameAndDate = temp[0].replace(NAME_SEPARATOR, "").trim().split(EXPIRY_SEPARATOR, 2);
+            name = nameAndDate[0].trim();
+            date = nameAndDate[1].trim();
         } else {
-            String[] dateAndName = temp[0].replace(EXPIRY_SEPARATOR, "").split(NAME_SEPARATOR, 2);
-            name = dateAndName[1];
-            date = dateAndName[0];
+            String[] dateAndName = temp[0].replace(EXPIRY_SEPARATOR, "").trim().split(NAME_SEPARATOR, 2);
+            name = dateAndName[1].trim();
+            date = dateAndName[0].trim();
         }
 
         if (hasQuantity && !hasUnit) {
-            quantity = temp[1];
+            quantity = temp[1].trim();
             String[] foodDetails = {name, date, quantity};
             return foodDetails;
         }
 
         if (hasUnit) {
-            String[] quantityTemp = unitTemp[0].replace(UNIT_SEPARATOR, "").split(QUANTITY_SEPARATOR);
+            String[] quantityTemp = unitTemp[0].replace(UNIT_SEPARATOR, "").split(QUANTITY_SEPARATOR, 2);
             quantity = quantityTemp[1].trim();
             String unit_temp = unitTemp[1].trim();
-            double quantityInDouble = Double.parseDouble(quantity);
+            Double quantityInDouble = Double.parseDouble(quantity);
             unit = getUnitOfFood(unit_temp, quantityInDouble);
-
             String[] foodDetails = {name, date, quantity, unit};
             return foodDetails;
         }
@@ -164,16 +175,25 @@ public class AddCommand extends Command {
         return foodDetails;
     }
 
+    /**
+     * Returns whether the input date is a valid date
+     *
+     * @param date the date String
+     * @return isValid whether the date is valid
+     */
     public boolean isValidDate(String date) {
-        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        formatter.setLenient(false);
+        LocalDate currentDate = LocalDate.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         try {
-            Date thisDate = formatter.parse(date);
-            return true;
-        } catch (ParseException e) {
-            System.out.println("Wrong date!!!!!");
-            return false;
+            LocalDate expiryDate = LocalDate.parse(date, formatter);
+            boolean isValid = expiryDate.isAfter(currentDate);
+            return isValid;
+        } catch (DateTimeParseException e) {
+            System.out.println("The input date is not valid");
         }
+        return false;
     }
 }
 

@@ -57,7 +57,8 @@ public class AddCommand extends Command {
 
         Food newFood;
 
-        assert foodDetails.length == 2 || foodDetails.length == 3 || foodDetails.length == 4 : "Wrong food details size";
+        assert foodDetails.length == 2 || foodDetails.length == 3
+                || foodDetails.length == 4 : "Wrong food details size";
         if (foodDetails.length == 2) {
             newFood = new Food(name, date);
         } else if (foodDetails.length == 3) {
@@ -85,43 +86,43 @@ public class AddCommand extends Command {
     /**
      * Returns the unit of the food
      *
-     * @param unit_temp        a unit
+     * @param unitTemporary        a unit
      * @param quantityInDouble quantity
      * @return unitOfMeasurement a food unit
      */
-    public String getUnitOfFood(String unit_temp, Double quantityInDouble) {
+    public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
         String unitOfMeasurement;
-        if (unit_temp.equals("mg") || unit_temp.equals("milligram") || unit_temp.equals("milligrams") ||
-                unit_temp.equals("milli gram") || unit_temp.equals("milli grams")) {
+        if (unitTemporary.equals("mg") || unitTemporary.equals("milligram") || unitTemporary.equals("milligrams") ||
+                unitTemporary.equals("milli gram") || unitTemporary.equals("milli grams")) {
             unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
-        } else if (unit_temp.equals("gram") || unit_temp.equals("g") || unit_temp.equals("grams")) {
+        } else if (unitTemporary.equals("gram") || unitTemporary.equals("g") || unitTemporary.equals("grams")) {
             unitOfMeasurement = String.valueOf(Unit.GRAM.abbreviation);
-        } else if (unit_temp.equals("kg") || unit_temp.equals("kilogram") || unit_temp.equals("kilograms") ||
-                unit_temp.equals("kilo gram") || unit_temp.equals("kilo grams")) {
+        } else if (unitTemporary.equals("kg") || unitTemporary.equals("kilogram") || unitTemporary.equals("kilograms") ||
+                unitTemporary.equals("kilo gram") || unitTemporary.equals("kilo grams")) {
             unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
-        } else if (unit_temp.equals("ml") || unit_temp.equals("millilitre") || unit_temp.equals("millilitres") ||
-                unit_temp.equals("milli litre") || unit_temp.equals("milli litres")) {
+        } else if (unitTemporary.equals("ml") || unitTemporary.equals("millilitre") || unitTemporary.equals("millilitres") ||
+                unitTemporary.equals("milli litre") || unitTemporary.equals("milli litres")) {
             unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
-        } else if (unit_temp.equals("l") || unit_temp.equals("litre") || unit_temp.equals("litres")) {
+        } else if (unitTemporary.equals("l") || unitTemporary.equals("litre") || unitTemporary.equals("litres")) {
             unitOfMeasurement = String.valueOf(Unit.LITER.abbreviation);
-        } else if ((unit_temp.equals("serving") || unit_temp.equals("servings")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals("serving") || unitTemporary.equals("servings")) && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
-        } else if ((unit_temp.equals("servings") || unit_temp.equals("serving")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals("servings") || unitTemporary.equals("serving")) && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
-        } else if ((unit_temp.equals("unit") || unit_temp.equals("units")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals("unit") || unitTemporary.equals("units")) && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
-        } else if ((unit_temp.equals("units") || unit_temp.equals("unit")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals("units") || unitTemporary.equals("unit")) && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
-        } else if ((unit_temp.equals("box") || unit_temp.equals("boxes")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals("box") || unitTemporary.equals("boxes")) && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
-        } else if ((unit_temp.equals("boxes") || unit_temp.equals("box")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals("boxes") || unitTemporary.equals("box")) && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
-        } else if ((unit_temp.equals("packet") || unit_temp.equals("packets")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals("packet") || unitTemporary.equals("packets")) && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
-        } else if ((unit_temp.equals("packet") || unit_temp.equals("packets")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals("packet") || unitTemporary.equals("packets")) && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
         } else {
-            unitOfMeasurement = unit_temp;
+            unitOfMeasurement = unitTemporary;
         }
         return unitOfMeasurement;
     }
@@ -164,9 +165,9 @@ public class AddCommand extends Command {
         if (hasUnit) {
             String[] quantityTemp = unitTemp[0].replace(UNIT_SEPARATOR, "").split(QUANTITY_SEPARATOR, 2);
             quantity = quantityTemp[1].trim();
-            String unit_temp = unitTemp[1].trim();
+            String unitTemporary = unitTemp[1].trim();
             Double quantityInDouble = Double.parseDouble(quantity);
-            unit = getUnitOfFood(unit_temp, quantityInDouble);
+            unit = getUnitOfFood(unitTemporary, quantityInDouble);
             String[] foodDetails = {name, date, quantity, unit};
             return foodDetails;
         }

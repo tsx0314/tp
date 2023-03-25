@@ -82,7 +82,6 @@ public class AddCommand extends Command {
     }
 
     //@@author wanjuin
-
     /**
      * Returns the unit of the food
      *
@@ -129,6 +128,7 @@ public class AddCommand extends Command {
         return unitOfMeasurement;
     }
 
+    //@@author tsx0314
     /**
      * Returns an array of String to store the information of food name, expiry date (and quantity)
      *

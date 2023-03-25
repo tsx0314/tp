@@ -9,6 +9,14 @@ public class Food {
     private String expiryDate;
     private Double quantity;
 
+    private String unit;
+    public Food(String name, String expiryDate, Double quantity, String unit) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.quantity = quantity;
+        this.unit = unit;
+    }
+
     /**
      * Constructor
      *
@@ -46,6 +54,10 @@ public class Food {
         return quantity;
     }
 
+    public String getUnit(){
+        return unit;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -56,6 +68,10 @@ public class Food {
 
     public void setQuantity(double quantity) {
         this.quantity = quantity;
+    }
+
+    public void setUnit(String unit){
+        this.unit = unit;
     }
 
     /**
@@ -89,7 +105,7 @@ public class Food {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate();
         } else {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
-                    + "\n       Remaining quantity: " + getQuantity();
+                    + "\n       Remaining quantity: " + getQuantity() + " " + getUnit();
         }
         return foodDetail;
     }

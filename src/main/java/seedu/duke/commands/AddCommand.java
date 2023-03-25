@@ -86,7 +86,7 @@ public class AddCommand extends Command {
     /**
      * Returns the unit of the food
      *
-     * @param unitTemporary        a unit
+     * @param unitTemporary    a unit
      * @param quantityInDouble quantity
      * @return unitOfMeasurement a food unit
      */
@@ -97,11 +97,13 @@ public class AddCommand extends Command {
             unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
         } else if (unitTemporary.equals("gram") || unitTemporary.equals("g") || unitTemporary.equals("grams")) {
             unitOfMeasurement = String.valueOf(Unit.GRAM.abbreviation);
-        } else if (unitTemporary.equals("kg") || unitTemporary.equals("kilogram") || unitTemporary.equals("kilograms") ||
-                unitTemporary.equals("kilo gram") || unitTemporary.equals("kilo grams")) {
+        } else if (unitTemporary.equals("kg") || unitTemporary.equals("kilogram")
+                || unitTemporary.equals("kilograms") || unitTemporary.equals("kilo gram") ||
+                unitTemporary.equals("kilo grams")) {
             unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
-        } else if (unitTemporary.equals("ml") || unitTemporary.equals("millilitre") || unitTemporary.equals("millilitres") ||
-                unitTemporary.equals("milli litre") || unitTemporary.equals("milli litres")) {
+        } else if (unitTemporary.equals("ml") || unitTemporary.equals("millilitre") ||
+                unitTemporary.equals("millilitres") || unitTemporary.equals("milli litre")
+                || unitTemporary.equals("milli litres")) {
             unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
         } else if (unitTemporary.equals("l") || unitTemporary.equals("litre") || unitTemporary.equals("litres")) {
             unitOfMeasurement = String.valueOf(Unit.LITER.abbreviation);

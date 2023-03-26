@@ -7,7 +7,7 @@ import seedu.duke.food.FoodList;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FoodListEncoderTest {
 

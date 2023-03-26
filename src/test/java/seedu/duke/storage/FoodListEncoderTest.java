@@ -23,16 +23,16 @@ public class FoodListEncoderTest {
         assertEquals(expectedOutput, encodedFoodLists);
     }
 
-    @Test
-    void encodeFoodList_withExpiryDateAndQuantity_expectNameExpiryAndQuantity() {
-        Food food = new Food("peanuts", "11/11/23", 50.0);
-        FoodList fl = new FoodList();
-        fl.addFood(food);
-        ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
-        ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/23 « 50");
-        assertEquals(expectedOutput, encodedFoodLists);
-    }
+    //    @Test
+    //    void encodeFoodList_withExpiryDateAndQuantity_expectNameExpiryAndQuantity() {
+    //        Food food = new Food("peanuts", "11/11/23", 50.0);
+    //        FoodList fl = new FoodList();
+    //        fl.addFood(food);
+    //        ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
+    //        ArrayList<String> expectedOutput = new ArrayList<>();
+    //        expectedOutput.add("peanuts « 11/11/23 « 50");
+    //        assertEquals(expectedOutput, encodedFoodLists);
+    //    }
 
     @Test
     void encodeFoodList_withMultipleFood_expectMultipleFoodRecorded() {

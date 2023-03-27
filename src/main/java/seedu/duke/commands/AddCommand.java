@@ -23,7 +23,9 @@ public class AddCommand extends Command {
     private static final String UNIT_SEPARATOR = "-u";
 
     private static final String INVALID_DATE_MESSAGE =
-            "Please do not add an expired product or input an invalid date :<";
+            "Please input an invalid date :<";
+    private static final String EXPIRY_DATE_MESSAGE =
+            "Please do not add an expired product :<";
 
     public String details;
 
@@ -49,40 +51,49 @@ public class AddCommand extends Command {
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];
         String date = foodDetails[1];
-        boolean isValid = isValidDate(date);
-        if (!isValid) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        try {
+            LocalDate expiryDate = LocalDate.parse(date, formatter);
+            boolean isValid = isValidDate(expiryDate);
+            if (!isValid) {
+                return new CommandResult(EXPIRY_DATE_MESSAGE);
+            }
+            assert !name.trim().isEmpty() : "Expected non-empty string for name";
+            assert !date.trim().isEmpty() : "Expected non-empty string for date";
+
+            Food newFood;
+
+            assert foodDetails.length == 2 || foodDetails.length == 3
+                    || foodDetails.length == 4 : "Wrong food details size";
+            if (foodDetails.length == 2) {
+                newFood = new Food(name, date);
+            } else if (foodDetails.length == 3) {
+                String q = foodDetails[2];
+                assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
+                assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
+                Double quantity = Double.valueOf(q);
+                newFood = new Food(name, date, quantity);
+            } else {
+                String q = foodDetails[2];
+                String u = foodDetails[3];
+                assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
+                assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
+                Double quantity = Double.valueOf(q);
+                newFood = new Food(name, date, quantity, u);
+            }
+            System.out.println(newFood);
+            foodList.addFood(newFood);
+            System.out.println();
+            return new CommandResult(ADD_MESSAGE);
+        } catch (DateTimeParseException e) {
             return new CommandResult(INVALID_DATE_MESSAGE);
         }
-        assert !name.trim().isEmpty() : "Expected non-empty string for name";
-        assert !date.trim().isEmpty() : "Expected non-empty string for date";
-
-        Food newFood;
-
-        assert foodDetails.length == 2 || foodDetails.length == 3
-                || foodDetails.length == 4 : "Wrong food details size";
-        if (foodDetails.length == 2) {
-            newFood = new Food(name, date);
-        } else if (foodDetails.length == 3) {
-            String q = foodDetails[2];
-            assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
-            assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
-            Double quantity = Double.valueOf(q);
-            newFood = new Food(name, date, quantity);
-        } else {
-            String q = foodDetails[2];
-            String u = foodDetails[3];
-            assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
-            assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
-            Double quantity = Double.valueOf(q);
-            newFood = new Food(name, date, quantity, u);
-        }
-        System.out.println(newFood);
-        foodList.addFood(newFood);
-        System.out.println();
-        return new CommandResult(ADD_MESSAGE);
     }
 
     //@@author wanjuin
+
     /**
      * Returns the unit of the food
      *
@@ -130,6 +141,7 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
+
     /**
      * Returns an array of String to store the information of food name, expiry date (and quantity)
      *
@@ -180,25 +192,17 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
+
     /**
-     * Returns whether the input date is a valid date
+     * Returns whether the input date is a valid expiry date
      *
-     * @param date the date String
+     * @param expiryDate the date
      * @return isValid whether the date is valid
      */
-    public boolean isValidDate(String date) {
+    public boolean isValidDate(LocalDate expiryDate) {
         LocalDate currentDate = LocalDate.now();
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        try {
-            LocalDate expiryDate = LocalDate.parse(date, formatter);
-            boolean isValid = expiryDate.isAfter(currentDate);
-            return isValid;
-        } catch (DateTimeParseException e) {
-
-        }
-        return false;
+        boolean isValid = expiryDate.isAfter(currentDate);
+        return isValid;
     }
 }
 

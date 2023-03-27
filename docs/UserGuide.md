@@ -16,6 +16,7 @@ Food Supply Trackers (FSP) is a desktop app for managing food supplies, optimize
 + [Command Summary](#command-summary)
 
 ---
+
 ## Quick Start
 
 1. Ensure you have Java 11 installed in your Computer.
@@ -98,25 +99,27 @@ ______________________________
 ### Adding a food product: `add`
 Adds a food product to the list of food items.
 
-Format: `add -n FOOD_NAME -e DD/MM/YYYY {-p QUANTITY}`
+Format: `add -n FOOD_NAME -e DD/MM/YYYY {-q QUANTITY -u UNITS}`
 
 * The `DEADLINE` can be in a natural language format.
 * The `FOOD_NAME` cannot contain `-`.
 * The order of `-n` and `-e` can be swapped
-  * For example: `add -n Eggs -e 21/03/2023` and `add -e 21/03/2023 -n Eggs` 
+  * For example: `add -n Eggs -e 21/03/2025` and `add -e 21/03/2025 -n Eggs` 
+* `{-q QUANTITY -u UNITS}` are optional but they must add together
+  * For example: `add -n Eggs -e 21/03/2025 -q 10 -u pieces`
 
 Examples of usage:
 
 <bold>Input:</bold>
 
-`add -n Eggs -e 21/03/2023 -q 10`
+`add -n Eggs -e 21/03/2025 -q 10.0 -u pieces`
 
 <bold>Output:</bold>
 ```
 ______________________________
 Egg
-       Expiry date: 21/03/2023
-       Remaining quantity: 10.0
+       Expiry date: 21/05/2023
+       Remaining quantity: 10.0 pieces
 
 I have added this product! :)
 ______________________________
@@ -129,7 +132,7 @@ Format: `remove INDEX`
 
 * Deletes the food according to its `INDEX` in the list which starts from 1.
 * `INDEX` must be represented by an integer `i.e. 1, 2, 3`
-* Out-of-bounds `INDEX` will resuilt in an error message.
+* Out-of-bounds `INDEX` will result in an error message.
 
 Example of usage:
 
@@ -162,8 +165,6 @@ Example of Usage:
 
 <bold>Output:</code>
 
-
----
 
 ## FAQ
 
@@ -201,13 +202,13 @@ Example of Usage:
 
 * List - `list  {--fresh or --expired}`
   * e.g., list --fresh OR list --expired
-* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-q QUANTITY}`
+* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-q QUANTITY -u UNIT}`
   * e.g., add -n Bob's Red Mill Granola -e 20/05/2025
-  * e.g., add -e 20/05/2025 -n Bob's Red Mill Granola -q 2
+  * e.g., add -e 20/05/2025 -n Bob's Red Mill Granola -q 2 -u packets
 * Remove - `remove INDEX_NUMBER`
   * e.g., remove 1
 * Find - `find KEYWORD`
-  * e.g., `find egg`
+  * e.g., find egg
 * help - `help {--COMMAND_WORD}`
 * exit - `exit`
 

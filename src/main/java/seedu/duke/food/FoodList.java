@@ -58,11 +58,16 @@ public class FoodList {
                     switch (flag) {
                     case "fresh":
                             boolean isFresh = expiryDate.isAfter(LocalDate.now());
-                            if (!isFresh) { continue foodItemLoop; }
+                            if (!isFresh) {
+                                continue foodItemLoop;
+                            }
                             break;
+
                     case "expired":
                             boolean isExpired = expiryDate.isBefore(LocalDate.now());
-                            if (!isExpired) { continue foodItemLoop; }
+                            if (!isExpired) {
+                                continue foodItemLoop;
+                            }
                             break;
                     default:
                         throw new InvalidFlagException(flag);
@@ -71,7 +76,6 @@ public class FoodList {
                 // adds the item if all filters passed
                 result.addFood(foodItem);
             }
-
         }
         return result;
     }

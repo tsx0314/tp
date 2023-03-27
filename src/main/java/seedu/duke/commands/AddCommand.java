@@ -22,7 +22,8 @@ public class AddCommand extends Command {
     private static final String QUANTITY_SEPARATOR = "-q";
     private static final String UNIT_SEPARATOR = "-u";
 
-    private static final String INVALID_DATE_MESSAGE = "Please do not add an expired product :<";
+    private static final String INVALID_DATE_MESSAGE =
+            "Please do not add an expired product or input an invalid date :<";
 
     public String details;
 
@@ -195,7 +196,7 @@ public class AddCommand extends Command {
             boolean isValid = expiryDate.isAfter(currentDate);
             return isValid;
         } catch (DateTimeParseException e) {
-            System.out.println("The input date is not valid");
+
         }
         return false;
     }

@@ -22,7 +22,7 @@ public class AddCommand extends Command {
     private static final String QUANTITY_SEPARATOR = "-q";
     private static final String UNIT_SEPARATOR = "-u";
 
-    private static final String INVALID_DATE_MESSAGE = "Please input a valid date :<";
+    private static final String INVALID_DATE_MESSAGE = "Please do not add an expired product :<";
 
     public String details;
 
@@ -178,6 +178,7 @@ public class AddCommand extends Command {
         return foodDetails;
     }
 
+    //@@author tsx0314
     /**
      * Returns whether the input date is a valid date
      *

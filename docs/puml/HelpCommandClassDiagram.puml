@@ -1,14 +1,14 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-Parser --> HelpCommand
+Parser ..> HelpCommand
 Parser --> Command
 class Parser {
     +parse(String: userInput): Command
 }
 
 CommandResult <-- Command
-class Command {
+abstract class Command {
     +execute(FoodList: foodList): CommandResult
 }
 

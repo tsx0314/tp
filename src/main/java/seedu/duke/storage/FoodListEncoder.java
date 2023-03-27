@@ -2,7 +2,6 @@ package seedu.duke.storage;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import seedu.duke.food.FoodList;
 import seedu.duke.food.Food;
@@ -18,8 +17,9 @@ public class FoodListEncoder {
     /**
      * Encodes all the {@code Food} in the {@code toSave} into a list of decodable and readable string presentation
      * for storage.
+     * Changed return type from List to ArrayList
      */
-    public static List<String> encodeFoodList(FoodList toSave) {
+    public static ArrayList<String> encodeFoodList(FoodList toSave) {
         final ArrayList<String> encodedFoodLists = new ArrayList<>();
         toSave.getFoodList().forEach(food -> encodedFoodLists.add(encodeFoodToString(food)));
         return encodedFoodLists;

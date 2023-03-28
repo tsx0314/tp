@@ -99,27 +99,29 @@ ______________________________
 ### Adding a food product: `add`
 Adds a food product to the list of food items.
 
-Format: `add -n FOOD_NAME -e DD/MM/YYYY {-q QUANTITY -u UNITS}`
+Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNITS}`
 
 * The `DEADLINE` can be in a natural language format.
 * The `FOOD_NAME` cannot contain `-`.
-* The order of `-n` and `-e` can be swapped
-  * For example: `add -n Eggs -e 21/03/2025` and `add -e 21/03/2025 -n Eggs` 
-* `{-q QUANTITY -u UNITS}` are optional but they must add together
-  * For example: `add -n Eggs -e 21/03/2025 -q 10 -u pieces`
+* `{-c CAT}`and`{-q QUANTITY -u UNITS}` are optional
+  * However, quantity and units must be added together
+  * For example: `add -n milk -e 21/03/2025 -q 10 -u packets`
+* For category, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
+any other category will be deemed as `unknown category`.
 
 Examples of usage:
 
 <bold>Input:</bold>
 
-`add -n Eggs -e 21/03/2025 -q 10.0 -u pieces`
+`add -n milk -e 21/03/2025 -c dairy -q 10 -u packets`
 
 <bold>Output:</bold>
 ```
 ______________________________
-Egg
-       Expiry date: 21/05/2023
-       Remaining quantity: 10.0 pieces
+milk
+       Expiry date: 21/03/2025
+       Category: dairy
+       Remaining quantity: 10.0 packets
 
 I have added this product! :)
 ______________________________
@@ -202,9 +204,8 @@ Example of Usage:
 
 * List - `list  {--fresh or --expired}`
   * e.g., list --fresh OR list --expired
-* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-q QUANTITY -u UNIT}`
-  * e.g., add -n Bob's Red Mill Granola -e 20/05/2025
-  * e.g., add -e 20/05/2025 -n Bob's Red Mill Granola -q 2 -u packets
+* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
+  * e.g., add -n Bob's Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets
 * Remove - `remove INDEX_NUMBER`
   * e.g., remove 1
 * Find - `find KEYWORD`

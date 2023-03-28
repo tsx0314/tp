@@ -92,8 +92,9 @@ the empty `foodList` will not be appended to `printToUser`.
 
 **Class Diagram**
 ![ClassDiagram](images/ListCommandClassDiagram.png)
+
 **Object Diagram**
-{to be added}
+![ClassDiagram](images/ListCommandSequenceDiagram.png)
 
 ### Help feature
 The help command is implemented using a `HelpCommand` class which utilizes `COMMAND_WORD` 

@@ -28,7 +28,7 @@ public class AddCommand extends Command {
     private static final String UNIT_SEPARATOR = "-u";
 
     private static final String INVALID_DATE_MESSAGE =
-            "Please input an invalid date :<";
+            "Please input a valid  date :<";
     private static final String EXPIRY_DATE_MESSAGE =
             "Please do not add an expired product :<";
 

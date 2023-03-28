@@ -1,6 +1,7 @@
 package seedu.duke.food;
 
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.IllegalValueException;
 import seedu.duke.exceptions.InvalidFlagException;
 
 import java.time.LocalDate;
@@ -31,6 +32,9 @@ public class FoodList {
         foodList.remove(index);
     }
 
+    public void updateFood(int index, Food updatedItem) {
+        foodList.set(index, updatedItem);
+    }
     public int getNumberOfFood() {
         return foodList.size();
     }
@@ -39,8 +43,12 @@ public class FoodList {
         return foodList;
     }
 
-    public Food getFood(int i){
-        return foodList.get(i);
+    public Food getFood(int i) throws DukeException {
+        try {
+            return foodList.get(i);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalValueException("No item at such index!");
+        }
     }
 
     public FoodList findFood(String term, String ...flags) throws DukeException{

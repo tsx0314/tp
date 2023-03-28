@@ -24,7 +24,7 @@ public class FoodListEncoderTest {
         assertEquals(expectedOutput, encodedFoodLists);
     }
 
-        @Test
+    @Test
     void encodeFoodList_withExpiryDateAndQuantity_expectNameExpiryAndCategory() {
         Food food = new Food("peanuts", "11/11/23", GRAIN);
         FoodList fl = new FoodList();

@@ -13,8 +13,7 @@ public class HelpCommand extends Command {
             + "\nhttps://docs.google.com/document/d/1WKscnkYy9UqI_tsWmUHIMjgILJc6GQeFn0B1ce6qkQo/edit?usp=sharing";
     private static final String HELP_EXIT = "Command 'exit': This command is used to exit the program.";
     private static final String HELP_LIST = "Command 'list': This command lists all food products in the tracker.";
-    // + "\nAppend the filter '--fresh' for listing unexpired food products and "
-    // + "'--expired' for listing expired food products.";
+
     private static final String HELP_ADD = "Command 'add': This command adds a food product to the food supply tracker."
             + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE {-c category} {-q QUANTITY -u QUANTITY_UNIT}"
             + "\nFormat for EXPIRY_DATE: DD/MM/YYYY"
@@ -25,7 +24,10 @@ public class HelpCommand extends Command {
             + " food supply tracker based on its index."
             + "\nFormat: remove INDEX";
     private static final String HELP_FIND = "Command 'find': This command finds the food product by its name."
-            + "\nFormat: find PRODUCT_NAME";
+            + "\nFormat: find PRODUCT_NAME"
+            + "\nAppend the filter '-fresh' for listing unexpired food products and "
+            + "'-expired' for listing expired food products."
+            + "\nAppend the filter '-c' followed by CATEGORY to find by category.";
     private static final String HELP_UPDATE = "Command 'update': This command allows users to update the name, "
             + "expiry date, quantity and units based on the index in the food list.";
     private static final String REPORT_INVALID_INPUT = "Opps! Invalid input entered: ";

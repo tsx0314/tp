@@ -49,6 +49,7 @@ public class Food {
         this.expiryDate = expiryDate;
         this.quantity = quantity;
         this.unit = unit;
+        this.category = FoodCategory.UNCLASSIFIED_FOOD;
     }
 
     public Food(String name, String expiryDate) {

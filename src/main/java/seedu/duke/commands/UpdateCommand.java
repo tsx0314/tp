@@ -47,6 +47,9 @@ public class UpdateCommand extends Command{
                 case "u":
                     currentFood.setUnit(flagValue);
                     break;
+                case "c":
+                    currentFood.setCategory(flagValue);
+                    break;
                 default:
                     throw new InvalidFlagException(flagName);
                 }

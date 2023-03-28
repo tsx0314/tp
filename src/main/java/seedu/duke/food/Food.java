@@ -89,7 +89,16 @@ public class Food {
     public FoodCategory getCategory() {
         return category;
     }
-
+    public void setCategory(String category) {
+        for (FoodCategory c : FoodCategory.values() ) {
+            if (getCategoryString(c).equals(category.toLowerCase().trim())) {
+                this.category = c;
+                return;
+            }
+        }
+        // If no category matched, set as unclassified
+        this.category = FoodCategory.UNCLASSIFIED_FOOD;
+    }
     public String getCategoryString(FoodCategory category) {
         switch (category) {
         case FRUIT:

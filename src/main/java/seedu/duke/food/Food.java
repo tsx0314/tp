@@ -97,10 +97,7 @@ public class Food {
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
-
-    public FoodCategory getCategory() {
-        return category;
-    }
+    
     public void setCategory(String category) {
         for (FoodCategory c : FoodCategory.values() ) {
             if (getCategoryString(c).equals(category.toLowerCase().trim())) {

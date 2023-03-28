@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.IllegalValueException;
 import seedu.duke.food.FoodList;
 
@@ -12,7 +13,7 @@ public class RemoveCommand extends Command {
         this.index = index;
     }
 
-    public CommandResult execute (FoodList foodlist) throws IllegalValueException {
+    public CommandResult execute (FoodList foodlist) throws DukeException {
         if (index.isBlank()) {
             throw new IllegalValueException("Incorrect value entered");
         }

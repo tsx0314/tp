@@ -231,8 +231,6 @@ public class AddCommand extends Command {
             category = FoodCategory.DAIRY;
         } else if (tempCategory.equalsIgnoreCase("grain")) {
             category = FoodCategory.GRAIN;
-        } else if (tempCategory.equalsIgnoreCase("grain")) {
-            category = FoodCategory.GRAIN;
         } else if (tempCategory.equalsIgnoreCase("seafood")) {
             category = FoodCategory.SEAFOOD;
         } else if (tempCategory.equalsIgnoreCase("beverage")) {

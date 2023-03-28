@@ -8,14 +8,8 @@ public class Food {
     private String name;
     private String expiryDate;
     private Double quantity;
-
     private String unit;
-    public Food(String name, String expiryDate, Double quantity, String unit) {
-        this.name = name;
-        this.expiryDate = expiryDate;
-        this.quantity = quantity;
-        this.unit = unit;
-    }
+    private FoodCategory category;
 
     /**
      * Constructor
@@ -23,22 +17,44 @@ public class Food {
      * @param name       food name
      * @param expiryDate food expiry date
      * @param quantity   food quantity
+     * @param unit       food unit
+     * @param category   food category
      */
-    public Food(String name, String expiryDate, Double quantity) {
+    public Food(String name, String expiryDate, Double quantity, String unit, FoodCategory category) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
+        this.unit = unit;
+        this.category = category;
     }
 
+
     /**
-     * Constructor for Food object with no quantity
+     * Constructor for Food object with no quantity and no unit
      *
      * @param name       food name
      * @param expiryDate food expiry date
+     * @param category   food category
      */
+    public Food(String name, String expiryDate, FoodCategory category) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.quantity = 0.0;
+        this.category = category;
+    }
+
+    public Food(String name, String expiryDate, Double quantity, String unit) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.quantity = quantity;
+        this.unit = unit;
+        this.category = FoodCategory.UNCLASSIFIED_FOOD;
+    }
+
     public Food(String name, String expiryDate) {
         this.name = name;
         this.expiryDate = expiryDate;
+        this.category = FoodCategory.UNCLASSIFIED_FOOD;
         this.quantity = 0.0;
     }
 
@@ -46,7 +62,7 @@ public class Food {
         return LocalDate.now();
     }
 
-    public LocalDate parseExpiryDate () {
+    public LocalDate parseExpiryDate() {
         return LocalDate.parse(expiryDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
@@ -54,7 +70,7 @@ public class Food {
         return quantity;
     }
 
-    public String getUnit(){
+    public String getUnit() {
         return unit;
     }
 
@@ -70,7 +86,35 @@ public class Food {
         this.quantity = quantity;
     }
 
-    public void setUnit(String unit){
+    public FoodCategory getCategory() {
+        return category;
+    }
+
+    public String getCategoryString(FoodCategory category) {
+        switch (category) {
+        case FRUIT:
+            return "fruit";
+        case MEAT:
+            return "meat";
+        case DAIRY:
+            return "dairy";
+        case GRAIN:
+            return "grain";
+        case BEVERAGE:
+            return "beverage";
+        case SEAFOOD:
+            return "seafood";
+        case VEGETABLE:
+            return "vegetable";
+        case OTHERS:
+            return "others";
+        default:
+            return "unknown category";
+
+        }
+    }
+
+    public void setUnit(String unit) {
         this.unit = unit;
     }
 
@@ -92,6 +136,7 @@ public class Food {
         return expiryDate;
     }
 
+    //@@author david
     /**
      * Returns a foodDetail string
      *
@@ -101,10 +146,13 @@ public class Food {
     public String toString() {
         Double quantity = getQuantity();
         String foodDetail = null;
+
         if (quantity == 0.0) {
-            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate();
+            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
+                    +"\n       Category: " + getCategoryString(getCategory());
         } else {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
+                    + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + getQuantity() + " " + getUnit();
         }
         return foodDetail;

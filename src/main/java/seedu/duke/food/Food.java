@@ -1,4 +1,7 @@
 package seedu.duke.food;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 public class Food {
     private String name;
@@ -10,6 +13,14 @@ public class Food {
         this.expiryDate = expiryDate;
     }
 
+    public LocalDate getDate() {
+        return LocalDate.now();
+    }
+
+    public LocalDate formatDate(String expiryDate) {
+        return LocalDate.parse(expiryDate);
+    }
+
     public String getName() {
         return name;
     }
@@ -19,8 +30,11 @@ public class Food {
     }
 
     public String printFoodDetails() {
-        String details = "Product Name: " + getName() + "\n" + "Expired by: " + getExpiryDate();
-        return details;
+        return "Product Name: " + getName() + "\n" + "Expired by: " + getExpiryDate();
     }
 
+    @Override
+    public String toString() {
+        return getName() + "\n       Expiry date: " + getExpiryDate();
+    }
 }

@@ -12,7 +12,6 @@ public class Ui {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    public static final String LIST_MESSAGE = "Here is your food list!";
 
     public Ui() {
     }
@@ -20,6 +19,7 @@ public class Ui {
     public String readCommand() {
         Scanner sc = new Scanner(System.in);
         String fullInputLine = sc.nextLine();
+        assert fullInputLine != null : "Input cannot be empty";
         return fullInputLine;
     }
 

@@ -1,12 +1,15 @@
 package seedu.duke.commands;
 
 import seedu.duke.food.Food;
+import seedu.duke.food.FoodCategory;
 import seedu.duke.food.FoodList;
 import seedu.duke.food.Unit;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import static java.lang.Short.MAX_VALUE;
 
 
 /**
@@ -19,6 +22,8 @@ public class AddCommand extends Command {
 
     private static final String NAME_SEPARATOR = "-n";
     private static final String EXPIRY_SEPARATOR = "-e";
+
+    private static final String CATEGORY_SEPARATOR = "-c";
     private static final String QUANTITY_SEPARATOR = "-q";
     private static final String UNIT_SEPARATOR = "-u";
 
@@ -65,23 +70,29 @@ public class AddCommand extends Command {
 
             Food newFood;
 
-            assert foodDetails.length == 2 || foodDetails.length == 3
-                    || foodDetails.length == 4 : "Wrong food details size";
+            assert foodDetails.length == 2 || foodDetails.length == 3 ||
+                    foodDetails.length == 4 || foodDetails.length == 5 : "Wrong food details size";
+
             if (foodDetails.length == 2) {
-                newFood = new Food(name, date);
+                newFood = new Food(name,date);
             } else if (foodDetails.length == 3) {
+                String c = foodDetails[2];
+                FoodCategory category = compareCategory(c);
+                newFood = new Food(name,date, category);
+            } else if (foodDetails.length == 4) {
                 String q = foodDetails[2];
-                assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
-                assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
                 Double quantity = Double.valueOf(q);
-                newFood = new Food(name, date, quantity);
+                String unit = foodDetails[3];
+                newFood = new Food(name,date,quantity,unit);
             } else {
                 String q = foodDetails[2];
-                String u = foodDetails[3];
-                assert Double.valueOf(q) < Double.MAX_VALUE : "The quantity is too large!";
-                assert Double.valueOf(q) > 0 : "Please input a valid quantity!";
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
                 Double quantity = Double.valueOf(q);
-                newFood = new Food(name, date, quantity, u);
+                String unit = foodDetails[3];
+                String c = foodDetails[4];
+                FoodCategory category = compareCategory(c);
+                newFood = new Food(name,date, quantity,unit, category);
             }
             System.out.println(newFood);
             foodList.addFood(newFood);
@@ -93,7 +104,6 @@ public class AddCommand extends Command {
     }
 
     //@@author wanjuin
-
     /**
      * Returns the unit of the food
      *
@@ -141,58 +151,59 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
-
     /**
-     * Returns an array of String to store the information of food name, expiry date (and quantity)
+     * Returns an array of String to store the information of food added
      *
      * @param details food details
-     * @return foodDetails a String array of the food name, the expiry date (and quantity)
+     * @return foodDetails a String array of the food details
      */
     public String[] splitDetails(String details) {
         boolean hasQuantity = details.contains("-q");
         boolean hasUnit = details.contains("-u");
+        boolean hasCat = details.contains("-c");
+
 
         String name;
         String date;
+        String category;
         String quantity;
         String unit;
 
-        String[] temp = details.trim().split(QUANTITY_SEPARATOR, 2);
+        String[] temp = details.trim().split(QUANTITY_SEPARATOR);
+        String[] temp2 = temp[0].split(CATEGORY_SEPARATOR);
+        String[] nameAndExpiryDate = temp2[0].replace(NAME_SEPARATOR, "").trim().split(EXPIRY_SEPARATOR, 2);
 
-        String[] unitTemp = details.split(UNIT_SEPARATOR);
+        name = nameAndExpiryDate[0].trim();
+        date = nameAndExpiryDate[1].trim();
 
-        if (temp[0].indexOf("-n") < temp[0].indexOf("-e")) {
-            String[] nameAndDate = temp[0].replace(NAME_SEPARATOR, "").trim().split(EXPIRY_SEPARATOR, 2);
-            name = nameAndDate[0].trim();
-            date = nameAndDate[1].trim();
-        } else {
-            String[] dateAndName = temp[0].replace(EXPIRY_SEPARATOR, "").trim().split(NAME_SEPARATOR, 2);
-            name = dateAndName[1].trim();
-            date = dateAndName[0].trim();
-        }
-
-        if (hasQuantity && !hasUnit) {
-            quantity = temp[1].trim();
-            String[] foodDetails = {name, date, quantity};
+        if (!hasCat && !hasUnit && !hasQuantity) {
+            String[] foodDetails = {name, date};
             return foodDetails;
         }
 
-        if (hasUnit) {
-            String[] quantityTemp = unitTemp[0].replace(UNIT_SEPARATOR, "").split(QUANTITY_SEPARATOR, 2);
-            quantity = quantityTemp[1].trim();
-            String unitTemporary = unitTemp[1].trim();
-            Double quantityInDouble = Double.parseDouble(quantity);
-            unit = getUnitOfFood(unitTemporary, quantityInDouble);
-            String[] foodDetails = {name, date, quantity, unit};
+        if (!hasCat && hasUnit && hasQuantity) {
+            String[] quantityAndUnit = temp[1].trim().split(UNIT_SEPARATOR,2);
+            unit = quantityAndUnit[1].trim();
+            quantity = quantityAndUnit[0].trim();
+            String[] foodDetails = {name, date, quantity,unit};
             return foodDetails;
         }
 
-        String[] foodDetails = {name, date};
+
+        if (hasCat && !hasUnit && !hasQuantity) {
+            category = temp2[1].trim();
+            String[] foodDetails = {name, date, category};
+            return foodDetails;
+        }
+
+        category = temp2[1].trim();
+        quantity = temp[1].trim().split(UNIT_SEPARATOR,2)[0].trim();
+        unit = temp[1].trim().split(UNIT_SEPARATOR,2)[1].trim();
+        String[] foodDetails = {name, date, quantity,unit,category};
         return foodDetails;
     }
 
     //@@author tsx0314
-
     /**
      * Returns whether the input date is a valid expiry date
      *
@@ -203,6 +214,36 @@ public class AddCommand extends Command {
         LocalDate currentDate = LocalDate.now();
         boolean isValid = expiryDate.isAfter(currentDate);
         return isValid;
+    }
+
+    /**
+     *
+     */
+    public FoodCategory compareCategory(String tempCategory) {
+        FoodCategory category;
+        if (tempCategory.equalsIgnoreCase("fruit")) {
+            category = FoodCategory.FRUIT;
+        } else if (tempCategory.equalsIgnoreCase("meat")) {
+            category = FoodCategory.MEAT;
+        } else if (tempCategory.equalsIgnoreCase("vegetable"))  {
+            category = FoodCategory.VEGETABLE;
+        } else if (tempCategory.equalsIgnoreCase("dairy")) {
+            category = FoodCategory.DAIRY;
+        } else if (tempCategory.equalsIgnoreCase("grain")) {
+            category = FoodCategory.GRAIN;
+        } else if (tempCategory.equalsIgnoreCase("grain")) {
+            category = FoodCategory.GRAIN;
+        } else if (tempCategory.equalsIgnoreCase("seafood")) {
+            category = FoodCategory.SEAFOOD;
+        } else if (tempCategory.equalsIgnoreCase("beverage")) {
+            category = FoodCategory.BEVERAGE;
+        } else if (tempCategory.equalsIgnoreCase("others")) {
+            category = FoodCategory.OTHERS;
+        } else {
+            category = FoodCategory.UNCLASSIFIED_FOOD;
+        }
+
+        return category;
     }
 }
 

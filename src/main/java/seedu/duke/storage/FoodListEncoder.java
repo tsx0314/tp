@@ -35,7 +35,7 @@ public class FoodListEncoder {
         encodedFoodBuilder.append(" « ").append(food.getExpiryDate());
         encodedFoodBuilder.append(" « ").append(food.getQuantity());
         encodedFoodBuilder.append(" « ").append(food.getUnit());
-        // encodedFoodBuilder.append(" « ").append(food.getCategory());
+        encodedFoodBuilder.append(" « ").append(food.getCategory());
 
         return encodedFoodBuilder.toString();
     }

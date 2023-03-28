@@ -9,6 +9,7 @@ public class Food {
     private String expiryDate;
     private Double quantity;
     private String unit;
+
     private FoodCategory category;
 
     /**
@@ -57,6 +58,14 @@ public class Food {
         this.quantity = 0.0;
     }
 
+    public Food(String name, String expiryDate, Double quantity, String unit, String category) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.category = FoodCategory.valueOf(category);
+        this.quantity = quantity;
+        this.unit = unit;
+    }
+
     public LocalDate getDate() {
         return LocalDate.now();
     }
@@ -72,6 +81,9 @@ public class Food {
     public String getUnit() {
         return unit;
     }
+    public FoodCategory getCategory() {
+        return category;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -85,9 +97,7 @@ public class Food {
         this.quantity = quantity;
     }
 
-    public FoodCategory getCategory() {
-        return category;
-    }
+
 
     public String getCategoryString(FoodCategory category) {
         switch (category) {

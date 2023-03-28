@@ -16,16 +16,17 @@ public class HelpCommand extends Command {
     // + "\nAppend the filter '--fresh' for listing unexpired food products and "
     // + "'--expired' for listing expired food products.";
     private static final String HELP_ADD = "Command 'add': This command adds a food product to the food supply tracker."
-            + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE {-q QUANTITY -u QUANTITY_UNIT}"
+            + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE {-c category} {-q QUANTITY -u QUANTITY_UNIT}"
             + "\nFormat for EXPIRY_DATE: DD/MM/YYYY"
             + "\nIdentifier within brackets are optional"
+            + "\nList of valid categories as follows: fruit, meat, vegetable, dairy, grain, seafood, beverage, others"
             + "\nQUANTITY and QUANTITY_UNITS must be used together";
     private static final String HELP_REMOVE = "Command 'remove': This command removes the food product from the"
             + " food supply tracker based on its index."
             + "\nFormat: remove INDEX";
     private static final String HELP_FIND = "Command 'find': This command finds the food product by its name."
             + "\nFormat: find PRODUCT_NAME";
-    private static final String HELP_UPDATE = "Comman 'update': This command allows users to update the name, "
+    private static final String HELP_UPDATE = "Command 'update': This command allows users to update the name, "
             + "expiry date, quantity and units based on the index in the food list.";
     private static final String REPORT_INVALID_INPUT = "Opps! Invalid input entered: ";
     private final String[] filters;

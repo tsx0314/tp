@@ -40,7 +40,7 @@ public class FoodListDecoder {
 
         try {
             return new Food(details[0].trim(), details[1].trim()
-                    , parseDouble(details[2].trim()), details[3].trim());
+                    , parseDouble(details[2].trim()), details[3].trim(), details[4].trim());
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new StorageOperationException("Unable to read file successfully");
         }

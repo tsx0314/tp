@@ -2,7 +2,6 @@ package seedu.duke.storage;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.food.Food;
-import seedu.duke.food.FoodCategory;
 import seedu.duke.food.FoodList;
 
 
@@ -26,15 +25,15 @@ public class FoodListEncoderTest {
     }
 
         @Test
-        void encodeFoodList_withExpiryDateAndQuantity_expectNameExpiryAndCategory() {
-            Food food = new Food("peanuts", "11/11/23", GRAIN);
-            FoodList fl = new FoodList();
-            fl.addFood(food);
-            ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
-            ArrayList<String> expectedOutput = new ArrayList<>();
-            expectedOutput.add("peanuts « 11/11/23 « 0.0 « null « GRAIN");
-            assertEquals(expectedOutput, encodedFoodLists);
-        }
+    void encodeFoodList_withExpiryDateAndQuantity_expectNameExpiryAndCategory() {
+        Food food = new Food("peanuts", "11/11/23", GRAIN);
+        FoodList fl = new FoodList();
+        fl.addFood(food);
+        ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
+        ArrayList<String> expectedOutput = new ArrayList<>();
+        expectedOutput.add("peanuts « 11/11/23 « 0.0 « null « GRAIN");
+        assertEquals(expectedOutput, encodedFoodLists);
+    }
 
     @Test
     void encodeFoodList_withMultipleFood_expectMultipleFoodRecorded() {
@@ -50,17 +49,17 @@ public class FoodListEncoderTest {
         assertEquals(expectedOutput, encodedFoodLists);
     }
 
-    //Not implemented yet
-    //    @Test
-    //    void encodeFoodList_withExpiryDateAndQuantityWithUnits_expectNameExpiryAndQuantityWithUnits() {
-    //        Food food = new Food("peanuts", "11/11/23", 50.0, g);
-    //        FoodList fl = new FoodList();
-    //        fl.addFood(food);
-    //        FoodListEncoder fle = new FoodListEncoder();
-    //        ArrayList<String> encodedFoodLists = fle.encodeFoodList(fl);
-    //        ArrayList<String> expectedOutput = new ArrayList<>();
-    //        expectedOutput.add("peanuts « 11/11/23 « 50 « g");
-    //        assertEquals(encodedFoodLists, expectedOutput);
-    //    }
+
+        @Test
+        void encodeFoodList_withExpiryDateAndQuantityWithUnits_expectNameExpiryAndQuantityWithUnits() {
+            Food food = new Food("peanuts", "11/11/23", 50.0, "g");
+            FoodList fl = new FoodList();
+            fl.addFood(food);
+            FoodListEncoder fle = new FoodListEncoder();
+            ArrayList<String> encodedFoodLists = fle.encodeFoodList(fl);
+            ArrayList<String> expectedOutput = new ArrayList<>();
+            expectedOutput.add("peanuts « 11/11/23 « 50.0 « g « null");
+            assertEquals(expectedOutput, encodedFoodLists);
+        }
 }
 

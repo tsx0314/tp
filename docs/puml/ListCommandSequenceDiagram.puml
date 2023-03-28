@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Participant Duke
+Participant ListCommand
+Participant FoodList
+
+Duke -> ListCommand: execute(foodList)
+activate ListCommand
+
+ListCommand -> FoodList: getNumberOfFood()
+activate FoodList
+ListCommand <-- FoodList: numberOfFood
+deactivate FoodList
+
+ListCommand --> Duke: new CommandResult(printToUser)
+deactivate ListCommand
+@enduml

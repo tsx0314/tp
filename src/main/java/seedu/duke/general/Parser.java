@@ -8,7 +8,7 @@ import seedu.duke.commands.HelpCommand;
 import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.RemoveCommand;
-
+import seedu.duke.commands.UpdateCommand;
 import seedu.duke.exceptions.DukeException;
 
 import java.util.regex.Matcher;
@@ -24,9 +24,19 @@ public class Parser {
 
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final String ADD_COMMAND_PATTERN_1 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}(\\s+-q\\s+\\d+(\\.\\d+)?)?$";
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}$";
+
     private static final String ADD_COMMAND_PATTERN_2 =
-            "^\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\s+-n\\s+\\w+(\\s+\\w+)*(\\s+-q\\s+\\d+(\\.\\d+)?)?$";
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+-c\\s+\\w+$";
+    private static final String ADD_COMMAND_PATTERN_3 =
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+$";
+
+    private static final String ADD_COMMAND_PATTERN_4 =
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}"+
+                    "\\s+-c\\s+\\w+" +
+                    "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+$";
 
 
     public static Command parse(String userInput) throws DukeException {
@@ -59,6 +69,9 @@ public class Parser {
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommand(arguments);
 
+        case UpdateCommand.COMMAND_WORD:
+            return new UpdateCommand(arguments);
+
         default:
             return new IncorrectCommand();
         }
@@ -67,8 +80,11 @@ public class Parser {
     private static Command addFood(String args) {
         boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, args);
         boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, args);
+        boolean isMatched3 = Pattern.matches(ADD_COMMAND_PATTERN_3, args);
+        boolean isMatched4 = Pattern.matches(ADD_COMMAND_PATTERN_4, args);
 
-        if (!isMatched1 && !isMatched2) {
+
+        if (!isMatched1 && !isMatched2 && !isMatched3 && !isMatched4) {
             return new IncorrectCommand();
         } else {
             return new AddCommand(args);

@@ -10,18 +10,19 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(FoodList foodList) {
-        int numberOfTask = foodList.getNumberOfFood();
-        assert numberOfTask >= 0;
+        String printToUser = "";
+        int numberOfFood = foodList.getNumberOfFood();
+        assert numberOfFood >= 0;
 
-        if (numberOfTask > 0) {
+        if (numberOfFood > 0) {
             assert foodList instanceof FoodList && !foodList.getFoodList().isEmpty() :
                     "The list of food to be printed have to be a food list type and" +
                             "Food list cannot be empty.";
-            System.out.println(SHOW_FOODLIST_MESSAGE);
-            System.out.println(foodList);
+            printToUser = printToUser.concat(SHOW_FOODLIST_MESSAGE + foodList);
         }
-        return new CommandResult(REPORT_NUMBER_OF_FOOD_FRONT
-                + numberOfTask + REPORT_NUMBER_OF_FOOD_BACK);
+        printToUser = printToUser.concat(REPORT_NUMBER_OF_FOOD_FRONT
+                + numberOfFood + REPORT_NUMBER_OF_FOOD_BACK);
+        return new CommandResult(printToUser);
     }
 
     @Override

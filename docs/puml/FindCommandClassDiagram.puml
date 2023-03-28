@@ -1,0 +1,26 @@
+@startuml
+Command <|-- FindCommand
+class Command {
+    +execute(): CommandResult
+}
+
+class CommandResult {
+    String feedbackToUser
+    +printResult()
+}
+class FindCommand {
+    term: String
+    flags: String[]
+    +execute(foodList: FoodList): CommandResult
+}
+
+
+FindCommand "1" --> "1" FoodList : searches
+Command  --> CommandResult
+FindCommand  --> CommandResult
+
+class FoodList {
+    +findFood(term: String, String ...flags): FoodList
+    foodList: ArrayList<Food>
+}
+@enduml

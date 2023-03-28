@@ -16,8 +16,9 @@ public class HelpCommand extends Command {
             + "\nAppend the filter '--fresh' for listing unexpired food products and "
             + "'--expired' for listing expired food products.";
     private static final String HELP_ADD = "Command 'add': This command adds a food product to the food supply tracker."
-            + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE"
-            + "\nFormat for EXPIRY_DATE: DD/MM/YYYY";
+            + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE {-q QUANTITY} {-u QUANTITY_UNIT}"
+            + "\nFormat for EXPIRY_DATE: DD/MM/YYYY"
+            + "\nIdentifier within brackets are optional";
     private static final String HELP_REMOVE = "Command 'remove': This command removes the food product from the"
             + " food supply tracker based on its index." + "\nFormat: remove INDEX";
     private static final String HELP_FIND = "Command 'find': This command finds the food product by its name."
@@ -73,6 +74,9 @@ public class HelpCommand extends Command {
                 printToUser = printToUser.concat(REPORT_INVALID_INPUT + f);
             }
         }
+
+        printToUser = addNewLine(printToUser);
+        printToUser = printToUser.concat(SHOW_ALL_COMMANDS + '\n' + DEFAULT_HELP_MESSAGE);
         return new CommandResult(printToUser);
     }
 

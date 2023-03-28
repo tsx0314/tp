@@ -1,18 +1,24 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
+
+import java.util.Arrays;
 
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     String term;
+    String[] flags;
 
-    public FindCommand(String term) {
-        this.term = term;
+    public FindCommand(String arguments) {
+        String[] details = arguments.split("-");
+        this.term = details[0];
+        this.flags = Arrays.copyOfRange(details, 1, details.length);
     }
 
     @Override
-    public CommandResult execute(FoodList foodList) {
-        FoodList result = foodList.findFood(term);
+    public CommandResult execute(FoodList foodList) throws DukeException {
+        FoodList result = foodList.findFood(term, flags);
         if (result.getNumberOfFood() > 0) {
             System.out.println(result);
             return new CommandResult("Found " + result.getNumberOfFood() + " of food items");

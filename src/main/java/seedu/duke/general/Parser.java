@@ -24,10 +24,11 @@ public class Parser {
 
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final String ADD_COMMAND_PATTERN_1 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}$";
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "(\\s+-q\\s+\\d+(\\.\\d+)?(\\s+-u\\s+\\w+))?$";
     private static final String ADD_COMMAND_PATTERN_2 =
-            "^\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\s+-n\\s+\\w+(\\s+\\w+)*$";
-
+            "^\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}\\s+-n\\s+\\w+(\\s+\\w+)*" +
+                    "(\\s+-q\\s+\\d+(\\.\\d+)?(\\s+-u\\s+\\w+))?$";
 
     public static Command parse(String userInput) throws DukeException {
 
@@ -67,6 +68,7 @@ public class Parser {
     private static Command addFood(String args) {
         boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, args);
         boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, args);
+
 
         if (!isMatched1 && !isMatched2) {
             return new IncorrectCommand();

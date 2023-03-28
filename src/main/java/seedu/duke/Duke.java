@@ -3,12 +3,17 @@ package seedu.duke;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
+
+
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.InvalidStorageFilePathException;
+import seedu.duke.exceptions.StorageOperationException;
 import seedu.duke.food.FoodList;
 import seedu.duke.general.Parser;
 import seedu.duke.general.Ui;
+import seedu.duke.storage.StorageFile;
 
 
 /**
@@ -21,16 +26,27 @@ public class Duke {
 
     private FoodList foodList;
 
+    private StorageFile storageFile;
+
     public Duke() {
         ui = new Ui();
-        foodList = new FoodList();
+        try {
+            storageFile = new StorageFile();
+        } catch (InvalidStorageFilePathException e) {
+            ui.showError(e.getMessage());
+
+        }
+
+        try {
+            foodList = storageFile.load();
+        } catch (StorageOperationException e) {
+            ui.showError(e.getMessage());
+        }
     }
 
     // This part of the code is adapted from the module website
     // https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
-
     public void run() {
-
         ui.showWelcomeMessage();
         boolean isExit = false;
 
@@ -38,11 +54,11 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-
                 logger.log(Level.INFO, "Processing user command");
                 Command c = Parser.parse(fullCommand);
                 CommandResult result = c.execute(foodList);
                 result.printResult();
+                storageFile.save(foodList);
                 isExit = c.isExit();
                 logger.log(Level.INFO, "Processed user command successfully");
             } catch (DukeException e) {

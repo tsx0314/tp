@@ -50,16 +50,16 @@ public class FoodListEncoderTest {
     }
 
 
-    @Test
-    void encodeFoodList_withExpiryDateAndQuantityWithUnits_expectNameExpiryAndQuantityWithUnits() {
-        Food food = new Food("peanuts", "11/11/23", 50.0, "g");
-        FoodList fl = new FoodList();
-        fl.addFood(food);
-        FoodListEncoder fle = new FoodListEncoder();
-        ArrayList<String> encodedFoodLists = fle.encodeFoodList(fl);
-        ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/23 « 50.0 « g « null");
-        assertEquals(expectedOutput, encodedFoodLists);
-    }
+        @Test
+        void encodeFoodList_withExpiryDateAndQuantityWithUnits_expectNameExpiryAndQuantityWithUnits() {
+            Food food = new Food("peanuts", "11/11/23", 50.0, "g");
+            FoodList fl = new FoodList();
+            fl.addFood(food);
+            FoodListEncoder fle = new FoodListEncoder();
+            ArrayList<String> encodedFoodLists = fle.encodeFoodList(fl);
+            ArrayList<String> expectedOutput = new ArrayList<>();
+            expectedOutput.add("peanuts « 11/11/23 « 50.0 « g « UNCLASSIFIED_FOOD");
+            assertEquals(expectedOutput, encodedFoodLists);
+        }
 }
 

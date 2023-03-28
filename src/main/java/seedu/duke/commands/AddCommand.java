@@ -28,7 +28,7 @@ public class AddCommand extends Command {
     private static final String UNIT_SEPARATOR = "-u";
 
     private static final String INVALID_DATE_MESSAGE =
-            "Please input an invalid date :<";
+            "Please input a valid  date :<";
     private static final String EXPIRY_DATE_MESSAGE =
             "Please do not add an expired product :<";
 
@@ -229,8 +229,6 @@ public class AddCommand extends Command {
             category = FoodCategory.VEGETABLE;
         } else if (tempCategory.equalsIgnoreCase("dairy")) {
             category = FoodCategory.DAIRY;
-        } else if (tempCategory.equalsIgnoreCase("grain")) {
-            category = FoodCategory.GRAIN;
         } else if (tempCategory.equalsIgnoreCase("grain")) {
             category = FoodCategory.GRAIN;
         } else if (tempCategory.equalsIgnoreCase("seafood")) {

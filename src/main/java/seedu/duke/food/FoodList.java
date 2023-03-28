@@ -1,6 +1,7 @@
 package seedu.duke.food;
 
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.exceptions.IllegalValueException;
 import seedu.duke.exceptions.InvalidFlagException;
 
 import java.time.LocalDate;
@@ -31,6 +32,9 @@ public class FoodList {
         foodList.remove(index);
     }
 
+    public void updateFood(int index, Food updatedItem) {
+        foodList.set(index, updatedItem);
+    }
     public int getNumberOfFood() {
         return foodList.size();
     }
@@ -39,8 +43,12 @@ public class FoodList {
         return foodList;
     }
 
-    public Food getFood(int i){
-        return foodList.get(i);
+    public Food getFood(int i) throws DukeException {
+        try {
+            return foodList.get(i);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalValueException("No item at such index!");
+        }
     }
 
     public FoodList findFood(String term, String ...flags) throws DukeException{
@@ -48,14 +56,17 @@ public class FoodList {
 
         foodItemLoop:
         for (Food foodItem: foodList) {
-            String name = foodItem.getName();
+            String foodItemName = foodItem.getName();
             LocalDate expiryDate = foodItem.parseExpiryDate();
-            boolean hasTerm = name.toLowerCase().contains(term.toLowerCase().trim());
+            String category = foodItem.getCategoryString(foodItem.getCategory());
+            boolean hasTerm = foodItemName.toLowerCase().contains(term.toLowerCase().trim());
 
             if (hasTerm) {
                 // Filter by flags
                 for (String flag: flags) {
-                    switch (flag) {
+                    String flagName = flag.trim().split(" ")[0];
+
+                    switch (flagName) {
                     case "fresh":
                             boolean isFresh = expiryDate.isAfter(LocalDate.now());
                             if (!isFresh) {
@@ -69,6 +80,12 @@ public class FoodList {
                                 continue foodItemLoop;
                             }
                             break;
+                    case "c":
+                        String flagValue = flag.split(" ")[1].toLowerCase().trim();
+                        if (!flagValue.equals(category)) {
+                            continue foodItemLoop;
+                        }
+                        break;
                     default:
                         throw new InvalidFlagException(flag);
                     }

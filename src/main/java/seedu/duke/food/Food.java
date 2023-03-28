@@ -9,6 +9,7 @@ public class Food {
     private String expiryDate;
     private Double quantity;
     private String unit;
+
     private FoodCategory category;
 
     /**
@@ -58,6 +59,14 @@ public class Food {
         this.quantity = 0.0;
     }
 
+    public Food(String name, String expiryDate, Double quantity, String unit, String category) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.category = FoodCategory.valueOf(category);
+        this.quantity = quantity;
+        this.unit = unit;
+    }
+
     public LocalDate getDate() {
         return LocalDate.now();
     }
@@ -73,6 +82,9 @@ public class Food {
     public String getUnit() {
         return unit;
     }
+    public FoodCategory getCategory() {
+        return category;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -85,9 +97,16 @@ public class Food {
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
-
-    public FoodCategory getCategory() {
-        return category;
+    
+    public void setCategory(String category) {
+        for (FoodCategory c : FoodCategory.values() ) {
+            if (getCategoryString(c).equals(category.toLowerCase().trim())) {
+                this.category = c;
+                return;
+            }
+        }
+        // If no category matched, set as unclassified
+        this.category = FoodCategory.UNCLASSIFIED_FOOD;
     }
 
     public String getCategoryString(FoodCategory category) {

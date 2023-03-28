@@ -1,7 +1,9 @@
 package seedu.duke;
 
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
+
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
@@ -19,8 +21,8 @@ import seedu.duke.storage.StorageFile;
  * Initializes the application and starts the interaction with the user.
  */
 public class Duke {
-    private static Logger logger = Logger.getLogger("Run Duke Log");
-    private Ui ui;
+    private static final Logger logger = Logger.getLogger("Run Duke Log");
+    private final Ui ui;
 
     private FoodList foodList;
 
@@ -31,14 +33,14 @@ public class Duke {
         try {
             storageFile = new StorageFile();
         } catch (InvalidStorageFilePathException e) {
-            ui.showError(e.getMessage());
+            Ui.showError(e.getMessage());
 
         }
 
         try {
             foodList = storageFile.load();
         } catch (StorageOperationException e) {
-            ui.showError(e.getMessage());
+            Ui.showError(e.getMessage());
         }
     }
 
@@ -61,7 +63,7 @@ public class Duke {
                 logger.log(Level.INFO, "Processed user command successfully");
             } catch (DukeException e) {
                 logger.log(Level.WARNING, "ERROR");
-                ui.showError(e.getMessage());
+                Ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
             }

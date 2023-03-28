@@ -12,19 +12,23 @@ public class HelpCommand extends Command {
             + " how to use our system:"
             + "\nhttps://docs.google.com/document/d/1WKscnkYy9UqI_tsWmUHIMjgILJc6GQeFn0B1ce6qkQo/edit?usp=sharing";
     private static final String HELP_EXIT = "Command 'exit': This command is used to exit the program.";
-    private static final String HELP_LIST = "Command 'list': This command lists all food products in the tracker."
-            + "\nAppend the filter '--fresh' for listing unexpired food products and "
-            + "'--expired' for listing expired food products.";
+    private static final String HELP_LIST = "Command 'list': This command lists all food products in the tracker.";
+    // + "\nAppend the filter '--fresh' for listing unexpired food products and "
+    // + "'--expired' for listing expired food products.";
     private static final String HELP_ADD = "Command 'add': This command adds a food product to the food supply tracker."
-            + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE {-q QUANTITY} {-u QUANTITY_UNIT}"
+            + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE {-q QUANTITY -u QUANTITY_UNIT}"
             + "\nFormat for EXPIRY_DATE: DD/MM/YYYY"
-            + "\nIdentifier within brackets are optional";
+            + "\nIdentifier within brackets are optional"
+            + "\nQUANTITY and QUANTITY_UNITS must be used together";
     private static final String HELP_REMOVE = "Command 'remove': This command removes the food product from the"
-            + " food supply tracker based on its index." + "\nFormat: remove INDEX";
+            + " food supply tracker based on its index."
+            + "\nFormat: remove INDEX";
     private static final String HELP_FIND = "Command 'find': This command finds the food product by its name."
             + "\nFormat: find PRODUCT_NAME";
+    private static final String HELP_UPDATE = "Comman 'update': This command allows users to update the name, "
+            + "expiry date, quantity and units based on the index in the food list.";
     private static final String REPORT_INVALID_INPUT = "Opps! Invalid input entered: ";
-    private String[] filters;
+    private final String[] filters;
 
     public HelpCommand(String userInput) {
         filters = userInput.replaceAll(" ", "").split("--");
@@ -69,6 +73,9 @@ public class HelpCommand extends Command {
                 printToUser = addNewLine(printToUser);
                 printToUser = printToUser.concat(HELP_FIND);
                 break;
+            //            case UpdateCommand.COMMAND_WORD:
+            //                printToUser = addNewLine(printToUser);
+            //                printToUser = printToUser.concat(HELP_UPDATE);
             default:
                 printToUser = addNewLine(printToUser);
                 printToUser = printToUser.concat(REPORT_INVALID_INPUT + f);

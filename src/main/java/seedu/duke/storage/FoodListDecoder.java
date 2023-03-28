@@ -8,6 +8,8 @@ import seedu.duke.general.Ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Double.parseDouble;
+
 /**
  * Decodes the storage data file into an {@code FoodList} object.
  * The code is adapted from
@@ -37,17 +39,10 @@ public class FoodListDecoder {
         String[] details = encodedFood.split("«");
 
         try {
-            Food foodDetails = new Food(details[0].trim(), details[1].trim());
-            return foodDetails;
+            return new Food(details[0].trim(), details[1].trim()
+                    , parseDouble(details[2].trim()), details[3].trim());
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new StorageOperationException("Unable to read file successfully");
         }
-
-
-        //Note:
-        //This will call the food constructor. Order: FoodName, ExpiryDate, Quantity, Category
-        //Even if optional attributes are not stated, it will pass an empty string.
-        //So when user uses getQuantity() / getCategory(), need to check if is empty String.
-        //        return new Food(details[0].trim(), details[1].trim(), details[2].trim(), details[3].trim());
     }
 }

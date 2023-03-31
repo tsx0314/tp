@@ -1,4 +1,5 @@
 @startuml
+
 Command <|-- FindCommand
 class Command {
     +execute(): CommandResult

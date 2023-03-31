@@ -17,14 +17,9 @@ It is also facilitated by `Foodlist` Class, using `addFood` method of `FoodList`
 
 The add feature implementation is as follows:
 1. New AddCommand object is created by passing in a String containing food details
-2. `splitDetails` is called to split the string
-3. boolean `hasQuantity` is used to record whether the string contains `-q` quantity flag
-4. Split the string using ` -q ` regardless of whether the string contains the quantity part
-5. Check the index of `-n` and `-e` and split the string to save the details of the food name and expiry date
-6. If `hasQuantity` is `true`, return a String array with `name`, `date` and `quantity`, else only return
-a String array with `name` and `date`.
-7. Create a new `Food` object and use `addFood` to add the new food into the food list
-8. Return a `CommandResult` to show the successful message to the user
+2. `splitDetails` is called to split the string using different flags `-n`,`-e`,`-c`,`-q`,`-u`;
+3. Create a new `Food` object and use `addFood` to add the new food into the food list
+4. Return a `CommandResult` to show the successful message to the user
 
 
 **Class Diagram**

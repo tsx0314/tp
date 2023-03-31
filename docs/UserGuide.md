@@ -84,7 +84,7 @@ Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CATEGORY} {-q QUANTITY -u UNITS}`
     * E.g. `add -n milk -e 21/03/2025 -q 10 -u packets`
 
 
-Examples of usage:
+Example of usage:
 
 Input:
 
@@ -264,6 +264,3 @@ This command will save the food list in an external file before closing the prog
 * Update - <code>update INDEX -filter UPDATED_VALUE</code>
   * e.g. <code>update 2 -q 1</code>
 * exit - `exit`
-
-
-

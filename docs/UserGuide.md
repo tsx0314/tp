@@ -84,7 +84,7 @@ Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CATEGORY} {-q QUANTITY -u UNITS}`
     * E.g. `add -n milk -e 21/03/2025 -q 10 -u packets`
 
 
-Examples of usage:
+Example of usage:
 
 <bold>Input:</bold>
 

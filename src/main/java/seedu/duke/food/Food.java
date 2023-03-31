@@ -29,6 +29,12 @@ public class Food {
         this.category = category;
     }
 
+    public Food(String name, String expiryDate) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.category = FoodCategory.OTHERS;
+        this.quantity = 0.0;
+    }
 
     /**
      * Constructor for Food object with no quantity and no unit
@@ -43,21 +49,20 @@ public class Food {
         this.quantity = 0.0;
         this.category = category;
     }
-
+    public Food(String name, String expiryDate, Double quantity, FoodCategory category) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.quantity = quantity;
+        this.category = category;
+    }
     public Food(String name, String expiryDate, Double quantity, String unit) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
         this.unit = unit;
-        this.category = FoodCategory.UNCLASSIFIED_FOOD;
+        this.category = FoodCategory.OTHERS;
     }
 
-    public Food(String name, String expiryDate) {
-        this.name = name;
-        this.expiryDate = expiryDate;
-        this.category = FoodCategory.UNCLASSIFIED_FOOD;
-        this.quantity = 0.0;
-    }
 
     public Food(String name, String expiryDate, Double quantity, String unit, String category) {
         this.name = name;
@@ -82,6 +87,7 @@ public class Food {
     public String getUnit() {
         return unit;
     }
+
     public FoodCategory getCategory() {
         return category;
     }
@@ -97,9 +103,9 @@ public class Food {
     public void setQuantity(double quantity) {
         this.quantity = quantity;
     }
-    
+
     public void setCategory(String category) {
-        for (FoodCategory c : FoodCategory.values() ) {
+        for (FoodCategory c : FoodCategory.values()) {
             if (getCategoryString(c).equals(category.toLowerCase().trim())) {
                 this.category = c;
                 return;
@@ -156,6 +162,7 @@ public class Food {
     }
 
     //@@author david
+
     /**
      * Returns a foodDetail string
      *
@@ -169,6 +176,10 @@ public class Food {
         if (quantity == 0.0) {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
                     + "\n       Category: " + getCategoryString(getCategory());
+        } else if (getUnit() == null) {
+            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
+                    + "\n       Category: " + getCategoryString(getCategory())
+                    + "\n       Remaining quantity: " + getQuantity();
         } else {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
                     + "\n       Category: " + getCategoryString(getCategory())

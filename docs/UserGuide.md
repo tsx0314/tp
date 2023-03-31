@@ -164,9 +164,22 @@ Format: <code>find PRODUCT_NAME</code>
 Example of Usage:
 
 <bold>Input:</bold>
+```
+find egg
+```
 
 <bold>Output:</code>
+```
+______________________________
+1. egg
+       Expiry date: 21/05/2024
+       Category: unknown category
 
+Found 1 of food items
+______________________________
+
+```
+---
 
 ## FAQ
 
@@ -202,7 +215,7 @@ Example of Usage:
 
 ## Command Summary
 
-* List - `list  {--fresh or --expired}`
+* List - `list {--fresh or --expired}`
   * e.g., list --fresh OR list --expired
 * Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
   * e.g., add -n Bob's Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets
@@ -212,7 +225,3 @@ Example of Usage:
   * e.g., find egg
 * help - `help {--COMMAND_WORD}`
 * exit - `exit`
-
-
-
-

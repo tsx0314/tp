@@ -168,7 +168,7 @@ public class Food {
 
         if (quantity == 0.0) {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
-                    +"\n       Category: " + getCategoryString(getCategory());
+                    + "\n       Category: " + getCategoryString(getCategory());
         } else {
             foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
                     + "\n       Category: " + getCategoryString(getCategory())

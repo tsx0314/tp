@@ -74,17 +74,17 @@ public class AddCommand extends Command {
                     foodDetails.length == 4 || foodDetails.length == 5 : "Wrong food details size";
 
             if (foodDetails.length == 2) {
-                newFood = new Food(name,date);
+                newFood = new Food(name, date);
             } else if (foodDetails.length == 3) {
                 String c = foodDetails[2];
                 FoodCategory category = compareCategory(c);
-                newFood = new Food(name,date, category);
+                newFood = new Food(name, date, category);
             } else if (foodDetails.length == 4) {
                 String q = foodDetails[2];
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
                 Double quantity = Double.valueOf(q);
                 String unit = foodDetails[3];
-                newFood = new Food(name,date,quantity,unit);
+                newFood = new Food(name, date, quantity, unit);
             } else {
                 String q = foodDetails[2];
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
@@ -92,7 +92,7 @@ public class AddCommand extends Command {
                 String unit = foodDetails[3];
                 String c = foodDetails[4];
                 FoodCategory category = compareCategory(c);
-                newFood = new Food(name,date, quantity,unit, category);
+                newFood = new Food(name, date, quantity, unit, category);
             }
             System.out.println(newFood);
             foodList.addFood(newFood);
@@ -104,6 +104,7 @@ public class AddCommand extends Command {
     }
 
     //@@author wanjuin
+
     /**
      * Returns the unit of the food
      *
@@ -151,6 +152,7 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
+
     /**
      * Returns an array of String to store the information of food added
      *
@@ -182,10 +184,10 @@ public class AddCommand extends Command {
         }
 
         if (!hasCat && hasUnit && hasQuantity) {
-            String[] quantityAndUnit = temp[1].trim().split(UNIT_SEPARATOR,2);
+            String[] quantityAndUnit = temp[1].trim().split(UNIT_SEPARATOR, 2);
             unit = quantityAndUnit[1].trim();
             quantity = quantityAndUnit[0].trim();
-            String[] foodDetails = {name, date, quantity,unit};
+            String[] foodDetails = {name, date, quantity, unit};
             return foodDetails;
         }
 
@@ -197,9 +199,9 @@ public class AddCommand extends Command {
         }
 
         category = temp2[1].trim();
-        quantity = temp[1].trim().split(UNIT_SEPARATOR,2)[0].trim();
-        unit = temp[1].trim().split(UNIT_SEPARATOR,2)[1].trim();
-        String[] foodDetails = {name, date, quantity,unit,category};
+        quantity = temp[1].trim().split(UNIT_SEPARATOR, 2)[0].trim();
+        unit = temp[1].trim().split(UNIT_SEPARATOR, 2)[1].trim();
+        String[] foodDetails = {name, date, quantity, unit, category};
         return foodDetails;
     }
 
@@ -217,31 +219,30 @@ public class AddCommand extends Command {
     }
 
     /**
-     *
+     * Return a food category according to the input
+     * @param tempCategory
+     * @return an enum FoodCategory
      */
     public FoodCategory compareCategory(String tempCategory) {
-        FoodCategory category;
-        if (tempCategory.equalsIgnoreCase("fruit")) {
-            category = FoodCategory.FRUIT;
-        } else if (tempCategory.equalsIgnoreCase("meat")) {
-            category = FoodCategory.MEAT;
-        } else if (tempCategory.equalsIgnoreCase("vegetable"))  {
-            category = FoodCategory.VEGETABLE;
-        } else if (tempCategory.equalsIgnoreCase("dairy")) {
-            category = FoodCategory.DAIRY;
-        } else if (tempCategory.equalsIgnoreCase("grain")) {
-            category = FoodCategory.GRAIN;
-        } else if (tempCategory.equalsIgnoreCase("seafood")) {
-            category = FoodCategory.SEAFOOD;
-        } else if (tempCategory.equalsIgnoreCase("beverage")) {
-            category = FoodCategory.BEVERAGE;
-        } else if (tempCategory.equalsIgnoreCase("others")) {
-            category = FoodCategory.OTHERS;
-        } else {
-            category = FoodCategory.UNCLASSIFIED_FOOD;
-        }
 
-        return category;
+        String cat = tempCategory.toLowerCase();
+
+        switch (cat) {
+        case "fruit":
+            return FoodCategory.FRUIT;
+        case "meat":
+            return FoodCategory.MEAT;
+        case "dairy":
+            return FoodCategory.DAIRY;
+        case "grain":
+            return FoodCategory.GRAIN;
+        case "seafood":
+            return FoodCategory.SEAFOOD;
+        case "beverage":
+            return FoodCategory.BEVERAGE;
+        default:
+            return FoodCategory.OTHERS;
+        }
     }
 }
 

@@ -263,6 +263,3 @@ This command will save the food list in an external file before closing the prog
 * Update - <code>update INDEX -filter UPDATED_VALUE</code>
   * e.g. <code>update 2 -q 1</code>
 * exit - `exit`
-
-
-

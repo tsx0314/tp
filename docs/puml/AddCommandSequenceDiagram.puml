@@ -15,6 +15,7 @@ AddCommand --> AddCommand: foodDetails
 deactivate
 
 foodList <- AddCommand: addFood(newFood)
+system <-- foodList:
 Duke <-- AddCommand: new CommandResult(ADD_MESSAGE)
 deactivate
 

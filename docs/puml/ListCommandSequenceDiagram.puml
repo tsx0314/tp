@@ -1,11 +1,18 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-autonumber
+Participant Duke
+Participant ListCommand
+Participant FoodList
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+Duke -> ListCommand: execute(foodList)
+activate ListCommand
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+ListCommand -> FoodList: getNumberOfFood()
+activate FoodList
+ListCommand <-- FoodList: numberOfFood
+deactivate FoodList
+
+ListCommand --> Duke: new CommandResult(printToUser)
+deactivate ListCommand
 @enduml

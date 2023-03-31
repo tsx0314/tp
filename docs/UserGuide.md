@@ -48,11 +48,11 @@ Format: `help {--COMMAND_WORD}`
 
 Example of usage:
 
-<bold>Input:</bold>
+Input:
 
 <code>help --remove --find</code>
 
-<bold>Output:</bold>
+Output:
 ```
 ______________________________
 Command 'remove': This command removes the food product from the food supply tracker based on its index.
@@ -86,11 +86,11 @@ Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CATEGORY} {-q QUANTITY -u UNITS}`
 
 Example of usage:
 
-<bold>Input:</bold>
+Input:
 
 `add -n milk -e 21/03/2025 -c dairy -q 10 -u packets`
 
-<bold>Output:</bold>
+Output:
 ```
 ______________________________
 milk
@@ -111,11 +111,11 @@ Format: <code>list</code>
 
 Example of usage:
 
-<bold>Input:</bold>
+Input:
 
 <code>list</code>
 
-<bold>Output:</bold>
+Output:
 ```
 ______________________________
 
@@ -146,7 +146,7 @@ Format: `remove INDEX`
 
 Example of usage:
 
-<bold>Input:</bold>
+Input:
 
 <code>remove 1</code>
 
@@ -174,11 +174,11 @@ Format: <code>find FOOD_NAME {-fresh} {-expired}</code>
 
 Example of Usage:
 
-<bold>Input:</bold>
+Input:
 
 `find blueberry`
 
-<bold>Output:</bold>
+Output:
 ```
 ______________________________
 1. Blueberry Yogurt
@@ -200,11 +200,11 @@ Change any attribute based on the index in the list.
 
 Example of Usage:
 
-<bold>Input:</bold>
+Input:
 
 <code>update 1 -q 20</code>
 
-<bold>Output:<bold>
+Output:
 ```
 ______________________________
 Updated food item successfully!
@@ -214,6 +214,7 @@ Blueberry
        Remaining quantity: 20.0 g
 ______________________________
 ```
+
 ### Exiting FSP: <code>exit</code>
 This command will save the food list in an external file before closing the program.
 

@@ -114,7 +114,7 @@ public class Food {
             }
         }
         // If no category matched, set as unclassified
-        this.category = FoodCategory.UNCLASSIFIED_FOOD;
+        this.category = FoodCategory.OTHERS;
     }
 
     public String getCategoryString(FoodCategory category) {

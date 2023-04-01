@@ -269,6 +269,8 @@ public class AddCommand extends Command {
             return FoodCategory.FRUIT;
         case "meat":
             return FoodCategory.MEAT;
+        case "vegetable":
+            return FoodCategory.VEGETABLE;
         case "dairy":
             return FoodCategory.DAIRY;
         case "grain":

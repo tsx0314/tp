@@ -2,16 +2,18 @@
 
 ## Introduction
 
-Food Supply Trackers (FSP) is a desktop app for managing food supplies, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FSP can get your food management tasks done faster than traditional GUI apps.
+Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FSP can get your food management tasks done faster than traditional GUI apps.
 
 ---
 + [Quick Start](#quick-start)
 + [Features](#features)
   + [Viewing help: `help`](#viewing-help--help)
-  + [Listing all food products: `list`](#listing-all-food-products--code-list-code)
   + [Adding a food product: `add`](#adding-a-food-product--add)
+  + [Listing all food products: `list`](#listing-all-food-products--code-list-code)
   + [Removing a food product: `remove`](#removing-a-food-product--remove) 
   + [Finding food products by name: `find`](#finding-food-products-by-name--code-find-code)
+  + [Update food products by index: `update`](#updating-food-products-by-index--code-update-code)
+  + [Exit FSP Program: `exit`](#exiting-fsp--code-exit-code)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
 
@@ -29,34 +31,27 @@ Food Supply Trackers (FSP) is a desktop app for managing food supplies, optimize
 ---
 
 ## Features
-- Viewing help: <code>help</code>
-- Listing all food products: <code>list</code>
-- Adding a food product: <code>add -n PRODUCT_NAME -e EXPIRY_DATE</code>
-- Removing a food product: <code>remove INDEX</code>
-- Finding a food product detail: <code>find PRODUCT_NAME</code>
-- Exit the programme: <code>exit</code>
 
-### Notes about the command format:
+##### Quick notes about the command format:
 1. Words in UPPER_CASE are the parameters to be supplied by the user.
 2. Optional flags are put in curly braces.
 3. A parameter is expected only once in the command. If you specify it multiple times, it will be deemed as invalid command.
-4. Extraneous parameters for commands that do not take in parameters (such as help, list, exit and clear) will be ignored.
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page and the command specified.
 
 - When a filter (prefix <code>--</code>) is applied, the help message will display the helper for the specified command.
-- When no filter is applied, only the link to the user guide would be displayed.
+- By default, all available commands and the link to the user guide would be displayed.
 
 Format: `help {--COMMAND_WORD}`
 
 Example of usage:
 
-<bold>Input:</bold>
+Input:
 
 <code>help --remove --find</code>
 
-<bold>Output:</bold>
+Output:
 ```
 ______________________________
 Command 'remove': This command removes the food product from the food supply tracker based on its index.
@@ -64,19 +59,33 @@ Format: remove INDEX
 
 Command 'find': This command finds the food product by its name.
 Format: find PRODUCT_NAME
+
+
+List of commands: 'exit', 'help', 'list', 'add', 'remove', 'find'
+For more detailed information on usage of specific command, type: help --COMMAND
+Refer to our user guide for more in-depth details on how to use our system:
+https://docs.google.com/document/d/1WKscnkYy9UqI_tsWmUHIMjgILJc6GQeFn0B1ce6qkQo/edit?usp=sharing
+Mar 31, 2023 1:26:06 PM seedu.duke.Duke run
+INFO: Processed user command successfully
 ______________________________
+
 ```
+### Adding a food product: `add`
+Add a food product to the list of food items.
 
-### Listing all food products: <code>list</code>
-List all food products available in the tracker regardless of expiry status.
+Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CATEGORY} {-q QUANTITY -u UNITS}`
 
-- Adding the filter <code>--fresh</code> would list only the unexpired food products.
-- Adding the filter <code>--expired</code> would list only the expired food products.
+* `FOOD_NAME` can be in a natural language format but should not contain `-`.
+* `-c CATEGORY`and`-q QUANTITY -u UNITS` are optional.
+  * For category, we have `fruit, vegetable, meat, dairy, grain, seafood, beverage, others`.
+  * Any other category will be classified as `unknown category`.
+  * Quantity and units must be added together.
+    * E.g. `add -n milk -e 21/03/2025 -q 10 -u packets`
 
-Format: <code>list</code>
 
 Example of usage:
 
+<<<<<<< HEAD
 <bold>Input:</bold>
 
 <code>list</code>
@@ -99,15 +108,15 @@ ______________________________
 ### Adding a food product: `add`
 Adds a food product to the list of food items.
 
-Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNITS}`
+Format: `add -n FOOD_NAME -e DD/MM/YYYY -c CAT -q QUANTITY -u UNITS`
 
 * The `DEADLINE` can be in a natural language format.
 * The `FOOD_NAME` cannot contain any punctuations, or else it will return as incorrect command.
-* `{-c CAT}`and`{-q QUANTITY -u UNITS}` are optional
+* `-c CAT`and`-q QUANTITY -u UNITS` are optional
   * However, quantity and units must be added together
   * For example: `add -n milk -e 21/03/2025 -q 10 -u packets`
 * For category, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
-any other category will be deemed as `unknown category`.
+any other category will be deemed as `OTHERS`.
 
 Examples of usage:
 
@@ -115,7 +124,7 @@ Examples of usage:
 
 `add -n milk -e 21/03/2025 -c dairy -q 10 -u packets`
 
-<bold>Output:</bold>
+Output:
 ```
 ______________________________
 milk
@@ -127,59 +136,121 @@ I have added this product! :)
 ______________________________
 ```
 
+### Listing all food products: <code>list</code>
+List all food products available in the tracker regardless of expiry status.
+
+- All food products will be listed with index, followed by the number of food products in the list.
+
+Format: <code>list</code>
+
+Example of usage:
+
+Input:
+
+<code>list</code>
+
+Output:
+```
+______________________________
+
+Below are the food list:
+1. Eggs
+       Expiry date: 23/04/2023
+       Category: others
+       Remaining quantity: 3.0 pieces
+2. Peanuts
+       Expiry date: 12/12/2023
+       Category: grain
+       Remaining quantity: 500.0 grams
+
+You now have 2 food products in your lists.
+______________________________
+```
+
+
+
 ### Removing a food product: `remove`
 Remove a food product from the list based on its index.
 
 Format: `remove INDEX`
 
-* Deletes the food according to its `INDEX` in the list which starts from 1.
+* Deletes the food according to its `INDEX` in the list.
 * `INDEX` must be represented by an integer `i.e. 1, 2, 3`
 * Out-of-bounds `INDEX` will result in an error message.
 
 Example of usage:
 
-Input
+Input:
 
-`remove 1`
+<code>remove 1</code>
 
 Output:
 ```
+______________________________
 Removed Eggs from the food supply list.
 There is/are now 0 item(s) in the list.
+______________________________
 ```
 
 ### Finding food products by name: <code>find</code>
-Find the food product by its name that was previously added into the list.
+List all food product with matching name.
 
-Format: <code>find PRODUCT_NAME</code>
+Format: <code>find FOOD_NAME {-fresh} {-expired}</code>
 
 - The search is not case-sensitive.
   - E.g. eggs will match Eggs
-- Only the name will be searched.
 - Only full words will be matched.
   - E.g. Egg will not match Eggs
 - Item matching at least one keyword will be returned.
   - E.g. Blueberry will return Blueberry Yogurt, Blueberry
+- Adding the filter <code>-fresh</code> would list only the unexpired food products.
+- Adding the filter <code>-expired</code> would list only the expired food products.
 
 Example of Usage:
 
-<bold>Input:</bold>
-```
-find egg
-```
+Input:
 
-<bold>Output:</code>
+`find blueberry`
+
+Output:
 ```
 ______________________________
-1. egg
-       Expiry date: 21/05/2024
-       Category: unknown category
+1. Blueberry Yogurt
+       Expiry date: 23/04/2023
+       Category: dairy
+       Remaining quantity: 1.0 cup
+2. Blueberry
+       Expiry date: 12/04/2023
+       Category: fruit
+       Remaining quantity: 50.0 g
 
-Found 1 of food items
+Found 2 of food items
 ______________________________
-
 ```
----
+### Updating food products by index: <code>update</code>
+Change any attribute based on the index in the list.
+
+* Multiple attributes can be changed at once by appending the identifier at the back.
+
+Example of Usage:
+
+Input:
+
+<code>update 1 -q 20</code>
+
+Output:
+```
+______________________________
+Updated food item successfully!
+Blueberry
+       Expiry date: 12/04/2023
+       Category: fruit
+       Remaining quantity: 20.0 g
+______________________________
+```
+
+### Exiting FSP: <code>exit</code>
+This command will save the food list in an external file before closing the program.
 
 ## FAQ
 
@@ -215,13 +286,15 @@ ______________________________
 
 ## Command Summary
 
-* List - `list {--fresh or --expired}`
-  * e.g., list --fresh OR list --expired
-* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
-  * e.g., add -n Bobs Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets
-* Remove - `remove INDEX_NUMBER`
-  * e.g., remove 1
-* Find - `find KEYWORD`
-  * e.g., find egg
 * help - `help {--COMMAND_WORD}`
+  * e.g. <code>help --update --add</code> 
+* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
+  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets</code>
+* List - `list`
+* Remove - `remove INDEX_NUMBER`
+  * e.g. remove 1
+* Find - `find KEYWORD {-fresh} {-expired}`
+  * e.g. <code>find egg -fresh</code>
+* Update - <code>update INDEX -filter UPDATED_VALUE</code>
+  * e.g. <code>update 2 -q 1</code>
 * exit - `exit`

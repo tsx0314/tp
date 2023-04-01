@@ -20,7 +20,7 @@ public class FoodListEncoderTest {
         fl.addFood(food);
         ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
         ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/23 « 0.0 « null « UNCLASSIFIED_FOOD");
+        expectedOutput.add("peanuts « 11/11/23 « 0.0 « null « OTHERS");
         assertEquals(expectedOutput, encodedFoodLists);
     }
 
@@ -44,8 +44,8 @@ public class FoodListEncoderTest {
         fl.addFood(strawberry);
         ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
         ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/23 « 0.0 « null « UNCLASSIFIED_FOOD");
-        expectedOutput.add("strawberries « 31/03/23 « 0.0 « null « UNCLASSIFIED_FOOD");
+        expectedOutput.add("peanuts « 11/11/23 « 0.0 « null « OTHERS");
+        expectedOutput.add("strawberries « 31/03/23 « 0.0 « null « OTHERS");
         assertEquals(expectedOutput, encodedFoodLists);
     }
 
@@ -58,7 +58,7 @@ public class FoodListEncoderTest {
         FoodListEncoder fle = new FoodListEncoder();
         ArrayList<String> encodedFoodLists = fle.encodeFoodList(fl);
         ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/23 « 50.0 « g « UNCLASSIFIED_FOOD");
+        expectedOutput.add("peanuts « 11/11/23 « 50.0 « g « OTHERS");
         assertEquals(expectedOutput, encodedFoodLists);
     }
 }

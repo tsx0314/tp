@@ -51,7 +51,7 @@ public class AddCommand extends Command {
      * @return a CommandResult object to display the successful message
      */
     public CommandResult execute(FoodList foodList) {
-
+        boolean hasUnit = details.contains("-u");
         String[] foodDetails = splitDetails(details);
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];
@@ -79,17 +79,23 @@ public class AddCommand extends Command {
                 String c = foodDetails[2];
                 FoodCategory category = compareCategory(c);
                 newFood = new Food(name, date, category);
-            } else if (foodDetails.length == 4) {
+            } else if (foodDetails.length == 4 && hasUnit) {
                 String q = foodDetails[2];
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
                 Double quantity = Double.valueOf(q);
-                String unit = foodDetails[3];
+                String unit = getUnitOfFood(foodDetails[3], quantity);
                 newFood = new Food(name, date, quantity, unit);
+            } else if (foodDetails.length == 4 && !hasUnit) {
+                String q = foodDetails[2];
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
+                Double quantity = Double.valueOf(q);
+                FoodCategory category = compareCategory(foodDetails[3]);
+                newFood = new Food(name, date, quantity, category);
             } else {
                 String q = foodDetails[2];
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
                 Double quantity = Double.valueOf(q);
-                String unit = foodDetails[3];
+                String unit = getUnitOfFood(foodDetails[3], quantity);
                 String c = foodDetails[4];
                 FoodCategory category = compareCategory(c);
                 newFood = new Food(name, date, quantity, unit, category);
@@ -183,18 +189,29 @@ public class AddCommand extends Command {
             return foodDetails;
         }
 
+        if (hasCat && !hasUnit && !hasQuantity) {
+            category = temp2[1].trim();
+            String[] foodDetails = {name, date, category};
+            return foodDetails;
+        }
+
+        if (!hasCat && hasQuantity && !hasUnit) {
+            quantity = temp[1].trim();
+            String[] foodDetails = {name, date, quantity};
+            return foodDetails;
+        }
+
+        if (hasCat && hasQuantity && !hasUnit) {
+            quantity = temp[1].trim();
+            category = temp2[1].trim();
+            String[] foodDetails = {name, date, quantity, category};
+            return foodDetails;
+        }
         if (!hasCat && hasUnit && hasQuantity) {
             String[] quantityAndUnit = temp[1].trim().split(UNIT_SEPARATOR, 2);
             unit = quantityAndUnit[1].trim();
             quantity = quantityAndUnit[0].trim();
             String[] foodDetails = {name, date, quantity, unit};
-            return foodDetails;
-        }
-
-
-        if (hasCat && !hasUnit && !hasQuantity) {
-            category = temp2[1].trim();
-            String[] foodDetails = {name, date, category};
             return foodDetails;
         }
 
@@ -206,6 +223,7 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
+
     /**
      * Returns whether the input date is a valid expiry date
      *
@@ -220,6 +238,7 @@ public class AddCommand extends Command {
 
     /**
      * Return a food category according to the input
+     *
      * @param tempCategory
      * @return an enum FoodCategory
      */

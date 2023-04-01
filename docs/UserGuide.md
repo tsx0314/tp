@@ -13,7 +13,7 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Removing a food product: `remove`](#removing-a-food-product--remove) 
   + [Finding food products by name: `find`](#finding-food-products-by-name--code-find-code)
   + [Update food products by index: `update`](#updating-food-products-by-index--code-update-code)
-  + [Exit FSP Program: `exit`](#exiting-FSP-code-exit-code)
+  + [Exit FSP Program: `exit`](#exiting-fsp--code-exit-code)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
 
@@ -34,9 +34,9 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
 
 ##### Quick notes about the command format:
 1. Words in UPPER_CASE are the parameters to be supplied by the user.
-2. Optional flags are put in curly braces.
-3. A parameter is expected only once in the command. If you specify it multiple times, it will be deemed as invalid command.
-4. Extraneous parameters for commands that do not take in parameters (such as help, list, exit and clear) will be ignored.
+2. Parameters in the `{ }` are optionals, and `{ }` the bracket characters cannot be included in the command line.
+3. Optional flags are put in curly braces.
+4. parameter is expected only once in the command. If you specify it multiple times, it will be deemed as invalid command.
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page and the command specified.
@@ -69,24 +69,24 @@ https://docs.google.com/document/d/1WKscnkYy9UqI_tsWmUHIMjgILJc6GQeFn0B1ce6qkQo/
 Mar 31, 2023 1:26:06 PM seedu.duke.Duke run
 INFO: Processed user command successfully
 ______________________________
-
 ```
+
 ### Adding a food product: `add`
-Add a food product to the list of food items.
+Adds a food product to the list of food items.
 
-Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CATEGORY} {-q QUANTITY -u UNITS}`
+Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNITS}`
 
-* `FOOD_NAME` can be in a natural language format but should not contain `-`.
-* `{-c CATEGORY}`and`{-q QUANTITY -u UNITS}` are optional.
-  * For category, we have `fruit, vegetable, meat, dairy, grain, seafood, beverage, others`.
-  * Any other category will be classified as `unknown category`.
-  * Quantity and units must be added together.
-    * E.g. `add -n milk -e 21/03/2025 -q 10 -u packets`
+* The `FOOD_NAME` cannot contain any punctuations, or else it will return as incorrect command.
+* `-c CAT`and`-q QUANTITY -u UNITS` are optional
+  * However, `-u UNIT` cannot add alone
+    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10`, 
+      * It cannot be `add -n milk -e 21/03/2025-u packets`
+* For category, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
+any other category will be deemed as `OTHERS`.
 
+Examples of usage:
 
-Example of usage:
-
-Input:
+<bold>Input:</bold>
 
 `add -n milk -e 21/03/2025 -c dairy -q 10 -u packets`
 
@@ -255,7 +255,7 @@ This command will save the food list in an external file before closing the prog
 * help - `help {--COMMAND_WORD}`
   * e.g. <code>help --update --add</code> 
 * Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
-  * e.g. <code>add -n Bob's Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets</code>
+  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets</code>
 * List - `list`
 * Remove - `remove INDEX_NUMBER`
   * e.g. remove 1

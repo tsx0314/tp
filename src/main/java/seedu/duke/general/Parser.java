@@ -31,10 +31,18 @@ public class Parser {
                     "\\s+-c\\s+\\w+$";
     private static final String ADD_COMMAND_PATTERN_3 =
             "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
-                    "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+$";
+                    "\\s+-c\\s+\\w+" +
+                    "\\s+-q\\s+\\d+(\\.\\d+)?$";
 
     private static final String ADD_COMMAND_PATTERN_4 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}"+
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+-q\\s+\\d+(\\.\\d+)?";
+    private static final String ADD_COMMAND_PATTERN_5 =
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+$";
+
+    private static final String ADD_COMMAND_PATTERN_6 =
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
                     "\\s+-c\\s+\\w+" +
                     "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+$";
 
@@ -82,9 +90,11 @@ public class Parser {
         boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, args);
         boolean isMatched3 = Pattern.matches(ADD_COMMAND_PATTERN_3, args);
         boolean isMatched4 = Pattern.matches(ADD_COMMAND_PATTERN_4, args);
+        boolean isMatched5 = Pattern.matches(ADD_COMMAND_PATTERN_5, args);
+        boolean isMatched6 = Pattern.matches(ADD_COMMAND_PATTERN_6, args);
 
 
-        if (!isMatched1 && !isMatched2 && !isMatched3 && !isMatched4) {
+        if (!isMatched1 && !isMatched2 && !isMatched3 && !isMatched4 && !isMatched5 && !isMatched6) {
             return new IncorrectCommand();
         } else {
             return new AddCommand(args);

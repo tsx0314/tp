@@ -34,8 +34,9 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
 
 ##### Quick notes about the command format:
 1. Words in UPPER_CASE are the parameters to be supplied by the user.
-2. Optional flags are put in curly braces.
-3. A parameter is expected only once in the command. If you specify it multiple times, it will be deemed as invalid command.
+2. Parameters in the `{ }` are optionals, and `{ }` the bracket characters cannot be included in the command line.
+3. Optional flags are put in curly braces.
+4. parameter is expected only once in the command. If you specify it multiple times, it will be deemed as invalid command.
 
 ### Viewing help: `help`
 Shows a message explaining how to access the help page and the command specified.
@@ -68,53 +69,18 @@ https://docs.google.com/document/d/1WKscnkYy9UqI_tsWmUHIMjgILJc6GQeFn0B1ce6qkQo/
 Mar 31, 2023 1:26:06 PM seedu.duke.Duke run
 INFO: Processed user command successfully
 ______________________________
-
-```
-### Adding a food product: `add`
-Add a food product to the list of food items.
-
-Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CATEGORY} {-q QUANTITY -u UNITS}`
-
-* `FOOD_NAME` can be in a natural language format but should not contain `-`.
-* `-c CATEGORY`and`-q QUANTITY -u UNITS` are optional.
-  * For category, we have `fruit, vegetable, meat, dairy, grain, seafood, beverage, others`.
-  * Any other category will be classified as `unknown category`.
-  * Quantity and units must be added together.
-    * E.g. `add -n milk -e 21/03/2025 -q 10 -u packets`
-
-
-Example of usage:
-
-<<<<<<< HEAD
-<bold>Input:</bold>
-
-<code>list</code>
-
-<bold>Output:</bold>
-```
-______________________________
-Below are the food list: 
-
-1. Eggs
-       Expiry date: 23/02/2023
-2. Peanuts
-       Expiry date: 12/12/23
-
-
-You now have 2 food products in your lists.
-______________________________
 ```
 
 ### Adding a food product: `add`
 Adds a food product to the list of food items.
 
-Format: `add -n FOOD_NAME -e DD/MM/YYYY -c CAT -q QUANTITY -u UNITS`
+Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNITS}`
 
-* The `DEADLINE` can be in a natural language format.
 * The `FOOD_NAME` cannot contain any punctuations, or else it will return as incorrect command.
 * `-c CAT`and`-q QUANTITY -u UNITS` are optional
-  * However, quantity and units must be added together
-  * For example: `add -n milk -e 21/03/2025 -q 10 -u packets`
+  * However, `-u UNIT` cannot add alone
+    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10`, 
+      * It cannot be `add -n milk -e 21/03/2025-u packets`
 * For category, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
 any other category will be deemed as `OTHERS`.
 

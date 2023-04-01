@@ -102,7 +102,7 @@ Adds a food product to the list of food items.
 Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNITS}`
 
 * The `DEADLINE` can be in a natural language format.
-* The `FOOD_NAME` cannot contain `-`.
+* The `FOOD_NAME` cannot contain any punctuations, or else it will return as incorrect command.
 * `{-c CAT}`and`{-q QUANTITY -u UNITS}` are optional
   * However, quantity and units must be added together
   * For example: `add -n milk -e 21/03/2025 -q 10 -u packets`
@@ -218,7 +218,7 @@ ______________________________
 * List - `list {--fresh or --expired}`
   * e.g., list --fresh OR list --expired
 * Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
-  * e.g., add -n Bob's Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets
+  * e.g., add -n Bobs Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets
 * Remove - `remove INDEX_NUMBER`
   * e.g., remove 1
 * Find - `find KEYWORD`

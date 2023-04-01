@@ -83,7 +83,7 @@ public class AddCommand extends Command {
                 String q = foodDetails[2];
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
                 Double quantity = Double.valueOf(q);
-                String unit = getUnitOfFood(foodDetails[3],quantity);
+                String unit = getUnitOfFood(foodDetails[3], quantity);
                 newFood = new Food(name, date, quantity, unit);
             } else if (foodDetails.length == 4 && !hasUnit) {
                 String q = foodDetails[2];
@@ -95,7 +95,7 @@ public class AddCommand extends Command {
                 String q = foodDetails[2];
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
                 Double quantity = Double.valueOf(q);
-                String unit = getUnitOfFood(foodDetails[3],quantity);
+                String unit = getUnitOfFood(foodDetails[3], quantity);
                 String c = foodDetails[4];
                 FoodCategory category = compareCategory(c);
                 newFood = new Food(name, date, quantity, unit, category);

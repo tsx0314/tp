@@ -49,12 +49,14 @@ public class Food {
         this.quantity = 0.0;
         this.category = category;
     }
+
     public Food(String name, String expiryDate, Double quantity, FoodCategory category) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
         this.category = category;
     }
+
     public Food(String name, String expiryDate, Double quantity, String unit) {
         this.name = name;
         this.expiryDate = expiryDate;

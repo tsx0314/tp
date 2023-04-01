@@ -42,7 +42,7 @@ public class Parser {
                     "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+$";
 
     private static final String ADD_COMMAND_PATTERN_6 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}"+
+            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
                     "\\s+-c\\s+\\w+" +
                     "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+$";
 

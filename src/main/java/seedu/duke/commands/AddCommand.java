@@ -28,7 +28,7 @@ public class AddCommand extends Command {
     private static final String UNIT_SEPARATOR = "-u";
 
     private static final String INVALID_DATE_MESSAGE =
-            "Please input a valid  date :<";
+            "Please input a valid date :<";
     private static final String EXPIRY_DATE_MESSAGE =
             "Please do not add an expired product :<";
 
@@ -61,8 +61,12 @@ public class AddCommand extends Command {
 
         try {
             LocalDate expiryDate = LocalDate.parse(date, formatter);
-            boolean isValid = isValidDate(expiryDate);
+            boolean isValid = isValid(date);
+            boolean isExpired = isTheDateAfterCurrentDate(expiryDate);
             if (!isValid) {
+                return new CommandResult(INVALID_DATE_MESSAGE);
+            }
+            if (!isExpired) {
                 return new CommandResult(EXPIRY_DATE_MESSAGE);
             }
             assert !name.trim().isEmpty() : "Expected non-empty string for name";
@@ -230,10 +234,24 @@ public class AddCommand extends Command {
      * @param expiryDate the date
      * @return isValid whether the date is valid
      */
-    public boolean isValidDate(LocalDate expiryDate) {
+    public boolean isTheDateAfterCurrentDate(LocalDate expiryDate) {
         LocalDate currentDate = LocalDate.now();
         boolean isValid = expiryDate.isAfter(currentDate);
         return isValid;
+    }
+
+    public boolean isValid(String date) {
+        String[] splitString = date.split("/", 3);
+        String d = splitString[0];
+        String m = splitString[1];
+        String y = splitString[2];
+
+        if (Integer.parseInt(y) % 4 != 0 && m.equals("02")) {
+            if (d.equals("29")) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**

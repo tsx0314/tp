@@ -45,8 +45,13 @@ The `removeFood` method implementation is as follows:
 7. This method will return an object called `CommandResult` and pass `feedbackToUser` as its argument.
 8. `Duke` will subsequently call `printResult` method from `CommandResult`.
 
-Class Diagram (to be added)
-Object Diagram (to be added)
+**Class Diagram**
+
+![ClassDiagram](images/RemoveCommandClassDiagram.png)
+
+**Object Diagram**
+
+![ClassDiagram](images/RemoveCommandSequenceDiagram.png)
 
 ### Find feature
 The find command is implemented using a `FindCommand` class which

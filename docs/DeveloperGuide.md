@@ -49,7 +49,9 @@ The `removeFood` method implementation is as follows:
 
 ![ClassDiagram](images/RemoveCommandClassDiagram.png)
 
-Object Diagram (to be added)
+**Object Diagram**
+
+![ClassDiagram](images/RemoveCommandSequenceDiagram.png)
 
 ### Find feature
 The find command is implemented using a `FindCommand` class which

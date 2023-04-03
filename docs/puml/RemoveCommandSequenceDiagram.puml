@@ -3,12 +3,18 @@
 
 participant Duke
 participant RemoveCommand
-participant FoodList as foodList
 
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+Duke -> RemoveCommand : execute(arguments)
+activate RemoveCommand
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+RemoveCommand -> FoodList : getFood(index)
+activate FoodList
+
+FoodList -> FoodList : getName()
+
+FoodList --> RemoveCommand : foodName
+
+RemoveCommand --> Duke : new CommandResult()
+
 @enduml

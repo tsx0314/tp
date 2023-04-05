@@ -2,6 +2,7 @@ package seedu.duke.food;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 
 public class Food {
@@ -170,6 +171,40 @@ public class Food {
         return expiryDate;
     }
 
+    public boolean isFresh(){
+        LocalDate expiryDate = parseExpiryDate();
+        boolean isFreshFood = expiryDate.isAfter(LocalDate.now());
+        return isFreshFood;
+    }
+    public String getExpiryStatus() {
+        String expiryStatus = null;
+        if(!isFresh()){
+            expiryStatus = " (expired) ";
+        }
+        else {
+            expiryStatus = " (fresh) ";
+        }
+        return expiryStatus;
+    }
+
+    public long getDaysExpire (){
+        LocalDate expiryDate = parseExpiryDate();
+        long days = ChronoUnit.DAYS.between(LocalDate.now(), expiryDate);
+        return days;
+    }
+
+    public String getDaysString(){
+        if(isFresh()) {
+            String daysToExpireNotice = null;
+            daysToExpireNotice = " (" + getDaysExpire() + " days left)";
+            return daysToExpireNotice;
+        }
+
+        String daysExpiredNotice = null;
+        long convertToPositiveDays = (-1) * getDaysExpire();
+        daysExpiredNotice = " (expired " + convertToPositiveDays + " days)";
+        return daysExpiredNotice;
+    }
     //@@author david
 
     /**
@@ -183,14 +218,17 @@ public class Food {
         String foodDetail = null;
 
         if (quantity == 0.0) {
-            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
+            foodDetail = getName() + getExpiryStatus()
+                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
                     + "\n       Category: " + getCategoryString(getCategory());
         } else if (getUnit() == null) {
-            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
+            foodDetail = getName() + getExpiryStatus()
+                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
                     + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + getQuantity();
         } else {
-            foodDetail = getName() + "\n       Expiry date: " + getExpiryDate()
+            foodDetail = getName() + getExpiryStatus()
+                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
                     + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + getQuantity() + " " + getUnit();
         }

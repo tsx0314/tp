@@ -93,7 +93,6 @@ public class Parser {
         boolean isMatched5 = Pattern.matches(ADD_COMMAND_PATTERN_5, args);
         boolean isMatched6 = Pattern.matches(ADD_COMMAND_PATTERN_6, args);
 
-
         if (!isMatched1 && !isMatched2 && !isMatched3 && !isMatched4 && !isMatched5 && !isMatched6) {
             return new IncorrectCommand();
         } else {
@@ -101,10 +100,3 @@ public class Parser {
         }
     }
 }
-
-
-
-
-
-
-

@@ -41,6 +41,15 @@ public class Duke {
         }
     }
 
+    public boolean processCommand(String fullCommand) throws DukeException {
+        Command c = Parser.parse(fullCommand);
+        CommandResult result = c.execute(foodList);
+        result.printResult();
+        storageFile.save(foodList);
+
+        return c.isExit();
+    }
+
     // This part of the code is adapted from the module website
     // https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
     public void run() {
@@ -51,13 +60,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-                logger.log(Level.INFO, "Processing user command");
-                Command c = Parser.parse(fullCommand);
-                CommandResult result = c.execute(foodList);
-                result.printResult();
-                storageFile.save(foodList);
-                isExit = c.isExit();
-                logger.log(Level.INFO, "Processed user command successfully");
+                isExit = processCommand(fullCommand);
             } catch (DukeException e) {
                 logger.log(Level.WARNING, "ERROR");
                 Ui.showError(e.getMessage());

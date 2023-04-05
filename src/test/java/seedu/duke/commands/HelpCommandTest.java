@@ -50,8 +50,8 @@ class HelpCommandTest {
     void commandResult_withFilterButNoCommand_expectDefaultMessage() {
         String input = "help --";
 
-        Command c = Parser.parse(input);
         try {
+            Command c = Parser.parse(input);
             CommandResult result = c.execute(foodList);
             String expectedOutput = SHOW_ALL_COMMANDS + '\n' + DEFAULT_HELP_MESSAGE;
             assertEquals(expectedOutput, result.feedbackToUser);

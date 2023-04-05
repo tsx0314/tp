@@ -32,6 +32,36 @@ public class AddCommand extends Command {
     private static final String EXPIRY_DATE_MESSAGE =
             "Please do not add an expired product :<";
 
+    private static final String MILLIGRAM_1 = "mg";
+    private static final String MILLIGRAM_2 = "milligram";
+    private static final String MILLIGRAM_3 = "milligrams";
+    private static final String MILLIGRAM_4 = "milli gram";
+    private static final String MILLIGRAM_5 = "milli grams";
+    private static final String GRAM_1 = "gram";
+    private static final String GRAM_2 = "g";
+    private static final String GRAM_3 = "grams";
+    private static final String KILOGRAM_1 = "kg";
+    private static final String KILOGRAM_2 = "kilogram";
+    private static final String KILOGRAM_3 = "kilograms";
+    private static final String KILOGRAM_4 = "kilo gram";
+    private static final String KILOGRAM_5 = "kilo grams";
+    private static final String MILLIMETRE_1 = "ml";
+    private static final String MILLIMETRE_2 = "millilitre";
+    private static final String MILLIMETRE_3 = "millilitres";
+    private static final String MILLIMETRE_4 = "milli litre";
+    private static final String MILLIMETRE_5 = "milli litres";
+    private static final String LITRE_1 = "l";
+    private static final String LITRE_2 = "litre";
+    private static final String LITRE_3 = "litres";
+    private static final String SERVING_1 = "serving";
+    private static final String SERVING_2 = "servings";
+    private static final String UNIT_1 = "unit";
+    private static final String UNIT_2 = "units";
+    private static final String BOX_1 = "box";
+    private static final String BOX_2 = "boxes";
+    private static final String PACKET_1 = "packet";
+    private static final String PACKET_2 = "packets";
+
     public String details;
 
     /**
@@ -114,7 +144,6 @@ public class AddCommand extends Command {
     }
 
     //@@author wanjuin
-
     /**
      * Returns the unit of the food
      *
@@ -124,36 +153,47 @@ public class AddCommand extends Command {
      */
     public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
         String unitOfMeasurement;
-        if (unitTemporary.equals("mg") || unitTemporary.equals("milligram") || unitTemporary.equals("milligrams") ||
-                unitTemporary.equals("milli gram") || unitTemporary.equals("milli grams")) {
+        if (unitTemporary.equals(MILLIGRAM_1) || unitTemporary.equals(MILLIGRAM_2) ||
+                unitTemporary.equals(MILLIGRAM_3) || unitTemporary.equals(MILLIGRAM_4) ||
+                unitTemporary.equals(MILLIGRAM_5)) {
             unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
-        } else if (unitTemporary.equals("gram") || unitTemporary.equals("g") || unitTemporary.equals("grams")) {
+        } else if (unitTemporary.equals(GRAM_1) || unitTemporary.equals(GRAM_2) ||
+                unitTemporary.equals(GRAM_3)) {
             unitOfMeasurement = String.valueOf(Unit.GRAM.abbreviation);
-        } else if (unitTemporary.equals("kg") || unitTemporary.equals("kilogram")
-                || unitTemporary.equals("kilograms") || unitTemporary.equals("kilo gram") ||
-                unitTemporary.equals("kilo grams")) {
+        } else if (unitTemporary.equals(KILOGRAM_1) || unitTemporary.equals(KILOGRAM_2) ||
+                unitTemporary.equals(KILOGRAM_3) || unitTemporary.equals(KILOGRAM_4) ||
+                unitTemporary.equals(KILOGRAM_5)) {
             unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
-        } else if (unitTemporary.equals("ml") || unitTemporary.equals("millilitre") ||
-                unitTemporary.equals("millilitres") || unitTemporary.equals("milli litre")
-                || unitTemporary.equals("milli litres")) {
+        } else if (unitTemporary.equals(MILLIMETRE_1) || unitTemporary.equals(MILLIMETRE_2) ||
+                unitTemporary.equals(MILLIMETRE_3) || unitTemporary.equals(MILLIMETRE_4) ||
+                unitTemporary.equals(MILLIMETRE_5)) {
             unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
-        } else if (unitTemporary.equals("l") || unitTemporary.equals("litre") || unitTemporary.equals("litres")) {
+        } else if (unitTemporary.equals(LITRE_1) || unitTemporary.equals(LITRE_2) ||
+                unitTemporary.equals(LITRE_3)){
             unitOfMeasurement = String.valueOf(Unit.LITER.abbreviation);
-        } else if ((unitTemporary.equals("serving") || unitTemporary.equals("servings")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(SERVING_1) || unitTemporary.equals(SERVING_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
-        } else if ((unitTemporary.equals("servings") || unitTemporary.equals("serving")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(SERVING_2) || unitTemporary.equals(SERVING_1))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
-        } else if ((unitTemporary.equals("unit") || unitTemporary.equals("units")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(UNIT_1) || unitTemporary.equals(UNIT_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
-        } else if ((unitTemporary.equals("units") || unitTemporary.equals("unit")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(UNIT_2) || unitTemporary.equals(UNIT_1))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
-        } else if ((unitTemporary.equals("box") || unitTemporary.equals("boxes")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(BOX_1) || unitTemporary.equals(BOX_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
-        } else if ((unitTemporary.equals("boxes") || unitTemporary.equals("box")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(BOX_2) || unitTemporary.equals(BOX_1))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
-        } else if ((unitTemporary.equals("packet") || unitTemporary.equals("packets")) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
-        } else if ((unitTemporary.equals("packet") || unitTemporary.equals("packets")) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
         } else {
             unitOfMeasurement = unitTemporary;
@@ -162,7 +202,6 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
-
     /**
      * Returns an array of String to store the information of food added
      *

@@ -49,6 +49,13 @@ public class HelpCommand extends Command {
     private static final String REPORT_INVALID_INPUT = "Opps! The command %s is not valid.";
 
     private final HashSet<String> filters = new LinkedHashSet<>();
+
+    /**
+     * This constructor takes in inputs and split it with the according to the regex '--' and store them in a
+     * LinkedHashSet named filters. This method checks for repeat commands words and ignore them.
+     *
+     * @param userInput the input from the user for the 'help' command
+     */
     public HelpCommand(String userInput) {
         filters.addAll(List.of(userInput.replaceAll(" ", "").split("--")));
     }
@@ -57,6 +64,14 @@ public class HelpCommand extends Command {
         return filters;
     }
 
+    /**
+     * This method decides whether a filtered command is valid or not and append it to the message. Valid commands will
+     * show help messages for their usage while invalid command will be reported back to the user as non-valid commands.
+     * Empty command or 'help' will be ignored.
+     *
+     * @param foodList the food list
+     * @return a CommandResult object to display the successful message
+     */
     @Override
     public CommandResult execute(FoodList foodList) {
         String printToUser = "";
@@ -100,10 +115,23 @@ public class HelpCommand extends Command {
         return new CommandResult(printToUser);
     }
 
+    /**
+     *This method checks for empty string or 'help' as command words. As these words hold no meaning,
+     * they should be ignored.
+     *
+     * @param word the command word to be checked
+     * @return true or false
+     */
     private boolean isHelpOrEmpty(String word) {
         return (word.equals(COMMAND_WORD) || word.equals(""));
     }
 
+    /**
+     * This method is used to make the CL output more readable. It adds a new line after each block of text.
+     *
+     * @param printToUser the text to be printed to the CLI.
+     * @return the text with the addition of a new line.
+     */
     private String addNewLine(String printToUser) {
         if (!printToUser.equals("")) {
             printToUser = printToUser.concat("\n\n");

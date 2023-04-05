@@ -61,7 +61,7 @@ public class AddCommand extends Command {
     private static final String BOX_2 = "boxes";
     private static final String PACKET_1 = "packet";
     private static final String PACKET_2 = "packets";
-    
+
     public String details;
 
     /**
@@ -153,36 +153,47 @@ public class AddCommand extends Command {
      */
     public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
         String unitOfMeasurement;
-        if (unitTemporary.equals(MILLIGRAM_1) || unitTemporary.equals(MILLIGRAM_2) || unitTemporary.equals(MILLIGRAM_3) ||
-                unitTemporary.equals(MILLIGRAM_4) || unitTemporary.equals(MILLIGRAM_5)) {
+        if (unitTemporary.equals(MILLIGRAM_1) || unitTemporary.equals(MILLIGRAM_2) ||
+                unitTemporary.equals(MILLIGRAM_3) || unitTemporary.equals(MILLIGRAM_4) ||
+                unitTemporary.equals(MILLIGRAM_5)) {
             unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
-        } else if (unitTemporary.equals(GRAM_1) || unitTemporary.equals(GRAM_2) || unitTemporary.equals(GRAM_3)) {
+        } else if (unitTemporary.equals(GRAM_1) || unitTemporary.equals(GRAM_2) ||
+                unitTemporary.equals(GRAM_3)) {
             unitOfMeasurement = String.valueOf(Unit.GRAM.abbreviation);
-        } else if (unitTemporary.equals(KILOGRAM_1) || unitTemporary.equals(KILOGRAM_2)
-                || unitTemporary.equals(KILOGRAM_3) || unitTemporary.equals(KILOGRAM_4) ||
+        } else if (unitTemporary.equals(KILOGRAM_1) || unitTemporary.equals(KILOGRAM_2) ||
+                unitTemporary.equals(KILOGRAM_3) || unitTemporary.equals(KILOGRAM_4) ||
                 unitTemporary.equals(KILOGRAM_5)) {
             unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
         } else if (unitTemporary.equals(MILLIMETRE_1) || unitTemporary.equals(MILLIMETRE_2) ||
-                unitTemporary.equals(MILLIMETRE_3) || unitTemporary.equals(MILLIMETRE_4)
-                || unitTemporary.equals(MILLIMETRE_5)) {
+                unitTemporary.equals(MILLIMETRE_3) || unitTemporary.equals(MILLIMETRE_4) ||
+                unitTemporary.equals(MILLIMETRE_5)) {
             unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
-        } else if (unitTemporary.equals(LITRE_1) || unitTemporary.equals(LITRE_2) || unitTemporary.equals(LITRE_3)){
+        } else if (unitTemporary.equals(LITRE_1) || unitTemporary.equals(LITRE_2) ||
+                unitTemporary.equals(LITRE_3)){
             unitOfMeasurement = String.valueOf(Unit.LITER.abbreviation);
-        } else if ((unitTemporary.equals(SERVING_1) || unitTemporary.equals(SERVING_2)) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(SERVING_1) || unitTemporary.equals(SERVING_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
-        } else if ((unitTemporary.equals(SERVING_2) || unitTemporary.equals(SERVING_1)) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(SERVING_2) || unitTemporary.equals(SERVING_1))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
-        } else if ((unitTemporary.equals(UNIT_1) || unitTemporary.equals(UNIT_2)) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(UNIT_1) || unitTemporary.equals(UNIT_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
-        } else if ((unitTemporary.equals(UNIT_2) || unitTemporary.equals(UNIT_1)) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(UNIT_2) || unitTemporary.equals(UNIT_1))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
-        } else if ((unitTemporary.equals(BOX_1) || unitTemporary.equals(BOX_2)) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(BOX_1) || unitTemporary.equals(BOX_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
-        } else if ((unitTemporary.equals(BOX_2) || unitTemporary.equals(BOX_1)) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(BOX_2) || unitTemporary.equals(BOX_1))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
-        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2)) && quantityInDouble == 1) {
+        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2))
+                && quantityInDouble == 1) {
             unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
-        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2)) && quantityInDouble > 1) {
+        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2))
+                && quantityInDouble > 1) {
             unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
         } else {
             unitOfMeasurement = unitTemporary;

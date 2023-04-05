@@ -74,15 +74,16 @@ ______________________________
 ### Adding a food product: `add`
 Adds a food product to the list of food items.
 
-Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNITS}`
+Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNITS}`
 
 * The `FOOD_NAME` cannot contain any punctuations, or else it will return as incorrect command.
 * `-c CAT`and`-q QUANTITY -u UNITS` are optional
   * However, `-u UNIT` cannot add alone
-    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10`, 
-      * It cannot be `add -n milk -e 21/03/2025-u packets`
-* For category, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
+    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10`. 
+However, it cannot be `add -n milk -e 21/03/2025-u packets`
+* For `category`, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
 any other category will be deemed as `OTHERS`.
+* Please do not enter any punctuation, or else your command will be deemed as incorrect command format.
 
 Examples of usage:
 

@@ -11,6 +11,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(FoodList foodList) {
         String printToUser = "";
+        foodList.sortFoodList();
         int numberOfFood = foodList.getNumberOfFood();
 
         if (numberOfFood > 0) {

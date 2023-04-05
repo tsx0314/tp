@@ -1,9 +1,7 @@
 package seedu.duke;
 
-
 import java.util.logging.Logger;
 import java.util.logging.Level;
-
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.CommandResult;
@@ -34,7 +32,6 @@ public class Duke {
             storageFile = new StorageFile();
         } catch (InvalidStorageFilePathException e) {
             Ui.showError(e.getMessage());
-
         }
 
         try {
@@ -69,7 +66,7 @@ public class Duke {
             }
         }
     }
-    
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */

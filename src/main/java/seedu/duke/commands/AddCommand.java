@@ -22,7 +22,6 @@ public class AddCommand extends Command {
 
     private static final String NAME_SEPARATOR = "-n";
     private static final String EXPIRY_SEPARATOR = "-e";
-
     private static final String CATEGORY_SEPARATOR = "-c";
     private static final String QUANTITY_SEPARATOR = "-q";
     private static final String UNIT_SEPARATOR = "-u";
@@ -81,7 +80,7 @@ public class AddCommand extends Command {
      * @return a CommandResult object to display the successful message
      */
     public CommandResult execute(FoodList foodList) {
-        boolean hasUnit = details.contains("-u");
+        boolean hasUnit = details.contains(UNIT_SEPARATOR);
         String[] foodDetails = splitDetails(details);
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];

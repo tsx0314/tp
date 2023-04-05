@@ -2,11 +2,16 @@ package seedu.duke.commands;
 
 import seedu.duke.food.FoodList;
 
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
-    private static final String SHOW_ALL_COMMANDS = "List of commands: 'exit', 'help', 'list', 'add', 'remove', 'find'"
+    private static final String SHOW_ALL_COMMANDS = "List of commands: 'exit', 'help', 'list', 'add', 'remove', "
+            + "'find', 'update'."
             + "\nFor more detailed information on usage of specific command, type: help --COMMAND";
     private static final String DEFAULT_HELP_MESSAGE = "Refer to our user guide for more in-depth details on"
             + " how to use our system:"
@@ -31,57 +36,45 @@ public class HelpCommand extends Command {
     private static final String HELP_UPDATE = "Command 'update': This command allows users to update the name, "
             + "expiry date, quantity and units based on the index in the food list.";
     private static final String REPORT_INVALID_INPUT = "Opps! Invalid input entered: ";
-    private final String[] filters;
-
+    //private final String[] filters;
+    private final HashSet<String> filters = new LinkedHashSet<>();
     public HelpCommand(String userInput) {
-        filters = userInput.replaceAll(" ", "").split("--");
+        filters.addAll(List.of(userInput.replaceAll(" ", "").split("--")));
+        System.out.println(filters);
     }
 
-    public String[] getFilters() {
+    public HashSet<String> getFilters() {
         return filters;
     }
 
     @Override
     public CommandResult execute(FoodList foodList) {
         String printToUser = "";
-        if (filters.length <= 1) {
+        if (filters.size() <= 1) {
             printToUser = SHOW_ALL_COMMANDS + '\n' + DEFAULT_HELP_MESSAGE;
             return new CommandResult(printToUser);
         }
 
-        for (String f : filters) {
+        for (Object f : filters) {
 
             if (isHelpOrEmpty(f)) {
                 continue;
             }
 
-            switch (f) {
-            case ExitCommand.COMMAND_WORD:
-                printToUser = addNewLine(printToUser);
+            printToUser = addNewLine(printToUser);
+            if (f.equals(ExitCommand.COMMAND_WORD)) {
                 printToUser = printToUser.concat(HELP_EXIT);
-                break;
-            case ListCommand.COMMAND_WORD:
-                printToUser = addNewLine(printToUser);
+            } else if (f.equals(ListCommand.COMMAND_WORD)) {
                 printToUser = printToUser.concat(HELP_LIST);
-                break;
-            case AddCommand.COMMAND_WORD:
-                printToUser = addNewLine(printToUser);
+            } else if (f.equals(AddCommand.COMMAND_WORD)) {
                 printToUser = printToUser.concat(HELP_ADD);
-                break;
-            case RemoveCommand.COMMAND_WORD:
-                printToUser = addNewLine(printToUser);
+            } else if (f.equals(RemoveCommand.COMMAND_WORD)) {
                 printToUser = printToUser.concat(HELP_REMOVE);
-                break;
-            case FindCommand.COMMAND_WORD:
-                printToUser = addNewLine(printToUser);
+            } else if (f.equals(FindCommand.COMMAND_WORD)) {
                 printToUser = printToUser.concat(HELP_FIND);
-                break;
-            case UpdateCommand.COMMAND_WORD:
-                printToUser = addNewLine(printToUser);
+            } else if (f.equals(UpdateCommand.COMMAND_WORD)) {
                 printToUser = printToUser.concat(HELP_UPDATE);
-                break;
-            default:
-                printToUser = addNewLine(printToUser);
+            } else {
                 printToUser = printToUser.concat(REPORT_INVALID_INPUT + f);
             }
         }
@@ -91,7 +84,7 @@ public class HelpCommand extends Command {
         return new CommandResult(printToUser);
     }
 
-    private boolean isHelpOrEmpty(String word) {
+    private boolean isHelpOrEmpty(Object word) {
         return (word.equals(COMMAND_WORD) || word.equals(""));
     }
 

@@ -180,18 +180,22 @@ public class Food {
         return expiryStatus;
     }
 
-    public String getDaysBeforeExpired(){
+    public long getDaysExpire (){
         LocalDate expiryDate = parseExpiryDate();
+        long days = ChronoUnit.DAYS.between(LocalDate.now(), expiryDate);
+        return days;
+    }
+
+    public String getDaysString(){
         if(isFresh()) {
             String daysToExpireNotice = null;
-            long daysLeft = ChronoUnit.DAYS.between(LocalDate.now(), expiryDate);
-            daysToExpireNotice = " (" + daysLeft + " days left)";
+            daysToExpireNotice = " (" + getDaysExpire() + " days left)";
             return daysToExpireNotice;
         }
 
         String daysExpiredNotice = null;
-        long daysPassed = ChronoUnit.DAYS.between(expiryDate, LocalDate.now());
-        daysExpiredNotice = " (expired " + daysPassed + " days)";
+        long convertToPositiveDays = (-1) * getDaysExpire();
+        daysExpiredNotice = " (expired " + convertToPositiveDays + " days)";
         return daysExpiredNotice;
     }
     //@@author david
@@ -208,16 +212,16 @@ public class Food {
 
         if (quantity == 0.0) {
             foodDetail = getName() + getExpiryStatus()
-                    + "\n       Expiry date: " + getExpiryDate() + getDaysBeforeExpired()
+                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
                     + "\n       Category: " + getCategoryString(getCategory());
         } else if (getUnit() == null) {
             foodDetail = getName() + getExpiryStatus()
-                    + "\n       Expiry date: " + getExpiryDate() + getDaysBeforeExpired()
+                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
                     + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + getQuantity();
         } else {
             foodDetail = getName() + getExpiryStatus()
-                    + "\n       Expiry date: " + getExpiryDate() + getDaysBeforeExpired()
+                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
                     + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + getQuantity() + " " + getUnit();
         }

@@ -98,6 +98,21 @@ public class FoodList {
         return result;
     }
 
+    public void sortFoodList () {
+        //FoodList sortedFoodList = null;
+        for (int i = 0; i < getNumberOfFood(); i++){
+            for(int j = 0; j < getNumberOfFood(); j ++){
+                long day1 = foodList.get(i).getDaysExpire();
+                long day2 = foodList.get(j).getDaysExpire();
+                if(day1 < day2){
+                    Food temp = foodList.get(i);
+                    foodList.set(i, foodList.get(j));
+                    foodList.set(j, temp);
+                }
+            }
+        }
+    }
+
     @Override
     public String toString() {
         int index = 1;

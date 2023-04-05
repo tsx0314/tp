@@ -11,16 +11,17 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class HelpCommandTest {
-    private FoodList foodList;
     private static final String SHOW_ALL_COMMANDS = "List of commands: 'add', 'list', 'remove', 'find',"
             + " 'update', 'exit'."
             + "\nFor more detailed information on usage of specific command, type: help --COMMAND";
     private static final String DEFAULT_HELP_MESSAGE = "Refer to our user guide for more in-depth details on"
             + " how to use Food Supply Tracker:"
             + "\nhttps://ay2223s2-cs2113-w13-3.github.io/tp/UserGuide.html\n";
+    private FoodList foodList;
+
     @Test
     void helpCommand_multipleWithRegex_expectSeparateByRegex() {
         String input = "--remove--find--add";

@@ -12,7 +12,6 @@ public class ListCommand extends Command {
     public CommandResult execute(FoodList foodList) {
         String printToUser = "";
         int numberOfFood = foodList.getNumberOfFood();
-        assert numberOfFood >= 0;
 
         if (numberOfFood > 0) {
             assert foodList instanceof FoodList && !foodList.getFoodList().isEmpty() :

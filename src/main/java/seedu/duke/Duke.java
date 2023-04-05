@@ -34,7 +34,6 @@ public class Duke {
             storageFile = new StorageFile();
         } catch (InvalidStorageFilePathException e) {
             Ui.showError(e.getMessage());
-
         }
 
         try {
@@ -42,6 +41,15 @@ public class Duke {
         } catch (StorageOperationException e) {
             Ui.showError(e.getMessage());
         }
+    }
+
+    public boolean processCommand(String fullCommand) throws DukeException {
+        Command c = Parser.parse(fullCommand);
+        CommandResult result = c.execute(foodList);
+        result.printResult();
+        storageFile.save(foodList);
+
+        return c.isExit();
     }
 
     // This part of the code is adapted from the module website
@@ -54,11 +62,7 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-                Command c = Parser.parse(fullCommand);
-                CommandResult result = c.execute(foodList);
-                result.printResult();
-                storageFile.save(foodList);
-                isExit = c.isExit();
+                isExit = processCommand(fullCommand);
             } catch (DukeException e) {
                 logger.log(Level.WARNING, "ERROR");
                 Ui.showError(e.getMessage());

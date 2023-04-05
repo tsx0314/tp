@@ -51,6 +51,13 @@ public class Food {
         this.category = category;
     }
 
+    public Food(String name, String expiryDate, Double quantity) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.quantity = quantity;
+        this.category = FoodCategory.OTHERS;
+    }
+
     public Food(String name, String expiryDate, Double quantity, FoodCategory category) {
         this.name = name;
         this.expiryDate = expiryDate;
@@ -137,7 +144,7 @@ public class Food {
         case OTHERS:
             return "others";
         default:
-            return "unknown category";
+            return "others";
 
         }
     }

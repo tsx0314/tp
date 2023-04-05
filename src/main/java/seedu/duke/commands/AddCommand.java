@@ -9,8 +9,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import static java.lang.Short.MAX_VALUE;
-
 
 /**
  * Represent an add command
@@ -30,6 +28,7 @@ public class AddCommand extends Command {
             "Please input a valid date :<";
     private static final String EXPIRY_DATE_MESSAGE =
             "Please do not add an expired product :<";
+    private static final String INVALID_INPUT_MESSAGE = "Please use reasonable value :<";
 
     private static final String MILLIGRAM_1 = "mg";
     private static final String MILLIGRAM_2 = "milligram";
@@ -80,6 +79,8 @@ public class AddCommand extends Command {
      * @return a CommandResult object to display the successful message
      */
     public CommandResult execute(FoodList foodList) {
+        boolean hasQuantity = details.contains("-q");
+        boolean hasCategory = details.contains("-c");
         boolean hasUnit = details.contains(UNIT_SEPARATOR);
         String[] foodDetails = splitDetails(details);
         assert foodDetails.length >= 2 : "Input is wrong";
@@ -91,11 +92,11 @@ public class AddCommand extends Command {
         try {
             LocalDate expiryDate = LocalDate.parse(date, formatter);
             boolean isValid = isValid(date);
-            boolean isExpired = isTheDateAfterCurrentDate(expiryDate);
+            boolean isNew = isTheDateAfterCurrentDate(expiryDate);
             if (!isValid) {
                 return new CommandResult(INVALID_DATE_MESSAGE);
             }
-            if (!isExpired) {
+            if (!isNew) {
                 return new CommandResult(EXPIRY_DATE_MESSAGE);
             }
             assert !name.trim().isEmpty() : "Expected non-empty string for name";
@@ -106,27 +107,45 @@ public class AddCommand extends Command {
             assert foodDetails.length == 2 || foodDetails.length == 3 ||
                     foodDetails.length == 4 || foodDetails.length == 5 : "Wrong food details size";
 
+
             if (foodDetails.length == 2) {
                 newFood = new Food(name, date);
-            } else if (foodDetails.length == 3) {
+            } else if (foodDetails.length == 3 && hasCategory && !hasQuantity) {
                 String c = foodDetails[2];
                 FoodCategory category = compareCategory(c);
                 newFood = new Food(name, date, category);
+            } else if (foodDetails.length == 3 && !hasCategory && hasQuantity) {
+                String q = foodDetails[2];
+                if (!isNumberValid(q)) {
+                    return new CommandResult(INVALID_INPUT_MESSAGE);
+                }
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
+                Double quantity = Double.valueOf(q);
+                newFood = new Food(name, date, quantity);
             } else if (foodDetails.length == 4 && hasUnit) {
                 String q = foodDetails[2];
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
+                if (!isNumberValid(q)) {
+                    return new CommandResult(INVALID_INPUT_MESSAGE);
+                }
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
                 Double quantity = Double.valueOf(q);
                 String unit = getUnitOfFood(foodDetails[3], quantity);
                 newFood = new Food(name, date, quantity, unit);
             } else if (foodDetails.length == 4 && !hasUnit) {
                 String q = foodDetails[2];
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
+                if (!isNumberValid(q)) {
+                    return new CommandResult(INVALID_INPUT_MESSAGE);
+                }
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
                 Double quantity = Double.valueOf(q);
                 FoodCategory category = compareCategory(foodDetails[3]);
                 newFood = new Food(name, date, quantity, category);
             } else {
                 String q = foodDetails[2];
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) < MAX_VALUE;
+                if (!isNumberValid(q)) {
+                    return new CommandResult(INVALID_INPUT_MESSAGE);
+                }
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
                 Double quantity = Double.valueOf(q);
                 String unit = getUnitOfFood(foodDetails[3], quantity);
                 String c = foodDetails[4];
@@ -320,6 +339,13 @@ public class AddCommand extends Command {
         default:
             return FoodCategory.OTHERS;
         }
+    }
+
+    boolean isNumberValid(String number) {
+        if (number.length() >= 5) {
+            return false;
+        }
+        return true;
     }
 }
 

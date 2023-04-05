@@ -54,13 +54,11 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-                logger.log(Level.INFO, "Processing user command");
                 Command c = Parser.parse(fullCommand);
                 CommandResult result = c.execute(foodList);
                 result.printResult();
                 storageFile.save(foodList);
                 isExit = c.isExit();
-                logger.log(Level.INFO, "Processed user command successfully");
             } catch (DukeException e) {
                 logger.log(Level.WARNING, "ERROR");
                 Ui.showError(e.getMessage());

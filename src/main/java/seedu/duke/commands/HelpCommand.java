@@ -44,7 +44,7 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute(FoodList foodList) {
         String printToUser = "";
-        if (isHelpOrEmpty(filters[0]) && filters.length == 1) {
+        if (filters.length <= 1) {
             printToUser = SHOW_ALL_COMMANDS + '\n' + DEFAULT_HELP_MESSAGE;
             return new CommandResult(printToUser);
         }

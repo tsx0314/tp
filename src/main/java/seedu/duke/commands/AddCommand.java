@@ -63,11 +63,11 @@ public class AddCommand extends Command {
         try {
             LocalDate expiryDate = LocalDate.parse(date, formatter);
             boolean isValid = isValid(date);
-            boolean isExpired = isTheDateAfterCurrentDate(expiryDate);
+            boolean isNew = isTheDateAfterCurrentDate(expiryDate);
             if (!isValid) {
                 return new CommandResult(INVALID_DATE_MESSAGE);
             }
-            if (!isExpired) {
+            if (!isNew) {
                 return new CommandResult(EXPIRY_DATE_MESSAGE);
             }
             assert !name.trim().isEmpty() : "Expected non-empty string for name";

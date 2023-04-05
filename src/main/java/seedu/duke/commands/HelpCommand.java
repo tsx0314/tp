@@ -116,7 +116,7 @@ public class HelpCommand extends Command {
     }
 
     /**
-     *This method checks for empty string or 'help' as command words. As these words hold no meaning,
+     * This method checks for empty string or 'help' as command words. As these words hold no meaning,
      * they should be ignored.
      *
      * @param word the command word to be checked

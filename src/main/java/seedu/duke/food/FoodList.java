@@ -113,6 +113,13 @@ public class FoodList {
         }
     }
 
+    public void clearFoodList() {
+        int totalNumberFood = getNumberOfFood();
+        for(int i = totalNumberFood-1; i >= 0; i--){
+            removeFood(0);
+        }
+    }
+
     @Override
     public String toString() {
         int index = 1;
@@ -124,4 +131,5 @@ public class FoodList {
         }
         return output.toString();
     }
+
 }

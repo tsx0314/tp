@@ -117,7 +117,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, category);
             } else if (foodDetails.length == 3 && !hasCategory && hasQuantity) {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -125,7 +125,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, quantity);
             } else if (foodDetails.length == 4 && hasUnit) {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -134,7 +134,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, quantity, unit);
             } else if (foodDetails.length == 4 && !hasUnit) {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -143,7 +143,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, quantity, category);
             } else {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -232,7 +232,6 @@ public class AddCommand extends Command {
         boolean hasUnit = details.contains(UNIT_SEPARATOR);
         boolean hasCat = details.contains(CATEGORY_SEPARATOR);
 
-
         String name;
         String date;
         String category;
@@ -269,6 +268,7 @@ public class AddCommand extends Command {
             String[] foodDetails = {name, date, quantity, category};
             return foodDetails;
         }
+
         if (!hasCat && hasUnit && hasQuantity) {
             String[] quantityAndUnit = temp[1].trim().split(UNIT_SEPARATOR, 2);
             unit = quantityAndUnit[1].trim();
@@ -342,7 +342,7 @@ public class AddCommand extends Command {
         }
     }
 
-    boolean isNumberValid(String number) {
+    boolean isNumberReasonable(String number) {
         if (number.length() >= 5) {
             return false;
         }

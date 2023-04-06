@@ -91,17 +91,34 @@ Examples of usage:
 
 `add -n milk -e 21/03/2025 -c dairy -q 10 -u packets`
 
-Output:
+Output: 
+
+(The product is added on 06/04/2023, thus it shows 715 days left. The display of remaining freshness date will vary,
+based on your current date)
 ```
 ______________________________
-milk
-       Expiry date: 21/03/2025
+milk (fresh) 
+       Expiry date: 21/03/2025 (715 days left)
        Category: dairy
        Remaining quantity: 10.0 packets
 
 I have added this product! :)
 ______________________________
 ```
+
+<bold>Input:</bold>
+
+`add -n mike's milk -e 21/03/2025 -c dairy -q 10 -u packets`
+
+Output:
+
+```
+______________________________
+Oops! Incorrect command format. Type 'help' to see more!!
+______________________________
+
+```
+
 
 ### Listing all food products: <code>list</code>
 List all food products available in the tracker regardless of expiry status.

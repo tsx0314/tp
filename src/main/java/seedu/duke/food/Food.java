@@ -25,7 +25,11 @@ public class Food {
      * @param unit       food unit
      * @param category   food category
      */
-    public Food(String name, String expiryDate, Double quantity, String unit, FoodCategory category) throws DukeException {
+    public Food(String name,
+                String expiryDate,
+                Double quantity,
+                String unit,
+                FoodCategory category) throws DukeException {
         Validator.isQuantityValid(quantity);
         Validator.isExpiryDateValid(expiryDate);
         Validator.isUnitValid(unit);
@@ -205,8 +209,7 @@ public class Food {
         String expiryStatus = null;
         if(!isFresh()){
             expiryStatus = " (expired) ";
-        }
-        else {
+        } else {
             expiryStatus = " (fresh) ";
         }
         return expiryStatus;

@@ -31,10 +31,10 @@ public class FindCommandTest {
 
     @Test void termSearch_withExpiredFlag_numberOfFoundFood() throws DukeException {
         FoodList foodList = new FoodList();
-        foodList.addFood(new Food("Expired egg", "25/04/1999"));
-        foodList.addFood(new Food("Another Expired egg", "25/04/1998"));
+        foodList.addFood(new Food("Expired egg", "25/04/2025"));
+        foodList.addFood(new Food("Another Expired egg", "25/04/2025"));
         foodList.addFood(new Food("Good Egg  ", "26/04/2025"));
-        foodList.addFood(new Food("Expired Milk", "27/04/1999"));
+        foodList.addFood(new Food("Expired Milk", "27/04/2025"));
         foodList.addFood(new Food("Good Milk", "27/04/2025"));
         int expected = 2;
         assertEquals(expected, foodList.findFood("EGG ", "expired").getNumberOfFood());

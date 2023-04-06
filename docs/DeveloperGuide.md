@@ -96,12 +96,18 @@ The help command is implemented using a `HelpCommand` class which utilizes `COMM
 attributes of all other commands within the `commands` package. 
 
 The help command is implemented as follows:
-1. New `HelpCommand` object is created by passing in a String containing arguments from `Parser`.
+1. When `Duke` reads the user input, it calls the method `parse` from the `Parser` class.
+2. The `parse` method process which command word is being queried and calls the constructor class based 
+on the command word.
+3. In the case where `help` is the command word, a new `HelpCommand` object is created with the rest of the user input 
+being the arguments for the constructor.
 2. The constructor `HelpCommand` will split the arguments based on the `--` regex and store them in an array of
 strings called `filters`.
-3. The method `execute` of `Command` class will then be called all the way from `Duke` with `filters` as its argument. 
-4. This method decides what to append to the string `printToUser` as specified by the `filters`. 
-5. After looping through all the `filters`, this method will return an object called `CommandResult` and pass
+3. The method `execute` of `Command` class will then be called all the way from `Duke` which will be overriden by the 
+same method in `HelpCommand`.
+4. This method calls the private method `appendMessage` which decides what to append to the string `printToUser` as 
+specified by `filter`. 
+5. After looping through all the `filter`, this method will return an object called `CommandResult` and pass
 `printToUser` as its argument.
 6. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
 

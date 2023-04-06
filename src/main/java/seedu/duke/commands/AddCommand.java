@@ -1,5 +1,6 @@
 package seedu.duke.commands;
 
+import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodCategory;
 import seedu.duke.food.FoodList;
@@ -78,7 +79,7 @@ public class AddCommand extends Command {
      * @param foodList a food list
      * @return a CommandResult object to display the successful message
      */
-    public CommandResult execute(FoodList foodList) {
+    public CommandResult execute(FoodList foodList) throws DukeException {
         boolean hasQuantity = details.contains("-q");
         boolean hasCategory = details.contains("-c");
         boolean hasUnit = details.contains(UNIT_SEPARATOR);

@@ -26,12 +26,14 @@ public class UpdateCommand extends Command{
 
     @Override
     public CommandResult execute(FoodList foodList) throws DukeException {
-        if (index.isBlank()) {
-            throw new IllegalValueException("Incorrect index entered");
-        }
         DateFormatter dateFormatter = new DateFormatter();
 
-        int index = Integer.parseInt(this.index.trim()) - 1;
+        int index = 1;
+        try {
+            index = Integer.parseInt(this.index.trim()) - 1;
+        } catch(NumberFormatException e) {
+            throw new DukeException("Invalid index format!");
+        }
         Food currentFood = foodList.getFood(index);
 
         for (String flag: flags) {

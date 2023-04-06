@@ -162,64 +162,6 @@ public class AddCommand extends Command {
         }
     }
 
-    //@@author wanjuin
-    /**
-     * Returns the unit of the food
-     *
-     * @param unitTemporary    a unit
-     * @param quantityInDouble quantity
-     * @return unitOfMeasurement a food unit
-     */
-    public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
-        String unitOfMeasurement;
-        if (unitTemporary.equals(MILLIGRAM_1) || unitTemporary.equals(MILLIGRAM_2) ||
-                unitTemporary.equals(MILLIGRAM_3) || unitTemporary.equals(MILLIGRAM_4) ||
-                unitTemporary.equals(MILLIGRAM_5)) {
-            unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
-        } else if (unitTemporary.equals(GRAM_1) || unitTemporary.equals(GRAM_2) ||
-                unitTemporary.equals(GRAM_3)) {
-            unitOfMeasurement = String.valueOf(Unit.GRAM.abbreviation);
-        } else if (unitTemporary.equals(KILOGRAM_1) || unitTemporary.equals(KILOGRAM_2) ||
-                unitTemporary.equals(KILOGRAM_3) || unitTemporary.equals(KILOGRAM_4) ||
-                unitTemporary.equals(KILOGRAM_5)) {
-            unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
-        } else if (unitTemporary.equals(MILLIMETRE_1) || unitTemporary.equals(MILLIMETRE_2) ||
-                unitTemporary.equals(MILLIMETRE_3) || unitTemporary.equals(MILLIMETRE_4) ||
-                unitTemporary.equals(MILLIMETRE_5)) {
-            unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
-        } else if (unitTemporary.equals(LITRE_1) || unitTemporary.equals(LITRE_2) ||
-                unitTemporary.equals(LITRE_3)){
-            unitOfMeasurement = String.valueOf(Unit.LITER.abbreviation);
-        } else if ((unitTemporary.equals(SERVING_1) || unitTemporary.equals(SERVING_2))
-                && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
-        } else if ((unitTemporary.equals(SERVING_2) || unitTemporary.equals(SERVING_1))
-                && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
-        } else if ((unitTemporary.equals(UNIT_1) || unitTemporary.equals(UNIT_2))
-                && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
-        } else if ((unitTemporary.equals(UNIT_2) || unitTemporary.equals(UNIT_1))
-                && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
-        } else if ((unitTemporary.equals(BOX_1) || unitTemporary.equals(BOX_2))
-                && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
-        } else if ((unitTemporary.equals(BOX_2) || unitTemporary.equals(BOX_1))
-                && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
-        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2))
-                && quantityInDouble == 1) {
-            unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
-        } else if ((unitTemporary.equals(PACKET_1) || unitTemporary.equals(PACKET_2))
-                && quantityInDouble > 1) {
-            unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
-        } else {
-            unitOfMeasurement = unitTemporary;
-        }
-        return unitOfMeasurement;
-    }
-
     //@@author tsx0314
     /**
      * Returns an array of String to store the information of food added
@@ -348,5 +290,88 @@ public class AddCommand extends Command {
         }
         return true;
     }
+
+    //@@author wanjuin
+    /**
+     * Returns the unit of the food
+     *
+     * @param unitTemporary    a unit
+     * @param quantityInDouble quantity
+     * @return unitOfMeasurement a food unit
+     */
+    public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
+        String unitOfMeasurement;
+
+        switch (unitTemporary.toLowerCase()){
+        case MILLIGRAM_1:
+        case MILLIGRAM_2:
+        case MILLIGRAM_3:
+        case MILLIGRAM_4:
+        case MILLIGRAM_5:
+            unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
+            break;
+        case GRAM_1:
+        case GRAM_2:
+        case GRAM_3:
+            unitOfMeasurement = String.valueOf(Unit.GRAM.abbreviation);
+            break;
+        case KILOGRAM_1:
+        case KILOGRAM_2:
+        case KILOGRAM_3:
+        case KILOGRAM_4:
+        case KILOGRAM_5:
+            unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
+            break;
+        case MILLIMETRE_1:
+        case MILLIMETRE_2:
+        case MILLIMETRE_3:
+        case MILLIMETRE_4:
+        case MILLIMETRE_5:
+            unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
+            break;
+        case LITRE_1:
+        case LITRE_2:
+        case LITRE_3:
+            unitOfMeasurement = String.valueOf(Unit.LITER.abbreviation);
+            break;
+        case SERVING_1:
+        case SERVING_2:
+            if(quantityInDouble == 1) {
+                unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
+            }
+            break;
+        case UNIT_1:
+        case UNIT_2:
+            if(quantityInDouble == 1) {
+                unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
+            }
+            break;
+        case BOX_1:
+        case BOX_2:
+            if(quantityInDouble == 1){
+                unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
+            }
+            break;
+        case PACKET_1:
+        case PACKET_2:
+            if(quantityInDouble == 1){
+                unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
+            }
+            break;
+        default:
+            unitOfMeasurement = unitTemporary;
+        }
+
+        return unitOfMeasurement;
+    }
+
 }
 

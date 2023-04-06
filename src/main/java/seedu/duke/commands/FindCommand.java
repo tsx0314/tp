@@ -7,10 +7,11 @@ import java.util.Arrays;
 
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
-    String term;
-    String[] flags;
 
     private static final String FLAG_SEPARATOR = "--";
+
+    String term;
+    String[] flags;
 
     public FindCommand(String arguments) {
         String[] details = arguments.split(FLAG_SEPARATOR);

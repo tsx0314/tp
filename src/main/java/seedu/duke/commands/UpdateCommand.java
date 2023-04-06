@@ -11,10 +11,9 @@ import java.util.Arrays;
 
 public class UpdateCommand extends Command{
     public static final String COMMAND_WORD = "update";
+    private static final String FLAG_SEPARATOR = "--";
     String index;
     String[] flags;
-
-    private static final String FLAG_SEPARATOR = "--";
 
     public UpdateCommand(String arguments) {
         String[] details = arguments.split(FLAG_SEPARATOR);

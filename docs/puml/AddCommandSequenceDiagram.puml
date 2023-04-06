@@ -17,16 +17,18 @@ break the date format is invalid
 create CommandResult
 AddCommand -> CommandResult: new(INVALID_DATE_MESSAGE)
 activate CommandResult
-CommandResult -> system: printResult()
+CommandResult -> System: printResult()
 deactivate
+destroy CommandResult
 end
 
 break date falls into the special case 02/29 with non-leap year
 create CommandResult
 AddCommand -> CommandResult: new(INVALID_DATE_MESSAGE)
 activate CommandResult
-CommandResult -> system: printResult()
+CommandResult -> System: printResult()
 deactivate
+destroy CommandResult
 
 end
 
@@ -35,8 +37,9 @@ break date is before the current date
 create CommandResult
 AddCommand -> CommandResult: new(INVALID_DATE_MESSAGE)
 activate CommandResult
-CommandResult -> system: printResult()
+CommandResult -> System: printResult()
 deactivate
+destroy CommandResult
 end
 
 activate AddCommand
@@ -58,15 +61,11 @@ participant CommandResult
 create CommandResult
 AddCommand -> CommandResult: new(ADD_MESSAGE)
 activate CommandResult
-CommandResult -> system: printResult()
+CommandResult -> System: printResult()
 deactivate
-
-
+destroy CommandResult
 
 end
-
-
-
 
 destroy AddCommand
 

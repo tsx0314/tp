@@ -59,6 +59,7 @@ public class AddCommand extends Command {
     private static final String BOX_2 = "boxes";
     private static final String PACKET_1 = "packet";
     private static final String PACKET_2 = "packets";
+    private static final String DATE_FORMAT = "dd/MM/yyyy";
 
     public String details;
 
@@ -79,15 +80,15 @@ public class AddCommand extends Command {
      * @return a CommandResult object to display the successful message
      */
     public CommandResult execute(FoodList foodList) {
-        boolean hasQuantity = details.contains("-q");
-        boolean hasCategory = details.contains("-c");
+        boolean hasQuantity = details.contains(QUANTITY_SEPARATOR);
+        boolean hasCategory = details.contains(CATEGORY_SEPARATOR);
         boolean hasUnit = details.contains(UNIT_SEPARATOR);
         String[] foodDetails = splitDetails(details);
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];
         String date = foodDetails[1];
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
         try {
             LocalDate expiryDate = LocalDate.parse(date, formatter);
@@ -227,9 +228,9 @@ public class AddCommand extends Command {
      * @return foodDetails a String array of the food details
      */
     public String[] splitDetails(String details) {
-        boolean hasQuantity = details.contains("-q");
-        boolean hasUnit = details.contains("-u");
-        boolean hasCat = details.contains("-c");
+        boolean hasQuantity = details.contains(QUANTITY_SEPARATOR);
+        boolean hasUnit = details.contains(UNIT_SEPARATOR);
+        boolean hasCat = details.contains(CATEGORY_SEPARATOR);
 
 
         String name;

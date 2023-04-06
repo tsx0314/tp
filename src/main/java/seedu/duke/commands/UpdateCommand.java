@@ -14,8 +14,10 @@ public class UpdateCommand extends Command{
     String index;
     String[] flags;
 
+    private static final String FLAG_SEPARATOR = "--";
+
     public UpdateCommand(String arguments) {
-        String[] details = arguments.split("-");
+        String[] details = arguments.split(FLAG_SEPARATOR);
         this.index = details[0];
         this.flags = Arrays.copyOfRange(details, 1, details.length);
     }
@@ -43,6 +45,9 @@ public class UpdateCommand extends Command{
                     currentFood.setExpiryDate(flagValue);
                     break;
                 case "q":
+                    if (currentFood.getQuantity() == 0) {
+                        throw new DukeException("Can't set quantity with no unit provided");
+                    }
                     currentFood.setQuantity(Double.parseDouble(flagValue));
                     break;
                 case "u":
@@ -54,7 +59,7 @@ public class UpdateCommand extends Command{
                 default:
                     throw new InvalidFlagException(flagName);
                 }
-            } catch (InvalidFlagException e) {
+            } catch (DukeException e) {
                 throw e;
             } catch (Exception e) {
                 throw new IllegalValueException("Illegal value for the flag " + flagName);

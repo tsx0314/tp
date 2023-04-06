@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.StorageOperationException;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
@@ -25,7 +26,7 @@ public class FoodListDecoder {
         for (String encodedFood : encodedFoodList) {
             try {
                 decodedFoodList.add(decodeFoodFromString(encodedFood));
-            } catch (StorageOperationException e) {
+            } catch (DukeException e) {
                 Ui.showError(e.getMessage());
             }
         }
@@ -35,7 +36,7 @@ public class FoodListDecoder {
     /**
      * Decodes {@code encodedFood} into a {@code Food}.
      */
-    private static Food decodeFoodFromString(String encodedFood) throws StorageOperationException {
+    private static Food decodeFoodFromString(String encodedFood) throws DukeException {
         String[] details = encodedFood.split("«");
 
         try {

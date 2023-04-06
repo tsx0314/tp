@@ -1,6 +1,7 @@
 package seedu.duke.storage;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
@@ -14,7 +15,7 @@ public class FoodListEncoderTest {
 
     //TODO: Test for case where there is more than 1 food in foodList
     @Test
-    void encodeFoodList_withExpiryDate_expectNameAndExpiry() {
+    void encodeFoodList_withExpiryDate_expectNameAndExpiry() throws DukeException {
         Food food = new Food("peanuts", "11/11/23");
         FoodList fl = new FoodList();
         fl.addFood(food);
@@ -25,7 +26,7 @@ public class FoodListEncoderTest {
     }
 
     @Test
-    void encodeFoodList_withExpiryDateAndQuantity_expectNameExpiryAndCategory() {
+    void encodeFoodList_withExpiryDateAndQuantity_expectNameExpiryAndCategory() throws DukeException {
         Food food = new Food("peanuts", "11/11/23", GRAIN);
         FoodList fl = new FoodList();
         fl.addFood(food);
@@ -36,7 +37,7 @@ public class FoodListEncoderTest {
     }
 
     @Test
-    void encodeFoodList_withMultipleFood_expectMultipleFoodRecorded() {
+    void encodeFoodList_withMultipleFood_expectMultipleFoodRecorded() throws DukeException {
         Food peanuts = new Food("peanuts", "11/11/23");
         Food strawberry = new Food("strawberries", "31/03/23");
         FoodList fl = new FoodList();
@@ -51,7 +52,7 @@ public class FoodListEncoderTest {
 
 
     @Test
-    void encodeFoodList_withExpiryDateAndQuantityWithUnits_expectNameExpiryAndQuantityWithUnits() {
+    void encodeFoodList_withExpiryDateAndQuantityWithUnits_expectNameExpiryAndQuantityWithUnits() throws DukeException {
         Food food = new Food("peanuts", "11/11/23", 50.0, "g");
         FoodList fl = new FoodList();
         fl.addFood(food);

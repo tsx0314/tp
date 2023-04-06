@@ -1,5 +1,8 @@
 package seedu.duke.food;
 
+import seedu.duke.exceptions.DukeException;
+import seedu.duke.utils.Validator;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -22,7 +25,11 @@ public class Food {
      * @param unit       food unit
      * @param category   food category
      */
-    public Food(String name, String expiryDate, Double quantity, String unit, FoodCategory category) {
+    public Food(String name, String expiryDate, Double quantity, String unit, FoodCategory category) throws DukeException {
+        Validator.isQuantityValid(quantity);
+        Validator.isExpiryDateValid(expiryDate);
+        Validator.isUnitValid(unit);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
@@ -30,7 +37,9 @@ public class Food {
         this.category = category;
     }
 
-    public Food(String name, String expiryDate) {
+    public Food(String name, String expiryDate) throws DukeException {
+        Validator.isExpiryDateValid(expiryDate);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.category = FoodCategory.OTHERS;
@@ -44,28 +53,40 @@ public class Food {
      * @param expiryDate food expiry date
      * @param category   food category
      */
-    public Food(String name, String expiryDate, FoodCategory category) {
+    public Food(String name, String expiryDate, FoodCategory category) throws DukeException {
+        Validator.isExpiryDateValid(expiryDate);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = 0.0;
         this.category = category;
     }
 
-    public Food(String name, String expiryDate, Double quantity) {
+    public Food(String name, String expiryDate, Double quantity) throws DukeException {
+        Validator.isQuantityValid(quantity);
+        Validator.isExpiryDateValid(expiryDate);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
         this.category = FoodCategory.OTHERS;
     }
 
-    public Food(String name, String expiryDate, Double quantity, FoodCategory category) {
+    public Food(String name, String expiryDate, Double quantity, FoodCategory category) throws DukeException {
+        Validator.isQuantityValid(quantity);
+        Validator.isExpiryDateValid(expiryDate);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
         this.category = category;
     }
 
-    public Food(String name, String expiryDate, Double quantity, String unit) {
+    public Food(String name, String expiryDate, Double quantity, String unit) throws DukeException {
+        Validator.isQuantityValid(quantity);
+        Validator.isExpiryDateValid(expiryDate);
+        Validator.isUnitValid(unit);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
@@ -74,7 +95,11 @@ public class Food {
     }
 
 
-    public Food(String name, String expiryDate, Double quantity, String unit, String category) {
+    public Food(String name, String expiryDate, Double quantity, String unit, String category) throws DukeException {
+        Validator.isQuantityValid(quantity);
+        Validator.isExpiryDateValid(expiryDate);
+        Validator.isUnitValid(unit);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.category = FoodCategory.valueOf(category);

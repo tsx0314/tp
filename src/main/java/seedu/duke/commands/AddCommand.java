@@ -28,7 +28,8 @@ public class AddCommand extends Command {
             "Please input a valid date :<";
     private static final String EXPIRY_DATE_MESSAGE =
             "Please do not add an expired product :<";
-    private static final String INVALID_INPUT_MESSAGE = "Please use reasonable value :<";
+    private static final String INVALID_INPUT_MESSAGE = "The number you entered exceeds 9999. " +
+            "Please use reasonable value :<";
 
     private static final String MILLIGRAM_1 = "mg";
     private static final String MILLIGRAM_2 = "milligram";

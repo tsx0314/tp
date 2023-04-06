@@ -36,27 +36,27 @@ public class UpdateCommand extends Command{
             String flagValue = flag.split(" ")[1].trim().toLowerCase();
             try {
                 switch (flagName) {
-                    case "n":
-                        currentFood.setName(flagValue);
-                        break;
-                    case "e":
-                        dateFormatter.checkValidDate(flagValue);
-                        currentFood.setExpiryDate(flagValue);
-                        break;
-                    case "q":
-                        if (currentFood.getQuantity() == 0 && Arrays.asList(flags).contains("u")) {
-                            throw new DukeException("Can't set quantity with no unit provided");
-                        }
-                        currentFood.setQuantity(Double.parseDouble(flagValue));
-                        break;
-                    case "u":
-                        currentFood.setUnit(flagValue);
-                        break;
-                    case "c":
-                        currentFood.setCategory(flagValue);
-                        break;
-                    default:
-                        throw new InvalidFlagException(flagName);
+                case "n":
+                    currentFood.setName(flagValue);
+                    break;
+                case "e":
+                    dateFormatter.checkValidDate(flagValue);
+                    currentFood.setExpiryDate(flagValue);
+                    break;
+                case "q":
+                    if (currentFood.getQuantity() == 0 && Arrays.asList(flags).contains("u")) {
+                        throw new DukeException("Can't set quantity with no unit provided");
+                    }
+                    currentFood.setQuantity(Double.parseDouble(flagValue));
+                    break;
+                case "u":
+                    currentFood.setUnit(flagValue);
+                    break;
+                case "c":
+                    currentFood.setCategory(flagValue);
+                    break;
+                default:
+                    throw new InvalidFlagException(flagName);
                 }
             } catch (DukeException e) {
                 throw e;

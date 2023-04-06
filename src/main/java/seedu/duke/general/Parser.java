@@ -9,6 +9,7 @@ import seedu.duke.commands.IncorrectCommand;
 import seedu.duke.commands.ListCommand;
 import seedu.duke.commands.RemoveCommand;
 import seedu.duke.commands.UpdateCommand;
+import seedu.duke.commands.ClearCommand;
 import seedu.duke.exceptions.DukeException;
 
 import java.util.regex.Matcher;
@@ -80,6 +81,8 @@ public class Parser {
         case UpdateCommand.COMMAND_WORD:
             return new UpdateCommand(arguments);
 
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
         default:
             return new IncorrectCommand();
         }

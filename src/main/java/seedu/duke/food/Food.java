@@ -1,10 +1,11 @@
 package seedu.duke.food;
 
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.general.Ui;
+import seedu.duke.utils.DateFormatter;
 import seedu.duke.utils.Validator;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 
@@ -115,8 +116,8 @@ public class Food {
         return LocalDate.now();
     }
 
-    public LocalDate parseExpiryDate() {
-        return LocalDate.parse(expiryDate, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    public LocalDate parseExpiryDate() throws DukeException {
+        return DateFormatter.parse(expiryDate);
     }
 
     public double getQuantity() {
@@ -200,12 +201,11 @@ public class Food {
         return expiryDate;
     }
 
-    public boolean isFresh(){
+    public boolean isFresh() throws DukeException {
         LocalDate expiryDate = parseExpiryDate();
-        boolean isFreshFood = expiryDate.isAfter(LocalDate.now());
-        return isFreshFood;
+        return expiryDate.isAfter(LocalDate.now());
     }
-    public String getExpiryStatus() {
+    public String getExpiryStatus() throws DukeException {
         String expiryStatus = null;
         if(!isFresh()){
             expiryStatus = " (expired) ";
@@ -215,13 +215,13 @@ public class Food {
         return expiryStatus;
     }
 
-    public long getDaysExpire (){
+    public long getDaysExpire () throws DukeException {
         LocalDate expiryDate = parseExpiryDate();
         long days = ChronoUnit.DAYS.between(LocalDate.now(), expiryDate);
         return days;
     }
 
-    public String getDaysString(){
+    public String getDaysString() throws DukeException {
         if(isFresh()) {
             String daysToExpireNotice = null;
             daysToExpireNotice = " (" + getDaysExpire() + " days left)";
@@ -241,22 +241,31 @@ public class Food {
      * @return foodDetails a String of complete food details to be printed
      */
     @Override
-    public String toString() {
+    public String toString()  {
         Double quantity = getQuantity();
-        String foodDetail = null;
+        String foodDetail = "";
+        String expiryStatus = "";
+        String daysLeftString = "";
+
+        try {
+            expiryStatus = getExpiryStatus();
+            daysLeftString = getDaysString();
+        } catch (DukeException e) {
+            Ui.showError("Expiry date parsing error");
+        }
 
         if (quantity == 0.0) {
-            foodDetail = getName() + getExpiryStatus()
-                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
+            foodDetail = getName() + expiryStatus
+                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory());
         } else if (getUnit() == null) {
-            foodDetail = getName() + getExpiryStatus()
-                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
+            foodDetail = getName() + expiryStatus
+                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + getQuantity();
         } else {
-            foodDetail = getName() + getExpiryStatus()
-                    + "\n       Expiry date: " + getExpiryDate() + getDaysString()
+            foodDetail = getName() + expiryStatus
+                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + getQuantity() + " " + getUnit();
         }

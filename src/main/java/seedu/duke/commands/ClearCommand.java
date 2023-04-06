@@ -1,12 +1,10 @@
 package seedu.duke.commands;
 
-import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
 public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_CLEAR_ACKNOWLEDGEMENT = "Clearing the food list as requested...";
-
 
     @Override
     public CommandResult execute(FoodList foodList) {
@@ -16,6 +14,6 @@ public class ClearCommand extends Command {
 
     @Override
     public boolean isExit(){
-       return false;
+        return false;
     }
 }

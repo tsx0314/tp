@@ -21,7 +21,7 @@ public class FoodListEncoderTest {
         fl.addFood(food);
         ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
         ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/2023 « 0.0 « null « OTHERS");
+        expectedOutput.add("peanuts « 11/11/2023 « 0.0 « units « OTHERS");
         assertEquals(expectedOutput, encodedFoodLists);
     }
 
@@ -32,7 +32,7 @@ public class FoodListEncoderTest {
         fl.addFood(food);
         ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
         ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/2023 « 0.0 « null « GRAIN");
+        expectedOutput.add("peanuts « 11/11/2023 « 0.0 « units « GRAIN");
         assertEquals(expectedOutput, encodedFoodLists);
     }
 
@@ -45,8 +45,8 @@ public class FoodListEncoderTest {
         fl.addFood(strawberry);
         ArrayList<String> encodedFoodLists = FoodListEncoder.encodeFoodList(fl);
         ArrayList<String> expectedOutput = new ArrayList<>();
-        expectedOutput.add("peanuts « 11/11/2023 « 0.0 « null « OTHERS");
-        expectedOutput.add("strawberries « 31/05/2023 « 0.0 « null « OTHERS");
+        expectedOutput.add("peanuts « 11/11/2023 « 0.0 « units « OTHERS");
+        expectedOutput.add("strawberries « 31/05/2023 « 0.0 « units « OTHERS");
         assertEquals(expectedOutput, encodedFoodLists);
     }
 

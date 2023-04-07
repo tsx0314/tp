@@ -5,6 +5,7 @@ import seedu.duke.food.Food;
 import seedu.duke.food.FoodCategory;
 import seedu.duke.food.FoodList;
 import seedu.duke.food.Unit;
+import seedu.duke.utils.DateFormatter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -85,7 +86,7 @@ public class AddCommand extends Command {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
         try {
-            LocalDate expiryDate = LocalDate.parse(date, formatter);
+            LocalDate expiryDate = DateFormatter.parse(date);
             boolean isValid = isValid(date);
             boolean isNew = isTheDateAfterCurrentDate(expiryDate);
             if (!isValid) {

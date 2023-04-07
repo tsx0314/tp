@@ -34,21 +34,15 @@ public class AddCommand extends Command {
     private static final String MILLIGRAM_1 = "mg";
     private static final String MILLIGRAM_2 = "milligram";
     private static final String MILLIGRAM_3 = "milligrams";
-    private static final String MILLIGRAM_4 = "milli gram";
-    private static final String MILLIGRAM_5 = "milli grams";
     private static final String GRAM_1 = "gram";
     private static final String GRAM_2 = "g";
     private static final String GRAM_3 = "grams";
     private static final String KILOGRAM_1 = "kg";
     private static final String KILOGRAM_2 = "kilogram";
     private static final String KILOGRAM_3 = "kilograms";
-    private static final String KILOGRAM_4 = "kilo gram";
-    private static final String KILOGRAM_5 = "kilo grams";
     private static final String MILLIMETRE_1 = "ml";
     private static final String MILLIMETRE_2 = "millilitre";
     private static final String MILLIMETRE_3 = "millilitres";
-    private static final String MILLIMETRE_4 = "milli litre";
-    private static final String MILLIMETRE_5 = "milli litres";
     private static final String LITRE_1 = "l";
     private static final String LITRE_2 = "litre";
     private static final String LITRE_3 = "litres";
@@ -305,8 +299,6 @@ public class AddCommand extends Command {
         case MILLIGRAM_1:
         case MILLIGRAM_2:
         case MILLIGRAM_3:
-        case MILLIGRAM_4:
-        case MILLIGRAM_5:
             unitOfMeasurement = String.valueOf(Unit.MILLIGRAM.abbreviation);
             break;
         case GRAM_1:
@@ -317,15 +309,11 @@ public class AddCommand extends Command {
         case KILOGRAM_1:
         case KILOGRAM_2:
         case KILOGRAM_3:
-        case KILOGRAM_4:
-        case KILOGRAM_5:
             unitOfMeasurement = String.valueOf(Unit.KILOGRAM.abbreviation);
             break;
         case MILLIMETRE_1:
         case MILLIMETRE_2:
         case MILLIMETRE_3:
-        case MILLIMETRE_4:
-        case MILLIMETRE_5:
             unitOfMeasurement = String.valueOf(Unit.MILLILITER.abbreviation);
             break;
         case LITRE_1:

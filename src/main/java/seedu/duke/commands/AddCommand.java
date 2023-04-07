@@ -342,14 +342,6 @@ public class AddCommand extends Command {
                 unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
             }
             break;
-        case UNIT_1:
-        case UNIT_2:
-            if(quantityInDouble == 1) {
-                unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
-            } else {
-                unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
-            }
-            break;
         case BOX_1:
         case BOX_2:
             if(quantityInDouble == 1){
@@ -367,11 +359,12 @@ public class AddCommand extends Command {
             }
             break;
         default:
-            unitOfMeasurement = unitTemporary;
+            if(quantityInDouble == 1) {
+                unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
+            }
         }
-
         return unitOfMeasurement;
     }
-
 }
-

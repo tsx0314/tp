@@ -20,7 +20,7 @@ public class RemoveCommand extends Command {
 
     public boolean isNumeric (){
         try {
-            Double.parseDouble(index);
+            Integer.parseInt(index);
         } catch (NumberFormatException e){
             return false;
         }

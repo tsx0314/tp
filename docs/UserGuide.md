@@ -41,6 +41,9 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
 ### Viewing help
 
 `help`- Show a message explaining how to access the help page and the command specified.
+* Any extraneous parameters input after the command `help` will be ignored.
+
+  (e.g. `help 123 abcde` will still work as `help`)
 
 - When a filter (prefix <code>--</code>) is applied, the help message will display the helper for the specified command.
 - By default, all available commands and the link to the user guide would be displayed.
@@ -147,6 +150,9 @@ ______________________________
 ### Listing all food products
 
 `list` - List all food products available in the tracker.
+* Any extraneous parameters input after the command `list` will be ignored.
+
+  (e.g. `list 123 abcde` will still work as `list`)
 
 - The list is sorted in order of the expiry dates, regardless of the order of food that is added.
 - All food products will be listed with its index, name, freshness, expiry date, number of days left / expired,
@@ -372,6 +378,9 @@ ______________________________
 
 ### Clearing the food list
 `clear` - This command will clear the entire food list.
+* Any extraneous parameters input after the command `clear` will be ignored.
+  
+  (e.g. `clear 123 abcde` will still work as `clear`)
 
 Output:
 
@@ -383,6 +392,9 @@ ______________________________
 
 ### Exiting FSP
 `exit` - This command will save the food list in an external file before closing the program.
+* Any extraneous parameters input after the command `exit` will be ignored.
+
+  (e.g. `exit 123 abcde` will still work as `exit`)
 
 ## FAQ
 

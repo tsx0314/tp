@@ -337,11 +337,6 @@ public class Food {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory());
-        } else if (getUnit() == null) {
-            foodDetail = getName() + expiryStatus
-                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
-                    + "\n       Category: " + getCategoryString(getCategory())
-                    + "\n       Remaining quantity: " + getQuantity();
         } else {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString

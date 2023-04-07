@@ -49,8 +49,6 @@ public class AddCommand extends Command {
     private static final String LITRE_3 = "litres";
     private static final String SERVING_1 = "serving";
     private static final String SERVING_2 = "servings";
-    private static final String UNIT_1 = "unit";
-    private static final String UNIT_2 = "units";
     private static final String BOX_1 = "box";
     private static final String BOX_2 = "boxes";
     private static final String PACKET_1 = "packet";
@@ -235,6 +233,7 @@ public class AddCommand extends Command {
         return isValid;
     }
 
+    //@@author tsx0314
     /**
      * Returns a boolean value which indicate whether the date is valid
      *
@@ -255,6 +254,7 @@ public class AddCommand extends Command {
         return true;
     }
 
+    //@@author tsx0314
     /**
      * Return a food category according to the input
      *
@@ -285,6 +285,7 @@ public class AddCommand extends Command {
         }
     }
 
+    //@@author tsx0314
     /**
      * Return the input number is reasonable
      * @param number a number string

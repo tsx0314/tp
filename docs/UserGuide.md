@@ -77,13 +77,15 @@ Adds a food product to the list of food items.
 Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNITS}`
 
 * The parameter cannot contain any punctuations, or else it will return as incorrect command.
-* `-c CAT`and`-q QUANTITY -u UNITS` are optional
-  * However, `-u UNIT` cannot add alone
+* `-n FOOD_NAME` and `-e DD/MM/YYYY` are compulsory.
+* `-c CAT`and`-q QUANTITY -u UNITS` are optional.
+  * However, `-u UNIT` cannot add alone,
     * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10.0`. 
 However, it cannot be `add -n milk -e 21/03/2025 -u packets`
 * For `category`, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
-any other category will be deemed as `OTHERS`.
-* For `unit`, we only have `mg`, `g`, `kg`, `unit`,`ml`,`l`,`serving`,`packet` and `box`
+any other category or no category added will be deemed as `OTHERS`.
+* For `unit`, we only have `mg`, `g`, `kg`, `unit`,`ml`,`l`,`serving`,`packet` and `box`.
+Any other unit or no unit added will be deemed as `unit`.
 
 Examples of usage:
 
@@ -273,9 +275,13 @@ This command will save the food list in an external file before closing the prog
 * help - `help {--COMMAND_WORD}`
   * e.g. <code>help --update --add</code> 
 * Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNIT}`
-  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets</code>
-  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others</code>
-  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others -q 10</code>
+  * All possible add command format:
+    * e.g. `add -n Red Mill Granola -e 20/05/2025`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -q 10`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others -q 10`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -q 10 -u packets`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets`
 * List - `list`
 * Remove - `remove INDEX_NUMBER`
   * e.g. remove 1

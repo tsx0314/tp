@@ -18,7 +18,7 @@ public class RemoveCommand extends Command {
         this.index = index;
     }
 
-    public boolean isNumeric (){
+    public boolean isInteger (){
         try {
             Integer.parseInt(index);
         } catch (NumberFormatException e){
@@ -30,13 +30,13 @@ public class RemoveCommand extends Command {
     public CommandResult execute (FoodList foodlist) throws DukeException {
 
         if (index.isBlank()) {
-            String BLANK_INDEX_MESSAGE = BLANK_INDEX_MESSAGE_1 + foodlist.getNumberOfFood() + BLANK_INDEX_MESSAGE_2;
-            throw new IllegalValueException(BLANK_INDEX_MESSAGE);
+            String blankIntegerMessage = BLANK_INDEX_MESSAGE_1 + foodlist.getNumberOfFood() + BLANK_INDEX_MESSAGE_2;
+            throw new IllegalValueException(blankIntegerMessage);
         }
 
-        if(!isNumeric()){
-            String BLANK_INDEX_MESSAGE = BLANK_INDEX_MESSAGE_1 + foodlist.getNumberOfFood() + BLANK_INDEX_MESSAGE_2;
-            return new CommandResult(BLANK_INDEX_MESSAGE);
+        if(!isInteger()){
+            String notIntegerMessage = BLANK_INDEX_MESSAGE_1 + foodlist.getNumberOfFood() + BLANK_INDEX_MESSAGE_2;
+            return new CommandResult(notIntegerMessage);
         }
 
         if(!isNumberValid(index)){
@@ -45,8 +45,9 @@ public class RemoveCommand extends Command {
 
         int deleteItem = Integer.parseInt(index.trim()) - 1;
         if (deleteItem >= foodlist.getNumberOfFood() || deleteItem < 0) {
-            String INDEX_MESSAGE = INCORRECT_INDEX_MESSAGE_1 + foodlist.getNumberOfFood() + BLANK_INDEX_MESSAGE_2;
-            throw new IllegalValueException(INDEX_MESSAGE);
+            String incorrectIndexFormat = INCORRECT_INDEX_MESSAGE_1 + foodlist.getNumberOfFood()
+                                            + BLANK_INDEX_MESSAGE_2;
+            throw new IllegalValueException(incorrectIndexFormat);
         }
 
         String foodName = foodlist.getFood(deleteItem).getName();

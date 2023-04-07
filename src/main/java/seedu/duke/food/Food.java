@@ -38,7 +38,6 @@ public class Food {
     private String expiryDate;
     private Double quantity;
     private String unit;
-
     private FoodCategory category;
 
     /**

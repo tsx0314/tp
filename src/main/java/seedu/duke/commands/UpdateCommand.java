@@ -59,7 +59,7 @@ public class UpdateCommand extends Command{
                     currentFood.setExpiryDate(flagValue);
                     break;
                 case "q":
-                    if (currentFood.getQuantity() == 0 && Arrays.asList(flags).contains("u")) {
+                    if (currentFood.getQuantity() == 0.0 && Arrays.asList(flags).contains("u")) {
                         throw new DukeException("Can't set quantity with no unit provided");
                     }
                     currentFood.setQuantity(Double.parseDouble(flagValue));
@@ -67,6 +67,9 @@ public class UpdateCommand extends Command{
                     currentFood.setUnit(currentFoodUnit);
                     break;
                 case "u":
+                    if (currentFood.getQuantity() == 0.0) {
+                        throw new DukeException("Can't set unit when quantity is not provided");
+                    }
                     currentFood.setUnit(flagValue);
                     break;
                 case "c":

@@ -62,9 +62,13 @@ public class UpdateCommand extends Command{
                     if (currentFood.getQuantity() == 0.0 && Arrays.asList(flags).contains("u")) {
                         throw new DukeException("Can't set quantity with no unit provided");
                     }
-                    currentFood.setQuantity(Double.parseDouble(flagValue));
-                    String currentFoodUnit = currentFood.getUnit();
-                    currentFood.setUnit(currentFoodUnit);
+                    double newQuantity = Double.parseDouble(flagValue);
+                    if(newQuantity < 0.0){
+                        throw new DukeException("Can't set quantity of a negative value.");
+                    }
+                    currentFood.setQuantity(newQuantity);
+                    String newFoodUnit = currentFood.getUnit();
+                    currentFood.setUnit(newFoodUnit);
                     break;
                 case "u":
                     if (currentFood.getQuantity() == 0.0) {

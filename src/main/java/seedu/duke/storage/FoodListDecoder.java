@@ -20,6 +20,7 @@ import java.util.List;
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java
  */
 public class FoodListDecoder {
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String SEPARATOR = "«";
     private static final char NAME_IDENTIFIER = 'n';
     private static final char EXPIRY_DATE_IDENTIFIER = 'e';
@@ -28,11 +29,10 @@ public class FoodListDecoder {
     private static final char CATEGORY_IDENTIFIER = 'c';
     private static final String MISSING_IDENTIFIER_ERROR = "Error in reading storage file: Missing identifier." ;
     private static final String INVALID_QUANTITY_ERROR = "Quantity in save file is not a valid number.";
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
-     * Decodes <code>encodedFoodList</code> into an <code>FoodList</code> containing the decoded food. It is able to handle
-     * modifications to the encodedFoodList such as missing data and additional data.
+     * Decodes <code>encodedFoodList</code> into an <code>FoodList</code> containing the decoded food. It is
+     * able to handle modifications to the encodedFoodList such as missing data and additional data.
      *
      * @param encodedFoodList this is the line of food attribute of the current food
      * @return the foodList that are able to be processed by this method, unprocessable data will be ignored
@@ -103,11 +103,11 @@ public class FoodListDecoder {
                     unit = detail;
                     break;
                 case CATEGORY_IDENTIFIER:
-                   if(hasValidCategory(detail)) {
+                    if(hasValidCategory(detail)) {
                        category = detail;
-                   } else {
+                    } else {
                        category = String.valueOf(FoodCategory.UNCLASSIFIED_FOOD);
-                   }
+                    }
                     break;
                 default:
                     break;
@@ -146,15 +146,15 @@ public class FoodListDecoder {
      * @throws ReadStorageFileErrorException when not valid
      */
     private static boolean hasValidExpiryDate(String detail) throws ReadStorageFileErrorException {
-       try {
+        try {
            LocalDate.parse(detail, formatter);
-       } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
+            throw new ReadStorageFileErrorException("expiry date: " + detail);
+        }
+        if (isInvalidDate(detail)) {
            throw new ReadStorageFileErrorException("expiry date: " + detail);
-       }
-       if (isInvalidDate(detail)) {
-           throw new ReadStorageFileErrorException("expiry date: " + detail);
-       }
-       return true;
+        }
+        return true;
     }
 
     /**

@@ -14,12 +14,12 @@ import seedu.duke.food.Food;
  */
 public class FoodListEncoder {
 
-    private static final String SEPARATOR = "«";
-    private static final String NAME_IDENTIFIER = "n";
-    private static final String EXPIRY_DATE_IDENTIFIER = "e";
-    private static final String QUANTITY_IDENTIFIER = "q";
-    private static final String UNIT_IDENTIFIER = "u";
-    private static final String CATEGORY_IDENTIFIER = "c";
+    private static final String SEPARATOR = "  «";
+    private static final String NAME_IDENTIFIER = "n  ";
+    private static final String EXPIRY_DATE_IDENTIFIER = "e  ";
+    private static final String QUANTITY_IDENTIFIER = "q  ";
+    private static final String UNIT_IDENTIFIER = "u  ";
+    private static final String CATEGORY_IDENTIFIER = "c  ";
 
     /**
      * Encodes all the <code>Food</code> in the <code>toSave</code> into a list of decodable and readable string

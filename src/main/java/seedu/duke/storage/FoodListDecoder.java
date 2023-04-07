@@ -104,9 +104,9 @@ public class FoodListDecoder {
                     break;
                 case CATEGORY_IDENTIFIER:
                     if(hasValidCategory(detail)) {
-                       category = detail;
+                        category = detail;
                     } else {
-                       category = String.valueOf(FoodCategory.UNCLASSIFIED_FOOD);
+                        category = String.valueOf(FoodCategory.UNCLASSIFIED_FOOD);
                     }
                     break;
                 default:
@@ -147,12 +147,12 @@ public class FoodListDecoder {
      */
     private static boolean hasValidExpiryDate(String detail) throws ReadStorageFileErrorException {
         try {
-           LocalDate.parse(detail, formatter);
+            LocalDate.parse(detail, formatter);
         } catch (DateTimeParseException e) {
             throw new ReadStorageFileErrorException("expiry date: " + detail);
         }
         if (isInvalidDate(detail)) {
-           throw new ReadStorageFileErrorException("expiry date: " + detail);
+            throw new ReadStorageFileErrorException("expiry date: " + detail);
         }
         return true;
     }

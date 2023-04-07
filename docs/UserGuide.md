@@ -13,6 +13,7 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Removing a food product: `remove`](#removing-a-food-product) 
   + [Finding food products by name: `find`](#finding-food-products-by-name)
   + [Update food products by index: `update`](#updating-food-products-by-index)
+  + [Clears the food list: `clear`](#clearing-all-food-in-list)
   + [Exit FSP Program: `exit`](#exiting-fsp)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
@@ -63,10 +64,10 @@ Command 'find': This command finds the food product by its name.
 Format: find PRODUCT_NAME
 
 
-List of commands: 'exit', 'help', 'list', 'add', 'remove', 'find'
+List of commands: 'add', 'list', 'remove', 'find', 'update', 'clear', 'exit'.
 For more detailed information on usage of specific command, type: help --COMMAND
-Refer to our user guide for more in-depth details on how to use our system:
-https://docs.google.com/document/d/1WKscnkYy9UqI_tsWmUHIMjgILJc6GQeFn0B1ce6qkQo/edit?usp=sharing
+Refer to our user guide for more in-depth details on how to use Food Supply Tracker:
+https://ay2223s2-cs2113-w13-3.github.io/tp/UserGuide.html
 Mar 31, 2023 1:26:06 PM seedu.duke.Duke run
 INFO: Processed user command successfully
 ______________________________
@@ -223,6 +224,12 @@ ______________________________
 `update` - Change any attribute based on the index in the list.
 
 * Multiple attributes can be changed at once by appending the identifier at the back.
+* Valid identifiers includes:
+  * `-n` for name
+  * `-e` for expiry date
+  * `-c` for category
+  * `-q` for quantity
+  * `-u` for units
 
 Example of Usage:
 
@@ -240,6 +247,11 @@ Blueberry
        Remaining quantity: 20.0 g
 ______________________________
 ```
+The input above resulted in the updating of quantity to 20.
+
+### Clearing all food in list
+`list` - Clears the food list
+* All food in the food list will be cleared; this will result in an empty food list. 
 
 ### Exiting FSP
 
@@ -279,7 +291,7 @@ ______________________________
 
 ## Command Summary
 
-* help - `help {--COMMAND_WORD}`
+* Help - `help {--COMMAND_WORD}`
   * e.g. <code>help --update --add</code> 
 * Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNIT}`
   * All possible add command format:
@@ -296,4 +308,5 @@ ______________________________
   * e.g. <code>find egg -fresh</code>
 * Update - <code>update INDEX -filter UPDATED_VALUE</code>
   * e.g. <code>update 2 -q 1</code>
-* exit - `exit`
+* Clear - `clear`
+* Exit - `exit`

@@ -80,8 +80,8 @@ public class AddCommand extends Command {
      * @return a CommandResult object to display the successful message
      */
     public CommandResult execute(FoodList foodList) throws DukeException {
-        boolean hasQuantity = details.contains("-q");
-        boolean hasCategory = details.contains("-c");
+        boolean hasQuantity = details.contains(QUANTITY_SEPARATOR);
+        boolean hasCategory = details.contains(CATEGORY_SEPARATOR);
         boolean hasUnit = details.contains(UNIT_SEPARATOR);
         String[] foodDetails = splitDetails(details);
         assert foodDetails.length >= 2 : "Input is wrong";
@@ -173,7 +173,6 @@ public class AddCommand extends Command {
         boolean hasQuantity = details.contains(QUANTITY_SEPARATOR);
         boolean hasUnit = details.contains(UNIT_SEPARATOR);
         boolean hasCat = details.contains(CATEGORY_SEPARATOR);
-
 
         String name;
         String date;

@@ -10,6 +10,36 @@ import java.time.temporal.ChronoUnit;
 
 
 public class Food {
+    private static final String MILLIGRAM_1 = "mg";
+    private static final String MILLIGRAM_2 = "milligram";
+    private static final String MILLIGRAM_3 = "milligrams";
+    private static final String MILLIGRAM_4 = "milli gram";
+    private static final String MILLIGRAM_5 = "milli grams";
+    private static final String GRAM_1 = "gram";
+    private static final String GRAM_2 = "g";
+    private static final String GRAM_3 = "grams";
+    private static final String KILOGRAM_1 = "kg";
+    private static final String KILOGRAM_2 = "kilogram";
+    private static final String KILOGRAM_3 = "kilograms";
+    private static final String KILOGRAM_4 = "kilo gram";
+    private static final String KILOGRAM_5 = "kilo grams";
+    private static final String MILLIMETRE_1 = "ml";
+    private static final String MILLIMETRE_2 = "millilitre";
+    private static final String MILLIMETRE_3 = "millilitres";
+    private static final String MILLIMETRE_4 = "milli litre";
+    private static final String MILLIMETRE_5 = "milli litres";
+    private static final String LITRE_1 = "l";
+    private static final String LITRE_2 = "litre";
+    private static final String LITRE_3 = "litres";
+    private static final String SERVING_1 = "serving";
+    private static final String SERVING_2 = "servings";
+    private static final String UNIT_1 = "unit";
+    private static final String UNIT_2 = "units";
+    private static final String BOX_1 = "box";
+    private static final String BOX_2 = "boxes";
+    private static final String PACKET_1 = "packet";
+    private static final String PACKET_2 = "packets";
+
     private String name;
     private String expiryDate;
     private Double quantity;
@@ -171,8 +201,6 @@ public class Food {
             return "seafood";
         case VEGETABLE:
             return "vegetable";
-        case OTHERS:
-            return "others";
         default:
             return "others";
 
@@ -180,7 +208,66 @@ public class Food {
     }
 
     public void setUnit(String unit) {
-        this.unit = unit;
+        String unit_temp = getUnitOfFood(unit, quantity);
+        this.unit = unit_temp;
+    }
+
+    public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
+        switch (unitTemporary.toLowerCase()){
+        case MILLIGRAM_1:
+        case MILLIGRAM_2:
+        case MILLIGRAM_3:
+        case MILLIGRAM_4:
+        case MILLIGRAM_5:
+            return String.valueOf(Unit.MILLIGRAM.abbreviation);
+        case GRAM_1:
+        case GRAM_2:
+        case GRAM_3:
+            return String.valueOf(Unit.GRAM.abbreviation);
+        case KILOGRAM_1:
+        case KILOGRAM_2:
+        case KILOGRAM_3:
+        case KILOGRAM_4:
+        case KILOGRAM_5:
+            return String.valueOf(Unit.KILOGRAM.abbreviation);
+        case MILLIMETRE_1:
+        case MILLIMETRE_2:
+        case MILLIMETRE_3:
+        case MILLIMETRE_4:
+        case MILLIMETRE_5:
+            return String.valueOf(Unit.MILLILITER.abbreviation);
+        case LITRE_1:
+        case LITRE_2:
+        case LITRE_3:
+            return String.valueOf(Unit.LITER.abbreviation);
+        case SERVING_1:
+        case SERVING_2:
+            if(quantityInDouble == 1) {
+                return String.valueOf(Unit.SERVING.abbreviation);
+            } else {
+                return String.valueOf(Unit.SERVINGS.abbreviation);
+            }
+        case BOX_1:
+        case BOX_2:
+            if(quantityInDouble == 1){
+                return String.valueOf(Unit.BOX.abbreviation);
+            } else {
+                return String.valueOf(Unit.BOXES.abbreviation);
+            }
+        case PACKET_1:
+        case PACKET_2:
+            if(quantityInDouble == 1){
+                return String.valueOf(Unit.PACKET.abbreviation);
+            } else {
+                return String.valueOf(Unit.PACKETS.abbreviation);
+            }
+        default:
+            if(quantityInDouble == 1) {
+                return String.valueOf(Unit.UNIT.abbreviation);
+            } else {
+                return String.valueOf(Unit.UNITS.abbreviation);
+            }
+        }
     }
 
     /**
@@ -206,7 +293,7 @@ public class Food {
         return expiryDate.isAfter(LocalDate.now());
     }
     public String getExpiryStatus() throws DukeException {
-        String expiryStatus = null;
+        String expiryStatus;
         if(!isFresh()){
             expiryStatus = " (expired) ";
         } else {
@@ -223,8 +310,7 @@ public class Food {
 
     public String getDaysString() throws DukeException {
         if(isFresh()) {
-            String daysToExpireNotice = null;
-            daysToExpireNotice = " (" + getDaysExpire() + " days left)";
+            String daysToExpireNotice = " (" + getDaysExpire() + " days left)";
             return daysToExpireNotice;
         }
 
@@ -243,7 +329,7 @@ public class Food {
     @Override
     public String toString()  {
         Double quantity = getQuantity();
-        String foodDetail = "";
+        String foodDetail;
         String expiryStatus = "";
         String daysLeftString = "";
 

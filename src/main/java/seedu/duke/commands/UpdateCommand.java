@@ -34,7 +34,9 @@ public class UpdateCommand extends Command{
         try {
             index = Integer.parseInt(this.index.trim()) - 1;
         } catch(NumberFormatException e) {
-            throw new DukeException("Invalid index format!");
+            int numberOfFood = foodList.getNumberOfFood();
+            String wrongIndex = "Invalid index format! Please give an index within range of " + numberOfFood;
+            throw new DukeException(wrongIndex);
         }
         Food currentFood = foodList.getFood(index);
 

@@ -46,7 +46,6 @@ public class Duke {
         CommandResult result = c.execute(foodList);
         result.printResult();
         storageFile.save(foodList);
-
         return c.isExit();
     }
 

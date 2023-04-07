@@ -76,14 +76,16 @@ Adds a food product to the list of food items.
 
 Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNITS}`
 
-* The `FOOD_NAME` cannot contain any punctuations, or else it will return as incorrect command.
-* `-c CAT`and`-q QUANTITY -u UNITS` are optional
-  * However, `-u UNIT` cannot add alone
-    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10`. 
-However, it cannot be `add -n milk -e 21/03/2025-u packets`
+* The parameter cannot contain any punctuations, or else it will return as incorrect command.
+* `-n FOOD_NAME` and `-e DD/MM/YYYY` are compulsory.
+* `-c CAT`and`-q QUANTITY -u UNITS` are optional.
+  * However, `-u UNIT` cannot add alone,
+    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10.0`. 
+However, it cannot be `add -n milk -e 21/03/2025 -u packets`
 * For `category`, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
-any other category will be deemed as `OTHERS`.
-* Please do not enter any punctuation, or else your command will be deemed as incorrect command format.
+any other category or no category added will be deemed as `OTHERS`.
+* For `unit`, we only have `mg`, `g`, `kg`, `unit`,`ml`,`l`,`serving`,`packet` and `box`.
+Any other unit or no unit added will be deemed as `unit`.
 
 Examples of usage:
 
@@ -91,17 +93,34 @@ Examples of usage:
 
 `add -n milk -e 21/03/2025 -c dairy -q 10 -u packets`
 
-Output:
+Output: 
+
+(The product is added on 06/04/2023, thus it shows 715 days left. The display of remaining freshness date will vary,
+based on your current date)
 ```
 ______________________________
-milk
-       Expiry date: 21/03/2025
+milk (fresh) 
+       Expiry date: 21/03/2025 (715 days left)
        Category: dairy
        Remaining quantity: 10.0 packets
 
 I have added this product! :)
 ______________________________
 ```
+
+<bold>Input:</bold>
+
+`add -n mike's milk -e 21/03/2025 -c dairy -q 10 -u packets`
+
+Output:
+
+```
+______________________________
+Oops! Incorrect command format. Type 'help' to see more!!
+______________________________
+
+```
+
 
 ### Listing all food products: <code>list</code>
 List all food products available in the tracker regardless of expiry status.
@@ -255,8 +274,14 @@ This command will save the food list in an external file before closing the prog
 
 * help - `help {--COMMAND_WORD}`
   * e.g. <code>help --update --add</code> 
-* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
-  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets</code>
+* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNIT}`
+  * All possible add command format:
+    * e.g. `add -n Red Mill Granola -e 20/05/2025`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -q 10`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others -q 10`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -q 10 -u packets`
+    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets`
 * List - `list`
 * Remove - `remove INDEX_NUMBER`
   * e.g. remove 1

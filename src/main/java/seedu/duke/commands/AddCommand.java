@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Represent an add command
+ * Represent an Add command
  */
 public class AddCommand extends Command {
 
@@ -29,7 +29,8 @@ public class AddCommand extends Command {
             "Please input a valid date :<";
     private static final String EXPIRY_DATE_MESSAGE =
             "Please do not add an expired product :<";
-    private static final String INVALID_INPUT_MESSAGE = "Please use reasonable value :<";
+    private static final String INVALID_INPUT_MESSAGE = "The number you entered exceeds 9999. " +
+            "Please use reasonable value :<";
 
     private static final String MILLIGRAM_1 = "mg";
     private static final String MILLIGRAM_2 = "milligram";
@@ -48,12 +49,11 @@ public class AddCommand extends Command {
     private static final String LITRE_3 = "litres";
     private static final String SERVING_1 = "serving";
     private static final String SERVING_2 = "servings";
-    private static final String UNIT_1 = "unit";
-    private static final String UNIT_2 = "units";
     private static final String BOX_1 = "box";
     private static final String BOX_2 = "boxes";
     private static final String PACKET_1 = "packet";
     private static final String PACKET_2 = "packets";
+    private static final String DATE_FORMAT = "dd/MM/yyyy";
 
     public String details;
 
@@ -68,7 +68,7 @@ public class AddCommand extends Command {
 
     /**
      * Returns a CommandResult object to display the successful message after executing the command as below
-     * Separate the food name and the expiry date details and add a new food item in the list
+     * Separate the food details and add a new food item in the list
      *
      * @param foodList a food list
      * @return a CommandResult object to display the successful message
@@ -82,7 +82,7 @@ public class AddCommand extends Command {
         String name = foodDetails[0];
         String date = foodDetails[1];
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
         try {
             LocalDate expiryDate = LocalDate.parse(date, formatter);
@@ -111,7 +111,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, category);
             } else if (foodDetails.length == 3 && !hasCategory && hasQuantity) {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -119,7 +119,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, quantity);
             } else if (foodDetails.length == 4 && hasUnit) {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -128,7 +128,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, quantity, unit);
             } else if (foodDetails.length == 4 && !hasUnit) {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -137,7 +137,7 @@ public class AddCommand extends Command {
                 newFood = new Food(name, date, quantity, category);
             } else {
                 String q = foodDetails[2];
-                if (!isNumberValid(q)) {
+                if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
                 assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
@@ -204,6 +204,7 @@ public class AddCommand extends Command {
             String[] foodDetails = {name, date, quantity, category};
             return foodDetails;
         }
+
         if (!hasCat && hasUnit && hasQuantity) {
             String[] quantityAndUnit = temp[1].trim().split(UNIT_SEPARATOR, 2);
             unit = quantityAndUnit[1].trim();
@@ -220,7 +221,6 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
-
     /**
      * Returns whether the input date is a valid expiry date
      *
@@ -233,6 +233,13 @@ public class AddCommand extends Command {
         return isValid;
     }
 
+    //@@author tsx0314
+    /**
+     * Returns a boolean value which indicate whether the date is valid
+     *
+     * @param date date
+     * @return whether it is a valid date
+     */
     public boolean isValid(String date) {
         String[] splitString = date.split("/", 3);
         String d = splitString[0];
@@ -247,6 +254,7 @@ public class AddCommand extends Command {
         return true;
     }
 
+    //@@author tsx0314
     /**
      * Return a food category according to the input
      *
@@ -277,7 +285,13 @@ public class AddCommand extends Command {
         }
     }
 
-    boolean isNumberValid(String number) {
+    //@@author tsx0314
+    /**
+     * Return the input number is reasonable
+     * @param number a number string
+     * @return whether the number is valid
+     */
+    boolean isNumberReasonable(String number) {
         if (number.length() >= 5) {
             return false;
         }

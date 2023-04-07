@@ -1,9 +1,42 @@
 # Developer Guide
 
++ [Acknowledgement](#acknowledgement)
++ [Design](#design)
+  + [Architecture Design Diagram](#architecture-design-diagram)
+  + [UML Sequence Diagram](#uml-sequence-diagram)
++ [Implementation](#implementation)
+  + [Add feacture](#add-feature)
+  + [Remove feature](#remove-feature)
+  + [Find feature](#find-feature)
+  + [List feature](#list-feature)
+  + [help feature](#help-feature)
++ [Appendix: Requirements](#appendix--requirements)
+  + [Product Scope](#product-scope)
+  + [User Stories](#user-stories)
+
+## Acknowledgement
+
+The documentation and organisation of our project follows the recommended format in [SE-Education](http://se-education.org/addressbook-level3/DeveloperGuide.html).
+Part of the code is inspired by the [addressbook-level3](https://github.com/se-edu/addressbook-level3)
+
 ## Design
+### Architecture Design Diagram
 
-{To Be Added}
+![Diagram](images/Architecture_Diagram.png)
 
+Main components of the architecture
+
+`Duke` is the entry point of the application. It is responsible for, 
++ At app launch: Initializes the components in the correct sequence, and connects them up with each other.
++ At shut down: Shuts down the components
+
+The rest:
++ Ui: The UI of the App. This part displays the messages to the user.
++ Command: The command executor.
++ Storage: Reads data from, and writes data to, the hard disk.
+
+### UML Sequence Diagram
+![SequenceDiagram](images/SequenceDiagram-Food_Supply_Tracker.png)
 ---
 
 ## Implementation
@@ -18,8 +51,12 @@ It is also facilitated by `Foodlist` Class, using `addFood` method of `FoodList`
 The add feature implementation is as follows:
 1. New AddCommand object is created by passing in a String containing food details
 2. `splitDetails` is called to split the string using different flags `-n`,`-e`,`-c`,`-q`,`-u`;
-3. Create a new `Food` object and use `addFood` to add the new food into the food list
-4. Return a `CommandResult` to show the successful message to the user
+3. After obtaining an array of String, it will check the correctness of each parameter. It will specially check the date 
+and the quantity. If the `date` is not a valid date (e.g. 02/15/2024)or it is before the current date
+(meaning expired food), it will return a `CommandResult` object, and `Duke` will continue print the command result.
+4. If there is no error, it will create a new `Food` object, based on the parameter number contained in the array.
+5. `addFood` is called to add the new food into the food list
+6. Return a `CommandResult` to show the successful message to the user
 
 
 **Class Diagram**
@@ -125,7 +162,7 @@ specified by `filter`.
 
 ---
 ## Appendix: Requirements
-# Product scope
+# Product Scope
 **Project Direction**
 - Food Supplies Tracker: Main function is to track expiry dates 
 and storage area of foods as to minimise food shortage.

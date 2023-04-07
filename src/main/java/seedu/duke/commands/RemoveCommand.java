@@ -5,7 +5,6 @@ import seedu.duke.exceptions.IllegalValueException;
 import seedu.duke.food.FoodList;
 
 public class RemoveCommand extends Command {
-    public String index;
     public static final String COMMAND_WORD = "remove";
     public static final String BLANK_INDEX_MESSAGE_1 = "Please enter an integer to remove a food item.\n" +
                                                         "You now have ";
@@ -13,6 +12,7 @@ public class RemoveCommand extends Command {
     public static final String INCORRECT_INDEX_MESSAGE_1 = "Incorrect value entered.\n" +
                                                             "Your now have ";
     public static final String INVALID_INPUT_MESSAGE = "Please use a reasonable value :<";
+    public String index;
 
     public RemoveCommand(String index) {
         this.index = index;

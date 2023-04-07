@@ -72,6 +72,7 @@ ______________________________
 ```
 
 ### Adding a food product: `add`
+
 Adds a food product to the list of food items.
 
 Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNITS}`

@@ -72,7 +72,7 @@ public class Food {
         this.expiryDate = expiryDate;
         this.category = FoodCategory.OTHERS;
         this.quantity = 0.0;
-        this.unit = Unit.UNITS.abbreviation;
+        this.unit = Unit.UNIT.abbreviation;
     }
 
     /**
@@ -88,7 +88,7 @@ public class Food {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = 0.0;
-        this.unit = Unit.UNITS.abbreviation;
+        this.unit = Unit.UNIT.abbreviation;
         this.category = category;
     }
 

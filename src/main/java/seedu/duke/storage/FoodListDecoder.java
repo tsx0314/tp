@@ -6,6 +6,7 @@ import seedu.duke.exceptions.ReadStorageFileErrorException;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodCategory;
 import seedu.duke.food.FoodList;
+import seedu.duke.food.Unit;
 import seedu.duke.general.Ui;
 
 import java.time.LocalDate;
@@ -100,7 +101,11 @@ public class FoodListDecoder {
                     }
                     break;
                 case UNIT_IDENTIFIER:
-                    unit = detail;
+                    if (hasValidUnit(detail)) {
+                        unit = detail;
+                    } else {
+                        unit = String.valueOf(Unit.UNIT);
+                    }
                     break;
                 case CATEGORY_IDENTIFIER:
                     if(hasValidCategory(detail)) {
@@ -186,6 +191,21 @@ public class FoodListDecoder {
     private static boolean hasValidCategory(String detail) {
         for (FoodCategory category : FoodCategory.values()) {
             if (category.name().equals(detail)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * This method checks whether the encoded <code>unit</code> is valid.
+     *
+     * @param detail is the encoded unit
+     * @return true if valid; false otherwise
+     */
+    private static boolean hasValidUnit(String detail) {
+        for (Unit unit : Unit.values()) {
+            if (unit.name().equals(detail)) {
                 return true;
             }
         }

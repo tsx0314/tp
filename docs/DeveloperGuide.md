@@ -183,9 +183,18 @@ and storage area of foods as to minimise food shortage.
 
 Currently, the following functionality was implemented:
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE {-p QUANTITY}`
+`add -n PRODUCT_NAME -e EXPIRY_DATE `
 
-`add -e EXPIRY_DATE -n PRODUCT_NAME {-p QUANTITY}`
+`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY `
+
+`add -n PRODUCT_NAME -e EXPIRY_DATE -p QUANTITY `
+
+`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY -p QUANTITY`
+
+`add -n PRODUCT_NAME -e EXPIRY_DATE -p QUANTITY -u UNIT`
+
+`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY -p QUANTITY -u UNIT`
+
 
 `find {PRODUCT_NAME}`
 
@@ -194,8 +203,6 @@ Currently, the following functionality was implemented:
 `find {PRODUCT_NAME} -expired`
 
 `help {--COMMAND_WORD}`
-
-The next possible flag to implement will be `-c` which stands for `categories`
 
 # User stories
 

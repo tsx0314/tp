@@ -208,8 +208,8 @@ public class Food {
     }
 
     public void setUnit(String unit) {
-        String unit_temp = getUnitString(unit, quantity);
-        this.unit = unit_temp;
+        String unitTemp = getUnitString(unit, quantity);
+        this.unit = unitTemp;
     }
 
     public String getUnitString(String unitTemporary, Double quantityInDouble) {

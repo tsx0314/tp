@@ -63,6 +63,8 @@ public class UpdateCommand extends Command{
                         throw new DukeException("Can't set quantity with no unit provided");
                     }
                     currentFood.setQuantity(Double.parseDouble(flagValue));
+                    String dummyUnit = "dummy";
+                    currentFood.setUnit(dummyUnit);
                     break;
                 case "u":
                     currentFood.setUnit(flagValue);

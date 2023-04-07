@@ -73,6 +73,7 @@ public class Food {
         this.expiryDate = expiryDate;
         this.category = FoodCategory.OTHERS;
         this.quantity = 0.0;
+        this.unit = Unit.UNIT.abbreviation;
     }
 
     /**
@@ -88,6 +89,8 @@ public class Food {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = 0.0;
+        String dummyUnit = "dummy";
+        this.unit = getUnitString(dummyUnit, quantity);
         this.category = category;
     }
 
@@ -98,6 +101,8 @@ public class Food {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
+        String dummyUnit = "dummy";
+        this.unit = getUnitString(dummyUnit, quantity);
         this.category = FoodCategory.OTHERS;
     }
 
@@ -108,6 +113,8 @@ public class Food {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = quantity;
+        String dummyUnit = "dummy";
+        this.unit = getUnitString(dummyUnit, quantity);
         this.category = category;
     }
 
@@ -197,16 +204,15 @@ public class Food {
             return "vegetable";
         default:
             return "others";
-
         }
     }
 
     public void setUnit(String unit) {
-        String unit_temp = getUnitOfFood(unit, quantity);
+        String unit_temp = getUnitString(unit, quantity);
         this.unit = unit_temp;
     }
 
-    public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
+    public String getUnitString(String unitTemporary, Double quantityInDouble) {
         switch (unitTemporary.toLowerCase()){
         case MILLIGRAM_1:
         case MILLIGRAM_2:
@@ -278,7 +284,7 @@ public class Food {
 
     public boolean isFresh() throws DukeException {
         LocalDate expiryDate = parseExpiryDate();
-        return expiryDate.isAfter(LocalDate.now());
+        return expiryDate.isAfter(getDate());
     }
     public String getExpiryStatus() throws DukeException {
         String expiryStatus;
@@ -292,7 +298,7 @@ public class Food {
 
     public long getDaysExpire () throws DukeException {
         LocalDate expiryDate = parseExpiryDate();
-        long days = ChronoUnit.DAYS.between(LocalDate.now(), expiryDate);
+        long days = ChronoUnit.DAYS.between(getDate(), expiryDate);
         return days;
     }
 
@@ -307,6 +313,7 @@ public class Food {
         daysExpiredNotice = " (expired " + convertToPositiveDays + " days)";
         return daysExpiredNotice;
     }
+
     //@@author david
 
     /**

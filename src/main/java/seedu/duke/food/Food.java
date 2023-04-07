@@ -129,10 +129,7 @@ public class Food {
     }
 
 
-    public Food(String name, String expiryDate, Double quantity, String unit, String category) throws DukeException {
-        Validator.isQuantityValid(quantity);
-        Validator.isExpiryDateValid(expiryDate);
-        Validator.isUnitValid(unit);
+    public Food(String name, String expiryDate, Double quantity, String unit, String category) {
 
         this.name = name;
         this.expiryDate = expiryDate;
@@ -140,6 +137,13 @@ public class Food {
         this.quantity = quantity;
         this.unit = unit;
     }
+
+    public Food(String name, String expiryDate, String category) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.category = FoodCategory.valueOf(category);
+    }
+
 
     public LocalDate getDate() {
         return LocalDate.now();

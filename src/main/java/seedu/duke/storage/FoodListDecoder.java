@@ -31,24 +31,35 @@ public class FoodListDecoder {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     /**
-     * Decodes {@code encodedFoodList} into an {@code FoodList} containing the decoded food.
+     * Decodes <code>encodedFoodList</code> into an <code>FoodList</code> containing the decoded food. It is able to handle
+     * modifications to the encodedFoodList such as missing data and additional data.
+     *
+     * @param encodedFoodList this is the line of food attribute of the current food
+     * @return the foodList that are able to be processed by this method, unprocessable data will be ignored
      */
     public static FoodList decodeFoodList(List<String> encodedFoodList) {
         final ArrayList<Food> decodedFoodList = new ArrayList<>();
         for (String encodedFood : encodedFoodList) {
             try {
                 decodedFoodList.add(decodeFoodFromString(encodedFood));
-            } catch (StorageOperationException | ReadStorageFileErrorException | EmptyStorageFileException e) {
+            } catch (ReadStorageFileErrorException | EmptyStorageFileException e) {
                 Ui.showError(e.getMessage());
             }
         }
         return new FoodList(decodedFoodList);
     }
 
+
     /**
-     * Decodes {@code encodedFood} into a {@code Food}.
+     * This method decodes the attributes related to a string. It has checks to determine if the attribute is valid or
+     * invalid. After all the present attributes are checked, the food object will be returned with valid attributes.
+     *
+     * @param encodedFood contains the list of attributes to be checked
+     * @return a Food object with attributes
+     * @throws ReadStorageFileErrorException when there are errors with decoding the attributes
+     * @throws EmptyStorageFileException  when the line is empty
      */
-    private static Food decodeFoodFromString(String encodedFood) throws StorageOperationException,
+    private static Food decodeFoodFromString(String encodedFood) throws
             ReadStorageFileErrorException, EmptyStorageFileException {
 
         if (encodedFood.equals("")) {
@@ -113,6 +124,13 @@ public class FoodListDecoder {
         return new Food(foodName, expiryDate, category);
     }
 
+    /**
+     * This method checks whether the encoded <code>foodName</code> is valid.
+     *
+     * @param detail is the encoded foodName
+     * @return true if valid
+     * @throws ReadStorageFileErrorException when not valid
+     */
     private static boolean hasValidFoodName(String detail) throws ReadStorageFileErrorException {
         if (detail.equals("")) {
             throw new ReadStorageFileErrorException("food name: " + detail);
@@ -120,6 +138,13 @@ public class FoodListDecoder {
         return true;
     }
 
+    /**
+     * This method checks whether the encoded <code>expiryDate</code> is valid.
+     *
+     * @param detail is the encoded expiryDate
+     * @return true if valid
+     * @throws ReadStorageFileErrorException when not valid
+     */
     private static boolean hasValidExpiryDate(String detail) throws ReadStorageFileErrorException {
        try {
            LocalDate.parse(detail, formatter);
@@ -132,6 +157,14 @@ public class FoodListDecoder {
        return true;
     }
 
+    /**
+     * This method checks whether the encoded <code>quantity</code> is valid.
+     *
+     * @param detail is the encoded quantity
+     * @return true if valid
+     * @throws ReadStorageFileErrorException when not valid
+     * @throws NumberFormatException when detail cannot be interpreted as a number
+     */
     private static boolean hasValidQuantity(String detail) throws ReadStorageFileErrorException {
         try {
             double value = Double.parseDouble(detail);
@@ -144,6 +177,12 @@ public class FoodListDecoder {
         return true;
     }
 
+    /**
+     * This method checks whether the encoded <code>category</code> is valid.
+     *
+     * @param detail is the encoded category
+     * @return true if valid; false otherwise
+     */
     private static boolean hasValidCategory(String detail) {
         for (FoodCategory category : FoodCategory.values()) {
             if (category.name().equals(detail)) {
@@ -153,6 +192,12 @@ public class FoodListDecoder {
         return false;
     }
 
+    /**
+     * This method checks whether date is valid, based on the concept of leap year.
+     *
+     * @param date is the date to be checked
+     * @return true if valid; false if otherwise
+     */
     public static boolean isInvalidDate(String date) {
         String[] splitString = date.split("/", 3);
         String d = splitString[0];
@@ -164,7 +209,5 @@ public class FoodListDecoder {
         }
         return false;
     }
-
-
 
 }

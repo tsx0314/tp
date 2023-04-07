@@ -241,23 +241,23 @@ public class Food {
             }
         case BOX_1:
         case BOX_2:
-            if(quantityInDouble == 1){
-                return String.valueOf(Unit.BOX.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 return String.valueOf(Unit.BOXES.abbreviation);
+            } else {
+                return String.valueOf(Unit.BOX.abbreviation);
             }
         case PACKET_1:
         case PACKET_2:
-            if(quantityInDouble == 1){
-                return String.valueOf(Unit.PACKET.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 return String.valueOf(Unit.PACKETS.abbreviation);
+            } else {
+                return String.valueOf(Unit.PACKET.abbreviation);
             }
         default:
-            if(quantityInDouble == 1) {
-                return String.valueOf(Unit.UNIT.abbreviation);
-            } else {
+            if(quantityInDouble > 1) {
                 return String.valueOf(Unit.UNITS.abbreviation);
+            } else {
+                return String.valueOf(Unit.UNIT.abbreviation);
             }
         }
     }

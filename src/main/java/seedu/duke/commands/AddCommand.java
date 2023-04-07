@@ -76,7 +76,7 @@ public class AddCommand extends Command {
 
     /**
      * Returns a CommandResult object to display the successful message after executing the command as below
-     * Separate the food name and the expiry date details and add a new food item in the list
+     * Separate the food details and add a new food item in the list
      *
      * @param foodList a food list
      * @return a CommandResult object to display the successful message
@@ -229,7 +229,6 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
-
     /**
      * Returns whether the input date is a valid expiry date
      *
@@ -242,6 +241,12 @@ public class AddCommand extends Command {
         return isValid;
     }
 
+    /**
+     * Returns a boolean value which indicate whether the date is valid
+     *
+     * @param date date
+     * @return whether it is a valid date
+     */
     public boolean isValid(String date) {
         String[] splitString = date.split("/", 3);
         String d = splitString[0];
@@ -286,6 +291,11 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Return the input number is reasonable
+     * @param number a number string
+     * @return whether the number is valid
+     */
     boolean isNumberReasonable(String number) {
         if (number.length() >= 5) {
             return false;

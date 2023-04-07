@@ -76,14 +76,14 @@ Adds a food product to the list of food items.
 
 Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNITS}`
 
-* The `FOOD_NAME` cannot contain any punctuations, or else it will return as incorrect command.
+* The parameter cannot contain any punctuations, or else it will return as incorrect command.
 * `-c CAT`and`-q QUANTITY -u UNITS` are optional
   * However, `-u UNIT` cannot add alone
-    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10`. 
-However, it cannot be `add -n milk -e 21/03/2025-u packets`
+    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10.0`. 
+However, it cannot be `add -n milk -e 21/03/2025 -u packets`
 * For `category`, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
 any other category will be deemed as `OTHERS`.
-* Please do not enter any punctuation, or else your command will be deemed as incorrect command format.
+* For `unit`, we only have `mg`, `g`, `kg`, `unit`,`ml`,`l`,`serving`,`packet` and `box`
 
 Examples of usage:
 
@@ -272,8 +272,10 @@ This command will save the food list in an external file before closing the prog
 
 * help - `help {--COMMAND_WORD}`
   * e.g. <code>help --update --add</code> 
-* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT} {-q QUANTITY -u UNIT}`
+* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNIT}`
   * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets</code>
+  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others</code>
+  * e.g. <code>add -n Red Mill Granola -e 20/05/2025 -c others -q 10</code>
 * List - `list`
 * Remove - `remove INDEX_NUMBER`
   * e.g. remove 1

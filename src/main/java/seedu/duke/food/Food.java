@@ -234,7 +234,6 @@ public class Food {
         return daysExpiredNotice;
     }
     //@@author david
-
     /**
      * Returns a foodDetail string
      *

@@ -67,6 +67,13 @@ public class Food {
         this.unit = unit;
     }
 
+    public Food(String name, String expiryDate, String category) {
+        this.name = name;
+        this.expiryDate = expiryDate;
+        this.category = FoodCategory.valueOf(category);
+    }
+
+
     public LocalDate getDate() {
         return LocalDate.now();
     }

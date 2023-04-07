@@ -7,6 +7,8 @@ import seedu.duke.exceptions.InvalidFlagException;
 import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 import seedu.duke.utils.DateFormatter;
+import seedu.duke.utils.Validator;
+
 import java.util.Arrays;
 
 public class UpdateCommand extends Command{
@@ -51,7 +53,7 @@ public class UpdateCommand extends Command{
                     currentFood.setName(flagValue);
                     break;
                 case "e":
-                    dateFormatter.checkValidDate(flagValue);
+                    Validator.isExpiryDateValid(flagValue);
                     currentFood.setExpiryDate(flagValue);
                     break;
                 case "q":

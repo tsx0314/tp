@@ -292,7 +292,7 @@ public class AddCommand extends Command {
      * @return whether the number is valid
      */
     boolean isNumberReasonable(String number) {
-        if (number.length() >= 5) {
+        if (Double.valueOf(number) > 9999 || Double.valueOf(number) < 0) {
             return false;
         }
         return true;

@@ -7,13 +7,13 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
 ---
 + [Quick Start](#quick-start)
 + [Features](#features)
-  + [Viewing help: `help`](#viewing-help--help)
-  + [Adding a food product: `add`](#adding-a-food-product--add)
-  + [Listing all food products: `list`](#listing-all-food-products--code-list-code)
-  + [Removing a food product: `remove`](#removing-a-food-product--remove) 
-  + [Finding food products by name: `find`](#finding-food-products-by-name--code-find-code)
-  + [Update food products by index: `update`](#updating-food-products-by-index--code-update-code)
-  + [Exit FSP Program: `exit`](#exiting-fsp--code-exit-code)
+  + [Viewing help: `help`](#viewing-help)
+  + [Adding a food product: `add`](#adding-a-food-product)
+  + [Listing all food products: `list`](#listing-all-food-products)
+  + [Removing a food product: `remove`](#removing-a-food-product) 
+  + [Finding food products by name: `find`](#finding-food-products-by-name)
+  + [Update food products by index: `update`](#updating-food-products-by-index)
+  + [Exit FSP Program: `exit`](#exiting-fsp)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
 
@@ -38,8 +38,9 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
 3. Optional flags are put in curly braces.
 4. parameter is expected only once in the command. If you specify it multiple times, it will be deemed as invalid command.
 
-### Viewing help: `help`
-Shows a message explaining how to access the help page and the command specified.
+### Viewing help
+
+`help`- Show a message explaining how to access the help page and the command specified.
 
 - When a filter (prefix <code>--</code>) is applied, the help message will display the helper for the specified command.
 - By default, all available commands and the link to the user guide would be displayed.
@@ -71,8 +72,9 @@ INFO: Processed user command successfully
 ______________________________
 ```
 
-### Adding a food product: `add`
-Adds a food product to the list of food items.
+### Adding a food product 
+
+`add` - Add a food product to the list of food items.
 
 Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNITS}`
 
@@ -122,8 +124,9 @@ ______________________________
 ```
 
 
-### Listing all food products: <code>list</code>
-List all food products available in the tracker regardless of expiry status.
+### Listing all food products
+
+`list` - List all food products available in the tracker regardless of expiry status.
 
 - All food products will be listed with index, followed by the number of food products in the list.
 
@@ -155,8 +158,9 @@ ______________________________
 
 
 
-### Removing a food product: `remove`
-Remove a food product from the list based on its index.
+### Removing a food product
+
+`remove` - Remove a food product from the list based on its index.
 
 Format: `remove INDEX`
 
@@ -178,8 +182,9 @@ There is/are now 0 item(s) in the list.
 ______________________________
 ```
 
-### Finding food products by name: <code>find</code>
-List all food product with matching name.
+### Finding food products by name
+
+`find` - List all food product with matching name.
 
 Format: <code>find FOOD_NAME {-fresh} {-expired}</code>
 
@@ -213,8 +218,9 @@ ______________________________
 Found 2 of food items
 ______________________________
 ```
-### Updating food products by index: <code>update</code>
-Change any attribute based on the index in the list.
+### Updating food products by index
+
+`update` - Change any attribute based on the index in the list.
 
 * Multiple attributes can be changed at once by appending the identifier at the back.
 
@@ -235,8 +241,9 @@ Blueberry
 ______________________________
 ```
 
-### Exiting FSP: <code>exit</code>
-This command will save the food list in an external file before closing the program.
+### Exiting FSP
+
+`exit` - This command will save the food list in an external file before closing the program.
 
 ## FAQ
 

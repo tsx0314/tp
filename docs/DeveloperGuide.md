@@ -30,10 +30,12 @@ Main components of the architecture
 + At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 + At shut down: Shuts down the components
 
-The rest:
+The rest of the App consists of five components:
 + Ui: The UI of the App. This part displays the messages to the user.
++ Parse: Parse user input.
 + Command: The command executor.
 + Storage: Reads data from, and writes data to, the hard disk.
++ CommandResult: Prints response to users.
 
 ### UML Sequence Diagram
 ![SequenceDiagram](images/SequenceDiagram-Food_Supply_Tracker.png)
@@ -195,6 +197,9 @@ Currently, the following functionality was implemented:
 
 `add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY -p QUANTITY -u UNIT`
 
+`list`
+
+`clear`
 
 `find {PRODUCT_NAME}`
 
@@ -224,4 +229,7 @@ Currently, the following functionality was implemented:
 | `* * *`  | Cook                | add product (name, expiry date, category etc)                         | keep my program updated.                                        | `add -n -e`               |
 | `* * *`  | Cook                | remove product                                                        | keep my program updated.                                        | `remove`                  |
 
-
+# Non-Functional Requirements
+1) Should work on any mainstream OS as long as it has Java 11 or above installed.
+2) Should be able to hold up to 9999 food products without a noticeable sluggishness in performance for typical usage.
+3) A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.

@@ -91,6 +91,8 @@ has already executed what the user asks it to do. It also tells the users what t
         + ListCommandClassDiagram.puml
   * Specifications:
         + ListCommand implementation description
+  * User Stories
+  * Non-functional Requirements
 
 * Logging of the project
   * [Link to Pull Request for Logging](https://github.com/AY2223S2-CS2113-W13-3/tp/pull/58)

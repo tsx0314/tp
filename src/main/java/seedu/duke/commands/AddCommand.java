@@ -158,7 +158,8 @@ public class AddCommand extends Command {
      * @throws DukeException
      */
 
-    private Food getFoodWithAllAttributes(String[] foodDetails, String name, String date, String q) throws DukeException {
+    private Food getFoodWithAllAttributes(String[] foodDetails, String name, String date, String q)
+            throws DukeException {
         Food newFood;
         Double quantity = Double.valueOf(q);
         String unit = getUnitOfFood(foodDetails[3], quantity);
@@ -176,7 +177,7 @@ public class AddCommand extends Command {
      * @param name the food name
      * @param date the food expiry date
      * @param q the quantity
-     * @return
+     * @return newFood a new food object
      * @throws DukeException
      */
     private Food buildFoodWithNoUnit(String[] foodDetails, String name, String date, String q) throws DukeException {

@@ -116,9 +116,9 @@ I have added this product! :)
 ______________________________
 ```
 
-Input 2: `add -n mike's milk -e 21/03/2025 -c dairy -q 10 -u packets`
+Input 2: `add -n mike's milk -e 21/03/2025 -c da,iry -q 10 -u pac^kets`
 * Parameter cannot contain any punctuation such as `mike's milk` as a parameter
-for the flag `-n`.
+for the flag `-n`, `da,iry` and `pac^kets`.
 
 Output 2:
 
@@ -297,6 +297,8 @@ ______________________________
 * quantity `--q` and unit `--u` can be added and edited at the same time.
 * When only quantity `--q` is edited by the user, the unit will be edited automatically according to the quantity.
   * refer to example of usage Input 3 and Output 3
+* Please take note that if **the food quantity is zero**, even if unit is changed, 
+the message will not display the quantity and unit
 
 Example of Usage:
 

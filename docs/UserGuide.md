@@ -13,6 +13,7 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Removing a food product: `remove`](#removing-a-food-product) 
   + [Finding food products by name: `find`](#finding-food-products-by-name)
   + [Update food products by index: `update`](#updating-food-products-by-index)
+  + [Clears the food list: `clear`](#clearing-all-food-in-list)
   + [Exit FSP Program: `exit`](#exiting-fsp)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
@@ -67,10 +68,12 @@ Format: find PRODUCT_NAME
 Append the filter '-fresh' for listing unexpired food products and '-expired' for listing expired food products.
 Append the filter '-c' followed by CATEGORY to find by category.
 
-List of commands: 'add', 'list', 'remove', 'find', 'update', 'exit'.
+List of commands: 'add', 'list', 'remove', 'find', 'update', 'clear', 'exit'.
 For more detailed information on usage of specific command, type: help --COMMAND
 Refer to our user guide for more in-depth details on how to use Food Supply Tracker:
 https://ay2223s2-cs2113-w13-3.github.io/tp/UserGuide.html
+Mar 31, 2023 1:26:06 PM seedu.duke.Duke run
+INFO: Processed user command successfully
 ______________________________
 ```
 
@@ -432,7 +435,7 @@ ______________________________
 
 ## Command Summary
 
-* help - `help {--COMMAND_WORD}`
+* Help - `help {--COMMAND_WORD}`
   * e.g. <code>help --update --add</code> 
 * Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNIT}`
   * All possible add command format:

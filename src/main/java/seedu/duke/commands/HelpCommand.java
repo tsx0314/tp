@@ -10,8 +10,8 @@ import java.util.List;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
-    private static final String SHOW_ALL_COMMANDS = "List of commands: 'add', 'list', 'remove', 'find',"
-            + " 'update', 'exit'."
+    private static final String SHOW_ALL_COMMANDS = "List of commands: 'add', 'list', 'remove', 'find', "
+            + "'update', 'clear', 'exit'."
             + "\nFor more detailed information on usage of specific command, type: help --COMMAND";
     private static final String DEFAULT_HELP_MESSAGE = "Refer to our user guide for more in-depth details on"
             + " how to use Food Supply Tracker:"
@@ -44,6 +44,7 @@ public class HelpCommand extends Command {
             + "\nAll attributes: -n for Name, -e for ExpiryDate, -c for Category, -q for Quantity and -u for Units"
             + " can be updated with this command.";
 
+    private static final String HELP_CLEAR = "Command 'clear': This command clears the food list.";
     private static final String HELP_EXIT = "Command 'exit': This command will save the food list in an external file"
             + "before exiting the program.";
     private static final String REPORT_INVALID_INPUT = "Opps! The command '%s' is not valid.";
@@ -112,6 +113,9 @@ public class HelpCommand extends Command {
             break;
         case UpdateCommand.COMMAND_WORD:
             printToUser = printToUser.concat(HELP_UPDATE);
+            break;
+        case ClearCommand.COMMAND_WORD:
+            printToUser = printToUser.concat(HELP_CLEAR);
             break;
         case ExitCommand.COMMAND_WORD:
             printToUser = printToUser.concat(HELP_EXIT);

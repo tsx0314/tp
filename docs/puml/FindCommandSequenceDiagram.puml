@@ -21,16 +21,10 @@ deactivate Result
 
 loop for every foodItem
     opt hasTerm
-        opt no flags
+        alt flag not satisfied
+             FindCommand -> FindCommand: continue loop
+        else all flags satisfied
             FindCommand -> Result: addFood()
-        end
-
-        opt all flags satisfied
-            FindCommand -> Result: addFood()
-        end
-
-        opt flag not satisfied
-             FindCommand -> FindCommand: continue
         end
     end
 end

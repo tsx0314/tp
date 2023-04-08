@@ -43,7 +43,7 @@ public class FindCommand extends Command {
     /**
      * Finds products with a given term and filters them
      * according to given flag values.
-     * <p>
+     *
      * Adds a foodItem to the result
      * only if each flag was satisfied and the loop iteration
      * wasn't interrupted early by non-matching flag value

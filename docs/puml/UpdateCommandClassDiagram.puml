@@ -2,28 +2,28 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-Command <|-- UpdateCommand
-class Command {
+":Command" <|-- ":UpdateCommand"
+class ":Command" {
     +execute(): CommandResult
 }
 
-class CommandResult {
+class ":CommandResult" {
     String feedbackToUser
     +printResult()
 }
-class UpdateCommand {
-    term: String
+class ":UpdateCommand" {
+    index: String
     flags: String[]
-    -updateFoodAttribute(Food currentFood, String flagName, String flagValue, String[] otherFlags)
+    -updateFoodAttribute(Food currentFood, String flagName, String flagValue, String[] allFlags)
     +execute(foodList: FoodList): CommandResult
 }
 
 
-UpdateCommand "1" --> "1" FoodList: sets updated attributes
-Command  --> CommandResult
-UpdateCommand  --> CommandResult
+":UpdateCommand" "1" --> "1" ":FoodList": sets updated attributes
+":Command"  --> ":CommandResult"
+":UpdateCommand"  --> ":CommandResult"
 
-class FoodList {
+class ":FoodList" {
     foodList: ArrayList<Food>
     +setName(String name)
     +setExpiryDate(String expiryDate)

@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeException;
+import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
 public class ListCommand extends Command {
@@ -10,7 +11,7 @@ public class ListCommand extends Command {
     public static final String REPORT_NUMBER_OF_FOOD_BACK = " food products in your lists.";
 
     @Override
-    public CommandResult execute(FoodList foodList) throws DukeException {
+    public String outputToUser (FoodList foodList){
         String printToUser = "";
         int numberOfFood = foodList.getNumberOfFood();
 
@@ -22,6 +23,12 @@ public class ListCommand extends Command {
         }
         printToUser = printToUser.concat(REPORT_NUMBER_OF_FOOD_FRONT
                 + numberOfFood + REPORT_NUMBER_OF_FOOD_BACK);
+
+        return printToUser;
+    }
+    @Override
+    public CommandResult execute(FoodList foodList) throws DukeException {
+        String printToUser = outputToUser(foodList);
         return new CommandResult(printToUser);
     }
 

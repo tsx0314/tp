@@ -11,6 +11,10 @@ public abstract class Command {
     protected Command() {
     }
 
+    public String outputToUser (FoodList foodList){
+        String output ="";
+        return output;
+    }
     public CommandResult execute(FoodList foodList) throws DukeException {
         return new CommandResult("Duke is running");
     }

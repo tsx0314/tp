@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 
 ### Project management
 * Set issues on milestone `v1.0` - `v2.1` on GitHub after finding bugs or possible enhancements.
-  * [Link to Issues added](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Awanjuin)
+  * [Link to Issues added by ne](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Awanjuin)
 * Review issues set by group members and other peers (PE-D).
 * Assign issues to myself and group members.
   * [Link to Issues assigned to me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=assignee%3A%40me+is%3Aclosed)

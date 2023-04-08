@@ -8,7 +8,6 @@ import seedu.duke.utils.Validator;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-
 public class Food {
     private static final String MILLIGRAM_1 = "mg";
     private static final String MILLIGRAM_2 = "milligram";
@@ -27,8 +26,6 @@ public class Food {
     private static final String LITRE_3 = "litres";
     private static final String SERVING_1 = "serving";
     private static final String SERVING_2 = "servings";
-    private static final String UNIT_1 = "unit";
-    private static final String UNIT_2 = "units";
     private static final String BOX_1 = "box";
     private static final String BOX_2 = "boxes";
     private static final String PACKET_1 = "packet";
@@ -129,7 +126,10 @@ public class Food {
     }
 
 
-    public Food(String name, String expiryDate, Double quantity, String unit, String category) {
+    public Food(String name, String expiryDate, Double quantity, String unit, String category) throws DukeException {
+        Validator.isQuantityValid(quantity);
+        Validator.isExpiryDateValid(expiryDate);
+        Validator.isUnitValid(unit);
 
         this.name = name;
         this.expiryDate = expiryDate;
@@ -138,7 +138,9 @@ public class Food {
         this.unit = unit;
     }
 
-    public Food(String name, String expiryDate, String category) {
+    public Food(String name, String expiryDate, String category) throws DukeException{
+        Validator.isExpiryDateValid(expiryDate);
+
         this.name = name;
         this.expiryDate = expiryDate;
         this.category = FoodCategory.valueOf(category);
@@ -215,7 +217,7 @@ public class Food {
     }
 
     public String getUnitString(String unitTemporary, Double quantityInDouble) {
-        switch (unitTemporary.toLowerCase()){
+        switch (unitTemporary.toLowerCase()) {
         case MILLIGRAM_1:
         case MILLIGRAM_2:
         case MILLIGRAM_3:
@@ -238,27 +240,27 @@ public class Food {
             return String.valueOf(Unit.LITER.abbreviation);
         case SERVING_1:
         case SERVING_2:
-            if(quantityInDouble == 1) {
+            if (quantityInDouble == 1) {
                 return String.valueOf(Unit.SERVING.abbreviation);
             } else {
                 return String.valueOf(Unit.SERVINGS.abbreviation);
             }
         case BOX_1:
         case BOX_2:
-            if(quantityInDouble > 1){
+            if (quantityInDouble > 1) {
                 return String.valueOf(Unit.BOXES.abbreviation);
             } else {
                 return String.valueOf(Unit.BOX.abbreviation);
             }
         case PACKET_1:
         case PACKET_2:
-            if(quantityInDouble > 1){
+            if (quantityInDouble > 1) {
                 return String.valueOf(Unit.PACKETS.abbreviation);
             } else {
                 return String.valueOf(Unit.PACKET.abbreviation);
             }
         default:
-            if(quantityInDouble > 1) {
+            if (quantityInDouble > 1) {
                 return String.valueOf(Unit.UNITS.abbreviation);
             } else {
                 return String.valueOf(Unit.UNIT.abbreviation);
@@ -288,24 +290,25 @@ public class Food {
         LocalDate expiryDate = parseExpiryDate();
         return expiryDate.isAfter(getDate());
     }
+
     public String getExpiryStatus() throws DukeException {
         String expiryStatus;
-        if(!isFresh()){
+        if (!isFresh()) {
             expiryStatus = " (expired) ";
         } else {
-            expiryStatus = " (fresh) ";
+            expiryStatus = " (fresh)";
         }
         return expiryStatus;
     }
 
-    public long getDaysExpire () throws DukeException {
+    public long getDaysExpire() throws DukeException {
         LocalDate expiryDate = parseExpiryDate();
         long days = ChronoUnit.DAYS.between(getDate(), expiryDate);
         return days;
     }
 
     public String getDaysString() throws DukeException {
-        if(isFresh()) {
+        if (isFresh()) {
             String daysToExpireNotice = " (" + getDaysExpire() + " days left)";
             return daysToExpireNotice;
         }
@@ -316,15 +319,15 @@ public class Food {
         return daysExpiredNotice;
     }
 
-    //@@author david
     /**
      * Returns a foodDetail string
      *
      * @return foodDetails a String of complete food details to be printed
      */
     @Override
-    public String toString()  {
+    public String toString() {
         Double quantity = getQuantity();
+        String unit = getUnit();
         String foodDetail;
         String expiryStatus = "";
         String daysLeftString = "";
@@ -336,15 +339,15 @@ public class Food {
             Ui.showError("Expiry date parsing error");
         }
 
-        if (quantity == 0.0) {
+        if (quantity == 0) {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory());
-        } else {
+        }  else {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory())
-                    + "\n       Remaining quantity: " + getQuantity() + " " + getUnit();
+                    + "\n       Remaining quantity: " + quantity + " " + unit;
         }
         return foodDetail;
     }

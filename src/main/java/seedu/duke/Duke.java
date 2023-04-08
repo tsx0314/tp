@@ -44,6 +44,7 @@ public class Duke {
     public boolean processCommand(String fullCommand) throws DukeException {
         Command c = Parser.parse(fullCommand);
         CommandResult result = c.execute(foodList);
+        foodList.sortFoodList();
         result.printResult();
         storageFile.save(foodList);
         return c.isExit();

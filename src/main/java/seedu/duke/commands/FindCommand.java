@@ -20,6 +20,11 @@ public class FindCommand extends Command {
 
     private static final String FLAG_SEPARATOR = "--";
 
+    private static final String FOUND_FOOD_1 = "Found ";
+    private static final String FOUND_FOOD_2 = " of food items";
+    private static final String NOT_FOUND = "No food found for such query";
+
+
     String term;
     String[] flags;
 
@@ -129,12 +134,11 @@ public class FindCommand extends Command {
             }
         }
 
-        final String FOUND_FOOD = "Found " + result.getNumberOfFood() + " of food items";
-        final String NOT_FOUND = "No food found for such query";
+        int num = result.getNumberOfFood();
 
         if (result.getNumberOfFood() > 0) {
             System.out.println(result);
-            return new CommandResult(FOUND_FOOD);
+            return new CommandResult(FOUND_FOOD_1 + num + FOUND_FOOD_2);
         } else {
             return new CommandResult(NOT_FOUND);
         }

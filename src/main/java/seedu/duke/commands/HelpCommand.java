@@ -35,13 +35,13 @@ public class HelpCommand extends Command {
 
     private static final String HELP_FIND = "Command 'find': This command finds the food product by its name."
             + "\nFormat: find PRODUCT_NAME"
-            + "\nAppend the filter '-fresh' for listing unexpired food products and "
+            + "\nAppend the filter '--fresh' for listing unexpired food products and "
             + "'-expired' for listing expired food products."
-            + "\nAppend the filter '-c' followed by CATEGORY to find by category.";
+            + "\nAppend the filter '--c' followed by CATEGORY to find by category.";
 
     private static final String HELP_UPDATE = "Command 'update': This command allows users to update the name, "
             + "expiry date, quantity and units based on the index in the food list."
-            + "\nAll attributes: -n for Name, -e for ExpiryDate, -c for Category, -q for Quantity and -u for Units"
+            + "\nAll attributes: --n for Name, --e for ExpiryDate, --c for Category, --q for Quantity and --u for Units"
             + " can be updated with this command.";
 
     private static final String HELP_CLEAR = "Command 'clear': This command clears the food list.";

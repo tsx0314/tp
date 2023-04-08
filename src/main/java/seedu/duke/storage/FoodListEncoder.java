@@ -14,7 +14,7 @@ import seedu.duke.food.Food;
  */
 public class FoodListEncoder {
 
-    private static final String SEPARATOR = "  «";
+    private static final String SEPARATOR = "|";
     private static final String NAME_IDENTIFIER = "n  ";
     private static final String EXPIRY_DATE_IDENTIFIER = "e  ";
     private static final String QUANTITY_IDENTIFIER = "q  ";

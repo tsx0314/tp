@@ -18,6 +18,12 @@ public class RemoveCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * This constructor creates a boolean object that checks if the index provided is an integer
+     * which does not contain non-integer values
+     *
+     * @return Returns true if the index is an integer and false otherwise
+     */
     public boolean isInteger (){
         try {
             Integer.parseInt(index.trim());
@@ -27,12 +33,30 @@ public class RemoveCommand extends Command {
         return true;
     }
 
+    
+    /**
+     * This constructor creates a boolean object that checks if the index provided does not exceed the integer limit
+     *
+     * @param number Input string that is provided by the user
+     * @return Returns true if the number is within the integer limit and false if otherwise
+     */
     boolean isNumberValid(int deleteNumber) {
         if ( (deleteNumber > 9999) || (deleteNumber < 0) ) {
             return false;
         }
         return true;
     }
+
+    /**
+     * This method firstly checks whether the value of the index provided by the user exists and is a valid number.
+     * Then, it will proceed to check if the index provided is within the size of the food list.
+     * After the checks, it will proceed to retrieve the food item to be deleted from the food list
+     * and eventually remove it from the list.
+     *
+     * @param foodlist food list containing the list of food items
+     * @return feedback to user if the food item has been successfully deleted otherwise an error message
+     * @throws IllegalValueException if the index provided does not exist or beyond the bounds of the food list
+     */
 
     public CommandResult execute (FoodList foodlist) throws DukeException {
 

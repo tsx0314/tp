@@ -49,7 +49,7 @@ public class FindCommand extends Command {
     public CommandResult execute(FoodList foodList) throws DukeException {
         FoodList result = new FoodList();
         if(Objects.equals(term, "") && flags.length == 0) {
-            return new CommandResult("No food found for such query");
+            throw new DukeException("No term or flag provided");
         }
 
         foodItemLoop:
@@ -62,7 +62,7 @@ public class FindCommand extends Command {
 
             if (hasTerm) {
                 for (String flag : flags) {
-                    String[] flagParts = flag.trim().split(" ");;
+                    String[] flagParts = flag.trim().split(" ", 2);;
 
                     String flagName = flagParts[0];
 

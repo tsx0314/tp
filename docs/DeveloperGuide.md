@@ -33,7 +33,9 @@ Main components of the architecture
 The rest:
 + Ui: The UI of the App. This part displays the messages to the user.
 + Command: The command executor.
++ CommandResult: The command result display, displaying the command result.
 + Storage: Reads data from, and writes data to, the hard disk.
++ Parser: The command parser. Identify the various command type.
 
 ### UML Sequence Diagram
 ![SequenceDiagram](images/SequenceDiagram-Food_Supply_Tracker.png)

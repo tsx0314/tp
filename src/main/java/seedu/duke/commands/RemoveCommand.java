@@ -85,7 +85,7 @@ public class RemoveCommand extends Command {
         System.out.println("Removed '" + foodName + "' from the food supply list.");
         return new CommandResult("There is/are now " + itemsLeft + " item(s) in the list.");
     }
-    
+
     @Override
     public boolean isExit() {
         return false;

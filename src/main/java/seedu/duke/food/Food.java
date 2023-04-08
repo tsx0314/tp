@@ -332,7 +332,7 @@ public class Food {
             Ui.showError("Expiry date parsing error");
         }
 
-        if (!Objects.equals(unit, "")) {
+        if (quantity != 0.0) {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory())

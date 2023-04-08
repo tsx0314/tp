@@ -91,8 +91,8 @@ public class HelpCommand extends Command {
      * This method decides whether a filtered command is valid or not and append it to the message. Valid commands will
      * show help messages for their usage while invalid command will be reported back to the user as non-valid commands.
      *
-     * @param printToUser  the message to append
-     * @param f            the command word
+     * @param printToUser the message to append
+     * @param f           the command word
      * @return a CommandResult object to display the successful message
      */
     private String appendMessage(String printToUser, String f) {

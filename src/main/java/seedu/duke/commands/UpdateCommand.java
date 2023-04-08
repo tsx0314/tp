@@ -11,10 +11,11 @@ import seedu.duke.utils.Validator;
 import java.util.Arrays;
 
 //@@author DavidVin357
+
 /**
  * Represents "update" command - updates a product attributes with given flag values
  */
-public class UpdateCommand extends Command{
+public class UpdateCommand extends Command {
     public static final String COMMAND_WORD = "update";
     private static final String FLAG_SEPARATOR = "--";
     String index;
@@ -23,11 +24,12 @@ public class UpdateCommand extends Command{
     /**
      * Initializes UpdateCommand object
      * with index and flags obtained from the arguments provided
+     *
      * @param arguments
      * @throws DukeException
      */
     public UpdateCommand(String arguments) throws DukeException {
-        if(!arguments.contains(FLAG_SEPARATOR)) {
+        if (!arguments.contains(FLAG_SEPARATOR)) {
             throw new DukeException("No field to update is specified");
         }
         String[] details = arguments.split(FLAG_SEPARATOR);
@@ -76,6 +78,7 @@ public class UpdateCommand extends Command{
             throw new IllegalValueException("Illegal value for the flag " + flagName);
         }
     }
+
     /**
      * @param foodList
      * @return CommandResult
@@ -94,7 +97,7 @@ public class UpdateCommand extends Command{
         }
         Food currentFood = foodList.getFood(index);
 
-        for (String flag: flags) {
+        for (String flag : flags) {
             String[] flagParts = flag.trim().split(" ", 2);
 
             if (flagParts.length == 1) {
@@ -106,8 +109,6 @@ public class UpdateCommand extends Command{
 
             updateFoodAttribute(currentFood, flagName, flagValue);
         }
-
-
         return new CommandResult("Updated food item successfully! \n" + foodList.getFood(index));
     }
 }

@@ -219,6 +219,7 @@ public class AddCommand extends Command {
     }
 
     //@@author tsx0314
+
     /**
      * Returns whether the input date is a valid expiry date
      *
@@ -231,7 +232,7 @@ public class AddCommand extends Command {
         return isValid;
     }
 
-    //@@author tsx0314
+
     /**
      * Returns a boolean value which indicate whether the date is valid
      *
@@ -252,7 +253,7 @@ public class AddCommand extends Command {
         return true;
     }
 
-    //@@author tsx0314
+
     /**
      * Return a food category according to the input
      *
@@ -283,9 +284,9 @@ public class AddCommand extends Command {
         }
     }
 
-    //@@author tsx0314
     /**
      * Return the input number is reasonable
+     *
      * @param number a number string
      * @return whether the number is valid
      */
@@ -307,7 +308,7 @@ public class AddCommand extends Command {
     public String getUnitOfFood(String unitTemporary, Double quantityInDouble) {
         String unitOfMeasurement;
 
-        switch (unitTemporary.toLowerCase()){
+        switch (unitTemporary.toLowerCase()) {
         case MILLIGRAM_1:
         case MILLIGRAM_2:
         case MILLIGRAM_3:
@@ -335,7 +336,7 @@ public class AddCommand extends Command {
             break;
         case SERVING_1:
         case SERVING_2:
-            if(quantityInDouble > 1) {
+            if (quantityInDouble > 1) {
                 unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
             } else {
                 unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
@@ -343,7 +344,7 @@ public class AddCommand extends Command {
             break;
         case BOX_1:
         case BOX_2:
-            if(quantityInDouble > 1){
+            if (quantityInDouble > 1) {
                 unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
             } else {
                 unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
@@ -351,14 +352,14 @@ public class AddCommand extends Command {
             break;
         case PACKET_1:
         case PACKET_2:
-            if(quantityInDouble > 1){
+            if (quantityInDouble > 1) {
                 unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
             } else {
                 unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
             }
             break;
         default:
-            if(quantityInDouble > 1) {
+            if (quantityInDouble > 1) {
                 unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
             } else {
                 unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);

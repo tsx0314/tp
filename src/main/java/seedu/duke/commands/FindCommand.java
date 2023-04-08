@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 //@@author DavidVin357
+
 /**
  * Represents "find" command - finds a product with given term and filters matched
  */
@@ -25,6 +26,7 @@ public class FindCommand extends Command {
     /**
      * Initializes FindCommand object
      * with term and flags obtained from the arguments provided
+     *
      * @param arguments
      */
     public FindCommand(String arguments) {
@@ -36,7 +38,7 @@ public class FindCommand extends Command {
     /**
      * Finds products with a given term and filters them
      * according to given flag values.
-     *
+     * <p>
      * Adds a foodItem to the result
      * only if each flag was satisfied and the loop iteration
      * wasn't interrupted early by non-matching flag value
@@ -48,7 +50,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(FoodList foodList) throws DukeException {
         FoodList result = new FoodList();
-        if(Objects.equals(term, "") && flags.length == 0) {
+        if (Objects.equals(term, "") && flags.length == 0) {
             throw new DukeException("No term or flag provided");
         }
 
@@ -62,7 +64,8 @@ public class FindCommand extends Command {
 
             if (hasTerm) {
                 for (String flag : flags) {
-                    String[] flagParts = flag.trim().split(" ", 2);;
+                    String[] flagParts = flag.trim().split(" ", 2);
+                    ;
 
                     String flagName = flagParts[0];
 

@@ -62,7 +62,7 @@ public class FindCommand extends Command {
 
             if (hasTerm) {
                 for (String flag : flags) {
-                    String[] flagParts = flag.trim().split(" ");;
+                    String[] flagParts = flag.trim().split(" ", 2);;
 
                     String flagName = flagParts[0];
 

@@ -95,7 +95,7 @@ public class UpdateCommand extends Command{
         Food currentFood = foodList.getFood(index);
 
         for (String flag: flags) {
-            String[] flagParts = flag.trim().split(" ");
+            String[] flagParts = flag.trim().split(" ", 2);
 
             if (flagParts.length == 1) {
                 String invalidFlagName = flagParts[0];

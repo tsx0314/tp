@@ -1,6 +1,9 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+hide circle
+skinparam classAttributeIconSize 0
+
 Parser --> HelpCommand
 Parser --> Command
 class Parser {

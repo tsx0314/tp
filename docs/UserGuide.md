@@ -13,8 +13,9 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Removing a food product: `remove`](#removing-a-food-product) 
   + [Finding food products by name: `find`](#finding-food-products-by-name)
   + [Update food products by index: `update`](#updating-food-products-by-index)
-  + [Clears the food list: `clear`](#clearing-all-food-in-list)
+  + [Clears the food list: `clear`](#clearing-the-food-list)
   + [Exit FSP Program: `exit`](#exiting-fsp)
+  + [Editing the foodTrackerList text file](#editing-foodtrackerlist-text-file)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
 
@@ -72,8 +73,6 @@ List of commands: 'add', 'list', 'remove', 'find', 'update', 'clear', 'exit'.
 For more detailed information on usage of specific command, type: help --COMMAND
 Refer to our user guide for more in-depth details on how to use Food Supply Tracker:
 https://ay2223s2-cs2113-w13-3.github.io/tp/UserGuide.html
-Mar 31, 2023 1:26:06 PM seedu.duke.Duke run
-INFO: Processed user command successfully
 ______________________________
 ```
 
@@ -481,6 +480,21 @@ ______________________________
 * Any extraneous parameters input after the command `exit` will be ignored.
 
   (e.g. `exit 123 abcde` will still work as `exit`)
+
+### Editing foodTrackerList text file
+It is possible for users to edit their food list without using the program. However, the editing should take when the
+program is not running as the edits will not be saved otherwise (the program has higher priority).
+
+#### The syntax and logic of the file is as follows
+* Syntax:
+  * `|n` indicates the name of the food 
+  * `|e` indicates the expiry date
+  * `|q` indicates the quantity 
+  * `|u` indicates the unit
+  * `|c` indicates the category
+* When more than one of the same identifier is used, the value associated with the last identifier will be used.
+* It is possible for optional attributes which includes `quantity`, `unit` and `category` to be not included.
+* Compulsory attributes such as `name` and `expiry date` have to be included or else the line of data will be ignored.
 
 ## FAQ
 

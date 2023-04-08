@@ -12,6 +12,7 @@
   + [Clear feature](#clear-feature)
   + [Help feature](#help-feature)
   + [Exit feature](#exit-feature)
+  + [Storage](#storage)
 + [Appendix: Requirements](#appendix--requirements)
   + [Product Scope](#product-scope)
   + [User Stories](#user-stories)
@@ -42,7 +43,6 @@ The rest of the App consists of five components:
 + Parser: The command parser. Identify the various command type.
 =======
 + CommandResult: Prints response to users.
->>>>>>> 58a04fae95bc117e9be4b678f64fc27a7b3eabd6
 
 ### UML Sequence Diagram
 ![SequenceDiagram](images/SequenceDiagram-Food_Supply_Tracker.png)
@@ -111,11 +111,11 @@ The `findFood` method implementation is as follows:
 5. If some flag is not satisfied, continue the loop without adding foodItem to the result
 6. If the flags loop is over, the flags conditions were satisfied, so add the foodItem to the result
 
-**Class Diagram** 
+**Class Diagram** <br>
 ![ClassDiagram](images/FindCommandClassDiagram.png)
 
 
-**Sequence Diagram**
+**Sequence Diagram** <br>
 ![ClassDiagram](images/FindCommandSequenceDiagram.png)
 
 ### List feature
@@ -136,10 +136,10 @@ the empty `foodList` will not be appended to `printToUser`.
 `printToUser` as its argument.
 8. `Duke` will then call `printResult` method from `CommandResult` which will print the food list for the user.
 
-**Class Diagram**
+**Class Diagram** <br>
 ![ClassDiagram](images/ListCommandClassDiagram.png)
 
-**Object Diagram**
+**Object Diagram** <br>
 ![ClassDiagram](images/ListCommandSequenceDiagram.png)
 
 ### Clear feature
@@ -152,10 +152,10 @@ The clear command is implemented as follows:
 3. The method `execute` calls the method `clearFoodList` in FoodList to remove all the objects (Food) in FoodList.
 4. After the method `clearFoodList` has finished executing, `execute` will return an acknowledgement message to user.
 
-**Class Diagram**
+**Class Diagram** <br>
 ![ClassDiagram](images/ClearCommandClassDiagram.png)
 
-**Sequence Diagram**
+**Sequence Diagram** <br>
 ![SequenceDiagram](images/ClearCommandSequenceDiagram.png)
 
 ### Help feature
@@ -178,11 +178,11 @@ specified by `filter`.
 `printToUser` as its argument.
 8. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
 
-**Class Diagram**
+**Class Diagram** <br>
 ![ClassDiagram](images/HelpCommandClassDiagram.png)
 
 
-**Sequence Diagram**
+**Sequence Diagram** <br>
 ![ClassDiagram](images/HelpCommandSequenceDiagram.png)
 
 ### Exit feature
@@ -203,12 +203,22 @@ pass `printToUser` as its argument
 7. `Duke` will further call `isExit` method from `ExitCommand` which will then change `isExit` from `false` to `true`,
 which will then exits the program.
 
-**Class Diagram**
+**Class Diagram** <br>
 ![ClassDiagram](images/ExitCommandClassDiagram.png)
 
-**Sequence Diagram**
+**Sequence Diagram** <br>
 ![ClassDiagram](images/ExitCommandSequenceDiagram.png)
 
+### Storage
+This class deals with the reading and writing of the foodTrackerList textfile. This serves as a memory that remembers 
+the latest food list inputted by the user. Upon starting the program, the text file will load the food in the foodlist,
+and right before the program close, the text file will be written with the updated list.
+
+**Class Diagram** <br>
+![ClassDiagram](images/StorageClassDiagram.png)
+
+**Sequence Diagram** <br>
+![ClassDiagram](images/StorageSequenceDiagram.png)
 ---
 ## Appendix: Requirements
 # Product Scope

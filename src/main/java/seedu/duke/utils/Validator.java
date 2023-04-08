@@ -7,6 +7,10 @@ import seedu.duke.food.Unit;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+//@@author DavidVin357
+/**
+ * Utility class for validating arguments to Food constructor
+ */
 public class Validator {
 
     public static final String PROVIDED_DATE_IS_NOT_IN_THE_FUTURE = "Provided date is not in the future";
@@ -16,7 +20,7 @@ public class Validator {
 
     public static boolean isExpiryDateValid(String date) throws DukeException {
         try {
-            LocalDate expiryDate = LocalDate.parse(date, DateFormatter.formatter);
+            LocalDate expiryDate = DateFormatter.parse(date);
             if (expiryDate.isBefore(LocalDate.now())){
                 throw new IllegalValueException(PROVIDED_DATE_IS_NOT_IN_THE_FUTURE);
             }

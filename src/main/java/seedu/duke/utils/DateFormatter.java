@@ -6,7 +6,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-
+//@@author DavidVin357
+/**
+ * Utility class for parsing the date
+ */
 public class DateFormatter {
     public static final String INVALID_DATE_PROVIDED = "Invalid date provided";
 

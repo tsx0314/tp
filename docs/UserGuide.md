@@ -150,6 +150,7 @@ ______________________________
 ### Listing all food products
 
 `list` - List all food products available in the tracker.
+* Maximum number of food products in the list is 9999.
 * Any extraneous parameters input after the command `list` will be ignored.
 
   (e.g. `list 123 abcde` will still work as `list`)
@@ -188,6 +189,7 @@ Below are the food list:
 3. bread (fresh) 
        Expiry date: 14/04/2023 (7 days left)
        Category: others
+       Remaining quantity: 0.0 unit
 4. Blueberry Yogurt (fresh) 
        Expiry date: 23/04/2023 (16 days left)
        Category: dairy

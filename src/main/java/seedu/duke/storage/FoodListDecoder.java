@@ -206,7 +206,7 @@ public class FoodListDecoder {
      */
     private static boolean hasValidUnit(String detail) {
         for (Unit unit : Unit.values()) {
-            if (unit.name().equals(detail)) {
+            if (unit.abbreviation.equals(detail)) {
                 return true;
             }
         }

@@ -38,7 +38,6 @@ public class Food {
     private String expiryDate;
     private Double quantity;
     private String unit;
-
     private FoodCategory category;
 
     /**
@@ -73,7 +72,7 @@ public class Food {
         this.expiryDate = expiryDate;
         this.category = FoodCategory.OTHERS;
         this.quantity = 0.0;
-        this.unit = Unit.UNITS.abbreviation;
+        this.unit = Unit.UNIT.abbreviation;
     }
 
     /**
@@ -89,7 +88,7 @@ public class Food {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = 0.0;
-        this.unit = Unit.UNITS.abbreviation;
+        this.unit = Unit.UNIT.abbreviation;
         this.category = category;
     }
 
@@ -242,23 +241,23 @@ public class Food {
             }
         case BOX_1:
         case BOX_2:
-            if(quantityInDouble == 1){
-                return String.valueOf(Unit.BOX.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 return String.valueOf(Unit.BOXES.abbreviation);
+            } else {
+                return String.valueOf(Unit.BOX.abbreviation);
             }
         case PACKET_1:
         case PACKET_2:
-            if(quantityInDouble == 1){
-                return String.valueOf(Unit.PACKET.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 return String.valueOf(Unit.PACKETS.abbreviation);
+            } else {
+                return String.valueOf(Unit.PACKET.abbreviation);
             }
         default:
-            if(quantityInDouble == 1) {
-                return String.valueOf(Unit.UNIT.abbreviation);
-            } else {
+            if(quantityInDouble > 1) {
                 return String.valueOf(Unit.UNITS.abbreviation);
+            } else {
+                return String.valueOf(Unit.UNIT.abbreviation);
             }
         }
     }

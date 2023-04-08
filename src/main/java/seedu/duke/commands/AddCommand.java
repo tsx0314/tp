@@ -335,33 +335,33 @@ public class AddCommand extends Command {
             break;
         case SERVING_1:
         case SERVING_2:
-            if(quantityInDouble == 1) {
-                unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
-            } else {
+            if(quantityInDouble > 1) {
                 unitOfMeasurement = String.valueOf(Unit.SERVINGS.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.SERVING.abbreviation);
             }
             break;
         case BOX_1:
         case BOX_2:
-            if(quantityInDouble == 1){
-                unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 unitOfMeasurement = String.valueOf(Unit.BOXES.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.BOX.abbreviation);
             }
             break;
         case PACKET_1:
         case PACKET_2:
-            if(quantityInDouble == 1){
-                unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 unitOfMeasurement = String.valueOf(Unit.PACKETS.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.PACKET.abbreviation);
             }
             break;
         default:
-            if(quantityInDouble == 1) {
-                unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
-            } else {
+            if(quantityInDouble > 1) {
                 unitOfMeasurement = String.valueOf(Unit.UNITS.abbreviation);
+            } else {
+                unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
             }
         }
         return unitOfMeasurement;

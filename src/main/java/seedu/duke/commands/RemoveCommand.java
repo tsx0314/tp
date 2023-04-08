@@ -20,7 +20,7 @@ public class RemoveCommand extends Command {
 
     public boolean isInteger (){
         try {
-            Integer.parseInt(index);
+            Integer.parseInt(index.trim());
         } catch (NumberFormatException e){
             return false;
         }

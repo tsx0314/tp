@@ -7,8 +7,6 @@ import seedu.duke.utils.Validator;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.Objects;
-
 
 public class Food {
     private static final String MILLIGRAM_1 = "mg";

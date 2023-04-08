@@ -27,6 +27,13 @@ public class RemoveCommand extends Command {
         return true;
     }
 
+    boolean isNumberValid(String number) {
+        if (number.length() >= 5) {
+            return false;
+        }
+        return true;
+    }
+
     public CommandResult execute(FoodList foodlist) throws DukeException {
 
         if (index.isBlank()) {
@@ -56,14 +63,7 @@ public class RemoveCommand extends Command {
         System.out.println("Removed '" + foodName + "' from the food supply list.");
         return new CommandResult("There is/are now " + itemsLeft + " item(s) in the list.");
     }
-
-    boolean isNumberValid(String number) {
-        if (number.length() >= 5) {
-            return false;
-        }
-        return true;
-    }
-
+    
     @Override
     public boolean isExit() {
         return false;

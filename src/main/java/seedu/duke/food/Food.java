@@ -286,9 +286,9 @@ public class Food {
     public String getExpiryStatus() throws DukeException {
         String expiryStatus;
         if(!isFresh()){
-            expiryStatus = " (expired) ";
+            expiryStatus = " (expired)";
         } else {
-            expiryStatus = " (fresh) ";
+            expiryStatus = " (fresh)";
         }
         return expiryStatus;
     }

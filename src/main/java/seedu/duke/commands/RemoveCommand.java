@@ -33,6 +33,20 @@ public class RemoveCommand extends Command {
         return true;
     }
 
+    
+    /**
+     * This constructor creates a boolean object that checks if the index provided does not exceed the integer limit
+     *
+     * @param number Input string that is provided by the user
+     * @return Returns true if the number is within the integer limit and false if otherwise
+     */
+    boolean isNumberValid(int deleteNumber) {
+        if ( (deleteNumber > 9999) || (deleteNumber < 0) ) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * This method firstly checks whether the value of the index provided by the user exists and is a valid number.
      * Then, it will proceed to check if the index provided is within the size of the food list.
@@ -43,6 +57,7 @@ public class RemoveCommand extends Command {
      * @return feedback to user if the food item has been successfully deleted otherwise an error message
      * @throws IllegalValueException if the index provided does not exist or beyond the bounds of the food list
      */
+
     public CommandResult execute (FoodList foodlist) throws DukeException {
 
         if (index.isBlank()) {
@@ -55,11 +70,11 @@ public class RemoveCommand extends Command {
             return new CommandResult(notIntegerMessage);
         }
 
-        if(!isNumberValid(index)){
+        int deleteItem = Integer.parseInt(index.trim()) - 1;
+        if(!isNumberValid(deleteItem)){
             return new CommandResult(INVALID_INPUT_MESSAGE);
         }
 
-        int deleteItem = Integer.parseInt(index.trim()) - 1;
         if (deleteItem >= foodlist.getNumberOfFood() || deleteItem < 0) {
             String incorrectIndexFormat = INCORRECT_INDEX_MESSAGE_1 + foodlist.getNumberOfFood()
                                             + BLANK_INDEX_MESSAGE_2;
@@ -73,18 +88,6 @@ public class RemoveCommand extends Command {
         return new CommandResult("There is/are now " + itemsLeft + " item(s) in the list.");
     }
 
-    /**
-     * This constructor creates a boolean object that checks if the index provided does not exceed the integer limit
-     *
-     * @param number Input string that is provided by the user
-     * @return Returns true if the number is within the integer limit and false if otherwise
-     */
-    boolean isNumberValid(String number) {
-        if (number.length() >= 5) {
-            return false;
-        }
-        return true;
-    }
     @Override
     public boolean isExit() {
         return false;

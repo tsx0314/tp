@@ -126,12 +126,14 @@ public class FindCommand extends Command {
             }
         }
 
+        final String FOUND_FOOD = "Found " + result.getNumberOfFood() + " of food items";
+        final String NOT_FOUND = "No food found for such query";
 
         if (result.getNumberOfFood() > 0) {
             System.out.println(result);
-            return new CommandResult("Found " + result.getNumberOfFood() + " of food items");
+            return new CommandResult(FOUND_FOOD);
         } else {
-            return new CommandResult("No food found for such query");
+            return new CommandResult(NOT_FOUND);
         }
     }
 }

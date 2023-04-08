@@ -24,7 +24,7 @@ public class RemoveCommand extends Command {
      *
      * @return Returns true if the index is an integer and false otherwise
      */
-    public boolean isInteger (){
+    public boolean isInteger() {
         try {
             Integer.parseInt(index.trim());
         } catch (NumberFormatException e) {
@@ -40,7 +40,7 @@ public class RemoveCommand extends Command {
      * @return Returns true if the number is within the integer limit and false if otherwise
      */
     boolean isNumberValid(int deleteNumber) {
-        if ( (deleteNumber > 9999) || (deleteNumber < 0) ) {
+        if ((deleteNumber > 9999) || (deleteNumber < 0)) {
             return false;
         }
         return true;
@@ -57,8 +57,7 @@ public class RemoveCommand extends Command {
      * @throws IllegalValueException if the index provided does not exist or beyond the bounds of the food list
      */
 
-    public CommandResult execute (FoodList foodlist) throws DukeException {
-
+    public CommandResult execute(FoodList foodlist) throws DukeException {
         if (index.isBlank()) {
             String blankIntegerMessage = BLANK_INDEX_MESSAGE_1 + foodlist.getNumberOfFood() + BLANK_INDEX_MESSAGE_2;
             throw new IllegalValueException(blankIntegerMessage);
@@ -70,7 +69,7 @@ public class RemoveCommand extends Command {
         }
 
         int deleteItem = Integer.parseInt(index.trim()) - 1;
-        if(!isNumberValid(deleteItem)){
+        if (!isNumberValid(deleteItem)) {
             return new CommandResult(INVALID_INPUT_MESSAGE);
         }
 
@@ -86,7 +85,7 @@ public class RemoveCommand extends Command {
         System.out.println("Removed '" + foodName + "' from the food supply list.");
         return new CommandResult("There is/are now " + itemsLeft + " item(s) in the list.");
     }
-
+    
     @Override
     public boolean isExit() {
         return false;

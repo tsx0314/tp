@@ -330,15 +330,15 @@ public class Food {
             Ui.showError("Expiry date parsing error");
         }
 
-        if (quantity != 0.0) {
+        if (quantity == 0) {
+            foodDetail = getName() + expiryStatus
+                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
+                    + "\n       Category: " + getCategoryString(getCategory());
+        }  else {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory())
                     + "\n       Remaining quantity: " + quantity + " " + unit;
-        } else {
-            foodDetail = getName() + expiryStatus
-                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
-                    + "\n       Category: " + getCategoryString(getCategory());
         }
         return foodDetail;
     }

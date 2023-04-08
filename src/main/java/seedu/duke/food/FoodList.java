@@ -46,7 +46,6 @@ public class FoodList {
     }
 
     public void sortFoodList () throws DukeException {
-        //FoodList sortedFoodList = null;
         for (int i = 0; i < getNumberOfFood(); i++){
             for(int j = 0; j < getNumberOfFood(); j ++){
                 long day1 = foodList.get(i).getDaysExpire();

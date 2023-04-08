@@ -9,7 +9,9 @@
   + [Remove feature](#remove-feature)
   + [Find feature](#find-feature)
   + [List feature](#list-feature)
-  + [help feature](#help-feature)
+  + [Clear feature](#clear-feature)
+  + [Help feature](#help-feature)
+  + [Exit feature](#exit-feature)
 + [Appendix: Requirements](#appendix--requirements)
   + [Product Scope](#product-scope)
   + [User Stories](#user-stories)
@@ -135,6 +137,22 @@ the empty `foodList` will not be appended to `printToUser`.
 **Object Diagram**
 ![ClassDiagram](images/ListCommandSequenceDiagram.png)
 
+### Clear feature
+The clear command is implemented using a `ClearCommand` class which utilizes `COMMAND_WORD` attributes to all other 
+commands within the `commands` package.
+
+The clear command is implemented as follows:
+1. New `ClearCommand` object created will call the method `execute` of `Command` class.
+2. The method `execute` decides what to append to the string `printToUser`.
+3. The method `execute` calls the method `clearFoodList` in FoodList to remove all the objects (Food) in FoodList.
+4. After the method `clearFoodList` has finished executing, `execute` will return an acknowledgement message to user.
+
+**Class Diagram**
+![ClassDiagram](images/ClearCommandClassDiagram.png)
+
+**Sequence Diagram**
+![SequenceDiagram](images/ClearCommandSequenceDiagram.png)
+
 ### Help feature
 The help command is implemented using a `HelpCommand` class which utilizes `COMMAND_WORD` 
 attributes of all other commands within the `commands` package. 
@@ -145,15 +163,15 @@ The help command is implemented as follows:
 on the command word.
 3. In the case where `help` is the command word, a new `HelpCommand` object is created with the rest of the user input 
 being the arguments for the constructor.
-2. The constructor `HelpCommand` will split the arguments based on the `--` regex and store them in an array of
+4. The constructor `HelpCommand` will split the arguments based on the `--` regex and store them in an array of
 strings called `filters`.
-3. The method `execute` of `Command` class will then be called all the way from `Duke` which will be overriden by the 
+5. The method `execute` of `Command` class will then be called all the way from `Duke` which will be overriden by the 
 same method in `HelpCommand`.
-4. This method calls the private method `appendMessage` which decides what to append to the string `printToUser` as 
+6. This method calls the private method `appendMessage` which decides what to append to the string `printToUser` as 
 specified by `filter`. 
-5. After looping through all the `filter`, this method will return an object called `CommandResult` and pass
+7. After looping through all the `filter`, this method will return an object called `CommandResult` and pass
 `printToUser` as its argument.
-6. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
+8. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
 
 **Class Diagram**
 ![ClassDiagram](images/HelpCommandClassDiagram.png)
@@ -161,6 +179,30 @@ specified by `filter`.
 
 **Sequence Diagram**
 ![ClassDiagram](images/HelpCommandSequenceDiagram.png)
+
+### Exit feature
+The exit command is implemented using a `ExitCommand` class which utilizes `COMMAND_WORD` attributes of all other 
+commands within the `commands` package.
+
+The exit command is implemented as follows
+1. When `Duke` reads the user input, it calls the method `parse` from the `Parser` class.
+2. The `parse` method process which command word is being queried and calls the constructor class based
+   on the command word.
+3. In the case where `exit` is the command word, a new `ExitCommand` object is created with the rest of the user input
+   being the arguments for the constructor.
+4. The method `execute` of `Command` class will then be called all the way from `Duke` which will be overridden by the
+   same method in `ExitCommand`.
+5. This method append the exiting message to the string `printToUser`, and return an object called `CommandResult` and 
+pass `printToUser` as its argument
+6. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
+7. `Duke` will further call `isExit` method from `ExitCommand` which will then change `isExit` from `false` to `true`,
+which will then exits the program.
+
+**Class Diagram**
+![ClassDiagram](images/ExitCommandClassDiagram.png)
+
+**Sequence Diagram**
+![ClassDiagram](images/ExitCommandSequenceDiagram.png)
 
 ---
 ## Appendix: Requirements

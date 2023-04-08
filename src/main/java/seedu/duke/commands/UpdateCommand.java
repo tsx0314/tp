@@ -45,7 +45,10 @@ public class UpdateCommand extends Command {
      * @param flagValue
      * @throws DukeException
      */
-    private void updateFoodAttribute(Food currentFood, String flagName, String flagValue, String[] otherFlags) throws DukeException {
+    private void updateFoodAttribute(Food currentFood,
+                                     String flagName,
+                                     String flagValue,
+                                     String[] otherFlags) throws DukeException {
         try {
             switch (flagName) {
             case "n":

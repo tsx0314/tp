@@ -88,8 +88,6 @@ public class UpdateCommand extends Command{
                 throw new IllegalValueException("Illegal value for the flag " + flagName);
             }
         }
-
-
         return new CommandResult("Updated food item successfully! \n" + foodList.getFood(index));
     }
 }

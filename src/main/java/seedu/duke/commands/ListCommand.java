@@ -1,7 +1,6 @@
 package seedu.duke.commands;
 
 import seedu.duke.exceptions.DukeException;
-import seedu.duke.food.Food;
 import seedu.duke.food.FoodList;
 
 public class ListCommand extends Command {

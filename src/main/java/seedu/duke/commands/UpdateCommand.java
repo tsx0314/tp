@@ -48,7 +48,7 @@ public class UpdateCommand extends Command {
     private void updateFoodAttribute(Food currentFood,
                                      String flagName,
                                      String flagValue,
-                                     String[] otherFlags) throws DukeException {
+                                     String[] allFlags) throws DukeException {
         try {
             switch (flagName) {
             case "n":
@@ -64,7 +64,7 @@ public class UpdateCommand extends Command {
                 currentFood.setUnit(currentFoodUnit);
                 break;
             case "u":
-                if (currentFood.getQuantity() == 0 && Arrays.stream(otherFlags).noneMatch(f -> f.startsWith("q"))) {
+                if (currentFood.getQuantity() == 0 && Arrays.stream(allFlags).noneMatch(f -> f.startsWith("q"))) {
                     throw new DukeException("Please set the quantity to change a unit");
                 }
                 currentFood.setUnit(flagValue);

@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 //@@author DavidVin357
+
 /**
  * Utility class for validating arguments to Food constructor
  */
@@ -21,7 +22,7 @@ public class Validator {
     public static boolean isExpiryDateValid(String date) throws DukeException {
         try {
             LocalDate expiryDate = DateFormatter.parse(date);
-            if (expiryDate.isBefore(LocalDate.now())){
+            if (expiryDate.isBefore(LocalDate.now())) {
                 throw new IllegalValueException(PROVIDED_DATE_IS_NOT_IN_THE_FUTURE);
             }
         } catch (DateTimeParseException e) {
@@ -30,15 +31,16 @@ public class Validator {
         return true;
 
     }
+
     public static boolean isQuantityValid(Double q) throws DukeException {
-        if ( q < 0 || q > 9999  ) {
+        if (q < 0 || q > 9999) {
             throw new DukeException(QUANTITY_IS_NOT_VALID);
         }
         return true;
     }
 
     public static boolean isUnitValid(String unitName) throws DukeException {
-        for (Unit u: Unit.values()) {
+        for (Unit u : Unit.values()) {
             if (u.abbreviation.equals(unitName)) {
                 return true;
             }

@@ -2,6 +2,7 @@ package seedu.duke.food;
 
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.IllegalValueException;
+
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,6 @@ public class FoodList {
     public FoodList() {
     }
 
-    //Constructor to get data from save file
     public FoodList(ArrayList<Food> decodedFoodList) {
         foodList = decodedFoodList;
     }
@@ -50,7 +50,7 @@ public class FoodList {
             for(int j = 0; j < getNumberOfFood(); j ++){
                 long day1 = foodList.get(i).getDaysExpire();
                 long day2 = foodList.get(j).getDaysExpire();
-                if(day1 < day2){
+                if (day1 < day2) {
                     Food temp = foodList.get(i);
                     foodList.set(i, foodList.get(j));
                     foodList.set(j, temp);
@@ -61,7 +61,7 @@ public class FoodList {
 
     public void clearFoodList() {
         int totalNumberFood = getNumberOfFood();
-        for(int i = totalNumberFood-1; i >= 0; i--){
+        for (int i = totalNumberFood - 1; i >= 0; i--) {
             removeFood(0);
         }
     }

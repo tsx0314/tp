@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -63,6 +64,10 @@ public class Duke {
             } catch (DukeException e) {
                 logger.log(Level.WARNING, "ERROR");
                 Ui.showError(e.getMessage());
+            } catch (NoSuchElementException e) {
+                logger.log(Level.WARNING, "ERROR");
+                Ui.showError(e.getMessage());
+                isExit = true;
             } finally {
                 ui.showLine();
             }

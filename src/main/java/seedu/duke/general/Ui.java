@@ -1,5 +1,6 @@
 package seedu.duke.general;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ public class Ui {
     public Ui() {
     }
 
-    public String readCommand() {
+    public String readCommand() throws NoSuchElementException {
         Scanner sc = new Scanner(System.in);
         String fullInputLine = sc.nextLine();
         assert fullInputLine != null : "Input cannot be empty";

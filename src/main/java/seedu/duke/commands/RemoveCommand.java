@@ -19,7 +19,8 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * This constructor creates a boolean object that checks if the index provided is an integer and it does not contain non-integer values
+     * This constructor creates a boolean object that checks if the index provided is an integer
+     * which does not contain non-integer values
      *
      * @return Returns true if the index is an integer and false otherwise
      */

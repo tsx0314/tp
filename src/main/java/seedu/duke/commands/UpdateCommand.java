@@ -106,8 +106,6 @@ public class UpdateCommand extends Command{
 
             updateFoodAttribute(currentFood, flagName, flagValue);
         }
-
-
         return new CommandResult("Updated food item successfully! \n" + foodList.getFood(index));
     }
 }

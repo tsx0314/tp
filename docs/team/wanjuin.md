@@ -79,7 +79,7 @@ has already executed what the user asks it to do. It also tells the users what t
   * [Link to Issues added by me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Awanjuin)
 * Review issues set by group members and other peers (PE-D).
 * Assign issues to myself and group members.
-  * [Link to Issues assigned to me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=assignee%3A%40me+is%3Aclosed)
+  * [Link to Issues assigned to me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=is%3Aclosed+assignee%3Awanjuin)
 * Request for group members' review for my merge request on GitHub.
   * [Link to my Pull Request](https://github.com/AY2223S2-CS2113-W13-3/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Awanjuin)
 * Review group members' merge request.

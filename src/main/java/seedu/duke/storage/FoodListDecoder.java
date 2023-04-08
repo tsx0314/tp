@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class FoodListDecoder {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final String SEPARATOR = "«";
+    private static final String SEPARATOR = "|";
     private static final char NAME_IDENTIFIER = 'n';
     private static final char EXPIRY_DATE_IDENTIFIER = 'e';
     private static final char QUANTITY_IDENTIFIER = 'q';
@@ -206,7 +206,7 @@ public class FoodListDecoder {
      */
     private static boolean hasValidUnit(String detail) {
         for (Unit unit : Unit.values()) {
-            if (unit.name().equals(detail)) {
+            if (unit.abbreviation.equals(detail)) {
                 return true;
             }
         }

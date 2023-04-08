@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class FoodListDecoder {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    private static final String SEPARATOR = "|";
+    private static final String SEPARATOR = "\\|";
     private static final char NAME_IDENTIFIER = 'n';
     private static final char EXPIRY_DATE_IDENTIFIER = 'e';
     private static final char QUANTITY_IDENTIFIER = 'q';
@@ -68,6 +68,7 @@ public class FoodListDecoder {
             throw new EmptyStorageFileException();
         }
         String[] details = encodedFood.split(SEPARATOR);
+
         String foodName = "";
         String expiryDate = "";
         String quantity = "0.0";
@@ -83,7 +84,6 @@ public class FoodListDecoder {
 
                 char identifier = foodDetails.charAt(0);
                 String detail = foodDetails.substring(1).trim();
-
                 switch(identifier) {
                 case NAME_IDENTIFIER:
                     if (hasValidFoodName(detail)) {

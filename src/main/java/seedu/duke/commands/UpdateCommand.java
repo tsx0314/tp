@@ -56,9 +56,6 @@ public class UpdateCommand extends Command {
                 currentFood.setExpiryDate(flagValue);
                 break;
             case "q":
-                if (currentFood.getQuantity() == 0 && !Arrays.asList(flags).contains("u")) {
-                    throw new DukeException("Please set the unit to change a quantity");
-                }
                 currentFood.setQuantity(Double.parseDouble(flagValue));
                 String currentFoodUnit = currentFood.getUnit();
                 currentFood.setUnit(currentFoodUnit);

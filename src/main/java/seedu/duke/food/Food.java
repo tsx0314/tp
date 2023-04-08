@@ -289,7 +289,7 @@ public class Food {
         if (!isFresh()) {
             expiryStatus = " (expired) ";
         } else {
-            expiryStatus = " (fresh) ";
+            expiryStatus = " (fresh)";
         }
         return expiryStatus;
     }

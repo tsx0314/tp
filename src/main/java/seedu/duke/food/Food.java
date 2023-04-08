@@ -7,6 +7,7 @@ import seedu.duke.utils.Validator;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 
 public class Food {
@@ -27,8 +28,6 @@ public class Food {
     private static final String LITRE_3 = "litres";
     private static final String SERVING_1 = "serving";
     private static final String SERVING_2 = "servings";
-    private static final String UNIT_1 = "unit";
-    private static final String UNIT_2 = "units";
     private static final String BOX_1 = "box";
     private static final String BOX_2 = "boxes";
     private static final String PACKET_1 = "packet";
@@ -38,7 +37,6 @@ public class Food {
     private String expiryDate;
     private Double quantity;
     private String unit;
-
     private FoodCategory category;
 
     /**
@@ -73,7 +71,7 @@ public class Food {
         this.expiryDate = expiryDate;
         this.category = FoodCategory.OTHERS;
         this.quantity = 0.0;
-        this.unit = Unit.UNITS.abbreviation;
+        this.unit = Unit.UNIT.abbreviation;
     }
 
     /**
@@ -89,7 +87,7 @@ public class Food {
         this.name = name;
         this.expiryDate = expiryDate;
         this.quantity = 0.0;
-        this.unit = Unit.UNITS.abbreviation;
+        this.unit = Unit.UNIT.abbreviation;
         this.category = category;
     }
 
@@ -242,23 +240,23 @@ public class Food {
             }
         case BOX_1:
         case BOX_2:
-            if(quantityInDouble == 1){
-                return String.valueOf(Unit.BOX.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 return String.valueOf(Unit.BOXES.abbreviation);
+            } else {
+                return String.valueOf(Unit.BOX.abbreviation);
             }
         case PACKET_1:
         case PACKET_2:
-            if(quantityInDouble == 1){
-                return String.valueOf(Unit.PACKET.abbreviation);
-            } else {
+            if(quantityInDouble > 1){
                 return String.valueOf(Unit.PACKETS.abbreviation);
+            } else {
+                return String.valueOf(Unit.PACKET.abbreviation);
             }
         default:
-            if(quantityInDouble == 1) {
-                return String.valueOf(Unit.UNIT.abbreviation);
-            } else {
+            if(quantityInDouble > 1) {
                 return String.valueOf(Unit.UNITS.abbreviation);
+            } else {
+                return String.valueOf(Unit.UNIT.abbreviation);
             }
         }
     }
@@ -322,6 +320,7 @@ public class Food {
     @Override
     public String toString()  {
         Double quantity = getQuantity();
+        String unit = getUnit();
         String foodDetail;
         String expiryStatus = "";
         String daysLeftString = "";
@@ -333,15 +332,15 @@ public class Food {
             Ui.showError("Expiry date parsing error");
         }
 
-        if (quantity == 0.0) {
-            foodDetail = getName() + expiryStatus
-                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
-                    + "\n       Category: " + getCategoryString(getCategory());
-        } else {
+        if (!Objects.equals(unit, "")) {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory())
-                    + "\n       Remaining quantity: " + getQuantity() + " " + getUnit();
+                    + "\n       Remaining quantity: " + quantity + " " + unit;
+        }  else {
+            foodDetail = getName() + expiryStatus
+                    + "\n       Expiry date: " + getExpiryDate() + daysLeftString
+                    + "\n       Category: " + getCategoryString(getCategory());
         }
         return foodDetail;
     }

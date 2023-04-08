@@ -68,8 +68,7 @@ public class Duke {
             } catch (NoSuchElementException e) {
                 Ui.showError("Invalid input");
                 return;
-            }
-            finally {
+            } finally {
                 ui.showLine();
             }
         }

@@ -120,7 +120,7 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999;
                 Double quantity = Double.valueOf(q);
                 String unit = getUnitOfFood(foodDetails[3], quantity);
                 newFood = new Food(name, date, quantity, unit);
@@ -129,7 +129,7 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999;
                 Double quantity = Double.valueOf(q);
                 FoodCategory category = compareCategory(foodDetails[3]);
                 newFood = new Food(name, date, quantity, category);
@@ -138,7 +138,7 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999;
                 Double quantity = Double.valueOf(q);
                 String unit = getUnitOfFood(foodDetails[3], quantity);
                 String c = foodDetails[4];
@@ -257,7 +257,7 @@ public class AddCommand extends Command {
     /**
      * Return a food category according to the input
      *
-     * @param tempCategory
+     * @param tempCategory a category
      * @return an enum FoodCategory
      */
     public FoodCategory compareCategory(String tempCategory) {
@@ -298,6 +298,7 @@ public class AddCommand extends Command {
     }
 
     //@@author wanjuin
+
     /**
      * Returns the unit of the food
      *

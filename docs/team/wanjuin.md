@@ -8,7 +8,8 @@ If you can type fast, FSP can get your food management tasks done faster than tr
 
 ### Contributions
 Given below are my contributions to the project.
-1) New Feature: List Command
+
+**1) New Feature: List Command**
   * What it does: List out all the food products in order of expiry dates. 
   * Justification: This feature improves the product significantly because
 a user can view all the food products available. This make looking at all 
@@ -20,7 +21,8 @@ of expiry dates makes it neater for user to look at what are the foods that are 
     * There is a label beside each food to indicate whether the food is expired or not.
     * Remind users the number of food products they still have in the list.
     
-2) New Feature: Add `-u` unit feature in the Add Food feature
+
+**2) New Feature: Add `-u` unit feature in the Add Food feature**
   * What it does: Allows the addition of unit to the food products. 
   * Justification: This feature improves the product significantly because
 a user can choose unit to gauge the remaining quantity 
@@ -37,22 +39,31 @@ it would need the value of `quantity` to determine if it is a plural form or sin
     * The default unit of a food product would be set to `unit` and `units` according to the value of quantity.
     * When a user updates the quantity, the unit would change to plural or singular form according to it, if applicable.
 
-3) New feature: Clear Command
+
+**3) New feature: Clear Command**
    * What it does: Allows users to clear the entire food list using one command.
    * Justification: This feature improves the product as users can just delete the entire food list, without the need of 
    deleting food products one by one. Practically, this feature is important as the user could have many expired foods 
    and want to delete the entire food list in one shot.
 
-4) New feature: Exit Command
+
+**4) New feature: Exit Command**
   * What it does: Allow users to exit the application,
   * Justification: This feature is a core feature of the product as users can shut down the application
 when he or she is done using it.
 
-5) Enhancement: Remove feature that do not take in non-integers 
+
+**5) Enhancement: Remove feature that do not take in non-integers**
   * Checking if an input is an integer or not, if it is not then an error message will be showed up to the user.
   * Improve the clarity of the error message being shown to the users.
+  * Credits: https://www.baeldung.com/java-check-string-number
 
-6) Enhancement: Command Result 
+**6) Enhancement: Remove feature that cannot take in integers less than 0 and more than 9999**
+* Checking if an input is valid, if it is not then an error message will be showed up to the user.
+* Improve the clarity of the error message being shown to the users.
+* Credits: history feature of group member [@tsx0314 GitHub Pull Request](https://github.com/AY2223S2-CS2113-W13-3/tp/pull/192)
+
+**7) Enhancement: Command Result**
   * What it does: Printing of response to users after each command entered by users.
   * Justification: This feature is a core feature of the product as it makes it clearer for the users that the program 
 has already executed what the user asks it to do. It also tells the users what they have entered wrongly in some cases 
@@ -87,10 +98,19 @@ has already executed what the user asks it to do. It also tells the users what t
 
 * Developer Guide:
   * Diagrams:
-        + ListCommandSequenceDiagram.puml
-        + ListCommandClassDiagram.puml
-  * Specifications:
-        + ListCommand implementation description
+    * ListCommandClassDiagram.puml
+    * ListCommandSequenceDiagram.puml
+    * ClearCommandClassDiagram.puml 
+    * ClearCommandSequenceDiagram.puml
+    * ExitCommandClassDiagram.puml
+    * ExitCommandSequenceDiagram.puml
+  * Specifications: 
+    * ListCommand implementation description
+    * ClearCommand implementation description
+    * ExitCommand implementation description
+  * Requirements (Appendix):
+    * User Stories
+    * Non-functional Requirements
 
 * Logging of the project
   * [Link to Pull Request for Logging](https://github.com/AY2223S2-CS2113-W13-3/tp/pull/58)

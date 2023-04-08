@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 //@@author DavidVin357
 public class FindCommandTest {
     private String getExpectedFeedback(int expectedNumber) {
-        String FOUND_FOOD = "Found " + expectedNumber + " of food items";
-        String NOT_FOUND = "No food found for such query";
+        final String FOUND_FOOD = "Found " + expectedNumber + " of food items";
+        final String NOT_FOUND = "No food found for such query";
         if (expectedNumber > 0) {
             return FOUND_FOOD;
         }

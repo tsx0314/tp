@@ -8,7 +8,6 @@ import seedu.duke.food.Unit;
 import seedu.duke.utils.DateFormatter;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
@@ -82,8 +81,6 @@ public class AddCommand extends Command {
         assert foodDetails.length >= 2 : "Input is wrong";
         String name = foodDetails[0];
         String date = foodDetails[1];
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
         try {
             LocalDate expiryDate = DateFormatter.parse(date);

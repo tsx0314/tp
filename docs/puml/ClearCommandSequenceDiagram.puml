@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Participant Duke
+Participant ClearCommand
+Participant FoodList
+
+Duke -> ClearCommand: execute(foodList)
+activate ClearCommand
+
+ClearCommand -> FoodList: clearFoodList()
+activate FoodList
+ClearCommand <-- FoodList
+deactivate FoodList
+destroy FoodList
+
+ClearCommand --> Duke: new CommandResult(printToUser)
+deactivate ClearCommand
+destroy ClearCommand
+@enduml

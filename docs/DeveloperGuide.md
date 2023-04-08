@@ -100,16 +100,17 @@ The `removeFood` method implementation is as follows:
 ![ClassDiagram](images/RemoveCommandSequenceDiagram.png)
 
 ### Find feature
-The find command is implemented using a `FindCommand` class which
-utilizes `findFood` method of the FoodList.
+The `find` command is implemented using a `FindCommand` class and its `execute` method.
 
-The `findFood` method implementation is as follows:
-1. Initialize `FoodList` result variable
-2. Start a loop iterating over each foodItem 
-3. Do word processing on a term and check if the foodItem name includes it
-4. Enter a loop with switch statement for each component of the `flags` argument 
-5. If some flag is not satisfied, continue the loop without adding foodItem to the result
-6. If the flags loop is over, the flags conditions were satisfied, so add the foodItem to the result
+The `FindCommand` method implementation is as follows:
+1. Inside the constructor, split provided arguments into the term and flags
+2. Start `execute` method by initializing `FoodList` result variable
+3. If no term or flag is provided, throw the corresponding error to the user
+4. Start a loop iterating over each foodItem 
+5. Do word processing on a term and check if the foodItem name includes it
+6. Enter a loop with switch statement for each component of the `flags` argument 
+7. If some flag is not satisfied, continue the loop without adding foodItem to the result
+8. If the flags loop is over, the flags conditions were satisfied, so add the foodItem to the result
 
 **Class Diagram** <br>
 ![ClassDiagram](images/FindCommandClassDiagram.png)
@@ -117,6 +118,30 @@ The `findFood` method implementation is as follows:
 
 **Sequence Diagram** <br>
 ![ClassDiagram](images/FindCommandSequenceDiagram.png)
+
+### Update feature
+The `update` command is implemented using an `UpdateCommand` class and its `execute` method.
+
+The `UpdateCommand` implementation is as follows:
+1. Inside the constructor, split provided arguments into the index and flags
+2. Start `execute` method by parsing index to integer and catching the exception if
+   it's in the invalid format
+3. Get the current food item by calling `foodList.getFood(index)`
+4. Enter the loop iterating through each flag
+5. Inside the loop, split flag into its name and value
+6. Call `updateFoodAttribute` with the `currentFood`, `flagName`, `flagValue`, 
+   and all `flags` provided (important for some interdependent attributes like unit and quantity)
+7. The `updateFoodAttribute` enters switch statement for the `flagName`,
+   calling corresponding attribute setters for the `flagValue` after its validation. If no
+   `flagName` is matched, an `InvalidFlagException(flagName)` is thrown
+
+**Class Diagram**
+![ClassDiagram](images/UpdateCommandClassDiagram.png)
+
+
+**Sequence Diagram**
+![ClassDiagram](images/UpdateCommandSequenceDiagram.png)
+
 
 ### List feature
 The list command is implemented using a `ListCommand` class which utilizes `COMMAND_WORD`

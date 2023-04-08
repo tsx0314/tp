@@ -1,4 +1,6 @@
 @startuml
+hide circle
+skinparam classAttributeIconSize 0
 
 Command <|-- FindCommand
 class Command {
@@ -16,12 +18,12 @@ class FindCommand {
 }
 
 
-FindCommand "1" --> "1" FoodList : searches
+FindCommand "1" --> "1" FoodList: adds matched item
 Command  --> CommandResult
 FindCommand  --> CommandResult
 
 class FoodList {
-    +findFood(term: String, String ...flags): FoodList
+    +addFood(Food food)
     foodList: ArrayList<Food>
 }
 @enduml

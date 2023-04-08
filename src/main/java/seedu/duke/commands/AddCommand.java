@@ -113,38 +113,29 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
-                Double quantity = Double.valueOf(q);
-                newFood = new Food(name, date, quantity);
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999 : "Unreasonable quantity input";
+                newFood = buildFoodWithCategory(name, date, q);
             } else if (foodDetails.length == 4 && hasUnit) {
                 String q = foodDetails[2];
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
-                Double quantity = Double.valueOf(q);
-                String unit = getUnitOfFood(foodDetails[3], quantity);
-                newFood = new Food(name, date, quantity, unit);
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999 : "Unreasonable quantity input";
+                newFood = buildFoodWithUnit(foodDetails, name, date, q);
             } else if (foodDetails.length == 4 && !hasUnit) {
                 String q = foodDetails[2];
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
-                Double quantity = Double.valueOf(q);
-                FoodCategory category = compareCategory(foodDetails[3]);
-                newFood = new Food(name, date, quantity, category);
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999 : "Unreasonable quantity input";
+                newFood = buildFoodWithNoUnit(foodDetails, name, date, q);
             } else {
                 String q = foodDetails[2];
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
-                Double quantity = Double.valueOf(q);
-                String unit = getUnitOfFood(foodDetails[3], quantity);
-                String c = foodDetails[4];
-                FoodCategory category = compareCategory(c);
-                newFood = new Food(name, date, quantity, unit, category);
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999 : "Unreasonable quantity input";
+                newFood = getFoodWithAllAttributes(foodDetails, name, date, q);
             }
             System.out.println(newFood);
             foodList.addFood(newFood);
@@ -155,7 +146,85 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Returns a new Food object based on the details given
+     * It throws DukeException if any error is caught
+     *
+     * @param foodDetails a string array of food details
+     * @param name the food name
+     * @param date the food expiry date
+     * @param q the quantity
+     *
+     * @throws DukeException
+     */
+
+    private Food getFoodWithAllAttributes(String[] foodDetails, String name, String date, String q) throws DukeException {
+        Food newFood;
+        Double quantity = Double.valueOf(q);
+        String unit = getUnitOfFood(foodDetails[3], quantity);
+        String c = foodDetails[4];
+        FoodCategory category = compareCategory(c);
+        newFood = new Food(name, date, quantity, unit, category);
+        return newFood;
+    }
+
+    /**
+     * Returns a new Food object based on the details given
+     * It throws DukeException if any error is caught
+     *
+     * @param foodDetails a string array of food details
+     * @param name the food name
+     * @param date the food expiry date
+     * @param q the quantity
+     * @return
+     * @throws DukeException
+     */
+    private Food buildFoodWithNoUnit(String[] foodDetails, String name, String date, String q) throws DukeException {
+        Food newFood;
+        Double quantity = Double.valueOf(q);
+        FoodCategory category = compareCategory(foodDetails[3]);
+        newFood = new Food(name, date, quantity, category);
+        return newFood;
+    }
+
+    /**
+     * Returns a new Food object based on the details given
+     * It throws DukeException if any error is caught
+     *
+     * @param foodDetails a string array of food details
+     * @param name the food name
+     * @param date the food expiry date
+     * @param q the quantity
+     * @return newFood a food object
+     * @throws DukeException
+     */
+    private Food buildFoodWithUnit(String[] foodDetails, String name, String date, String q) throws DukeException {
+        Food newFood;
+        Double quantity = Double.valueOf(q);
+        String unit = getUnitOfFood(foodDetails[3], quantity);
+        newFood = new Food(name, date, quantity, unit);
+        return newFood;
+    }
+
+    /**
+     * Returns a new Food object
+     * It throws DukeException if any error is caught
+     *
+     * @param name the food name
+     * @param date the food expiry date
+     * @param q    the quantity
+     * @return newFood a food object
+     * @throws DukeException
+     */
+    private static Food buildFoodWithCategory(String name, String date, String q) throws DukeException {
+        Food newFood;
+        Double quantity = Double.valueOf(q);
+        newFood = new Food(name, date, quantity);
+        return newFood;
+    }
+
     //@@author tsx0314
+
     /**
      * Returns an array of String to store the information of food added
      *

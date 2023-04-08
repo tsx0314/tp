@@ -1,6 +1,7 @@
 package seedu.duke.storage;
 
 
+import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.EmptyStorageFileException;
 import seedu.duke.exceptions.ReadStorageFileErrorException;
 import seedu.duke.food.Food;
@@ -43,7 +44,7 @@ public class FoodListDecoder {
         for (String encodedFood : encodedFoodList) {
             try {
                 decodedFoodList.add(decodeFoodFromString(encodedFood));
-            } catch (ReadStorageFileErrorException | EmptyStorageFileException e) {
+            } catch (DukeException e) {
                 Ui.showError(e.getMessage());
             }
         }
@@ -61,7 +62,7 @@ public class FoodListDecoder {
      * @throws EmptyStorageFileException  when the line is empty
      */
     private static Food decodeFoodFromString(String encodedFood) throws
-            ReadStorageFileErrorException, EmptyStorageFileException {
+             DukeException {
 
         if (encodedFood.equals("")) {
             throw new EmptyStorageFileException();

@@ -1,6 +1,7 @@
 package seedu.duke.food;
 
 //@@author wanjuin
+
 /**
  * This enum represents the units of food.
  */

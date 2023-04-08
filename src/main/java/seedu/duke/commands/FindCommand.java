@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 //@@author DavidVin357
+
 /**
  * Represents "find" command - finds a product with given term and filters matched
  */
@@ -19,12 +20,18 @@ public class FindCommand extends Command {
 
     private static final String FLAG_SEPARATOR = "--";
 
+    private static final String FOUND_FOOD_1 = "Found ";
+    private static final String FOUND_FOOD_2 = " of food items";
+    private static final String NOT_FOUND = "No food found for such query";
+
+
     String term;
     String[] flags;
 
     /**
      * Initializes FindCommand object
      * with term and flags obtained from the arguments provided
+     *
      * @param arguments
      */
     public FindCommand(String arguments) {
@@ -36,7 +43,7 @@ public class FindCommand extends Command {
     /**
      * Finds products with a given term and filters them
      * according to given flag values.
-     *
+     * <p>
      * Adds a foodItem to the result
      * only if each flag was satisfied and the loop iteration
      * wasn't interrupted early by non-matching flag value
@@ -48,7 +55,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(FoodList foodList) throws DukeException {
         FoodList result = new FoodList();
-        if(Objects.equals(term, "") && flags.length == 0) {
+        if (Objects.equals(term, "") && flags.length == 0) {
             throw new DukeException("No term or flag provided");
         }
 
@@ -62,7 +69,8 @@ public class FindCommand extends Command {
 
             if (hasTerm) {
                 for (String flag : flags) {
-                    String[] flagParts = flag.trim().split(" ", 2);;
+                    String[] flagParts = flag.trim().split(" ", 2);
+                    ;
 
                     String flagName = flagParts[0];
 
@@ -126,12 +134,11 @@ public class FindCommand extends Command {
             }
         }
 
-        final String FOUND_FOOD = "Found " + result.getNumberOfFood() + " of food items";
-        final String NOT_FOUND = "No food found for such query";
+        int num = result.getNumberOfFood();
 
         if (result.getNumberOfFood() > 0) {
             System.out.println(result);
-            return new CommandResult(FOUND_FOOD);
+            return new CommandResult(FOUND_FOOD_1 + num + FOUND_FOOD_2);
         } else {
             return new CommandResult(NOT_FOUND);
         }

@@ -9,7 +9,9 @@ public class DukeException extends Exception {
         this.errorMessage = errorMessage;
     }
 
-    public DukeException() {}
+    public DukeException() {
+    }
+
     public String getMessage() {
         return errorMessage;
     }

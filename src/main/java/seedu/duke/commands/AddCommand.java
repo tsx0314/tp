@@ -68,7 +68,8 @@ public class AddCommand extends Command {
 
     /**
      * Returns a CommandResult object to display the successful message after executing the command as below
-     * Separate the food details and add a new food item in the list
+     * Separate the food details and add a new food item in the list according to the size of the String array
+     * Input validity is checked for all parameters to ensure that only reasonable food items can be added to the list
      *
      * @param foodList a food list
      * @return a CommandResult object to display the successful message
@@ -112,7 +113,7 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) < 9999;
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
                 Double quantity = Double.valueOf(q);
                 newFood = new Food(name, date, quantity);
             } else if (foodDetails.length == 4 && hasUnit) {
@@ -120,7 +121,7 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999;
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
                 Double quantity = Double.valueOf(q);
                 String unit = getUnitOfFood(foodDetails[3], quantity);
                 newFood = new Food(name, date, quantity, unit);
@@ -129,7 +130,7 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999;
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
                 Double quantity = Double.valueOf(q);
                 FoodCategory category = compareCategory(foodDetails[3]);
                 newFood = new Food(name, date, quantity, category);
@@ -138,7 +139,7 @@ public class AddCommand extends Command {
                 if (!isNumberReasonable(q)) {
                     return new CommandResult(INVALID_INPUT_MESSAGE);
                 }
-                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999;
+                assert Double.valueOf(q) > 0 && Double.valueOf(q) <= 9999: "Unreasonable quantity input";
                 Double quantity = Double.valueOf(q);
                 String unit = getUnitOfFood(foodDetails[3], quantity);
                 String c = foodDetails[4];
@@ -235,6 +236,9 @@ public class AddCommand extends Command {
 
     /**
      * Returns a boolean value which indicate whether the date is valid
+     * This method specially checks for the date 29/02
+     * If the date is this special date and the year is not a leap year, it will return false
+     * Or else return true, the check is passed.
      *
      * @param date date
      * @return whether it is a valid date
@@ -256,6 +260,7 @@ public class AddCommand extends Command {
 
     /**
      * Return a food category according to the input
+     * Any other category is not accepted and will be deemed as OTHERS
      *
      * @param tempCategory a category
      * @return an enum FoodCategory
@@ -286,6 +291,7 @@ public class AddCommand extends Command {
 
     /**
      * Return the input number is reasonable
+     * Maximum quantity input allowed is 9999
      *
      * @param number a number string
      * @return whether the number is valid

@@ -36,8 +36,13 @@ The rest of the App consists of five components:
 + Ui: The UI of the App. This part displays the messages to the user.
 + Parse: Parse user input.
 + Command: The command executor.
++ CommandResult: The command result display, displaying the command result.
 + Storage: Reads data from, and writes data to, the hard disk.
+<<<<<<< HEAD
++ Parser: The command parser. Identify the various command type.
+=======
 + CommandResult: Prints response to users.
+>>>>>>> 58a04fae95bc117e9be4b678f64fc27a7b3eabd6
 
 ### UML Sequence Diagram
 ![SequenceDiagram](images/SequenceDiagram-Food_Supply_Tracker.png)

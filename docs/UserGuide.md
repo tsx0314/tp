@@ -13,8 +13,9 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Removing a food product: `remove`](#removing-a-food-product) 
   + [Finding food products by name: `find`](#finding-food-products-by-name)
   + [Update food products by index: `update`](#updating-food-products-by-index)
-  + [Clears the food list: `clear`](#clearing-all-food-in-list)
+  + [Clears the food list: `clear`](#clearing-the-food-list)
   + [Exit FSP Program: `exit`](#exiting-fsp)
+  + [Editing the foodTrackerList text file](#editing-foodtrackerlist-text-file)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
 
@@ -72,8 +73,6 @@ List of commands: 'add', 'list', 'remove', 'find', 'update', 'clear', 'exit'.
 For more detailed information on usage of specific command, type: help --COMMAND
 Refer to our user guide for more in-depth details on how to use Food Supply Tracker:
 https://ay2223s2-cs2113-w13-3.github.io/tp/UserGuide.html
-Mar 31, 2023 1:26:06 PM seedu.duke.Duke run
-INFO: Processed user command successfully
 ______________________________
 ```
 
@@ -225,30 +224,38 @@ There is/are now 1 item(s) in the list.
 ______________________________
 ```
 
-### Finding food products by name
+### Finding food products by name and attributes
+`find` - List all food products with matching name and filters
 
-`find` - List all food product with matching name.
+**Format:** `find {TERM} {--fresh} {--expired} {--ATTRIBUTE_NAME}`
 
-Format: <code>find FOOD_NAME {--fresh} {--expired}</code>
-or 
-Format: <code>find {--fresh} {--expired}</code>
-- The search is not case-sensitive.
-  - E.g. eggs will match Eggs
-- Only full words will be matched.
-  - E.g. Egg will not match Eggs
-- Item matching at least one keyword will be returned.
-  - E.g. Blueberry will return Blueberry Yogurt, Blueberry
-- Adding the filter <code>-fresh</code> would list only the unexpired food products.
-- Adding the filter <code>-expired</code> would list only the expired food products.
+Allowed flags to find the food item:
+* fresh items: `--fresh`
+* expired items: `--expired`
+* name: `--n {string}`
+* unit: `--u {UNIT}`
+* quantity: `--q {number}`
+* category: `--c {CATEGORY}`
 
-Example of Usage:
+**Notes:**
+- The term is optional, and it's possible to only use filters for finding products
+  - E.g., `find --fresh` will give all the fresh items
+- The search is case-insensitive.
+  - E.g. "eggs" will match "Eggs"
+- Parts of words will be matched.
+  - E.g. "egg" will match "eggs"
+- Using empty query will output user error.
+  - E.g. typing `find` will result in "No term or flag provided"
+- Using both `--fresh` and `--expired` will give no results.
+  - E.g. typing `find --fresh --expired` will result in "No food found for such query"
 
-(Number of days depends on today's date: 07/04/2023)
+**Example of Usage:**
 
-Input 1: `find blueberry`
+(Number of days depends on today's date)
 
+**Input 1:** `find blueberry`
 
-Output 1:
+**Output 1:**
 ```
 ______________________________
 1. Blueberry (expired) 
@@ -264,9 +271,9 @@ Found 2 of food items
 ______________________________
 ```
 
-Input 2: `find --expired`
+**Input 2:** `find --expired`
 
-Output 2:
+**Output 2:**
 ```
 ______________________________
 1. Blueberry (expired) 
@@ -278,9 +285,22 @@ Found 1 of food items
 ______________________________
 ```
 
-Input 3: `find blueberry --fresh`
+**Input 3:** `find blueberry --fresh`
 
-Output 3:
+**Output 3:**
+```
+______________________________
+1. Blueberry Yogurt (fresh) 
+       Expiry date: 23/04/2023 (16 days left)
+       Category: dairy
+       Remaining quantity: 1.0 packet
+
+Found 1 of food items
+______________________________
+```
+**Input 4:** `find blueberry --c dairy`
+
+**Output 4:**
 ```
 ______________________________
 1. Blueberry Yogurt (fresh) 
@@ -292,24 +312,37 @@ Found 1 of food items
 ______________________________
 ```
 
+**Input 5:** `find --u ml`
+
+**Output 5:**
+```
+______________________________
+No food found for such query
+______________________________
+```
+
 ### Updating food products by index
+`update` - Change any attribute based on the index `i` in the list and
+values of flags provided
 
-`update` - Change any attribute based on the index in the list.
+Format: `update {i} {flags}`
 
-* Multiple attributes can be changed at once by appending the identifier at the back.
-* `--u` can be edited individually if its quantity is more than 0.0
-* quantity `--q` can be added and edited even if it currently does not have any quantity.
-* quantity `--q` and unit `--u` can be added and edited at the same time.
-* When only quantity `--q` is edited by the user, the unit will be edited automatically according to the quantity.
-  * refer to example of usage Input 3 and Output 3
-* Please take note that if **the food quantity is zero**, even if unit is changed, 
-the message will not display the quantity and unit
+Allowed flags to update the food item attributes:
+* name: `--n {string}`
+* expiry date: `--e {dd/mm/yyyy}`
+* unit: `--u {UNIT}`
+* quantity: `--q {number}` 
+* category: `--c {CATEGORY}`
 
-Example of Usage:
+**Notes:**
+* Multiple attributes can be changed at once by appending different flags.
+* `update --u` can be applied individually only if its quantity is more than 0.0
 
-Input 1: <code>update 2 --q 10</code>
+**Example of Usage**
 
-Output 1:
+**Input 1:** <code>update 2 --q 10</code>
+
+**Output 1:**
 
 * Before `update` command:
 ```
@@ -332,9 +365,9 @@ strawberry (fresh)
 ______________________________
 ```
 
-Input 2: `update 2 --u packets`
+**Input 2:** `update 2 --u packets`
 
-Output 2:
+**Output 2:**
 
 * Before `update` command:
 ```
@@ -356,9 +389,9 @@ strawberry (fresh)
 ______________________________
 ```
 
-Input 3: `update 2 --q 1 --u boxes`
+**Input 3:** `update 2 --q 1 --u boxes`
 
-Output 3:
+**Output 3:**
 
 * Before `update` command:
 ```
@@ -383,6 +416,51 @@ strawberry (fresh)
 ______________________________
 ```
 
+**Input 4:** `update 1 --u kg`
+
+**Output 4:**
+
+* Before `update` command (`quantity = 0`):
+```
+______________________________
+2. strawberry (fresh) 
+       Expiry date: 08/04/2023 (1 days left)
+       Category: others______________________________
+```
+
+* After `update` command:
+  * The program notifies of inability to change unit when quantity is zero
+
+```
+______________________________
+Please set the quantity to change a unit
+______________________________
+```
+
+**Input 5:** `update 1 --u kg --q 5.3`
+
+**Output 5:**
+
+* Before `update` command (`quantity = 0`):
+```
+______________________________
+2. strawberry (fresh) 
+       Expiry date: 08/04/2023 (1 days left)
+       Category: others______________________________
+```
+
+* After `update` command:
+  * The program successfully updates quantity and unit together
+
+```
+______________________________
+Updated food item successfully! 
+strawberry (fresh)
+       Expiry date: 08/05/2023 (30 days left)
+       Category: others
+       Remaining quantity: 5.3 kg______________________________
+```
+
 ### Clearing the food list
 `clear` - This command will clear the entire food list.
 * Any extraneous parameters input after the command `clear` will be ignored.
@@ -402,6 +480,21 @@ ______________________________
 * Any extraneous parameters input after the command `exit` will be ignored.
 
   (e.g. `exit 123 abcde` will still work as `exit`)
+
+### Editing foodTrackerList text file
+It is possible for users to edit their food list without using the program. However, the editing should take when the
+program is not running as the edits will not be saved otherwise (the program has higher priority).
+
+#### The syntax and logic of the file is as follows
+* Syntax:
+  * `|n` indicates the name of the food 
+  * `|e` indicates the expiry date
+  * `|q` indicates the quantity 
+  * `|u` indicates the unit
+  * `|c` indicates the category
+* When more than one of the same identifier is used, the value associated with the last identifier will be used.
+* It is possible for optional attributes which includes `quantity`, `unit` and `category` to be not included.
+* Compulsory attributes such as `name` and `expiry date` have to be included or else the line of data will be ignored.
 
 ## FAQ
 
@@ -450,9 +543,9 @@ ______________________________
 * List - `list`
 * Remove - `remove INDEX_NUMBER`
   * e.g. `remove 1`
-* Find - `find KEYWORD {--fresh} {--expired}`
-  * e.g. `find egg`, `find egg --fresh`, `find --expired`
-* Update - `update INDEX --filter UPDATED_VALUE`
-  * e.g. `update 2 --q 1`, `update 2 --q 1 --u packet`
+* Find - `find KEYWORD {--fresh} {--expired} {--ATTRIBUTE_FLAG}`
+  * e.g. `find egg`, `find egg --fresh`, `find --expired`, `find --c`, `find --u` 
+* Update - `update INDEX --ATTRIBUTE_FLAG UPDATED_VALUE`
+  * e.g. `update 2 --q 1`, `update 2 --q 1 --u packet`, `update 2 --q 1 --u packet --c fruit --n potato --e 05/05/2024`
 * Clear - `clear`
 * exit - `exit`

@@ -45,7 +45,10 @@ public class UpdateCommand extends Command {
      * @param flagValue
      * @throws DukeException
      */
-    private void updateFoodAttribute(Food currentFood, String flagName, String flagValue) throws DukeException {
+    private void updateFoodAttribute(Food currentFood,
+                                     String flagName,
+                                     String flagValue,
+                                     String[] otherFlags) throws DukeException {
         try {
             switch (flagName) {
             case "n":
@@ -56,15 +59,12 @@ public class UpdateCommand extends Command {
                 currentFood.setExpiryDate(flagValue);
                 break;
             case "q":
-                if (currentFood.getQuantity() == 0 && !Arrays.asList(flags).contains("u")) {
-                    throw new DukeException("Please set the unit to change a quantity");
-                }
                 currentFood.setQuantity(Double.parseDouble(flagValue));
                 String currentFoodUnit = currentFood.getUnit();
                 currentFood.setUnit(currentFoodUnit);
                 break;
             case "u":
-                if (currentFood.getQuantity() == 0 && !Arrays.asList(flags).contains("q")) {
+                if (currentFood.getQuantity() == 0 && Arrays.stream(otherFlags).noneMatch(f -> f.startsWith("q"))) {
                     throw new DukeException("Please set the quantity to change a unit");
                 }
                 currentFood.setUnit(flagValue);
@@ -89,7 +89,6 @@ public class UpdateCommand extends Command {
      */
     @Override
     public CommandResult execute(FoodList foodList) throws DukeException {
-
         int index = 1;
         try {
             index = Integer.parseInt(this.index.trim()) - 1;
@@ -110,7 +109,7 @@ public class UpdateCommand extends Command {
             String flagName = flagParts[0].trim().toLowerCase();
             String flagValue = flagParts[1].trim().toLowerCase();
 
-            updateFoodAttribute(currentFood, flagName, flagValue);
+            updateFoodAttribute(currentFood, flagName, flagValue, flags);
         }
         return new CommandResult("Updated food item successfully! \n" + foodList.getFood(index));
     }

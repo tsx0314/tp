@@ -10,7 +10,16 @@ activate ClearCommand
 
 ClearCommand -> FoodList: clearFoodList()
 activate FoodList
+
+loop foodList
+FoodList -> FoodList: remove(0)
+activate FoodList
+FoodList --> FoodList
+deactivate FoodList
+end
+
 ClearCommand <-- FoodList
+
 deactivate FoodList
 destroy FoodList
 

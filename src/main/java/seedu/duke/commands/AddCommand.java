@@ -19,11 +19,11 @@ public class AddCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String ADD_MESSAGE = "I have added this product! :)";
 
-    private static final String NAME_SEPARATOR = "-n";
-    private static final String EXPIRY_SEPARATOR = "-e";
-    private static final String CATEGORY_SEPARATOR = "-c";
-    private static final String QUANTITY_SEPARATOR = "-q";
-    private static final String UNIT_SEPARATOR = "-u";
+    private static final String NAME_SEPARATOR = "--n";
+    private static final String EXPIRY_SEPARATOR = "--e";
+    private static final String CATEGORY_SEPARATOR = "--c";
+    private static final String QUANTITY_SEPARATOR = "--q";
+    private static final String UNIT_SEPARATOR = "--u";
 
     private static final String INVALID_DATE_MESSAGE =
             "Please input a valid date :<";

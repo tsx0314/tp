@@ -25,27 +25,27 @@ public class Parser {
 
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final String ADD_COMMAND_PATTERN_1 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}$";
+            "^\\s+--n\\s+\\w+(\\s+\\w+)*\\s+--e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}$";
 
     private static final String ADD_COMMAND_PATTERN_2 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
-                    "\\s+-c\\s+\\w+(\\s+\\w+)*$";
+            "^\\s+--n\\s+\\w+(\\s+\\w+)*\\s+--e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+--c\\s+\\w+(\\s+\\w+)*$";
     private static final String ADD_COMMAND_PATTERN_3 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
-                    "\\s+-c\\s+\\w+(\\s+\\w+)*" +
-                    "\\s+-q\\s+\\d+(\\.\\d+)?$";
+            "^\\s+--n\\s+\\w+(\\s+\\w+)*\\s+--e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+--c\\s+\\w+(\\s+\\w+)*" +
+                    "\\s+--q\\s+\\d+(\\.\\d+)?$";
 
     private static final String ADD_COMMAND_PATTERN_4 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
-                    "\\s+-q\\s+\\d+(\\.\\d+)?";
+            "^\\s+--n\\s+\\w+(\\s+\\w+)*\\s+--e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+--q\\s+\\d+(\\.\\d+)?";
     private static final String ADD_COMMAND_PATTERN_5 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
-                    "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+(\\s+\\w+)*$";
+            "^\\s+--n\\s+\\w+(\\s+\\w+)*\\s+--e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+--q\\s+\\d+(\\.\\d+)?\\s+--u\\s+\\w+(\\s+\\w+)*$";
 
     private static final String ADD_COMMAND_PATTERN_6 =
-            "^\\s+-n\\s+\\w+(\\s+\\w+)*\\s+-e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
-                    "\\s+-c\\s+\\w+(\\s+\\w+)*" +
-                    "\\s+-q\\s+\\d+(\\.\\d+)?\\s+-u\\s+\\w+(\\s+\\w+)*$";
+            "^\\s+--n\\s+\\w+(\\s+\\w+)*\\s+--e\\s+\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}" +
+                    "\\s+--c\\s+\\w+(\\s+\\w+)*" +
+                    "\\s+--q\\s+\\d+(\\.\\d+)?\\s+--u\\s+\\w+(\\s+\\w+)*$";
 
 
     public static Command parse(String userInput) throws DukeException {

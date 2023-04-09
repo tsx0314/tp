@@ -11,7 +11,7 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Adding a food product: `add`](#adding-a-food-product)
   + [Listing all food products: `list`](#listing-all-food-products)
   + [Removing a food product: `remove`](#removing-a-food-product) 
-  + [Finding food products by name: `find`](#finding-food-products-by-name)
+  + [Finding food products by name: `find`](#finding-food-products-by-name-and-attributes)
   + [Update food products by index: `update`](#updating-food-products-by-index)
   + [Clears the food list: `clear`](#clearing-the-food-list)
   + [Exit FSP Program: `exit`](#exiting-fsp)
@@ -80,15 +80,15 @@ ______________________________
 
 `add` - Add a food product to the list of food items.
 
-Format: `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNITS}`
+Format: `add --n FOOD_NAME --e DD/MM/YYYY {--c CAT --q QUANTITY --u UNITS}`
 
 * The parameter cannot contain any punctuations, or else it will return as incorrect command.
-* `-n FOOD_NAME` and `-e DD/MM/YYYY` are compulsory.
-* `-c CAT`and`-q QUANTITY -u UNITS` are optional.
-  * `-u UNIT` must be added together with `-q QUANTITY`.
-  * `-q QUANTITY` can be added without `-u UNIT`
-    * For example, a proper command can be `add -n milk -e 21/03/2025 -q 10.0`. 
-However, it cannot be `add -n milk -e 21/03/2025 -u packets`
+* `--n FOOD_NAME` and `--e DD/MM/YYYY` are compulsory.
+* `--c CAT`and`--q QUANTITY -u UNITS` are optional.
+  * `--u UNIT` must be added together with `--q QUANTITY`.
+  * `--q QUANTITY` can be added without `--u UNIT`
+    * For example, a proper command can be `add --n milk --e 21/03/2025 --q 10.0`. 
+However, it cannot be `add --n milk --e 21/03/2025 --u packets`
 * For `CATEGORY`, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
 any other category or no category added will be deemed as `OTHERS`.
 * For `UNIT`, we only have `mg`, `g`, `kg`, `ml`, `l`, `unit`, `units`, `serving`, `servings`, `packet`, `packets`, 
@@ -101,7 +101,7 @@ any other category or no category added will be deemed as `OTHERS`.
 
 Examples of usage:
 
-Input 1: `add -n milk -e 21/03/2025 -c dairy -q 10 -u packets`
+Input 1: `add --n milk --e 21/03/2025 --c dairy --q 10 --u packets`
 
 Output 1: 
 
@@ -118,9 +118,8 @@ I have added this product! :)
 ______________________________
 ```
 
-Input 2: `add -n mike's milk -e 21/03/2025 -c da,iry -q 10 -u pac^kets`
-* Parameter cannot contain any punctuation such as `mike's milk` as a parameter
-for the flag `-n`, `da,iry` and `pac^kets`.
+Input 2: `add --n mike's milk --e 21/03/2025 --c da,iry --q 10 -u pac^kets`
+* Parameter cannot contain any symbol or punctuation such as the `'` in `mike's milk` and `, `in `da,iry` and `^` in `pac^kets`.
 
 Output 2:
 
@@ -425,7 +424,8 @@ ______________________________
 ______________________________
 2. strawberry (fresh) 
        Expiry date: 08/04/2023 (1 days left)
-       Category: others______________________________
+       Category: others
+______________________________
 ```
 
 * After `update` command:
@@ -446,7 +446,8 @@ ______________________________
 ______________________________
 2. strawberry (fresh) 
        Expiry date: 08/04/2023 (1 days left)
-       Category: others______________________________
+       Category: others
+______________________________
 ```
 
 * After `update` command:
@@ -458,7 +459,8 @@ Updated food item successfully!
 strawberry (fresh)
        Expiry date: 08/05/2023 (30 days left)
        Category: others
-       Remaining quantity: 5.3 kg______________________________
+       Remaining quantity: 5.3 kg
+______________________________
 ```
 
 ### Clearing the food list
@@ -532,14 +534,14 @@ program is not running as the edits will not be saved otherwise (the program has
 
 * Help - `help {--COMMAND_WORD}`
   * e.g. <code>help --update --add</code> 
-* Add - `add -n FOOD_NAME -e DD/MM/YYYY {-c CAT -q QUANTITY -u UNIT}`
+* Add - `add --n FOOD_NAME --e DD/MM/YYYY {--c CAT --q QUANTITY --u UNITS}`
   * All possible add command format:
-    * e.g. `add -n Red Mill Granola -e 20/05/2025`
-    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others`
-    * e.g. `add -n Red Mill Granola -e 20/05/2025 -q 10`
-    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others -q 10`
-    * e.g. `add -n Red Mill Granola -e 20/05/2025 -q 10 -u packets`
-    * e.g. `add -n Red Mill Granola -e 20/05/2025 -c others -q 10 -u packets`
+    * e.g. `add --n Red Mill Granola --e 20/05/2025`
+    * e.g. `add --n Red Mill Granola --e 20/05/2025 --c others`
+    * e.g. `add --n Red Mill Granola --e 20/05/2025 --q 10`
+    * e.g. `add --n Red Mill Granola --e 20/05/2025 --c others --q 10`
+    * e.g. `add --n Red Mill Granola --e 20/05/2025 --q 10 --u packets`
+    * e.g. `add --n Red Mill Granola --e 20/05/2025 --c others --q 10 --u packets`
 * List - `list`
 * Remove - `remove INDEX_NUMBER`
   * e.g. `remove 1`

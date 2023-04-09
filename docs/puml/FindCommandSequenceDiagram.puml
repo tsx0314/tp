@@ -1,35 +1,45 @@
 @startuml
-participant Duke
-participant FindCommand
-participant FoodList as FoodList
-Duke -> FindCommand: execute(arguments)
+
+Duke -> Parser: parse(command)
+activate Parser
+
+create FindCommand
+FindCommand <- Parser : FindCommand(arguments)
+activate FindCommand
+FindCommand --> Parser
+deactivate FindCommand
+deactivate Parser
+
+Duke -> FindCommand : execute(foodList)
 activate FindCommand
 
-FindCommand -> FoodList: findFood(term, ...flags)
-activate FoodList
 create FoodList as Result
-
-Result <- FoodList: new result
+FindCommand -> Result: new FoodList();
+activate Result
+Result -> FindCommand
+deactivate Result
 
 loop for every foodItem
     opt hasTerm
-        opt no flags
-            FoodList -> FoodList: result.addFoodItem()
-        end
-
-        opt all flags satisfied
-            FoodList -> FoodList: result.addFoodItem()
-        end
-
-        opt flag not satisfied
-             FoodList -> FoodList: continue
+        alt flag not satisfied
+             FindCommand -> FindCommand: continue loop
+        else all flags satisfied
+            FindCommand -> Result: addFood()
         end
     end
 end
 
-FindCommand<-- FoodList : result
 
-Duke <-- FindCommand: new CommandResult()
+create CommandResult
+FindCommand -> CommandResult : CommandResult(FoodList)
+activate CommandResult
+deactivate FindCommand
+destroy FindCommand
 
+Duke -> CommandResult: printResult()
+CommandResult->System: System.out.println(feedbackToUser)
+deactivate CommandResult
+destroy CommandResult
 
+System --> Duke
 @enduml

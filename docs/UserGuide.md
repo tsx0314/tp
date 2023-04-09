@@ -224,7 +224,7 @@ There is/are now 1 item(s) in the list.
 ______________________________
 ```
 
-### Finding food products by name
+### Finding food products by name and attributes
 `find` - List all food products with matching name and filters
 
 **Format:** `find {TERM} {--fresh} {--expired} {--ATTRIBUTE_NAME}`

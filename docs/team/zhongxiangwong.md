@@ -23,11 +23,12 @@ tasks done faster than traditional GUI apps.
 would not happen again.
   
 ###### Contributions to the UG:
-* Wrote the portion on `help` and `storage` for the User Guide.
+* Contributed to writing the features `help` and `storage` for the User Guide.
 * Did some minor formatting to help improve the readability.
 
 ###### Contributions to the DG:
-* Wrote the portion on `help` and `storage` for the Developer Guide including the associated UML diagrams.
+* Contributed to writing the implementation of `help` and `storage` for the Developer Guide with 
+the associated UML diagrams to improve understanding.
 
 ###### Contributions to team-based tasks:
 * Set up issues for bug reports and project milestones. [Link](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=is%3Aissue+author%3AZhongXiangWong+is%3Aclosed)

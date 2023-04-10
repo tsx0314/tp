@@ -3,7 +3,7 @@
 
 
 
-":Duke" -> ":Parser": parse(fullCommand)
+":FoodSupplyTracker" -> ":Parser": parse(fullCommand)
 activate ":Parser"
 
 create ":HelpCommand" as hc
@@ -15,7 +15,7 @@ deactivate ":Parser"
 
 
 
-":Duke" -> hc : execute(foodList)
+":FoodSupplyTracker" -> hc : execute(foodList)
 activate hc
 
 alt filter size <= 1
@@ -35,12 +35,12 @@ activate cr
 deactivate hc
 destroy hc
 
-":Duke" -> cr: printResult()
+":FoodSupplyTracker" -> cr: printResult()
 cr->System: out.println(feedbackToUser)
 
 
 System --> cr
-cr --> ":Duke"
+cr --> ":FoodSupplyTracker"
 deactivate cr
 destroy cr
 

@@ -1,11 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-participant ":Duke"
+participant ":FoodSupplyTracker"
 participant ":AddCommand"
 participant ":foodList"
 
-":Duke" -> ":AddCommand": execute(arguments)
+":FoodSupplyTracker" -> ":AddCommand": execute(arguments)
 activate ":AddCommand"
 ":AddCommand" -> ":AddCommand": splitDetails(details)
 activate ":AddCommand" #DarkSalmon

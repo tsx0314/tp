@@ -2,8 +2,8 @@
 ### Project: Food Supply Tracker
 
 #### Overview
-Food Supply Tracker (FSP) is a desktop food list tracking key information about food products such as quantity and 
-expiry date. The tracking of these 2 attributes is aimed to minimise food wastage. It is optimized for Command Line Interface (CLI). If you can type fast, FSP can get your food management
+Food Supply Tracker (FST) is a desktop food list tracking key information about food products such as quantity and 
+expiry date. The tracking of these 2 attributes is aimed to minimise food wastage. It is optimized for Command Line Interface (CLI). If you can type fast, FST can get your food management
 tasks done faster than traditional GUI apps.
 
 #### Contributions
@@ -12,11 +12,11 @@ tasks done faster than traditional GUI apps.
 
 ###### Enhancement implemented:
 * Implemented `help` feature and `storage` management.
-  * `help` feature gives a brief overview of the format of  commands that our FSP accepts. It is optimised where 
+  * `help` feature gives a brief overview of the format of  commands that our FST accepts. It is optimised where 
   additional information about a certain command can be given if user append the command at the back, so to not show a 
   wall of text to the user. Furthermore, repeat commands will be ignored and invalid command will be feedbacked 
   to the user.
-  * `storage` is the management of the FSP save file where food list will be read from during startup and will be
+  * `storage` is the management of the FST save file where food list will be read from during startup and will be
   written into when the program closes. Attributes of food are stored in a clear way where their attribute values will 
   append right after their identifier. This is to improve the readability of the text file for the users.
 * Wrote JUnit test based on edge cases and bug reports to ensure program works as intended and past mistake 

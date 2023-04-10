@@ -2,9 +2,9 @@
 ## Project: Food Supply Tracker
 
 ### Overview
-Food Supply Tracker (FSP) is a desktop food list tracking the expiry date of the food in the list.
+Food Supply Tracker (FST) is a desktop food list tracking the expiry date of the food in the list.
 It is optimized for use via a Command Line Interface (CLI) .
-If you can type fast, FSP can get your food management tasks done faster than traditional GUI apps.
+If you can type fast, FST can get your food management tasks done faster than traditional GUI apps.
 
 ### Contributions
 ###### Code Contributed: [Code Dashboard](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=David&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=DavidVin357&tabRepo=AY2223S2-CS2113-W13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)

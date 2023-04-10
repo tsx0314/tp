@@ -1,11 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-Participant ":Duke"
+Participant ":FoodSupplyTracker"
 Participant ":ClearCommand"
 Participant ":FoodList"
 
-":Duke" -> ":ClearCommand": execute(foodList)
+":FoodSupplyTracker" -> ":ClearCommand": execute(foodList)
 activate ":ClearCommand"
 
 ":ClearCommand" -> ":FoodList": clearFoodList()
@@ -23,7 +23,7 @@ end
 deactivate ":FoodList"
 destroy ":FoodList"
 
-":ClearCommand" --> ":Duke": new CommandResult(printToUser)
+":ClearCommand" --> ":FoodSupplyTracker": new CommandResult(printToUser)
 deactivate ":ClearCommand"
 destroy ":ClearCommand"
 @enduml

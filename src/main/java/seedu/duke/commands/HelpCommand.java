@@ -29,7 +29,8 @@ public class HelpCommand extends Command {
             + "\n\nQUANTITY must be specified when UNITS is used."
             + "\nList of valid UNIT as follows:"
             + "\n   mg, g, lg, ml, l, serving, servings, packet, packets, box, boxes, unit, units"
-            + "\n   Any unit provided that does not fall into the above-mentioned units will be quantified as 'unit(s)'.";
+            + "\n   Any unit provided that does not fall into the above-mentioned units will be"
+            + " quantified as 'unit(s)'.";
 
     private static final String HELP_LIST = "Command 'list': This command lists all food products in the tracker."
             + "\nFood products will be listed according to the order of expiry dates.";

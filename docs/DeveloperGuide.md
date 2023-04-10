@@ -249,7 +249,7 @@ and right before the program close, the text file will be written with the updat
 ## Appendix: Requirements
 # Product Scope
 **Project Direction**
-- Food Supplies Tracker: Main function is to track expiry dates 
+- Food Supply Tracker: Main function is to track expiry dates 
 and storage area of foods as to minimise food shortage.
 
 - **Target user profile:**

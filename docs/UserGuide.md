@@ -24,8 +24,8 @@ Food Supply Tracker (FST) is a desktop app for managing food supplies, optimized
 ## Quick Start
 
 1. Ensure you have Java 11 installed in your Computer.
-2. Download the latest Food Supplies Tracker [here](https://github.com/AY2223S2-CS2113-W13-3/tp/releases).
-3. Copy the file to the folder you want your FoodSuppliesTracker to be in. 
+2. Download the latest Food Supply Tracker [here](https://github.com/AY2223S2-CS2113-W13-3/tp/releases).
+3. Copy the file to the folder you want your FoodSupplyTracker to be in. 
 4. Open a command terminal, navigate into the folder with your jar file using cd and run the application with java -jar tp.jar
 5. Type the command in the command box and press Enter to execute it. E.g. typing help and pressing Enter will open the help window.
 6. Go to [Command Summary](#command-summary) for a quick start on command format.

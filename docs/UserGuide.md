@@ -12,7 +12,7 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Listing all food products: `list`](#listing-all-food-products)
   + [Removing a food product: `remove`](#removing-a-food-product) 
   + [Finding food products by name: `find`](#finding-food-products-by-name-and-attributes)
-  + [Update food products by index: `update`](#updating-food-products-by-index)
+  + [Updating food products by index: `update`](#updating-food-products-by-index)
   + [Clears the food list: `clear`](#clearing-the-food-list)
   + [Exit FSP Program: `exit`](#exiting-fsp)
   + [Editing the foodTrackerList text file](#editing-foodtrackerlist-text-file)

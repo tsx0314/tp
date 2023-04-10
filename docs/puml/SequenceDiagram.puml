@@ -39,10 +39,7 @@ activate ":CommandResult"
 deactivate ":CommandResult"
 destroy  ":CommandResult"
 ":Duke" -> ":storageFile": save(foodList)
-":Duke" --> ":Duke": command.exit()
+":Duke" --> ":Duke": Command.isExit()
 deactivate ":Duke"
-
-
 end
-
 @enduml

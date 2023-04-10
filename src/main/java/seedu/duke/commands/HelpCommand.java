@@ -18,7 +18,7 @@ public class HelpCommand extends Command {
             + "\nhttps://ay2223s2-cs2113-w13-3.github.io/tp/UserGuide.html";
 
     private static final String HELP_ADD = "Command 'add': This command adds a food product to the food supply tracker."
-            + "\nFormat: add -n PRODUCT_NAME -e EXPIRY_DATE {-c category} {-q QUANTITY -u UNIT}"
+            + "\nFormat: add --n PRODUCT_NAME --e EXPIRY_DATE {--c category} {--q QUANTITY --u UNIT}"
             + "\nFormat for EXPIRY_DATE: DD/MM/YYYY"
             + "\nIdentifier within brackets are optional"
             + "\nList of valid categories as follows: fruit, meat, vegetable, dairy, grain, seafood, beverage, others"

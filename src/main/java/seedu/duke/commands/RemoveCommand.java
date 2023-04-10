@@ -22,8 +22,7 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * This constructor creates a boolean object that checks if the index provided is an integer
-     * which does not contain non-integer values
+     * This constructor creates a boolean object that checks if the index provided is an integer.
      *
      * @return Returns true if the index is an integer and false otherwise
      */
@@ -37,7 +36,7 @@ public class RemoveCommand extends Command {
     }
 
     /**
-     * This constructor creates a boolean object that checks if the index provided does not exceed the integer limit
+     * This constructor creates a boolean object that checks if the index provided does not exceed the integer limit.
      *
      * @param deleteNumber Input string that is provided by the user
      * @return Returns true if the number is within the integer limit and false if otherwise
@@ -59,7 +58,6 @@ public class RemoveCommand extends Command {
      * @return feedback to user if the food item has been successfully deleted otherwise an error message
      * @throws IllegalValueException if the index provided does not exist or beyond the bounds of the food list
      */
-
     public CommandResult execute(FoodList foodlist) throws DukeException {
         if (index.isBlank()) {
             String blankIntegerMessage = BLANK_INDEX_MESSAGE_1 + foodlist.getNumberOfFood() + BLANK_INDEX_MESSAGE_2;

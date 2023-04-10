@@ -22,7 +22,7 @@ public enum Unit {
 
     public String abbreviation;
 
-    Unit(String abbreviation) {
+    Unit (String abbreviation) {
         this.abbreviation = abbreviation;
     }
 }

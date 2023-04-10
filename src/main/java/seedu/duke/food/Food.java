@@ -125,7 +125,6 @@ public class Food {
         this.category = FoodCategory.OTHERS;
     }
 
-
     public Food(String name, String expiryDate, Double quantity, String unit, String category) throws DukeException {
         Validator.isQuantityValid(quantity);
         Validator.isExpiryDateValid(expiryDate);
@@ -145,7 +144,6 @@ public class Food {
         this.expiryDate = expiryDate;
         this.category = FoodCategory.valueOf(category);
     }
-
 
     public LocalDate getDate() {
         return LocalDate.now();
@@ -217,11 +215,23 @@ public class Food {
         }
     }
 
+    /**
+     * Set the unit of the food according to the user input.
+     *
+     * @param unit
+     */
     public void setUnit(String unit) {
         String unitTemp = getUnitString(unit, quantity);
         this.unit = unitTemp;
     }
 
+    /**
+     * Get the unit of the food according to the unit input by user and the quantity of the food.
+     *
+     * @param unitTemporary
+     * @param quantityInDouble
+     * @return
+     */
     public String getUnitString(String unitTemporary, Double quantityInDouble) {
         switch (unitTemporary.toLowerCase()) {
         case MILLIGRAM_1:
@@ -292,15 +302,21 @@ public class Food {
         return expiryDate;
     }
 
+    /**
+     * Determine if the food is fresh or expired.
+     *
+     * @return true if food is fresh, else otherwise.
+     * @throws DukeException
+     */
     public boolean isFresh() throws DukeException {
         LocalDate expiryDate = parseExpiryDate();
         return expiryDate.isAfter(getDate());
     }
 
     /**
-     * Return a string of expiryStatus
+     * Return String that shows the expiry status of the food as either expired or fresh.
      *
-     * @return expiryStatus
+     * @return expiryStatus of the food
      * @throws DukeException
      */
     public String getExpiryStatus() throws DukeException {
@@ -313,12 +329,25 @@ public class Food {
         return expiryStatus;
     }
 
+    /**
+     * Return the number of days the food has expired and number of days left to expired from "today".
+     *
+     * @return number of days to expiry days
+     * @throws DukeException
+     */
     public long getDaysExpire() throws DukeException {
         LocalDate expiryDate = parseExpiryDate();
         long days = ChronoUnit.DAYS.between(getDate(), expiryDate);
         return days;
     }
 
+    /**
+     * Return the String that indicates number of days left to expire and number of days expired,
+     * depending on the expiry status of the food.
+     *
+     * @return number of days to expired in String
+     * @throws DukeException
+     */
     public String getDaysString() throws DukeException {
         if (isFresh()) {
             String daysToExpireNotice = " (" + getDaysExpire() + " days left)";

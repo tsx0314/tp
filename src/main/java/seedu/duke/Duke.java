@@ -42,6 +42,14 @@ public class Duke {
         }
     }
 
+    /**
+     * Process the user input and execute actions according to the input.
+     * Returns a boolean value to determine whether the command allows the exit of the program.
+     *
+     * @param fullCommand
+     * @return boolean to determine the termination or continuation of the program.
+     * @throws DukeException
+     */
     public boolean processCommand(String fullCommand) throws DukeException {
         Command c = Parser.parse(fullCommand);
         CommandResult result = c.execute(foodList);
@@ -51,8 +59,12 @@ public class Duke {
         return c.isExit();
     }
 
-    // This part of the code is adapted from the module website
-    // https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
+    /**
+     * The code is taken from the module website:
+     * https://nus-cs2113-ay2223s2.github.io/website/schedule/week7/project.html
+     *
+     * Run the food supply tracker.
+     */
     public void run() {
         ui.showWelcomeMessage();
         boolean isExit = false;

@@ -34,25 +34,47 @@ public class FoodList {
         foodList.remove(index);
     }
 
+    /**
+     * Return the total number of food in FoodList.
+     *
+     * @return number of food
+     */
     public int getNumberOfFood() {
         return foodList.size();
     }
 
+    /**
+     * Return the FoodList.
+     *
+     * @return foodList
+     */
     public ArrayList<Food> getFoodList() {
         return foodList;
     }
 
-    public Food getFood(int i) throws DukeException {
+    /**
+     * Get the food of type Food at a specific index.
+     *
+     * @param index
+     * @return food of a particular index in the FoodList
+     * @throws DukeException
+     */
+    public Food getFood(int index) throws DukeException {
         try {
-            return foodList.get(i);
+            return foodList.get(index);
         } catch (IndexOutOfBoundsException e) {
             throw new IllegalValueException("No item at such index!");
         }
     }
 
+    /**
+     * Sort the FoodList according to the expiry dates of the food.
+     *
+     * @throws DukeException
+     */
     public void sortFoodList () throws DukeException {
         for (int i = 0; i < getNumberOfFood(); i++){
-            for(int j = 0; j < getNumberOfFood(); j ++){
+            for(int j = 0; j < getNumberOfFood(); j++){
                 long day1 = foodList.get(i).getDaysExpire();
                 long day2 = foodList.get(j).getDaysExpire();
                 if (day1 < day2) {
@@ -64,6 +86,9 @@ public class FoodList {
         }
     }
 
+    /**
+     * Remove all Food objects from the FoodList.
+     */
     public void clearFoodList() {
         int totalNumberFood = getNumberOfFood();
         for (int i = totalNumberFood - 1; i >= 0; i--) {
@@ -82,5 +107,4 @@ public class FoodList {
         }
         return output.toString();
     }
-
 }

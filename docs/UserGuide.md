@@ -226,12 +226,11 @@ ______________________________
 ### Finding food products by name and attributes
 `find` - List all food products with matching name and filters
 
-**Format:** `find {TERM} {--fresh} {--expired} {--ATTRIBUTE_NAME}`
+**Format:** `find {TERM} {--fresh} {--expired} {--flag ATTRIBUTE_NAME}`
 
 Allowed flags to find the food item:
 * fresh items: `--fresh`
 * expired items: `--expired`
-* name: `--n {string}`
 * unit: `--u {UNIT}`
 * quantity: `--q {number}`
 * category: `--c {CATEGORY}`
@@ -324,7 +323,7 @@ ______________________________
 `update` - Change any attribute based on the index `i` in the list and
 values of flags provided
 
-Format: `update {i} {flags}`
+Format: `update i {flags}`
 
 Allowed flags to update the food item attributes:
 * name: `--n {string}`

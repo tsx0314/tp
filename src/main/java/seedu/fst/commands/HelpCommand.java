@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-//@@ author ZhongXiangWong
 /**
  * Represents a Help Command
  */

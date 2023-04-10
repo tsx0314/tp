@@ -19,9 +19,6 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     private static final String FLAG_SEPARATOR = "--";
-
-    private static final String FOUND_FOOD_1 = "Found ";
-    private static final String FOUND_FOOD_2 = " of food items";
     private static final String NOT_FOUND = "No food found for such query";
 
 
@@ -134,11 +131,11 @@ public class FindCommand extends Command {
             }
         }
 
-        int num = result.getNumberOfFood();
+        int foundNumber = result.getNumberOfFood();
 
         if (result.getNumberOfFood() > 0) {
             System.out.println(result);
-            return new CommandResult(FOUND_FOOD_1 + num + FOUND_FOOD_2);
+            return new CommandResult("Found " + foundNumber + " of food items");
         } else {
             return new CommandResult(NOT_FOUND);
         }

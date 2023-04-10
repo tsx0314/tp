@@ -16,6 +16,11 @@ public class Ui {
     public Ui() {
     }
 
+    /**
+     * Reading in user input.
+     *
+     * @return user input
+     */
     public String readCommand() {
         Scanner sc = new Scanner(System.in);
         String fullInputLine = sc.nextLine();

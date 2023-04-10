@@ -376,7 +376,7 @@ public class AddCommand extends Command {
     //@@author wanjuin
 
     /**
-     * Returns the unit of the food
+     * Returns the unit of the food.
      *
      * @param unitTemporary    a unit
      * @param quantityInDouble quantity
@@ -441,6 +441,7 @@ public class AddCommand extends Command {
             } else {
                 unitOfMeasurement = String.valueOf(Unit.UNIT.abbreviation);
             }
+            break;
         }
         return unitOfMeasurement;
     }

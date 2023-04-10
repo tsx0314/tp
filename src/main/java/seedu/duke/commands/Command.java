@@ -4,7 +4,7 @@ import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
 
 /**
- * Represents a command class
+ * Represents a Command class
  */
 public abstract class Command {
 

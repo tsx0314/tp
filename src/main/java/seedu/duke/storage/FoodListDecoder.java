@@ -105,7 +105,7 @@ public class FoodListDecoder {
                     if (hasValidUnit(detail)) {
                         unit = detail;
                     } else {
-                        unit = String.valueOf(Unit.UNIT);
+                        unit = "unit";
                     }
                     break;
                 case CATEGORY_IDENTIFIER:

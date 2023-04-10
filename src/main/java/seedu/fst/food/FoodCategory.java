@@ -1,5 +1,6 @@
 package seedu.fst.food;
 
+//@@author tsx0314
 /**
  * This enum represents the categories of food.
  */

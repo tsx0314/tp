@@ -16,12 +16,12 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+//@@author ZhongXiangWong
 /**
  * Decodes the storage data file into an {@code FoodList} object.
  * The code is adapted from
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java
  */
-//@@author ZhongXiangWong
 public class FoodListDecoder {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String SEPARATOR = "\\|";

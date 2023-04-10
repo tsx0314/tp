@@ -10,7 +10,7 @@ import seedu.fst.utils.DateFormatter;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-//@@ tsx0314
+//@@author tsx0314
 /**
  * Represent an Add command
  */

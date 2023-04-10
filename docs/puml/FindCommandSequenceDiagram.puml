@@ -1,45 +1,45 @@
 @startuml
 
-Duke -> Parser: parse(command)
-activate Parser
+":Duke" -> ":Parser": parse(command)
+activate ":Parser"
 
-create FindCommand
-FindCommand <- Parser : FindCommand(arguments)
-activate FindCommand
-FindCommand --> Parser
-deactivate FindCommand
-deactivate Parser
+create ":FindCommand"
+":FindCommand" <- ":Parser" : FindCommand(arguments)
+activate ":FindCommand"
+":FindCommand" --> ":Parser"
+deactivate ":FindCommand"
+deactivate ":Parser"
 
-Duke -> FindCommand : execute(foodList)
-activate FindCommand
+":Duke" -> ":FindCommand" : execute(foodList)
+activate ":FindCommand"
 
-create FoodList as Result
-FindCommand -> Result: new FoodList();
+create ":FoodList" as Result
+":FindCommand" -> Result: new FoodList();
 activate Result
-Result -> FindCommand
+Result -> ":FindCommand"
 deactivate Result
 
 loop for every foodItem
     opt hasTerm
         alt flag not satisfied
-             FindCommand -> FindCommand: continue loop
+             ":FindCommand" -> ":FindCommand": continue loop
         else all flags satisfied
-            FindCommand -> Result: addFood()
+            ":FindCommand" -> Result: addFood()
         end
     end
 end
 
 
-create CommandResult
-FindCommand -> CommandResult : CommandResult(FoodList)
-activate CommandResult
-deactivate FindCommand
-destroy FindCommand
+create ":CommandResult"
+":FindCommand" -> ":CommandResult" : CommandResult(FoodList)
+activate ":CommandResult"
+deactivate ":FindCommand"
+destroy ":FindCommand"
 
-Duke -> CommandResult: printResult()
-CommandResult->System: System.out.println(feedbackToUser)
-deactivate CommandResult
-destroy CommandResult
+":Duke" -> ":CommandResult": printResult()
+":CommandResult"->System: System.out.println(feedbackToUser)
+deactivate ":CommandResult"
+destroy ":CommandResult"
 
-System --> Duke
+System --> ":Duke"
 @enduml

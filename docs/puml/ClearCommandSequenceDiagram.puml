@@ -1,29 +1,29 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-Participant Duke
-Participant ClearCommand
-Participant FoodList
+Participant ":Duke"
+Participant ":ClearCommand"
+Participant ":FoodList"
 
-Duke -> ClearCommand: execute(foodList)
-activate ClearCommand
+":Duke" -> ":ClearCommand": execute(foodList)
+activate ":ClearCommand"
 
-ClearCommand -> FoodList: clearFoodList()
-activate FoodList
+":ClearCommand" -> ":FoodList": clearFoodList()
+activate ":FoodList"
 
 loop foodList
-FoodList -> FoodList: remove(0)
-activate FoodList
-FoodList --> FoodList
-deactivate FoodList
+":FoodList" -> ":FoodList": remove(0)
+activate ":FoodList"
+":FoodList" --> ":FoodList"
+deactivate ":FoodList"
 end
 
-ClearCommand <-- FoodList
+":ClearCommand" <-- ":FoodList"
 
-deactivate FoodList
-destroy FoodList
+deactivate ":FoodList"
+destroy ":FoodList"
 
-ClearCommand --> Duke: new CommandResult(printToUser)
-deactivate ClearCommand
-destroy ClearCommand
+":ClearCommand" --> ":Duke": new CommandResult(printToUser)
+deactivate ":ClearCommand"
+destroy ":ClearCommand"
 @enduml

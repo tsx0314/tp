@@ -23,7 +23,8 @@ public class RemoveCommand extends Command {
 
     /**
      * This constructor creates a boolean object that checks if the index provided is an integer.
-     *
+     * Code referred from: https://www.baeldung.com/java-check-string-number
+     * 
      * @return Returns true if the index is an integer and false otherwise
      */
     public boolean isInteger() {

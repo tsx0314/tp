@@ -65,7 +65,7 @@ public class Duke {
      *
      * Run the food supply tracker.
      */
-       public void run() {
+    public void run() {
         ui.showWelcomeMessage();
         boolean isExit = false;
 

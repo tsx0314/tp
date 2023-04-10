@@ -1,41 +1,41 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-Duke -> Parser: parse(fullCommand)
-activate Parser
+":Duke" -> ":Parser": parse(fullCommand)
+activate ":Parser"
 
-create ExitCommand
-ExitCommand <- Parser : ExitCommand(arguments)
-activate ExitCommand
-ExitCommand --> Parser
-deactivate ExitCommand
-deactivate Parser
+create ":ExitCommand"
+":ExitCommand" <- ":Parser" : ":ExitCommand"(arguments)
+activate ":ExitCommand"
+":ExitCommand" --> ":Parser"
+deactivate ":ExitCommand"
+deactivate ":Parser"
 
-Duke -> ExitCommand : execute(foodList)
-activate ExitCommand
+":Duke" -> ":ExitCommand" : execute(foodList)
+activate ":ExitCommand"
 
 
 
-create CommandResult
-ExitCommand -> CommandResult : CommandResult(printToUser)
-activate CommandResult
-deactivate ExitCommand
-destroy ExitCommand
+create "CommandResult"
+":ExitCommand" -> "CommandResult" : "CommandResult"(printToUser)
+activate "CommandResult"
+deactivate ":ExitCommand"
+destroy ":ExitCommand"
 
-Duke -> CommandResult: printResult()
-CommandResult->System: out.println(feedbackToUser)
+":Duke" -> "CommandResult": printResult()
+"CommandResult"->System: out.println(feedbackToUser)
 
-System --> CommandResult
-CommandResult --> Duke
-deactivate CommandResult
-destroy CommandResult
+System --> "CommandResult"
+"CommandResult" --> ":Duke"
+deactivate "CommandResult"
+destroy "CommandResult"
 
-Duke -> ExitCommand: isExit()
-activate ExitCommand
-ExitCommand --> Duke
-deactivate ExitCommand
-destroy ExitCommand
+":Duke" -> ":ExitCommand": isExit()
+activate ":ExitCommand"
+":ExitCommand" --> ":Duke"
+deactivate ":ExitCommand"
+destroy ":ExitCommand"
 
-destroy Duke
+destroy ":Duke"
 
 @enduml

@@ -3,19 +3,19 @@
 
 
 
-Duke -> Parser: parse(fullCommand)
-activate Parser
+":Duke" -> ":Parser": parse(fullCommand)
+activate ":Parser"
 
-create HelpCommand as hc
-hc <- Parser : HelpCommand(arguments)
+create ":HelpCommand" as hc
+hc <- ":Parser" : ":HelpCommand"(arguments)
 activate hc
-hc --> Parser
+hc --> ":Parser"
 deactivate hc
-deactivate Parser
+deactivate ":Parser"
 
 
 
-Duke -> hc : execute(foodList)
+":Duke" -> hc : execute(foodList)
 activate hc
 
 alt filter size <= 1
@@ -29,18 +29,18 @@ deactivate hc
 end
 end
 
-create CommandResult as cr
-hc -> cr : CommandResult(printToUser)
+create ":CommandResult" as cr
+hc -> cr : ":CommandResult"(printToUser)
 activate cr
 deactivate hc
 destroy hc
 
-Duke -> cr: printResult()
+":Duke" -> cr: printResult()
 cr->System: out.println(feedbackToUser)
 
 
 System --> cr
-cr --> Duke
+cr --> ":Duke"
 deactivate cr
 destroy cr
 

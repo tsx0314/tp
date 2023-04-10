@@ -8,6 +8,7 @@
   + [Add feacture](#add-feature)
   + [Remove feature](#remove-feature)
   + [Find feature](#find-feature)
+  + [Update feature](#update-feature)
   + [List feature](#list-feature)
   + [Clear feature](#clear-feature)
   + [Help feature](#help-feature)
@@ -117,7 +118,7 @@ The `FindCommand` method implementation is as follows:
 
 
 **Sequence Diagram** <br>
-![ClassDiagram](images/FindCommandSequenceDiagram.png)
+![SequenceDiagram](images/FindCommandSequenceDiagram.png)
 
 ### Update feature
 The `update` command is implemented using an `UpdateCommand` class and its `execute` method.
@@ -135,12 +136,12 @@ The `UpdateCommand` implementation is as follows:
    calling corresponding attribute setters for the `flagValue` after its validation. If no
    `flagName` is matched, an `InvalidFlagException(flagName)` is thrown
 
-**Class Diagram**
+**Class Diagram**<br>
 ![ClassDiagram](images/UpdateCommandClassDiagram.png)
 
 
-**Sequence Diagram**
-![ClassDiagram](images/UpdateCommandSequenceDiagram.png)
+**Sequence Diagram**<br>
+![SequenceDiagram](images/UpdateCommandSequenceDiagram.png)
 
 
 ### List feature

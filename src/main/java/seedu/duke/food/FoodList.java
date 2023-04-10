@@ -19,6 +19,11 @@ public class FoodList {
 
     public FoodList(ArrayList<Food> decodedFoodList) {
         foodList = decodedFoodList;
+        try {
+            sortFoodList();
+        } catch (DukeException e) {
+            System.out.println("Unexpected Error.");;
+        }
     }
 
     public void addFood(Food food) {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import seedu.fst.food.FoodList;
 import seedu.fst.food.Food;
 
-
+//@@author ZhongXiangWong
 /**
  * Encodes the {@code FoodList} object into a data file for storage.
  * The code is adapted from

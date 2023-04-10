@@ -194,7 +194,6 @@ Below are the food list:
 2. strawberry (fresh) 
        Expiry date: 08/04/2023 (1 days left)
        Category: others
-       Remaining quantity: 1.0 box
 3. bread (fresh) 
        Expiry date: 14/04/2023 (7 days left)
        Category: others

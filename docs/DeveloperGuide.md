@@ -26,7 +26,7 @@ Part of the code is inspired by the [addressbook-level3](https://github.com/se-e
 ## Design
 ### Architecture Design Diagram
 
-![Diagram](images/Architecture_Diagram.png)
+![Diagram](images/Project_Architecture_Diagram.png)
 
 Main components of the architecture
 

@@ -30,7 +30,7 @@ Part of the code is inspired by the [addressbook-level3](https://github.com/se-e
 
 Main components of the architecture
 
-`Duke` is the entry point of the application. It is responsible for, 
+`FoodSupplyTracker` is the entry point of the application. It is responsible for, 
 + At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 + At shut down: Shuts down the components
 
@@ -63,7 +63,7 @@ The add feature implementation is as follows:
 2. `splitDetails` is called to split the string using different flags `-n`,`-e`,`-c`,`-q`,`-u`;
 3. After obtaining an array of String, it will check the correctness of each parameter. It will specially check the date 
 and the quantity. If the `date` is not a valid date (e.g. 02/15/2024)or it is before the current date
-(meaning expired food), it will return a `CommandResult` object, and `Duke` will continue print the command result.
+(meaning expired food), it will return a `CommandResult` object, and `FoodSupplyTracker` will continue print the command result.
 4. If there is no error, it will create a new `Food` object, based on the parameter number contained in the array.
 5. `addFood` is called to add the new food into the food list
 6. Return a `CommandResult` to show the successful message to the user
@@ -85,12 +85,12 @@ utilizes `removeFood` method of the FoodList.
 The `removeFood` method implementation is as follows:
 1. New `RemoveCommand` object is created by passing in a String containing arguments from `Parser`.
 2. The `index` of the item to be deleted will be taken as its arguments.
-3. The method `execute` of `Command` class will be called from `Duke` with the `index`.
+3. The method `execute` of `Command` class will be called from `FoodSupplyTracker` with the `index`.
 4. This method will determine if there exist a food item with that `index` in the `FoodList`.
 5. If it exists, the food item will be deleted and feedback to the user that it has been successfully removed.
 6. Otherwise, the feedback will be an error message
 7. This method will return an object called `CommandResult` and pass `feedbackToUser` as its argument.
-8. `Duke` will subsequently call `printResult` method from `CommandResult`.
+8. `FoodSupplyTracker` will subsequently call `printResult` method from `CommandResult`.
 
 **Class Diagram**
 
@@ -160,7 +160,7 @@ function `getNumberOfFood`.
 the empty `foodList` will not be appended to `printToUser`.
 7. After appending the `foodList`, the method `execute` will return an object called `CommandResult` and pass          
 `printToUser` as its argument.
-8. `Duke` will then call `printResult` method from `CommandResult` which will print the food list for the user.
+8. `FoodSupplyTracker` will then call `printResult` method from `CommandResult` which will print the food list for the user.
 
 **Class Diagram** <br>
 ![ClassDiagram](images/ListCommandClassDiagram.png)
@@ -189,20 +189,20 @@ The help command is implemented using a `HelpCommand` class which utilizes `COMM
 attributes of all other commands within the `commands` package. 
 
 The help command is implemented as follows:
-1. When `Duke` reads the user input, it calls the method `parse` from the `Parser` class.
+1. When `FoodSupplyTracker` reads the user input, it calls the method `parse` from the `Parser` class.
 2. The `parse` method process which command word is being queried and calls the constructor class based 
 on the command word.
 3. In the case where `help` is the command word, a new `HelpCommand` object is created with the rest of the user input 
 being the arguments for the constructor.
 4. The constructor `HelpCommand` will split the arguments based on the `--` regex and store them in an array of
 strings called `filters`.
-5. The method `execute` of `Command` class will then be called all the way from `Duke` which will be overriden by the 
+5. The method `execute` of `Command` class will then be called all the way from `FoodSupplyTracker` which will be overriden by the 
 same method in `HelpCommand`.
 6. This method calls the private method `appendMessage` which decides what to append to the string `printToUser` as 
 specified by `filter`. 
 7. After looping through all the `filter`, this method will return an object called `CommandResult` and pass
 `printToUser` as its argument.
-8. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
+8. `FoodSupplyTracker` will then call `printResult` method from `CommandResult` which will print the necessary message.
 
 **Class Diagram** <br>
 ![ClassDiagram](images/HelpCommandClassDiagram.png)
@@ -216,17 +216,17 @@ The exit command is implemented using a `ExitCommand` class which utilizes `COMM
 commands within the `commands` package.
 
 The exit command is implemented as follows
-1. When `Duke` reads the user input, it calls the method `parse` from the `Parser` class.
+1. When `FoodSupplyTracker` reads the user input, it calls the method `parse` from the `Parser` class.
 2. The `parse` method process which command word is being queried and calls the constructor class based
    on the command word.
 3. In the case where `exit` is the command word, a new `ExitCommand` object is created with the rest of the user input
    being the arguments for the constructor.
-4. The method `execute` of `Command` class will then be called all the way from `Duke` which will be overridden by the
+4. The method `execute` of `Command` class will then be called all the way from `FoodSupplyTracker` which will be overridden by the
    same method in `ExitCommand`.
 5. This method append the exiting message to the string `printToUser`, and return an object called `CommandResult` and 
 pass `printToUser` as its argument
-6. `Duke` will then call `printResult` method from `CommandResult` which will print the necessary message.
-7. `Duke` will further call `isExit` method from `ExitCommand` which will then change `isExit` from `false` to `true`,
+6. `FoodSupplyTracker` will then call `printResult` method from `CommandResult` which will print the necessary message.
+7. `FoodSupplyTracker` will further call `isExit` method from `ExitCommand` which will then change `isExit` from `false` to `true`,
 which will then exits the program.
 
 **Class Diagram** <br>
@@ -268,17 +268,17 @@ and storage area of foods as to minimise food shortage.
 
 Currently, the following functionality was implemented:
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE `
+`add --n PRODUCT_NAME --e EXPIRY_DATE `
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY `
+`add --n PRODUCT_NAME --e EXPIRY_DATE --c CATEGORY `
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -p QUANTITY `
+`add --n PRODUCT_NAME --e EXPIRY_DATE --p QUANTITY `
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY -p QUANTITY`
+`add --n PRODUCT_NAME --e EXPIRY_DATE --c CATEGORY --p QUANTITY`
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -p QUANTITY -u UNIT`
+`add --n PRODUCT_NAME --e EXPIRY_DATE --p QUANTITY --u UNIT`
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY -p QUANTITY -u UNIT`
+`add --n PRODUCT_NAME --e EXPIRY_DATE --c CATEGORY --p QUANTITY --u UNIT`
 
 `list`
 
@@ -286,9 +286,17 @@ Currently, the following functionality was implemented:
 
 `find {PRODUCT_NAME}`
 
-`find {PRODUCT_NAME} -fresh`
+`find {PRODUCT_NAME} --fresh`
 
-`find {PRODUCT_NAME} -expired`
+`find {PRODUCT_NAME} --expired`
+
+`update INDEX {flags}`
++ Allowed flags to update the food item attributes:
+  * name: `--n {string}`
+  * expiry date: `--e {dd/mm/yyyy}`
+  * unit: `--u {UNIT}`
+  * quantity: `--q {number}`
+  * category: `--c {CATEGORY}`
 
 `help {--COMMAND_WORD}`
 
@@ -299,7 +307,7 @@ Currently, the following functionality was implemented:
 | `* * *`  | Forgetful cook      | be reminded of what is left in my fridge                              | use the food wisely and avoid repetitive purchasing.            | `list`                    |
 | `*`      | Forgetful cook      | get all meals for the next `x` days with their ingredients            | plan my grocery trips accordingly.                              | nil                       |
 | `* *`    | Lazy cook           | get recommended recipes based on what I have left in the <br/>fridge  | can spend less time considering what to cook today.             | nil                       |
-| `* * *`  | Lazy cook           | have an efficient method of updating what leftover ingredients I have | spend less time using the software.                             | `add -n`                  |
+| `* * *`  | Lazy cook           | have an efficient method of updating what leftover ingredients I have | spend less time using the software.                             | `add --n`                 |
 | `* * *`  | Lazy cook           | check the lists of food fast                                          | waste less effort digging through the fridge / kitchen.         | `list`                    |
 | `* * *`  | Busy cook           | get reminded on the products which will expire soon                   | prepare a meal based on it.                                     |                           |
 | `* * *`  | Busy cook           | get reminded on the products which will expire soon                   | plan my grocery purchases accordingly.                          |                           |
@@ -309,7 +317,7 @@ Currently, the following functionality was implemented:
 | `* *`    | Prudent cook        | track the amount of different products I have                         | know how many portions I can cook.                              | nil                       |
 | `*`      | Creative cook       | replace some products with others                                     | add potential replacement for the product.                      | nil                       |     
 | `*`      | Inexperienced cook  | know how much to cook based on the number of people eating            | prepare the correct amount of food.                             | nil                       |  
-| `* * *`  | Cook                | add product (name, expiry date, category etc)                         | keep my program updated.                                        | `add -n -e`               |
+| `* * *`  | Cook                | add product (name, expiry date, category etc)                         | keep my program updated.                                        | `add --n --e --c --q --u` |
 | `* * *`  | Cook                | remove product                                                        | keep my program updated.                                        | `remove`                  |
 
 # Non-Functional Requirements

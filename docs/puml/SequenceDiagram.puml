@@ -2,31 +2,31 @@
 title Food Supply Tracker
 
 actor User
-participant ":Duke"
+participant ":FoodSupplyTracker"
 participant ":Ui"
 participant ":Parser"
 participant ":Command"
 participant ":storageFile"
 
 alt not exit
-User -> ":Duke": run()
-activate ":Duke"
-":Duke" -> ":Ui": showWelcomeMessage()
+User -> ":FoodSupplyTracker": run()
+activate ":FoodSupplyTracker"
+":FoodSupplyTracker" -> ":Ui": showWelcomeMessage()
 activate ":Ui"
-":Ui" --> ":Duke":
+":Ui" --> ":FoodSupplyTracker":
 deactivate ":Ui"
-User -> ":Duke": user input
-":Duke" -> ":Ui": readCommand()
-":Ui" --> ":Duke":fullCommand
+User -> ":FoodSupplyTracker": user input
+":FoodSupplyTracker" -> ":Ui": readCommand()
+":Ui" --> ":FoodSupplyTracker":fullCommand
 
-":Duke" -> ":Duke": processCommand(fullCommand)
-activate ":Duke" #DarkSalmon
-":Duke" -> ":Parser" : parse(fullCommand)
+":FoodSupplyTracker" -> ":FoodSupplyTracker": processCommand(fullCommand)
+activate ":FoodSupplyTracker" #DarkSalmon
+":FoodSupplyTracker" -> ":Parser" : parse(fullCommand)
 activate ":Parser"
 ":Parser" --> ":Command": new Command()
 deactivate ":Parser"
 destroy ":Parser"
-":Duke" -> ":Command": execute(userInput)
+":FoodSupplyTracker" -> ":Command": execute(userInput)
 activate ":Command"
 
 participant ":CommandResult"
@@ -34,15 +34,12 @@ participant ":CommandResult"
 deactivate ":Command"
 destroy ":Command"
 activate ":CommandResult"
-":Duke"->":CommandResult": printResult()
-":CommandResult" --> ":Duke"
+":FoodSupplyTracker"->":CommandResult": printResult()
+":CommandResult" --> ":FoodSupplyTracker"
 deactivate ":CommandResult"
 destroy  ":CommandResult"
-":Duke" -> ":storageFile": save(foodList)
-":Duke" --> ":Duke": command.exit()
-deactivate ":Duke"
-
-
+":FoodSupplyTracker" -> ":storageFile": save(foodList)
+":FoodSupplyTracker" --> ":FoodSupplyTracker": Command.isExit()
+deactivate ":FoodSupplyTracker"
 end
-
 @enduml

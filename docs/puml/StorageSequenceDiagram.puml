@@ -2,10 +2,10 @@
 'https://plantuml.com/sequence-diagram
 
 
-participant ":Duke"
+participant ":FoodSupplyTracker"
 
 create ":StorageFile" as sf
-":Duke" -> sf: load()
+":FoodSupplyTracker" -> sf: load()
 activate sf
 
 
@@ -26,7 +26,7 @@ deactivate ":FoodListDecoder"
 destroy ":FoodListDecoder"
 activate fl
 
-":Duke" -> sf: save(foodList)
+":FoodSupplyTracker" -> sf: save(foodList)
 sf -> ":FoodListEncoder": encodeFoodList(toSave)
 activate ":FoodListEncoder"
 loop end of list is not reached

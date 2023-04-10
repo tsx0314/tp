@@ -1,11 +1,11 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-participant ":Duke"
+participant ":FoodSupplyTracker"
 participant ":RemoveCommand"
 
 
-":Duke" -> ":RemoveCommand" : execute(arguments)
+":FoodSupplyTracker" -> ":RemoveCommand" : execute(arguments)
 activate ":RemoveCommand"
 
 ":RemoveCommand" -> ":FoodList" : getFood(index)
@@ -15,6 +15,6 @@ activate ":FoodList"
 
 ":FoodList" --> ":RemoveCommand" : foodName
 
-":RemoveCommand" --> ":Duke" : new CommandResult()
+":RemoveCommand" --> ":FoodSupplyTracker" : new CommandResult()
 
 @enduml

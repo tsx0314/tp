@@ -1,5 +1,5 @@
 @startuml
-":Duke" -> ":Parser": parse(command)
+":FoodSupplyTracker" -> ":Parser": parse(command)
 activate ":Parser"
 
 create ":UpdateCommand"
@@ -9,7 +9,7 @@ activate ":UpdateCommand"
 deactivate ":UpdateCommand"
 deactivate ":Parser"
 
-":Duke" -> ":UpdateCommand" : execute(foodList)
+":FoodSupplyTracker" -> ":UpdateCommand" : execute(foodList)
 activate ":UpdateCommand"
 
 create ":FoodList"
@@ -36,10 +36,10 @@ activate ":CommandResult"
 deactivate ":UpdateCommand"
 destroy ":UpdateCommand"
 
-":Duke" -> ":CommandResult": printResult()
+":FoodSupplyTracker" -> ":CommandResult": printResult()
 ":CommandResult"->System: System.out.println(feedbackToUser)
 deactivate ":CommandResult"
 destroy ":CommandResult"
 
-System --> ":Duke"
+System --> ":FoodSupplyTracker"
 @enduml

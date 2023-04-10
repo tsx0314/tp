@@ -9,8 +9,7 @@ It is optimized for use via a Command Line Interface (CLI). If you can type fast
 
 **1) New Feature: List Command**
   * What it does: List out all the food products in the order of expiry dates.
-  * Justification: This feature improves the product significantly because it makes viewing the
-food products a user convenient. In addition, listing food in order 
+  * Justification: This feature makes viewing the food products a user convenient. Listing food in order 
 of expiry dates makes it neater for user to look at foods that are expiring soon.
   * Enhancement implemented: 
     * Indicator of the number of days left or number of days expired to expired beside expiry date.
@@ -23,28 +22,20 @@ of expiry dates makes it neater for user to look at foods that are expiring soon
 of the food product that they are left. For example if the remaining quantity
 is 2 without unit, it would be confusing how much is a "2". It could be 2 packets
 or 2 boxes.
-    * Enhancement implemented: 
+  * Enhancement implemented: 
      * Fixed set of units that users can choose from (Enumerations).
-     * When user enters a common unit such as `milligrams` or `litre`, the program would automatically
-     assign units `mg` and `l` to the food respectively, according to the fixed list of units provided.
-     * The default unit of a food product would be set to `unit` and `units` according to the value of quantity.
+     * Food with common unit such as `milligrams` or `litre`, would automatically be
+     assigned to units `mg` and `l` respectively, according to the fixed list of units provided.
      * Unit would change to plural or singular form according to the food quantity.
 
 **3) New feature: Clear Command**
    * What it does: Allows users to clear the entire food list using one command.
-   * Justification: This feature improves the product as users can just delete the entire food list, without the need of 
-   deleting food products one by one. Practically, this feature is important as the user could have many expired foods 
-   and want to delete the entire food list in one shot.
-
-**4) Enhancement: Remove feature that do not take in non-integers**
-  * Checking if an input is an integer or not, if it is not then an error message will be showed up to the user.
-  * Improve the clarity of the error message being shown to the users.
-  * Credits: https://www.baeldung.com/java-check-string-number
+   * Justification: Delete the entire food list, without the need of deleting food products one by one.
 
 ### Code contributed
 [RepoSense link](https://nus-cs2113-ay2223s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2023-02-17&tabOpen=true&tabType=authorship&tabAuthor=wanjuin&tabRepo=AY2223S2-CS2113-W13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-### Project management
+### Project management & Review/mentoring contributions
 * Set issues on milestone `v1.0` - `v2.1` on GitHub after finding bugs or possible enhancements.
   * [Link to Issues added by me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=is%3Aissue+is%3Aclosed+author%3Awanjuin)
 * Review issues set by group members and other peers (PE-D).
@@ -52,10 +43,8 @@ or 2 boxes.
   * [Link to Issues assigned to me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=is%3Aclosed+assignee%3Awanjuin)
 * Request for group members' review for my merge request on GitHub.
   * [Link to my Pull Request](https://github.com/AY2223S2-CS2113-W13-3/tp/pulls?q=is%3Apr+is%3Aclosed+author%3Awanjuin)
-* Review group members' merge request.
-* Commented and suggested changes on group members' merge request.
-* Requested changes on group members' merge request when it would affect the overall functionality of the app.
-  * [Link to Merge Request reviewed by me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=reviewed-by%3Awanjuin)
+* Commented, suggested changes, and requested changes on group members' PRs.
+  * [Link to PRs reviewed](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=reviewed-by%3Awanjuin)
 
 ### Documentation
 * User Guide: 
@@ -65,18 +54,11 @@ or 2 boxes.
 
 * Developer Guide:
   * Diagrams:
-    * ListCommandClassDiagram, ListCommandSequenceDiagram
-    * ClearCommandClassDiagram, ClearCommandSequenceDiagram
-    * ExitCommandClassDiagram, ExitCommandSequenceDiagram
+    * ListCommandClassDiagram, ListCommandSequenceDiagram, ClearCommandClassDiagram, ClearCommandSequenceDiagram, ExitCommandClassDiagram, ExitCommandSequenceDiagram
   * Specifications: 
     * ListCommand, ClearCommand, and ExitCommand implementation description
   * Requirements (Appendix):
-    * User Stories
-    * Non-functional Requirements
+    * User Stories, Non-functional Requirements
 
 * Logging of the project
   * [Link to Pull Request for Logging](https://github.com/AY2223S2-CS2113-W13-3/tp/pull/58)
-
-### Community
-* PRs reviewed (with non-trivial review comments):  [Link to Merge Request reviewed by me](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=reviewed-by%3Awanjuin)
-* Reported bugs and suggestions: [Link to Reported Bugs](https://github.com/AY2223S2-CS2113-W13-3/tp/issues?q=author%3Awanjuin+label%3Atype.Bug+)

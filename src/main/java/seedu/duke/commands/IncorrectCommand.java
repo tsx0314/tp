@@ -2,6 +2,9 @@ package seedu.duke.commands;
 
 import seedu.duke.food.FoodList;
 
+/**
+ * Represents an IncorrectCommand Class
+ */
 public class IncorrectCommand extends Command {
     public static final String INCORRECT_COMMAND = "Oops! " +
             "Incorrect command format. Type 'help' to see more!!";

@@ -4,6 +4,9 @@ import seedu.duke.exceptions.DukeException;
 import seedu.duke.exceptions.IllegalValueException;
 import seedu.duke.food.FoodList;
 
+/**
+ * Represents a RemoveCommand Class
+ */
 public class RemoveCommand extends Command {
     public static final String COMMAND_WORD = "remove";
     public static final String BLANK_INDEX_MESSAGE_1 = "Please enter an integer to remove a food item.\n" +

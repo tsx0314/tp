@@ -21,6 +21,7 @@ import java.util.List;
  * The code is adapted from
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java
  */
+
 //@@author ZhongXiangWong
 public class FoodListDecoder {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

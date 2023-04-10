@@ -1,7 +1,7 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-":Duke" -> ":Parser": parse(fullCommand)
+":FoodSupplyTracker" -> ":Parser": parse(fullCommand)
 activate ":Parser"
 
 create ":ExitCommand"
@@ -11,7 +11,7 @@ activate ":ExitCommand"
 deactivate ":ExitCommand"
 deactivate ":Parser"
 
-":Duke" -> ":ExitCommand" : execute(foodList)
+":FoodSupplyTracker" -> ":ExitCommand" : execute(foodList)
 activate ":ExitCommand"
 
 
@@ -22,20 +22,20 @@ activate "CommandResult"
 deactivate ":ExitCommand"
 destroy ":ExitCommand"
 
-":Duke" -> "CommandResult": printResult()
+":FoodSupplyTracker" -> "CommandResult": printResult()
 "CommandResult"->System: out.println(feedbackToUser)
 
 System --> "CommandResult"
-"CommandResult" --> ":Duke"
+"CommandResult" --> ":FoodSupplyTracker"
 deactivate "CommandResult"
 destroy "CommandResult"
 
-":Duke" -> ":ExitCommand": isExit()
+":FoodSupplyTracker" -> ":ExitCommand": isExit()
 activate ":ExitCommand"
-":ExitCommand" --> ":Duke"
+":ExitCommand" --> ":FoodSupplyTracker"
 deactivate ":ExitCommand"
 destroy ":ExitCommand"
 
-destroy ":Duke"
+destroy ":FoodSupplyTracker"
 
 @enduml

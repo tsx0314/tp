@@ -2,7 +2,7 @@
 ### Project: Food Supply Tracker
 
 #### Overview
-Food Supply Tracker (FSP) is a CLI desktop application that allows users to
+Food Supply Tracker (FST) is a CLI desktop application that allows users to
 track their food. This includes the expiry dates and availability of the food.
 The main goal of the application is for users to have an efficient process of
 checking their food to reduce food wastage.

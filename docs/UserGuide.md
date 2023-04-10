@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FSP can get your food management tasks done faster than traditional GUI apps.
+Food Supply Tracker (FST) is a desktop app for managing food supplies, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FST can get your food management tasks done faster than traditional GUI apps.
 
 ---
 + [Quick Start](#quick-start)
@@ -14,7 +14,7 @@ Food Supply Tracker (FSP) is a desktop app for managing food supplies, optimized
   + [Finding food products by name: `find`](#finding-food-products-by-name-and-attributes)
   + [Updating food products by index: `update`](#updating-food-products-by-index)
   + [Clears the food list: `clear`](#clearing-the-food-list)
-  + [Exit FSP Program: `exit`](#exiting-fsp)
+  + [Exit FST Program: `exit`](#exiting-fst)
   + [Editing the foodTrackerList text file](#editing-foodtrackerlist-text-file)
 + [FAQ](#faq)
 + [Command Summary](#command-summary)
@@ -197,7 +197,6 @@ Below are the food list:
 3. bread (fresh) 
        Expiry date: 14/04/2023 (7 days left)
        Category: others
-       Remaining quantity: 0.0 unit
 4. Blueberry Yogurt (fresh) 
        Expiry date: 23/04/2023 (16 days left)
        Category: dairy
@@ -483,7 +482,7 @@ Clearing the food list as requested...
 ______________________________
 ```
 
-### Exiting FSP
+### Exiting FST
 `exit` - This command will save the food list in an external file before closing the program.
 * Any extraneous parameters input after the command `exit` will be ignored.
 
@@ -506,9 +505,9 @@ program is not running as the edits will not be saved otherwise (the program has
 
 ## FAQ
 
-**Q1**: Do I need other software to support FSP?
+**Q1**: Do I need other software to support FST?
 
-**A**: No, you do not need any other software to support FSP.
+**A**: No, you do not need any other software to support FST.
 
 **Q2**: I am unable to add the food product./I cannot list the food items./ I cannot remove the items.
 
@@ -528,11 +527,11 @@ program is not running as the edits will not be saved otherwise (the program has
 
 **Q6**: Can I export my food list into CSV files?
 
-**A**: Sorry, currently FSP does not have such features, but we will work on it in the future.
+**A**: Sorry, currently FST does not have such features, but we will work on it in the future.
 
 **Q7**:How do I transfer my data to another Computer?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FSP home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FST home folder.
 
 ---
 

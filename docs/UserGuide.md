@@ -64,10 +64,17 @@ ______________________________
 Command 'remove': This command removes the food product from the food supply tracker based on its index.
 Format: remove INDEX
 
-Command 'find': This command finds the food product by its name.
-Format: find PRODUCT_NAME
-Append the filter '-fresh' for listing unexpired food products and '-expired' for listing expired food products.
-Append the filter '-c' followed by CATEGORY to find by category.
+
+Command 'find': This command filters the list according to the flags applied.
+Format: find {PRODUCT_NAME} {--fresh} {--expired} {--flag ATTRIBUTE_NAME}
+List of valid flags as follows:
+   --fresh: list non-expired items
+   --expired: list expired items
+   --u: filter by unit
+   --q: filter by quantity
+   --c: filter by category
+It is possible to have multiple flags (all flags will be accounted for. i.e. with more flags, the list can only get smaller or remain the same).
+
 
 List of commands: 'add', 'list', 'remove', 'find', 'update', 'clear', 'exit'.
 For more detailed information on usage of specific command, type: help --COMMAND
@@ -83,15 +90,16 @@ ______________________________
 Format: `add --n FOOD_NAME --e DD/MM/YYYY {--c CAT --q QUANTITY --u UNITS}`
 
 * The parameter cannot contain any punctuations, or else it will return as incorrect command.
+* The order of format should be strictly followed.
 * `--n FOOD_NAME` and `--e DD/MM/YYYY` are compulsory.
 * `--c CAT`and`--q QUANTITY -u UNITS` are optional.
   * `--u UNIT` must be added together with `--q QUANTITY`.
   * `--q QUANTITY` can be added without `--u UNIT`
     * For example, a proper command can be `add --n milk --e 21/03/2025 --q 10.0`. 
 However, it cannot be `add --n milk --e 21/03/2025 --u packets`
-* For `CATEGORY`, we only have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
+* For `CATEGORY`, we have `FRUIT, VEGETABLE, MEAT, DAIRY, GRAIN, SEAFOOD, BEVERAGE, OTHERS`
 any other category or no category added will be deemed as `OTHERS`.
-* For `UNIT`, we only have `mg`, `g`, `kg`, `ml`, `l`, `unit`, `units`, `serving`, `servings`, `packet`, `packets`, 
+* For `UNIT`, we have `mg`, `g`, `kg`, `ml`, `l`, `unit`, `units`, `serving`, `servings`, `packet`, `packets`, 
 `box` and `boxes`. 
   * Default `UNIT` will be deemed as `unit` or `units` according to the value of `QUANTITY`.
   * If `QUANTITY` added is more than 1, then the `UNIT` will automatically change to plural form such as `units`, 
@@ -130,7 +138,7 @@ ______________________________
 
 ```
 
-Input 3: `add -n bread -e 11/11/2023 -q 2 -u box`
+Input 3: `add --n bread --e 11/11/2023 --q 2 --u box`
 
 Output 3:
 
@@ -225,12 +233,11 @@ ______________________________
 ### Finding food products by name and attributes
 `find` - List all food products with matching name and filters
 
-**Format:** `find {TERM} {--fresh} {--expired} {--ATTRIBUTE_NAME}`
+**Format:** `find {TERM} {--fresh} {--expired} {--flag ATTRIBUTE_NAME}`
 
 Allowed flags to find the food item:
 * fresh items: `--fresh`
 * expired items: `--expired`
-* name: `--n {string}`
 * unit: `--u {UNIT}`
 * quantity: `--q {number}`
 * category: `--c {CATEGORY}`
@@ -323,7 +330,7 @@ ______________________________
 `update` - Change any attribute based on the index `i` in the list and
 values of flags provided
 
-Format: `update {i} {flags}`
+Format: `update i {flags}`
 
 Allowed flags to update the food item attributes:
 * name: `--n {string}`

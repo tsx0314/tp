@@ -21,6 +21,7 @@ import java.util.List;
  * The code is adapted from
  * https://github.com/se-edu/addressbook-level2/blob/master/src/seedu/addressbook/storage/AddressBookDecoder.java
  */
+//@@author ZhongXiangWong
 public class FoodListDecoder {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final String SEPARATOR = "\\|";
@@ -62,7 +63,7 @@ public class FoodListDecoder {
      * @throws EmptyStorageFileException  when the line is empty
      */
     private static Food decodeFoodFromString(String encodedFood) throws
-             DukeException {
+            DukeException {
 
         if (encodedFood.equals("")) {
             throw new EmptyStorageFileException();
@@ -72,8 +73,8 @@ public class FoodListDecoder {
         String foodName = "";
         String expiryDate = "";
         String quantity = "0.0";
-        String unit = "";
-        String category = "";
+        String unit = Unit.UNIT.abbreviation;
+        String category = String.valueOf(FoodCategory.UNCLASSIFIED_FOOD);
 
 
         for (String foodDetails : details) {
@@ -104,15 +105,11 @@ public class FoodListDecoder {
                 case UNIT_IDENTIFIER:
                     if (hasValidUnit(detail)) {
                         unit = detail;
-                    } else {
-                        unit = "unit";
                     }
                     break;
                 case CATEGORY_IDENTIFIER:
                     if(hasValidCategory(detail)) {
                         category = detail;
-                    } else {
-                        category = String.valueOf(FoodCategory.UNCLASSIFIED_FOOD);
                     }
                     break;
                 default:
@@ -179,6 +176,7 @@ public class FoodListDecoder {
             }
         } catch (NumberFormatException e) {
             Ui.showError(INVALID_QUANTITY_ERROR);
+            return false;
         }
         return true;
     }

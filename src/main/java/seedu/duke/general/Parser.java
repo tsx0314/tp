@@ -47,7 +47,14 @@ public class Parser {
                     "\\s+--c\\s+\\w+(\\s+\\w+)*" +
                     "\\s+--q\\s+\\d+(\\.\\d+)?\\s+--u\\s+\\w+(\\s+\\w+)*$";
 
-
+    /**
+     * Returns a Command object according to the user input
+     * This methods parse the user input and based on the first command word to return a Command object accordingly
+     *
+     * @param userInput a String of userInput
+     * @return a Command object
+     * @throws DukeException throws DukeException if some errors are caught
+     */
     public static Command parse(String userInput) throws DukeException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -88,6 +95,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a Command object according to the input string
+     * The methods will check the correctness of add command
+     * If it is correct it will return a AddCommand object
+     * Else it will return a IncorrectCommand object
+     *
+     * @param args the string of user input
+     * @return a Command object
+     */
     private static Command addFood(String args) {
         boolean isMatched1 = Pattern.matches(ADD_COMMAND_PATTERN_1, args);
         boolean isMatched2 = Pattern.matches(ADD_COMMAND_PATTERN_2, args);

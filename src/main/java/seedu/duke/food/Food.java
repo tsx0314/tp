@@ -138,7 +138,7 @@ public class Food {
         this.unit = unit;
     }
 
-    public Food(String name, String expiryDate, String category) throws DukeException{
+    public Food(String name, String expiryDate, String category) throws DukeException {
         Validator.isExpiryDateValid(expiryDate);
 
         this.name = name;
@@ -190,6 +190,12 @@ public class Food {
         this.category = FoodCategory.OTHERS;
     }
 
+    /**
+     * Return a String according to the input category
+     *
+     * @param category food category
+     * @return a category string
+     */
     public String getCategoryString(FoodCategory category) {
         switch (category) {
         case FRUIT:
@@ -291,6 +297,12 @@ public class Food {
         return expiryDate.isAfter(getDate());
     }
 
+    /**
+     * Return a string of expiryStatus
+     *
+     * @return expiryStatus
+     * @throws DukeException
+     */
     public String getExpiryStatus() throws DukeException {
         String expiryStatus;
         if (!isFresh()) {
@@ -343,7 +355,7 @@ public class Food {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory());
-        }  else {
+        } else {
             foodDetail = getName() + expiryStatus
                     + "\n       Expiry date: " + getExpiryDate() + daysLeftString
                     + "\n       Category: " + getCategoryString(getCategory())

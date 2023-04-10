@@ -1,5 +1,8 @@
 package seedu.duke.exceptions;
 
+/**
+ * Represents a DukeException Class
+ */
 public class DukeException extends Exception {
 
     protected String errorMessage = "Error..";

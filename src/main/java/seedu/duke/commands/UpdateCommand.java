@@ -25,7 +25,7 @@ public class UpdateCommand extends Command {
      * Initializes UpdateCommand object
      * with index and flags obtained from the arguments provided
      *
-     * @param arguments
+     * @param arguments the user input
      * @throws DukeException
      */
     public UpdateCommand(String arguments) throws DukeException {
@@ -83,6 +83,8 @@ public class UpdateCommand extends Command {
     }
 
     /**
+     * Returns a Command Result according to the updating message
+     *
      * @param foodList
      * @return CommandResult
      * @throws DukeException

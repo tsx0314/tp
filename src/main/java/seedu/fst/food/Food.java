@@ -215,6 +215,7 @@ public class Food {
         }
     }
 
+    //@@author wanjuin
     /**
      * Set the unit of the food according to the user input.
      *

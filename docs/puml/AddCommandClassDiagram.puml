@@ -17,6 +17,11 @@ class CommandResult {
     +printResult(): void
 }
 
+class FoodList {
+    +addFood(Food food)
+    foodList: ArrayList<Food>
+}
+AddCommand --> FoodList : addFood
 Command <|-- AddCommand
 CommandResult <-- AddCommand
 CommandResult <-- Command

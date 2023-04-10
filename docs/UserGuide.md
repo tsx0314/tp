@@ -89,7 +89,7 @@ ______________________________
 
 Format: `add --n FOOD_NAME --e DD/MM/YYYY {--c CAT --q QUANTITY --u UNITS}`
 
-* The parameter cannot contain any punctuations, or else it will return as incorrect command.
+* The parameter cannot contain any punctuations (except `QUANTITY` can contain `.` decimal point), or else it will return as incorrect command.
 * The order of format should be strictly followed.
 * `--n FOOD_NAME` and `--e DD/MM/YYYY` are compulsory.
 * `--c CAT`and`--q QUANTITY -u UNITS` are optional.

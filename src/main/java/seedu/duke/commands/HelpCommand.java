@@ -6,7 +6,9 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-
+/**
+ * Represents a Help Command
+ */
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 

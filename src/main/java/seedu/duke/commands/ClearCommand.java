@@ -2,6 +2,9 @@ package seedu.duke.commands;
 
 import seedu.duke.food.FoodList;
 
+/**
+ * Represents a Clear Command
+ */
 public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_CLEAR_ACKNOWLEDGEMENT = "Clearing the food list as requested...";

@@ -10,7 +10,7 @@ import seedu.duke.utils.DateFormatter;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-
+//@@ tsx0314
 /**
  * Represent an Add command
  */
@@ -288,8 +288,6 @@ public class AddCommand extends Command {
         String[] foodDetails = {name, date, quantity, unit, category};
         return foodDetails;
     }
-
-    //@@author tsx0314
 
     /**
      * Returns whether the input date is a valid expiry date

@@ -3,6 +3,9 @@ package seedu.duke.commands;
 import seedu.duke.exceptions.DukeException;
 import seedu.duke.food.FoodList;
 
+/**
+ * Represent a ListCommand Class
+ */
 public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String SHOW_FOODLIST_MESSAGE = "Below are the food list: \n";

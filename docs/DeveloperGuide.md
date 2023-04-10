@@ -268,17 +268,17 @@ and storage area of foods as to minimise food shortage.
 
 Currently, the following functionality was implemented:
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE `
+`add --n PRODUCT_NAME --e EXPIRY_DATE `
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY `
+`add --n PRODUCT_NAME --e EXPIRY_DATE --c CATEGORY `
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -p QUANTITY `
+`add --n PRODUCT_NAME --e EXPIRY_DATE --p QUANTITY `
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY -p QUANTITY`
+`add --n PRODUCT_NAME --e EXPIRY_DATE --c CATEGORY --p QUANTITY`
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -p QUANTITY -u UNIT`
+`add --n PRODUCT_NAME --e EXPIRY_DATE --p QUANTITY --u UNIT`
 
-`add -n PRODUCT_NAME -e EXPIRY_DATE -c CATEGORY -p QUANTITY -u UNIT`
+`add --n PRODUCT_NAME --e EXPIRY_DATE --c CATEGORY --p QUANTITY --u UNIT`
 
 `list`
 
@@ -286,9 +286,17 @@ Currently, the following functionality was implemented:
 
 `find {PRODUCT_NAME}`
 
-`find {PRODUCT_NAME} -fresh`
+`find {PRODUCT_NAME} --fresh`
 
-`find {PRODUCT_NAME} -expired`
+`find {PRODUCT_NAME} --expired`
+
+`update INDEX {flags}`
++ Allowed flags to update the food item attributes:
+  * name: `--n {string}`
+  * expiry date: `--e {dd/mm/yyyy}`
+  * unit: `--u {UNIT}`
+  * quantity: `--q {number}`
+  * category: `--c {CATEGORY}`
 
 `help {--COMMAND_WORD}`
 
@@ -299,7 +307,7 @@ Currently, the following functionality was implemented:
 | `* * *`  | Forgetful cook      | be reminded of what is left in my fridge                              | use the food wisely and avoid repetitive purchasing.            | `list`                    |
 | `*`      | Forgetful cook      | get all meals for the next `x` days with their ingredients            | plan my grocery trips accordingly.                              | nil                       |
 | `* *`    | Lazy cook           | get recommended recipes based on what I have left in the <br/>fridge  | can spend less time considering what to cook today.             | nil                       |
-| `* * *`  | Lazy cook           | have an efficient method of updating what leftover ingredients I have | spend less time using the software.                             | `add -n`                  |
+| `* * *`  | Lazy cook           | have an efficient method of updating what leftover ingredients I have | spend less time using the software.                             | `add --n`                 |
 | `* * *`  | Lazy cook           | check the lists of food fast                                          | waste less effort digging through the fridge / kitchen.         | `list`                    |
 | `* * *`  | Busy cook           | get reminded on the products which will expire soon                   | prepare a meal based on it.                                     |                           |
 | `* * *`  | Busy cook           | get reminded on the products which will expire soon                   | plan my grocery purchases accordingly.                          |                           |
@@ -309,7 +317,7 @@ Currently, the following functionality was implemented:
 | `* *`    | Prudent cook        | track the amount of different products I have                         | know how many portions I can cook.                              | nil                       |
 | `*`      | Creative cook       | replace some products with others                                     | add potential replacement for the product.                      | nil                       |     
 | `*`      | Inexperienced cook  | know how much to cook based on the number of people eating            | prepare the correct amount of food.                             | nil                       |  
-| `* * *`  | Cook                | add product (name, expiry date, category etc)                         | keep my program updated.                                        | `add -n -e`               |
+| `* * *`  | Cook                | add product (name, expiry date, category etc)                         | keep my program updated.                                        | `add --n --e --c --q --u` |
 | `* * *`  | Cook                | remove product                                                        | keep my program updated.                                        | `remove`                  |
 
 # Non-Functional Requirements

@@ -332,7 +332,7 @@ public class Food {
     /**
      * Return the number of days the food has expired and number of days left to expired from "today".
      *
-     * @return
+     * @return number of days to expiry days
      * @throws DukeException
      */
     public long getDaysExpire() throws DukeException {

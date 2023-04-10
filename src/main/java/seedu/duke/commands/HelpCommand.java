@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-//@@author ZhongXiangWong
+
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
 
